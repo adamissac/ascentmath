@@ -96,7 +96,299 @@ export const UNITS: Unit[] = [
   {
     id: "unit-1",
     number: 1,
-    topics: [],
+    topics: [
+      {
+        id: "u1-t1",
+        slug: "factors-multiples-gcf-lcm",
+        title: "Factors, Multiples, GCF & LCM",
+        summary: "Numbers that divide in, numbers you count by, and the values they share.",
+        estimatedMinutes: 14,
+        walkthrough: [
+          {
+            heading: "Factors and multiples",
+            paragraphs: [
+              "A factor is a number that divides evenly into another number, leaving no remainder. The factors of 12 are 1, 2, 3, 4, 6, and 12, because each one divides 12 exactly.",
+              "A multiple is what you get when you skip-count by a number. The multiples of 4 are 4, 8, 12, 16, 20, and so on. Notice that every number is a factor of its own multiples.",
+            ],
+          },
+          {
+            heading: "Greatest Common Factor (GCF)",
+            paragraphs: [
+              "The GCF of two numbers is the largest factor they share. List the factors of each number, then pick the biggest one that appears in both lists.",
+            ],
+            example: {
+              problem: "Find the GCF of 18 and 24.",
+              solution: [
+                "Factors of 18: 1, 2, 3, 6, 9, 18",
+                "Factors of 24: 1, 2, 3, 4, 6, 8, 12, 24",
+                "Shared factors: 1, 2, 3, 6 — the greatest is 6.",
+              ],
+            },
+          },
+          {
+            heading: "Least Common Multiple (LCM)",
+            paragraphs: [
+              "The LCM is the smallest multiple that two numbers share. Skip-count by each number until you reach the first value they both land on.",
+            ],
+            example: {
+              problem: "Find the LCM of 6 and 8.",
+              solution: [
+                "Multiples of 6: 6, 12, 18, 24, 30…",
+                "Multiples of 8: 8, 16, 24, 32…",
+                "First match: 24.",
+              ],
+            },
+            callout: {
+              label: "Tip",
+              text: "For larger numbers, break each one into primes (prime factorization) — it makes finding the GCF and LCM much faster.",
+            },
+          },
+        ],
+        video: { videoId: "XGbOiYhHY2c", title: "Prime Factorization", source: "Math Antics", description: "Break any number into its prime building blocks — the key to GCF and LCM." },
+        practiceLinks: [
+          { href: "https://www.mathworksheets4kids.com/greatest-common-factor.php", title: "Greatest Common Factor", source: "Math Worksheets 4 Kids" },
+          { href: "https://www.mathworksheets4kids.com/least-common-multiple.php", title: "Least Common Multiple", source: "Math Worksheets 4 Kids" },
+        ],
+        quiz: [
+          {
+            id: "u1-t1-q1",
+            prompt: "What is the GCF of 18 and 24?",
+            type: "short-answer",
+            answer: "6",
+            explanation: "Factors of 18: 1, 2, 3, 6, 9, 18. Factors of 24: 1, 2, 3, 4, 6, 8, 12, 24. The greatest shared factor is 6.",
+            difficulty: "medium",
+          },
+          {
+            id: "u1-t1-q2",
+            prompt: "What is the LCM of 6 and 8?",
+            type: "multiple-choice",
+            options: ["12", "24", "48", "14"],
+            answer: "24",
+            explanation: "Multiples of 6: 6, 12, 18, 24… Multiples of 8: 8, 16, 24… The first shared value is 24.",
+            difficulty: "medium",
+          },
+          {
+            id: "u1-t1-q3",
+            prompt: "Every prime number has exactly two factors: 1 and itself.",
+            type: "true-false",
+            answer: true,
+            explanation: "That is the definition of a prime number.",
+            difficulty: "easy",
+          },
+        ],
+      },
+      {
+        id: "u1-t2",
+        slug: "adding-subtracting-fractions",
+        title: "Adding & Subtracting Fractions",
+        summary: "Same bottom number? Add the tops. Different? Find a common denominator first.",
+        estimatedMinutes: 14,
+        walkthrough: [
+          {
+            heading: "Same denominator",
+            paragraphs: [
+              "When the bottom numbers (denominators) already match, just add or subtract the top numbers (numerators) and keep the denominator the same. For example, 2/7 + 3/7 = 5/7.",
+            ],
+          },
+          {
+            heading: "Different denominators",
+            paragraphs: [
+              "When the bottoms are different, you first rewrite both fractions with a common denominator — usually the LCM of the two denominators.",
+            ],
+            steps: [
+              "Find a common denominator (the LCM of the bottom numbers).",
+              "Rewrite each fraction with that denominator.",
+              "Add or subtract the numerators; keep the denominator.",
+              "Simplify the answer if you can.",
+            ],
+            example: {
+              problem: "1/3 + 1/4",
+              solution: [
+                "A common denominator is 12.",
+                "1/3 = 4/12 and 1/4 = 3/12.",
+                "4/12 + 3/12 = 7/12.",
+              ],
+            },
+            callout: {
+              label: "Watch out",
+              text: "Never add the denominators. 1/2 + 1/2 = 1, not 2/4.",
+            },
+          },
+        ],
+        video: { videoId: "5juto2ze8Lg", title: "Adding & Subtracting Fractions", source: "Math Antics", description: "Find common denominators, then add or subtract." },
+        extraVideo: { videoId: "ny2AmGQmu2M", title: "Adding Fractions (another take)", source: "Virtual Nerd", description: "Same and different denominators, side by side." },
+        practiceLinks: [
+          { href: "https://www.mathworksheets4kids.com/fractions.php", title: "Fractions practice", source: "Math Worksheets 4 Kids" },
+        ],
+        quiz: [
+          {
+            id: "u1-t2-q1",
+            prompt: "What is 2/7 + 3/7?",
+            type: "short-answer",
+            answer: "5/7",
+            explanation: "Same denominator, so add the numerators: 2 + 3 = 5, over 7.",
+            difficulty: "easy",
+          },
+          {
+            id: "u1-t2-q2",
+            prompt: "What is 5/6 − 1/4?",
+            type: "multiple-choice",
+            options: ["4/2", "7/12", "6/10", "1/2"],
+            answer: "7/12",
+            explanation: "Common denominator 12: 10/12 − 3/12 = 7/12.",
+            difficulty: "medium",
+          },
+          {
+            id: "u1-t2-q3",
+            prompt: "To add fractions with unlike denominators, you must first find a common denominator.",
+            type: "true-false",
+            answer: true,
+            explanation: "You can only add numerators once the denominators match.",
+            difficulty: "easy",
+          },
+        ],
+      },
+      {
+        id: "u1-t3",
+        slug: "multiplying-dividing-fractions",
+        title: "Multiplying & Dividing Fractions",
+        summary: "Multiply straight across. To divide, keep–change–flip.",
+        estimatedMinutes: 15,
+        walkthrough: [
+          {
+            heading: "Multiplying fractions",
+            paragraphs: [
+              "Multiply straight across: numerator times numerator, denominator times denominator. Then simplify. For example, 2/3 × 4/5 = 8/15.",
+            ],
+          },
+          {
+            heading: "Dividing fractions — keep, change, flip",
+            paragraphs: [
+              "To divide by a fraction, you multiply by its reciprocal (the fraction flipped upside down).",
+            ],
+            steps: [
+              "Keep the first fraction as it is.",
+              "Change the ÷ sign to ×.",
+              "Flip the second fraction (its reciprocal).",
+              "Multiply across and simplify.",
+            ],
+            example: {
+              problem: "3/4 ÷ 2/3",
+              solution: [
+                "Keep 3/4, change ÷ to ×, flip 2/3 → 3/2.",
+                "3/4 × 3/2 = 9/8.",
+                "9/8 = 1 1/8.",
+              ],
+            },
+            callout: {
+              label: "Tip",
+              text: "Turn mixed numbers into improper fractions before you multiply or divide.",
+            },
+          },
+        ],
+        video: { videoId: "qmfXyR7Z6Lk", title: "Multiplying Fractions", source: "Math Antics", description: "Multiply across the top and bottom, then simplify." },
+        extraVideo: { videoId: "4lkq3DgvmJo", title: "Dividing Fractions", source: "Math Antics", description: "Flip the second fraction, then multiply (keep–change–flip)." },
+        worksheet: { driveFileId: "1VZEQx-BOXpIIYYMpvdp-EsYO8Q9fwnfV", title: "Worksheet — Operations practice", description: "Mixed practice covering fraction and decimal operations." },
+        quiz: [
+          {
+            id: "u1-t3-q1",
+            prompt: "What is 3/4 ÷ 2/3?",
+            type: "multiple-choice",
+            options: ["1/2", "9/8", "6/12", "5/7"],
+            answer: "9/8",
+            explanation: "Keep–change–flip: 3/4 × 3/2 = 9/8.",
+            difficulty: "medium",
+          },
+          {
+            id: "u1-t3-q2",
+            prompt: "What is 2/3 × 3/8 in simplest form?",
+            type: "short-answer",
+            answer: "1/4",
+            explanation: "2/3 × 3/8 = 6/24, which simplifies to 1/4.",
+            difficulty: "medium",
+          },
+          {
+            id: "u1-t3-q3",
+            prompt: "Dividing by a fraction is the same as multiplying by its reciprocal.",
+            type: "true-false",
+            answer: true,
+            explanation: "That is exactly what keep–change–flip does.",
+            difficulty: "easy",
+          },
+        ],
+      },
+      {
+        id: "u1-t4",
+        slug: "decimal-operations",
+        title: "Decimal Operations",
+        summary: "Line up the point to add or subtract; count places to multiply.",
+        estimatedMinutes: 13,
+        walkthrough: [
+          {
+            heading: "Adding & subtracting decimals",
+            paragraphs: [
+              "Stack the numbers so the decimal points line up, then add or subtract like whole numbers. Fill empty spots with zeros so every column has a digit.",
+            ],
+            example: {
+              problem: "4.5 − 2.75",
+              solution: [
+                "Line up the points: 4.50 − 2.75.",
+                "Subtract column by column: 1.75.",
+              ],
+            },
+          },
+          {
+            heading: "Multiplying decimals",
+            paragraphs: [
+              "Ignore the decimal points and multiply like whole numbers. Then count the total number of decimal places in both factors and place the point that many spots from the right.",
+            ],
+            example: {
+              problem: "0.6 × 0.4",
+              solution: [
+                "6 × 4 = 24.",
+                "Two decimal places total → 0.24.",
+              ],
+            },
+            callout: {
+              label: "Watch out",
+              text: "When multiplying you do NOT line up the decimal points — lining up is only for adding and subtracting.",
+            },
+          },
+        ],
+        video: { videoId: "REcdCxWTZrw", title: "Multiplying Decimals", source: "Virtual Nerd", description: "Multiply first, then place the decimal point." },
+        extraVideo: { videoId: "eQU_uLDoyoQ", title: "Subtracting Decimals", source: "Virtual Nerd", description: "Line up the decimal points, then subtract like whole numbers." },
+        worksheet: { driveFileId: "1RAoa5x7bEpbnBNA1CL68F7pvIaIW19_s", title: "Worksheet — Word problems", description: "Apply decimal and fraction operations to real situations." },
+        practiceLinks: [
+          { href: "https://www.mathworksheets4kids.com/decimals.php", title: "Decimal operations", source: "Math Worksheets 4 Kids" },
+        ],
+        quiz: [
+          {
+            id: "u1-t4-q1",
+            prompt: "0.6 × 0.4 = ?",
+            type: "short-answer",
+            answer: "0.24",
+            explanation: "6 × 4 = 24. Two decimal places total, so place the decimal: 0.24.",
+            difficulty: "medium",
+          },
+          {
+            id: "u1-t4-q2",
+            prompt: "What is 4.5 − 2.75?",
+            type: "short-answer",
+            answer: "1.75",
+            explanation: "Line up the points: 4.50 − 2.75 = 1.75.",
+            difficulty: "easy",
+          },
+          {
+            id: "u1-t4-q3",
+            prompt: "To multiply decimals you should line up the decimal points first.",
+            type: "true-false",
+            answer: false,
+            explanation: "Lining up points is for adding and subtracting. To multiply, count decimal places after multiplying.",
+            difficulty: "medium",
+          },
+        ],
+      },
+    ],
     slug: "unit-1",
     title: "Number System & Operations",
     short: "Fractions, decimals, factors, and the basics that everything else builds on.",
@@ -182,7 +474,200 @@ export const UNITS: Unit[] = [
   {
     id: "unit-2",
     number: 2,
-    topics: [],
+    topics: [
+      {
+        id: "u2-t1",
+        slug: "ratios",
+        title: "What Is a Ratio?",
+        summary: "Compare two quantities — and find ratios that mean the same thing.",
+        estimatedMinutes: 12,
+        walkthrough: [
+          {
+            heading: "Comparing with ratios",
+            paragraphs: [
+              "A ratio compares two amounts. If a recipe uses 2 cups of flour and 3 cups of sugar, the ratio of flour to sugar is 2 to 3 — written 2:3 or 2/3.",
+            ],
+          },
+          {
+            heading: "Order matters",
+            paragraphs: [
+              "Flour to sugar (2:3) is not the same as sugar to flour (3:2). Always write the parts in the order the problem names them.",
+            ],
+          },
+          {
+            heading: "Equivalent ratios",
+            paragraphs: [
+              "Multiply or divide both parts of a ratio by the same number to get an equivalent ratio that describes the same comparison.",
+            ],
+            example: {
+              problem: "Are 2:3 and 8:12 equivalent?",
+              solution: [
+                "Multiply both parts of 2:3 by 4.",
+                "2 × 4 = 8 and 3 × 4 = 12, so 2:3 → 8:12.",
+                "Yes — they are equivalent.",
+              ],
+            },
+          },
+        ],
+        video: { videoId: "RQ2nYUBVvqI", title: "Ratios & Rates", source: "Math Antics", description: "What a ratio is and how it shows up in everyday comparisons." },
+        extraVideo: { videoId: "bIKmw0aTmYc", title: "Introduction to Ratios", source: "Khan Academy", description: "Another walk-through of writing a ratio to compare two quantities." },
+        practiceLinks: [
+          { href: "https://www.mathworksheets4kids.com/ratio.php", title: "Ratio worksheets", source: "Math Worksheets 4 Kids" },
+        ],
+        quiz: [
+          {
+            id: "u2-t1-q1",
+            prompt: "Write the ratio of 5 dogs to 8 cats.",
+            type: "short-answer",
+            answer: "5:8",
+            explanation: "Keep the order given — dogs first, then cats: 5:8.",
+            difficulty: "easy",
+          },
+          {
+            id: "u2-t1-q2",
+            prompt: "Which ratio is equivalent to 2:3?",
+            type: "multiple-choice",
+            options: ["3:2", "8:12", "4:9", "5:6"],
+            answer: "8:12",
+            explanation: "Multiply both parts of 2:3 by 4 to get 8:12.",
+            difficulty: "medium",
+          },
+          {
+            id: "u2-t1-q3",
+            prompt: "The ratios 2:3 and 8:12 are equivalent.",
+            type: "true-false",
+            answer: true,
+            explanation: "Multiply 2:3 by 4 → 8:12.",
+            difficulty: "easy",
+          },
+        ],
+      },
+      {
+        id: "u2-t2",
+        slug: "unit-rates",
+        title: "Unit Rates",
+        summary: "How much for just ONE — speed, price per item, and more.",
+        estimatedMinutes: 13,
+        walkthrough: [
+          {
+            heading: "Rates vs. unit rates",
+            paragraphs: [
+              "A rate compares two different units, like miles and hours. A unit rate tells you the amount for just one — like miles per ONE hour, or dollars per ONE item.",
+            ],
+          },
+          {
+            heading: "Finding a unit rate",
+            paragraphs: [
+              "Write the rate as a fraction, then divide the top number by the bottom number.",
+            ],
+            steps: [
+              "Write the rate as a fraction (first quantity over second).",
+              "Divide the top by the bottom.",
+              "The result is the amount per 1 unit.",
+            ],
+            example: {
+              problem: "A car drives 180 miles in 3 hours. Find the speed per hour.",
+              solution: [
+                "Rate: 180 miles / 3 hours.",
+                "180 ÷ 3 = 60.",
+                "Unit rate: 60 miles per hour.",
+              ],
+            },
+            callout: {
+              label: "Tip",
+              text: "Unit rates make it easy to compare deals — $0.80 per apple is a better buy than $0.90 per apple.",
+            },
+          },
+        ],
+        video: { videoId: "qGTYSAeLTOE", title: "Rates and Unit Rates", source: "Other", description: "Find cost per item, speed, and other per-one rates." },
+        extraVideo: { videoId: "jC1K7fM91sE", title: "Rates and Unit Rates (extra examples)", source: "Other", description: "More practice turning a rate into a unit rate." },
+        worksheet: { driveFileId: "1W-fu-btydoCDyL6PbW8lAEcrDA--EYhk", title: "Worksheet — Ratios & proportions", description: "Mixed practice across ratios, rates, and proportions." },
+        quiz: [
+          {
+            id: "u2-t2-q1",
+            prompt: "A car drives 180 miles in 3 hours. What is the unit rate in miles per hour?",
+            type: "multiple-choice",
+            options: ["30 mph", "60 mph", "90 mph", "120 mph"],
+            answer: "60 mph",
+            explanation: "180 ÷ 3 = 60.",
+            difficulty: "easy",
+          },
+          {
+            id: "u2-t2-q2",
+            prompt: "If 4 apples cost $3, how much do 12 apples cost?",
+            type: "short-answer",
+            answer: "$9",
+            explanation: "12 ÷ 4 = 3 batches, so 3 × $3 = $9.",
+            difficulty: "easy",
+          },
+        ],
+      },
+      {
+        id: "u2-t3",
+        slug: "proportional-relationships",
+        title: "Proportional Relationships",
+        summary: "Two quantities that grow together at one steady rate.",
+        estimatedMinutes: 14,
+        walkthrough: [
+          {
+            heading: "What makes a relationship proportional",
+            paragraphs: [
+              "Two quantities are proportional when they always change by the same rate. If you earn $12 every hour, dollars and hours are proportional — the rate stays 12 no matter how many hours you work.",
+            ],
+          },
+          {
+            heading: "Solving a proportion",
+            paragraphs: [
+              "Set two equal ratios next to each other and cross-multiply to find the missing value.",
+            ],
+            example: {
+              problem: "Solve 3/5 = x/20",
+              solution: [
+                "Cross-multiply: 3 × 20 = 5 × x.",
+                "60 = 5x.",
+                "Divide by 5: x = 12.",
+              ],
+            },
+            callout: {
+              label: "Tip",
+              text: "A double number line or a table can help you see the steady rate when you get stuck.",
+            },
+          },
+        ],
+        video: { videoId: "l-HtxhClZ-0", title: "Proportional Relationships", source: "Khan Academy", description: "Spot when two quantities grow together at a steady rate." },
+        extraVideo: { videoId: "USmit5zUGas", title: "Proportions", source: "Math Antics", description: "Set up and solve equations where two ratios are equal." },
+        practiceLinks: [
+          { href: "https://www.khanacademy.org/math/cc-sixth-grade-math/cc-6th-ratios-prop-topic", title: "Ratios & proportions practice", source: "Khan Academy" },
+        ],
+        quiz: [
+          {
+            id: "u2-t3-q1",
+            prompt: "If 5 notebooks cost $7.50, how much do 8 notebooks cost?",
+            type: "short-answer",
+            answer: "$12",
+            explanation: "Unit price is $7.50 ÷ 5 = $1.50. Then $1.50 × 8 = $12.",
+            difficulty: "medium",
+          },
+          {
+            id: "u2-t3-q2",
+            prompt: "Solve the proportion 3/5 = x/20.",
+            type: "multiple-choice",
+            options: ["9", "12", "15", "6"],
+            answer: "12",
+            explanation: "Cross-multiply: 3 × 20 = 5x, so 60 = 5x and x = 12.",
+            difficulty: "medium",
+          },
+          {
+            id: "u2-t3-q3",
+            prompt: "In a proportional relationship, the ratio between the two quantities stays constant.",
+            type: "true-false",
+            answer: true,
+            explanation: "That constant ratio is the defining feature of a proportional relationship.",
+            difficulty: "easy",
+          },
+        ],
+      },
+    ],
     slug: "unit-2",
     title: "Ratios & Proportional Relationships",
     short: "Compare quantities, find unit rates, and reason about proportions.",
