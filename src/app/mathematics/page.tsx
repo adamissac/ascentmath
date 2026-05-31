@@ -11,7 +11,7 @@ import ColorBand from "../../components/ColorBand";
 import Reveal from "../../components/Reveal";
 import VisualPanel from "../../components/VisualPanel";
 import { DocSymbol, UnitSymbol } from "../../components/UnitSymbol";
-import { UNITS, type Unit } from "../../data/units";
+import { UNITS, countUnitVideos, countUnitWorksheets, type Unit } from "../../data/units";
 
 export const metadata: Metadata = {
   title: "Mathematics",
@@ -21,8 +21,9 @@ export const metadata: Metadata = {
 
 export default function MathematicsHub() {
   const totalMinutes = UNITS.reduce((s, u) => s + u.estimatedMinutes, 0);
-  const totalVideos = UNITS.reduce((s, u) => s + u.videos.length, 0);
-  const totalWorksheets = UNITS.reduce((s, u) => s + u.worksheets.length, 0);
+  const totalTopics = UNITS.reduce((s, u) => s + u.topics.length, 0);
+  const totalVideos = UNITS.reduce((s, u) => s + countUnitVideos(u), 0);
+  const totalWorksheets = UNITS.reduce((s, u) => s + countUnitWorksheets(u), 0);
 
   return (
     <>
@@ -44,6 +45,7 @@ export default function MathematicsHub() {
             </p>
             <div className="proof-row mt-8 justify-center">
               <span><strong>{UNITS.length}</strong>units</span>
+              <span><strong>{totalTopics}</strong>topics</span>
               <span><strong>{totalVideos}</strong>videos</span>
               <span><strong>{totalWorksheets}</strong>worksheets</span>
               <span><strong>~{Math.round(totalMinutes / 60)}h</strong>total</span>
@@ -62,8 +64,9 @@ export default function MathematicsHub() {
                   <p className="eyebrow">The library</p>
                   <h2 className="h2 mt-2">All seven units</h2>
                   <p className="small text-[var(--color-ink-muted)] mt-2 max-w-xl leading-relaxed">
-                    Each row is a full unit — videos, practice, and a short quiz. Open whichever one
-                    you&apos;re working on in class right now.
+                    Each row is a full unit, broken into short topics — a walkthrough, a video,
+                    practice, and a quick quiz on every one. Open whichever unit you&apos;re working
+                    on in class right now.
                   </p>
                 </div>
                 <p className="caption font-semibold text-[var(--color-brand-600)] shrink-0">
@@ -83,13 +86,13 @@ export default function MathematicsHub() {
             <div className="sticky top-20 grid gap-4">
               <VisualPanel
                 variant="compact"
-                title="How each unit works"
-                subtitle="Watch → practice → quiz. Same shape every time so you always know what's next."
+                title="How each topic works"
+                subtitle="Read → watch → practice → quiz. Same shape every time so you always know what's next."
                 stats={[
-                  { value: "1", label: "Watch" },
-                  { value: "2", label: "Practice" },
-                  { value: "3", label: "Quiz" },
-                  { value: "4", label: "Done" },
+                  { value: "1", label: "Read" },
+                  { value: "2", label: "Watch" },
+                  { value: "3", label: "Practice" },
+                  { value: "4", label: "Quiz" },
                 ]}
               />
               <Link
@@ -140,8 +143,8 @@ export default function MathematicsHub() {
             <p className="eyebrow text-[var(--color-accent-300)]">What&apos;s inside</p>
             <h2 className="h2 mt-3 text-white">A consistent shape, so you always know where to go next.</h2>
             <p className="small text-white/75 mt-4 max-w-sm leading-relaxed">
-              Open any unit and you&apos;ll see the same four sections in the same order. Skim,
-              skip, or follow it straight through — it&apos;s built to fit how you study.
+              Open any unit and pick a topic. Every topic follows the same four steps in the same
+              order. Skim, skip, or follow it straight through — it&apos;s built to fit how you study.
             </p>
           </div>
           <ol className="lg:col-span-8 divide-y divide-white/15">
@@ -184,13 +187,15 @@ export default function MathematicsHub() {
 }
 
 const STEPS: { title: string; body: string }[] = [
-  { title: "Learning objectives", body: "What you’ll know by the end — written in plain language, not standard codes." },
-  { title: "Video walk-throughs", body: "Hand-picked videos from teachers students actually like. Multiple takes on each concept so you can find the one that lands." },
-  { title: "Worksheets & practice", body: "Printable problem sets from Adam, plus curated links to external worksheet libraries." },
-  { title: "Self-check quiz", body: "A short quiz at the end with explanations on every question. Retake it as many times as you want." },
+  { title: "Walkthrough", body: "A short, plain-language explainer with a worked example. Read it first to get the idea." },
+  { title: "Video walk-through", body: "One hand-picked video per topic — sometimes a second take — from teachers students actually like." },
+  { title: "Practice", body: "A printable worksheet from Adam or curated links to trusted external worksheet libraries." },
+  { title: "Quick quiz", body: "Two or three questions at the end of each topic, with explanations. Retake it as many times as you want." },
 ];
 
 function UnitLibraryCard({ unit: u, index }: { unit: Unit; index: number }) {
+  const videoCount = countUnitVideos(u);
+  const worksheetCount = countUnitWorksheets(u);
   return (
     <Link
       href={`/mathematics/${u.slug}`}
@@ -228,13 +233,13 @@ function UnitLibraryCard({ unit: u, index }: { unit: Unit; index: number }) {
           {u.short}
         </p>
         <ul className="mt-3 flex flex-wrap gap-2 list-none p-0 m-0" aria-label="Unit contents">
-          <StatPill>{u.videos.length} video{u.videos.length === 1 ? "" : "s"}</StatPill>
-          {u.worksheets.length > 0 && (
+          <StatPill>{u.topics.length} topic{u.topics.length === 1 ? "" : "s"}</StatPill>
+          <StatPill>{videoCount} video{videoCount === 1 ? "" : "s"}</StatPill>
+          {worksheetCount > 0 && (
             <StatPill>
-              {u.worksheets.length} worksheet{u.worksheets.length === 1 ? "" : "s"}
+              {worksheetCount} worksheet{worksheetCount === 1 ? "" : "s"}
             </StatPill>
           )}
-          <StatPill>{u.quiz.length}-question quiz</StatPill>
           <StatPill>~{u.estimatedMinutes} min</StatPill>
         </ul>
       </div>
