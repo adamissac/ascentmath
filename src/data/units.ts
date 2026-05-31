@@ -1752,7 +1752,178 @@ export const UNITS: Unit[] = [
   {
     id: "unit-7",
     number: 7,
-    topics: [],
+    topics: [
+      {
+        id: "u7-t1",
+        slug: "area-polygons",
+        title: "Area Review & Polygons",
+        summary: "Use triangles and rectangles to find the area of any polygon.",
+        estimatedMinutes: 13,
+        walkthrough: [
+          {
+            heading: "Splitting polygons",
+            paragraphs: [
+              "Any polygon can be broken into triangles and rectangles whose areas you already know. Find each piece, then add them together.",
+              "Triangle area is ½ × base × height. Pick a base, then measure the height straight down from the opposite point.",
+            ],
+            example: {
+              problem: "A hexagon splits into 6 identical triangles, each with area 12 cm². Find the total area.",
+              solution: [
+                "Multiply the area of one triangle by how many there are.",
+                "6 × 12 = 72 cm².",
+              ],
+            },
+            callout: {
+              label: "Tip",
+              text: "Decide whether a word problem asks for area (covering a surface) or perimeter (going around the edge) before you start.",
+            },
+          },
+        ],
+        video: { videoId: "IaoZhhx_I9s", title: "Area of Polygons", source: "Math Antics", description: "Find the area of shapes with more than four sides." },
+        extraVideo: { videoId: "z4Lat1uOQI4", title: "Area of Composite Figures", source: "Math with Mr. J", description: "Break a complex shape into simpler pieces." },
+        practiceLinks: [
+          { href: "https://www.khanacademy.org/math/cc-sixth-grade-math/cc-6th-geometry-topic", title: "Geometry practice", source: "Khan Academy" },
+        ],
+        quiz: [
+          {
+            id: "u7-t1-q1",
+            prompt: "Which formula finds the area of a triangle?",
+            type: "multiple-choice",
+            options: ["A = b × h", "A = (1/2) × b × h", "A = π × r²", "A = s²"],
+            answer: "A = (1/2) × b × h",
+            explanation: "Half the base times the height.",
+            difficulty: "easy",
+          },
+          {
+            id: "u7-t1-q2",
+            prompt: "A hexagon splits into 6 triangles, each with area 12 cm². What is the total area?",
+            type: "short-answer",
+            answer: "72",
+            explanation: "6 × 12 = 72 cm².",
+            difficulty: "easy",
+          },
+          {
+            id: "u7-t1-q3",
+            prompt: "You can find the area of any polygon by splitting it into triangles and rectangles.",
+            type: "true-false",
+            answer: true,
+            explanation: "Breaking a figure into familiar shapes and adding their areas always works.",
+            difficulty: "easy",
+          },
+        ],
+      },
+      {
+        id: "u7-t2",
+        slug: "nets-surface-area",
+        title: "Nets & Surface Area",
+        summary: "Unfold a solid into a flat net and add up every face.",
+        estimatedMinutes: 14,
+        walkthrough: [
+          {
+            heading: "What a net is",
+            paragraphs: [
+              "A net is a 3-D shape unfolded so all its faces lie flat. Surface area is the total area of all those faces added together.",
+            ],
+          },
+          {
+            heading: "Surface area of a cube",
+            paragraphs: [
+              "A cube has 6 identical square faces. Find the area of one face, then multiply by 6.",
+            ],
+            example: {
+              problem: "Find the surface area of a cube with edge 4 cm.",
+              solution: [
+                "One face: 4 × 4 = 16 cm².",
+                "Six faces: 6 × 16 = 96 cm².",
+              ],
+            },
+            callout: {
+              label: "Tip",
+              text: "Read the problem carefully — sometimes you need all faces, sometimes only the walls (no top or bottom).",
+            },
+          },
+        ],
+        video: { videoId: "mtMNvnm71Z0", title: "Surface Area", source: "Khan Academy", description: "Total area of all faces on a 3-D object." },
+        extraVideo: { videoId: "dCD02kuobnY", title: "Surface Area Using Nets", source: "Math with Mr. J", description: "Unfold a prism and add up each flat face." },
+        practiceLinks: [
+          { href: "https://www.khanacademy.org/math/cc-sixth-grade-math/cc-6th-geometry-topic", title: "Surface area practice", source: "Khan Academy" },
+        ],
+        quiz: [
+          {
+            id: "u7-t2-q1",
+            prompt: "Surface area of a rectangular prism equals the area of all 6 faces added together.",
+            type: "true-false",
+            answer: true,
+            explanation: "Sum the areas of all six faces (top, bottom, and four sides).",
+            difficulty: "easy",
+          },
+          {
+            id: "u7-t2-q2",
+            prompt: "Find the surface area of a cube with edge 4 cm.",
+            type: "short-answer",
+            answer: "96",
+            explanation: "One face is 4 × 4 = 16 cm²; six faces give 6 × 16 = 96 cm².",
+            difficulty: "medium",
+          },
+        ],
+      },
+      {
+        id: "u7-t3",
+        slug: "volume-fractions",
+        title: "Volume with Fractions",
+        summary: "Same length × width × height — even when the edges are fractions.",
+        estimatedMinutes: 14,
+        walkthrough: [
+          {
+            heading: "The volume formula still works",
+            paragraphs: [
+              "Volume of a rectangular prism is always length × width × height. When edges are mixed numbers, turn each into an improper fraction (or a decimal) first, then multiply.",
+            ],
+            example: {
+              problem: "Find the volume of a box that is 1½ ft × 2 ft × 4 ft.",
+              solution: [
+                "Write 1½ as 1.5 (or 3/2).",
+                "1.5 × 2 × 4 = 12.",
+                "Volume = 12 cubic feet.",
+              ],
+            },
+            callout: {
+              label: "Tip",
+              text: "Label every edge on your sketch before you multiply so you don't mix up the dimensions.",
+            },
+          },
+        ],
+        video: { videoId: "EJTPGyWqhqc", title: "Volume of Rectangular Prisms", source: "Khan Academy", description: "Length × width × height for box-shaped objects." },
+        extraVideo: { videoId: "By7sVb2IhFs", title: "Volume", source: "Math with Mr. J", description: "Practice finding how much space a solid fills." },
+        worksheet: { driveFileId: "1ctTOKapYtWPf0B_IyX6nlaOS8K0vXaOI", title: "Worksheet — Applied geometry", description: "End-of-year mixed practice across area, surface area, and volume." },
+        quiz: [
+          {
+            id: "u7-t3-q1",
+            prompt: "A box has dimensions 2 ft × 3 ft × 5 ft. What is its volume?",
+            type: "short-answer",
+            answer: "30",
+            explanation: "V = l × w × h = 2 × 3 × 5 = 30 cubic feet.",
+            difficulty: "easy",
+          },
+          {
+            id: "u7-t3-q2",
+            prompt: "Find the volume of a box that is 1½ ft × 2 ft × 4 ft.",
+            type: "short-answer",
+            answer: "12",
+            explanation: "1.5 × 2 × 4 = 12 cubic feet.",
+            difficulty: "medium",
+          },
+          {
+            id: "u7-t3-q3",
+            prompt: "Before multiplying, you should turn mixed-number edges into improper fractions or decimals.",
+            type: "true-false",
+            answer: true,
+            explanation: "Converting first makes the multiplication straightforward.",
+            difficulty: "easy",
+          },
+        ],
+      },
+    ],
     slug: "unit-7",
     title: "Geometry in Action — Surface Area & Volume",
     short: "Putting area, surface area, and volume to work in real-world problems.",
