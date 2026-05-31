@@ -1256,7 +1256,192 @@ export const UNITS: Unit[] = [
   {
     id: "unit-5",
     number: 5,
-    topics: [],
+    topics: [
+      {
+        id: "u5-t1",
+        slug: "area-of-shapes",
+        title: "Area of Triangles & Quadrilaterals",
+        summary: "The space inside flat shapes — rectangles, triangles, and parallelograms.",
+        estimatedMinutes: 14,
+        walkthrough: [
+          {
+            heading: "Area formulas to know",
+            paragraphs: [
+              "Area measures the space inside a flat shape, in square units. Rectangle: length × width. Triangle: ½ × base × height. Parallelogram: base × height.",
+              "The height must be measured straight up from the base (a right angle), not along a slanted side.",
+            ],
+          },
+          {
+            heading: "Working an example",
+            paragraphs: [
+              "Plug the base and height into the formula, then simplify.",
+            ],
+            example: {
+              problem: "Find the area of a triangle with base 10 cm and height 6 cm.",
+              solution: [
+                "A = ½ × base × height.",
+                "A = ½ × 10 × 6.",
+                "A = 30 cm².",
+              ],
+            },
+            callout: {
+              label: "Tip",
+              text: "A trapezoid uses the average of its two parallel sides times the height.",
+            },
+          },
+        ],
+        video: { videoId: "xCdxURXMdFY", title: "Introduction to Area", source: "Math Antics", description: "What area measures and how square units work." },
+        extraVideo: { videoId: "hm17lVaor0Q", title: "Area of a Parallelogram", source: "Khan Academy", description: "Use base × height to find parallelogram area." },
+        practiceLinks: [
+          { href: "https://www.khanacademy.org/math/cc-sixth-grade-math/cc-6th-geometry-topic", title: "Grade 6 geometry practice", source: "Khan Academy" },
+        ],
+        quiz: [
+          {
+            id: "u5-t1-q1",
+            prompt: "What is the area of a triangle with base 10 cm and height 6 cm?",
+            type: "multiple-choice",
+            options: ["30 cm²", "60 cm²", "16 cm²", "20 cm²"],
+            answer: "30 cm²",
+            explanation: "A = (1/2) × b × h = (1/2)(10)(6) = 30 cm².",
+            difficulty: "easy",
+          },
+          {
+            id: "u5-t1-q2",
+            prompt: "Find the area of a rectangle that is 7 cm by 4 cm.",
+            type: "short-answer",
+            answer: "28",
+            explanation: "Area of a rectangle = length × width = 7 × 4 = 28 cm².",
+            difficulty: "easy",
+          },
+          {
+            id: "u5-t1-q3",
+            prompt: "The area of a parallelogram is base × height.",
+            type: "true-false",
+            answer: true,
+            explanation: "Like a rectangle, a parallelogram's area is base times the straight-up height.",
+            difficulty: "easy",
+          },
+        ],
+      },
+      {
+        id: "u5-t2",
+        slug: "composite-figures",
+        title: "Composite Figures",
+        summary: "Split unusual shapes into simple ones you already know.",
+        estimatedMinutes: 13,
+        walkthrough: [
+          {
+            heading: "Break it into pieces",
+            paragraphs: [
+              "A composite figure is made of simpler shapes joined together. Split it into rectangles and triangles, find each area, then add them up.",
+            ],
+          },
+          {
+            heading: "When there's a hole",
+            paragraphs: [
+              "If a shape has a piece cut out (like a picture frame), find the outer area and subtract the inner area.",
+            ],
+            example: {
+              problem: "An L-shape is an 8 × 6 rectangle with a 3 × 2 corner cut out. Find the area.",
+              solution: [
+                "Whole rectangle: 8 × 6 = 48.",
+                "Cut-out corner: 3 × 2 = 6.",
+                "48 − 6 = 42 square units.",
+              ],
+            },
+            callout: {
+              label: "Tip",
+              text: "Sketch the figure and label every length before you start — it prevents missed pieces.",
+            },
+          },
+        ],
+        video: { videoId: "loAA3TCNAvU", title: "Area of Composite Shapes", source: "Khan Academy", description: "Split a weird shape into rectangles and triangles." },
+        extraVideo: { videoId: "z4Lat1uOQI4", title: "Area of a Composite Figure", source: "Math with Mr. J", description: "Step-by-step practice with combined shapes." },
+        practiceLinks: [
+          { href: "https://www.khanacademy.org/math/cc-sixth-grade-math/cc-6th-geometry-topic", title: "Composite area practice", source: "Khan Academy" },
+        ],
+        quiz: [
+          {
+            id: "u5-t2-q1",
+            prompt: "An L-shape is an 8 × 6 rectangle with a 3 × 2 corner removed. What is its area?",
+            type: "multiple-choice",
+            options: ["48", "42", "54", "40"],
+            answer: "42",
+            explanation: "48 (whole) − 6 (cut-out) = 42 square units.",
+            difficulty: "medium",
+          },
+          {
+            id: "u5-t2-q2",
+            prompt: "To find the area of a shape with a hole, you subtract the inner area from the outer area.",
+            type: "true-false",
+            answer: true,
+            explanation: "Outer area minus the cut-out gives the remaining area.",
+            difficulty: "easy",
+          },
+        ],
+      },
+      {
+        id: "u5-t3",
+        slug: "surface-area-volume",
+        title: "Surface Area & Volume",
+        summary: "Volume fills the inside; surface area covers the outside.",
+        estimatedMinutes: 15,
+        walkthrough: [
+          {
+            heading: "Volume",
+            paragraphs: [
+              "Volume is how much space fits inside a 3-D shape, measured in cubic units. For a rectangular prism (a box), volume = length × width × height.",
+            ],
+            example: {
+              problem: "Find the volume of a prism with edges 3, 4, and 5 units.",
+              solution: [
+                "V = length × width × height.",
+                "V = 3 × 4 × 5 = 60 cubic units.",
+              ],
+            },
+          },
+          {
+            heading: "Surface area",
+            paragraphs: [
+              "Surface area is the total area of all the faces. Unfold the box into a flat net so you can see and add up every face.",
+            ],
+            callout: {
+              label: "Tip",
+              text: "Area uses square units; volume uses cubic units. The exponent tells you the dimension.",
+            },
+          },
+        ],
+        video: { videoId: "qJwecTgce6c", title: "Volume", source: "Math Antics", description: "How much space a 3-D object fills — measured in cubic units." },
+        extraVideo: { videoId: "ny5DVYNpqM8", title: "Surface Area Using Nets", source: "Khan Academy", description: "Unfold a 3-D shape and add up the flat faces." },
+        worksheet: { driveFileId: "1vWT_exmaDi6YkbiMXVmwztS0nDPKyfyU", title: "Worksheet — Area & volume", description: "Mixed practice for area, surface area, and volume." },
+        quiz: [
+          {
+            id: "u5-t3-q1",
+            prompt: "Find the volume of a rectangular prism with edges 3, 4, and 5 units.",
+            type: "short-answer",
+            answer: "60",
+            explanation: "V = l × w × h = 3 × 4 × 5 = 60 cubic units.",
+            difficulty: "easy",
+          },
+          {
+            id: "u5-t3-q2",
+            prompt: "Find the volume of a box that is 5 × 3 × 2 cm.",
+            type: "short-answer",
+            answer: "30",
+            explanation: "V = 5 × 3 × 2 = 30 cubic centimeters.",
+            difficulty: "easy",
+          },
+          {
+            id: "u5-t3-q3",
+            prompt: "Surface area uses square units; volume uses cubic units.",
+            type: "true-false",
+            answer: true,
+            explanation: "Area covers a 2-D surface (squared units); volume fills 3-D space (cubed units).",
+            difficulty: "easy",
+          },
+        ],
+      },
+    ],
     slug: "unit-5",
     title: "Geometry — Area & Volume",
     short: "Area of polygons, surface area from nets, and volume of prisms.",
@@ -1323,7 +1508,182 @@ export const UNITS: Unit[] = [
   {
     id: "unit-6",
     number: 6,
-    topics: [],
+    topics: [
+      {
+        id: "u6-t1",
+        slug: "statistical-questions-center",
+        title: "Statistical Questions & Center",
+        summary: "When an answer varies — and how to describe the middle of the data.",
+        estimatedMinutes: 14,
+        walkthrough: [
+          {
+            heading: "Statistical questions",
+            paragraphs: [
+              "A statistical question expects answers that vary. \"How tall are the kids in our class?\" is statistical because heights differ. \"How tall is the door?\" is not — it has one answer.",
+            ],
+          },
+          {
+            heading: "Measures of center",
+            paragraphs: [
+              "Three numbers describe the center of a data set. Mean is the average. Median is the middle value when the data is sorted. Mode is the value that appears most often.",
+            ],
+            example: {
+              problem: "Find the mean of 4, 7, 7, 9, 12.",
+              solution: [
+                "Add them up: 4 + 7 + 7 + 9 + 12 = 39.",
+                "Divide by how many there are: 39 ÷ 5 = 7.8.",
+              ],
+            },
+            callout: {
+              label: "Tip",
+              text: "To find the median, always sort the numbers first, then locate the middle.",
+            },
+          },
+        ],
+        video: { videoId: "B1HEzNTGeZ4", title: "Mean, Median & Mode", source: "Math Antics", description: "Three ways to describe the center of a data set." },
+        extraVideo: { videoId: "qyYSQDcSNlY", title: "Statistical & Non-Statistical Questions", source: "Khan Academy", description: "Learn which questions expect many different answers." },
+        practiceLinks: [
+          { href: "https://www.khanacademy.org/math/cc-sixth-grade-math/cc-6th-data-statistics", title: "Statistics & data practice", source: "Khan Academy" },
+        ],
+        quiz: [
+          {
+            id: "u6-t1-q1",
+            prompt: "Find the median of: 4, 7, 2, 9, 5",
+            type: "short-answer",
+            answer: "5",
+            explanation: "Sort: 2, 4, 5, 7, 9 → the middle value is 5.",
+            difficulty: "easy",
+          },
+          {
+            id: "u6-t1-q2",
+            prompt: "Find the mean of 4, 7, 7, 9, 12.",
+            type: "short-answer",
+            answer: "7.8",
+            explanation: "Sum is 39; 39 ÷ 5 = 7.8.",
+            difficulty: "medium",
+          },
+          {
+            id: "u6-t1-q3",
+            prompt: "\"How tall are sixth-graders in our school?\" is a statistical question.",
+            type: "true-false",
+            answer: true,
+            explanation: "It anticipates variability across many students.",
+            difficulty: "easy",
+          },
+        ],
+      },
+      {
+        id: "u6-t2",
+        slug: "spread-range-iqr",
+        title: "Spread: Range & IQR",
+        summary: "Two ways to measure how spread out a data set is.",
+        estimatedMinutes: 13,
+        walkthrough: [
+          {
+            heading: "Range",
+            paragraphs: [
+              "Range is the simplest measure of spread: the largest value minus the smallest value. It's quick, but a single extreme value can stretch it a lot.",
+            ],
+            example: {
+              problem: "Find the range of 2, 5, 7, 8, 11, 14, 20.",
+              solution: [
+                "Largest − smallest.",
+                "20 − 2 = 18.",
+              ],
+            },
+          },
+          {
+            heading: "Interquartile range (IQR)",
+            paragraphs: [
+              "IQR measures the spread of the middle 50% of the data. Because it ignores the extreme high and low values, it is less affected by outliers than the range.",
+            ],
+            callout: {
+              label: "Tip",
+              text: "IQR = upper quartile (Q3) − lower quartile (Q1).",
+            },
+          },
+        ],
+        video: { videoId: "qLYYHWYr8xI", title: "Range and Interquartile Range", source: "Khan Academy", description: "Compare the full spread vs. the middle 50%." },
+        extraVideo: { videoId: "VABsJBw1JqA", title: "Interquartile Range (IQR)", source: "Math with Mr. J", description: "Measure the spread of the middle half of your data." },
+        practiceLinks: [
+          { href: "https://www.khanacademy.org/math/cc-sixth-grade-math/cc-6th-data-statistics", title: "Spread & variability practice", source: "Khan Academy" },
+        ],
+        quiz: [
+          {
+            id: "u6-t2-q1",
+            prompt: "Find the range of 2, 5, 7, 8, 11, 14, 20.",
+            type: "short-answer",
+            answer: "18",
+            explanation: "Largest minus smallest: 20 − 2 = 18.",
+            difficulty: "easy",
+          },
+          {
+            id: "u6-t2-q2",
+            prompt: "The IQR describes the spread of the middle 50% of the data.",
+            type: "true-false",
+            answer: true,
+            explanation: "IQR is Q3 − Q1, the range of the middle half.",
+            difficulty: "medium",
+          },
+          {
+            id: "u6-t2-q3",
+            prompt: "Which measure of spread is less affected by an outlier?",
+            type: "multiple-choice",
+            options: ["Range", "IQR", "Maximum", "Sum"],
+            answer: "IQR",
+            explanation: "IQR ignores the extreme values, so outliers affect it less than the range.",
+            difficulty: "medium",
+          },
+        ],
+      },
+      {
+        id: "u6-t3",
+        slug: "choosing-a-display",
+        title: "Choosing the Right Display",
+        summary: "Match the graph to the kind of data you have.",
+        estimatedMinutes: 13,
+        walkthrough: [
+          {
+            heading: "Three common displays",
+            paragraphs: [
+              "A dot plot shows every single value, so it's best for small data sets. A histogram groups numeric data into ranges (bins), which works well for larger sets. A box plot summarizes data with five key numbers and is great for comparing two groups.",
+            ],
+          },
+          {
+            heading: "Picking one",
+            paragraphs: [
+              "Ask what the question needs. Counting how often each value appears? Use a dot plot or histogram. Comparing the spread of two groups? A box plot makes that easy.",
+            ],
+            callout: {
+              label: "Tip",
+              text: "Histograms are the go-to for showing the frequency of ranges, like test-score bands.",
+            },
+          },
+        ],
+        video: { videoId: "gSEYtAjuZ-Y", title: "Histograms", source: "Khan Academy", description: "Group numeric data into ranges and display as bars." },
+        extraVideo: { videoId: "nV8jR8M8C74", title: "Box and Whisker Plots", source: "Math Antics", description: "Summarize a data set with five key numbers." },
+        worksheet: { driveFileId: "1GD8IoL1vAQ5gB-SrgNLIkxKhUfrhL12C", title: "Worksheet — Statistics & data", description: "Mixed practice for center, spread, and data displays." },
+        quiz: [
+          {
+            id: "u6-t3-q1",
+            prompt: "Which display is best for showing the frequency of test-score ranges?",
+            type: "multiple-choice",
+            options: ["Histogram", "Pie chart", "Pictograph", "Line graph"],
+            answer: "Histogram",
+            explanation: "Histograms group numeric data into bins.",
+            difficulty: "medium",
+          },
+          {
+            id: "u6-t3-q2",
+            prompt: "A dot plot is a good choice for a small data set where you want to see every value.",
+            type: "true-false",
+            answer: true,
+            explanation: "Dot plots show each individual value, which suits small data sets.",
+            difficulty: "easy",
+          },
+        ],
+      },
+    ],
     slug: "unit-6",
     title: "Statistics & Data Analysis",
     short: "Center, spread, and visualizing data with the right plot.",
