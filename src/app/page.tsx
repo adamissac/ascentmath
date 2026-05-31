@@ -8,11 +8,11 @@ import MathBackdrop from "../components/MathBackdrop";
 import ColorBand from "../components/ColorBand";
 import Reveal from "../components/Reveal";
 import { UnitSymbol } from "../components/UnitSymbol";
-import { UNITS } from "../data/units";
+import { UNITS, countUnitVideos, countUnitWorksheets } from "../data/units";
 
 export default function Home() {
-  const totalVideos = UNITS.reduce((s, u) => s + u.videos.length, 0);
-  const totalWorksheets = UNITS.reduce((s, u) => s + u.worksheets.length, 0);
+  const totalVideos = UNITS.reduce((s, u) => s + countUnitVideos(u), 0);
+  const totalWorksheets = UNITS.reduce((s, u) => s + countUnitWorksheets(u), 0);
   const totalMinutes = UNITS.reduce((s, u) => s + u.estimatedMinutes, 0);
 
   return (
@@ -117,9 +117,9 @@ export default function Home() {
                     {u.short}
                   </span>
                   <span className="mt-2 hidden sm:flex items-center gap-3 caption text-white/55 flex-wrap">
-                    <span>{u.videos.length} videos</span>
+                    <span>{u.topics.length} topics</span>
                     <span aria-hidden>·</span>
-                    <span>{u.worksheets.length || "—"} worksheets</span>
+                    <span>{countUnitVideos(u)} videos</span>
                     <span aria-hidden>·</span>
                     <span>~{u.estimatedMinutes} min</span>
                   </span>
