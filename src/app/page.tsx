@@ -8,12 +8,13 @@ import MathBackdrop from "../components/MathBackdrop";
 import ColorBand from "../components/ColorBand";
 import Reveal from "../components/Reveal";
 import { UnitSymbol } from "../components/UnitSymbol";
-import { UNITS, countUnitVideos, countUnitWorksheets } from "../data/units";
+import { GRADES, countUnitVideos } from "../data/units";
+
+const ALL_UNITS = GRADES.flatMap((g) => g.units);
 
 export default function Home() {
-  const totalVideos = UNITS.reduce((s, u) => s + countUnitVideos(u), 0);
-  const totalWorksheets = UNITS.reduce((s, u) => s + countUnitWorksheets(u), 0);
-  const totalMinutes = UNITS.reduce((s, u) => s + u.estimatedMinutes, 0);
+  const totalVideos = ALL_UNITS.reduce((s, u) => s + countUnitVideos(u), 0);
+  const totalUnits = ALL_UNITS.length;
 
   return (
     <>
@@ -31,17 +32,17 @@ export default function Home() {
           <div className="grid grid-cols-12 gap-8 lg:gap-16 items-center">
             <Reveal className="col-span-12 lg:col-span-7" variant="up">
               <Badge tone="brand" className="mb-6">
-                <span className="marker">Free · Grade 6 math · Built by a student</span>
+                <span className="marker">Free · Grades 6–8 math · Built by a student</span>
               </Badge>
 
               <h1 className="h-display max-w-[18ch]">
-                A friendlier way to <span className="hl">learn sixth-grade math.</span>
+                A friendlier way to <span className="hl">learn middle-school math.</span>
               </h1>
 
               <p className="lede mt-6 max-w-[52ch]">
-                Hand-picked video walkthroughs, printable worksheets, and quick
-                self-checks — designed for students who learn best when math
-                stops feeling like a wall.
+                Hand-picked video walkthroughs, clear walkthroughs, and quick
+                self-checks for Grades 6, 7, and 8 — designed for students who learn
+                best when math stops feeling like a wall.
               </p>
 
               <div className="mt-8 btn-stack-mobile">
@@ -60,7 +61,7 @@ export default function Home() {
               </div>
 
               <div className="stat-strip mt-10 max-w-2xl">
-                <Stat num={UNITS.length} label="Units, aligned to GADOE" />
+                <Stat num={totalUnits} label="Units, aligned to GADOE" />
                 <Stat num={`${totalVideos}+`} label="Video walkthroughs" />
                 <Stat num="30+" label="Students tutored 1-on-1" />
                 <Stat num="$0" label="Cost — now and forever" />
@@ -83,7 +84,7 @@ export default function Home() {
           <div className="col-span-12 sm:col-span-9">
             <p className="eyebrow text-[var(--color-accent-300)]">The curriculum</p>
             <h2 className="h2 mt-3 max-w-2xl text-white">
-              Seven units. Pick whichever one you&apos;re stuck on.
+              Three grades. Pick yours and start where you&apos;re stuck.
             </h2>
           </div>
           <div className="col-span-12 sm:col-span-3 sm:text-right">
@@ -98,38 +99,49 @@ export default function Home() {
         </Reveal>
 
         <Reveal as="ol" stagger className="list-none p-0 m-0">
-          {UNITS.map((u, i) => (
-            <li key={u.id}>
-              <Link
-                href={`/mathematics/${u.slug}`}
-                className="list-row list-row--brand group no-underline"
-                aria-label={`Open Unit ${u.number}: ${u.title}`}
-              >
-                <span className="list-row__index">{String(i + 1).padStart(2, "0")}</span>
-                <span className="min-w-0">
-                  <span className="flex items-center gap-3">
-                    <UnitSymbol symbol={u.icon} size="sm" brand className="flex-shrink-0" />
-                    <span className="font-display font-semibold text-base sm:text-lg text-white group-hover:text-[var(--color-accent-300)] transition-colors">
-                      {u.title}
+          {GRADES.map((g, i) => {
+            const unitCount = g.units.length;
+            const topicCount = g.units.reduce((n, u) => n + u.topics.length, 0);
+            const videoCount = g.units.reduce((n, u) => n + countUnitVideos(u), 0);
+            return (
+              <li key={g.slug}>
+                <Link
+                  href={`/mathematics/${g.slug}`}
+                  className="list-row list-row--brand group no-underline"
+                  aria-label={`Open ${g.title} Mathematics`}
+                >
+                  <span className="list-row__index">{String(i + 1).padStart(2, "0")}</span>
+                  <span className="min-w-0">
+                    <span className="flex items-center gap-3">
+                      <UnitSymbol symbol={g.icon} size="sm" brand className="flex-shrink-0" />
+                      <span className="font-display font-semibold text-base sm:text-lg text-white group-hover:text-[var(--color-accent-300)] transition-colors">
+                        {g.title} Mathematics
+                      </span>
+                    </span>
+                    <span className="block small text-white/75 mt-1 line-clamp-2 sm:line-clamp-1">
+                      {g.short}
+                    </span>
+                    <span className="mt-2 hidden sm:flex items-center gap-3 caption text-white/55 flex-wrap">
+                      {unitCount > 0 ? (
+                        <>
+                          <span>{unitCount} units</span>
+                          <span aria-hidden>·</span>
+                          <span>{topicCount} topics</span>
+                          <span aria-hidden>·</span>
+                          <span>{videoCount} videos</span>
+                        </>
+                      ) : (
+                        <span>Coming soon</span>
+                      )}
                     </span>
                   </span>
-                  <span className="block small text-white/75 mt-1 line-clamp-2 sm:line-clamp-1">
-                    {u.short}
+                  <span aria-hidden className="list-row__arrow">
+                    <ArrowRight />
                   </span>
-                  <span className="mt-2 hidden sm:flex items-center gap-3 caption text-white/55 flex-wrap">
-                    <span>{u.topics.length} topics</span>
-                    <span aria-hidden>·</span>
-                    <span>{countUnitVideos(u)} videos</span>
-                    <span aria-hidden>·</span>
-                    <span>~{u.estimatedMinutes} min</span>
-                  </span>
-                </span>
-                <span aria-hidden className="list-row__arrow">
-                  <ArrowRight />
-                </span>
-              </Link>
-            </li>
-          ))}
+                </Link>
+              </li>
+            );
+          })}
         </Reveal>
       </ColorBand>
 

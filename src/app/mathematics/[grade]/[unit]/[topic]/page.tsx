@@ -2,26 +2,28 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 
-import Section from "../../../../components/Section";
-import Badge from "../../../../components/Badge";
-import Breadcrumbs from "../../../../components/Breadcrumbs";
-import VideoEmbed from "../../../../components/VideoEmbed";
-import WorksheetCard from "../../../../components/WorksheetCard";
-import ResourceLinkCard from "../../../../components/ResourceLinkCard";
-import Quiz from "../../../../components/Quiz";
-import Walkthrough from "../../../../components/Walkthrough";
-import TopicCompleteToggle from "../../../../components/TopicCompleteToggle";
-import ColorBand from "../../../../components/ColorBand";
-import Reveal from "../../../../components/Reveal";
-import MathBackdrop from "../../../../components/MathBackdrop";
-import Container from "../../../../components/Container";
+import Section from "../../../../../components/Section";
+import Badge from "../../../../../components/Badge";
+import Breadcrumbs from "../../../../../components/Breadcrumbs";
+import VideoEmbed from "../../../../../components/VideoEmbed";
+import WorksheetCard from "../../../../../components/WorksheetCard";
+import ResourceLinkCard from "../../../../../components/ResourceLinkCard";
+import Quiz from "../../../../../components/Quiz";
+import Walkthrough from "../../../../../components/Walkthrough";
+import TopicCompleteToggle from "../../../../../components/TopicCompleteToggle";
+import ColorBand from "../../../../../components/ColorBand";
+import Reveal from "../../../../../components/Reveal";
+import MathBackdrop from "../../../../../components/MathBackdrop";
+import Container from "../../../../../components/Container";
 
-import { UNITS, getTopic } from "../../../../data/units";
+import { GRADES, getTopic } from "../../../../../data/units";
 
-type Params = { unit: string; topic: string };
+type Params = { grade: string; unit: string; topic: string };
 
 export function generateStaticParams() {
-  return UNITS.flatMap((u) => u.topics.map((t) => ({ unit: u.slug, topic: t.slug })));
+  return GRADES.flatMap((g) =>
+    g.units.flatMap((u) => u.topics.map((t) => ({ grade: g.slug, unit: u.slug, topic: t.slug })))
+  );
 }
 
 export async function generateMetadata({
@@ -29,22 +31,23 @@ export async function generateMetadata({
 }: {
   params: Promise<Params>;
 }): Promise<Metadata> {
-  const { unit, topic } = await params;
-  const found = getTopic(unit, topic);
+  const { grade, unit, topic } = await params;
+  const found = getTopic(grade, unit, topic);
   if (!found) return { title: "Topic not found" };
   return {
-    title: `${found.topic.title} · Unit ${found.unit.number}`,
+    title: `${found.topic.title} · ${found.grade.title} Unit ${found.unit.number}`,
     description: found.topic.summary,
   };
 }
 
 export default async function TopicPage({ params }: { params: Promise<Params> }) {
-  const { unit, topic } = await params;
-  const found = getTopic(unit, topic);
+  const { grade, unit, topic } = await params;
+  const found = getTopic(grade, unit, topic);
   if (!found) notFound();
 
-  const { unit: u, topic: t, index, prev, next } = found;
+  const { grade: g, unit: u, topic: t, index, prev, next } = found;
   const total = u.topics.length;
+  const unitHref = `/mathematics/${g.slug}/${u.slug}`;
 
   const progressItems = u.topics.map((tp) => ({ id: tp.id, label: tp.title }));
   const hasPractice = Boolean(t.worksheet) || (t.practiceLinks?.length ?? 0) > 0;
@@ -59,14 +62,15 @@ export default async function TopicPage({ params }: { params: Promise<Params> })
             items={[
               { label: "Home", href: "/" },
               { label: "Mathematics", href: "/mathematics" },
-              { label: `Unit ${u.number}`, href: `/mathematics/${u.slug}` },
+              { label: g.title, href: `/mathematics/${g.slug}` },
+              { label: `Unit ${u.number}`, href: unitHref },
               { label: t.title },
             ]}
           />
 
           <Reveal className="mt-6 max-w-3xl" variant="up">
             <div className="flex items-center gap-3 flex-wrap">
-              <Badge tone="brand">Unit {u.number}</Badge>
+              <Badge tone="brand">{g.title} · Unit {u.number}</Badge>
               <span className="caption text-[var(--color-ink-muted)]">
                 Topic {index + 1} of {total}
               </span>
@@ -79,7 +83,7 @@ export default async function TopicPage({ params }: { params: Promise<Params> })
 
             <div className="mt-6 flex flex-wrap items-center gap-3">
               <TopicCompleteToggle unitId={u.id} topicId={t.id} items={progressItems} />
-              <Link href={`/mathematics/${u.slug}`} className="btn btn-ghost btn-sm">
+              <Link href={unitHref} className="btn btn-ghost btn-sm">
                 All topics in this unit
               </Link>
             </div>
@@ -201,10 +205,10 @@ export default async function TopicPage({ params }: { params: Promise<Params> })
               direction="prev"
               label={`Topic ${index} of ${total}`}
               title={prev.title}
-              href={`/mathematics/${u.slug}/${prev.slug}`}
+              href={`${unitHref}/${prev.slug}`}
             />
           ) : (
-            <Link href={`/mathematics/${u.slug}`} className="card card-interactive p-6 flex items-center gap-3 no-underline">
+            <Link href={unitHref} className="card card-interactive p-6 flex items-center gap-3 no-underline">
               <span aria-hidden>←</span>
               <span>
                 <span className="caption text-[var(--color-ink-muted)] uppercase tracking-wider">Back to</span>
@@ -218,10 +222,10 @@ export default async function TopicPage({ params }: { params: Promise<Params> })
               direction="next"
               label={`Topic ${index + 2} of ${total}`}
               title={next.title}
-              href={`/mathematics/${u.slug}/${next.slug}`}
+              href={`${unitHref}/${next.slug}`}
             />
           ) : (
-            <Link href={`/mathematics/${u.slug}`} className="card card-interactive p-6 flex items-center gap-3 no-underline sm:flex-row-reverse sm:text-right">
+            <Link href={unitHref} className="card card-interactive p-6 flex items-center gap-3 no-underline sm:flex-row-reverse sm:text-right">
               <span aria-hidden>→</span>
               <span className="flex-1">
                 <span className="caption text-[var(--color-ink-muted)] uppercase tracking-wider">Finished the unit?</span>

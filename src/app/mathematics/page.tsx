@@ -1,4 +1,3 @@
-import type { ReactNode } from "react";
 import type { Metadata } from "next";
 import Link from "next/link";
 import Container from "../../components/Container";
@@ -9,25 +8,25 @@ import Button from "../../components/Button";
 import MathBackdrop from "../../components/MathBackdrop";
 import ColorBand from "../../components/ColorBand";
 import Reveal from "../../components/Reveal";
-import VisualPanel from "../../components/VisualPanel";
 import { DocSymbol, UnitSymbol } from "../../components/UnitSymbol";
-import { UNITS, countUnitVideos, countUnitWorksheets, type Unit } from "../../data/units";
+import { GRADES, countUnitVideos, type Grade } from "../../data/units";
 
 export const metadata: Metadata = {
   title: "Mathematics",
   description:
-    "Grade 6 Mathematics — seven units of videos, worksheets, and quizzes aligned to Georgia DOE standards.",
+    "Grade 6, 7, and 8 Mathematics — units of walkthroughs, videos, practice, and quizzes aligned to Georgia DOE standards.",
 };
 
 export default function MathematicsHub() {
-  const totalMinutes = UNITS.reduce((s, u) => s + u.estimatedMinutes, 0);
-  const totalTopics = UNITS.reduce((s, u) => s + u.topics.length, 0);
-  const totalVideos = UNITS.reduce((s, u) => s + countUnitVideos(u), 0);
-  const totalWorksheets = UNITS.reduce((s, u) => s + countUnitWorksheets(u), 0);
+  const totalUnits = GRADES.reduce((s, g) => s + g.units.length, 0);
+  const totalTopics = GRADES.reduce(
+    (s, g) => s + g.units.reduce((n, u) => n + u.topics.length, 0),
+    0
+  );
 
   return (
     <>
-      {/* HERO — editorial, no card grid */}
+      {/* HERO */}
       <section className="hero-surface relative overflow-hidden">
         <MathBackdrop variant="paper" density="dense" fadeEdges />
         <Container size="xl" className="relative pt-10 pb-16 sm:pb-20">
@@ -35,86 +34,39 @@ export default function MathematicsHub() {
             <Breadcrumbs items={[{ label: "Home", href: "/" }, { label: "Mathematics" }]} />
           </div>
           <Reveal className="mt-8 text-center max-w-3xl mx-auto" variant="up">
-            <Badge tone="brand" className="mb-5">Grade 6 · GADOE aligned</Badge>
-            <h1 className="h-display">
-              The full Grade 6 curriculum, in one place.
-            </h1>
-            <p className="lede mt-5 mx-auto max-w-[52ch]">
-              Each unit follows the same rhythm — watch a short video, try a worksheet,
-              take a quick check at the end. Jump to any topic; there&apos;s no &ldquo;right&rdquo; order.
+            <Badge tone="brand" className="mb-5">Grades 6–8 · GADOE aligned</Badge>
+            <h1 className="h-display">Middle school math, one grade at a time.</h1>
+            <p className="lede mt-5 mx-auto max-w-[54ch]">
+              Pick your grade to see its full curriculum. Every unit is broken into short topics —
+              read a walkthrough, watch a video, try the practice, take a quick check.
             </p>
             <div className="proof-row mt-8 justify-center">
-              <span><strong>{UNITS.length}</strong>units</span>
+              <span><strong>{GRADES.length}</strong>grades</span>
+              <span><strong>{totalUnits}</strong>units</span>
               <span><strong>{totalTopics}</strong>topics</span>
-              <span><strong>{totalVideos}</strong>videos</span>
-              <span><strong>{totalWorksheets}</strong>worksheets</span>
-              <span><strong>~{Math.round(totalMinutes / 60)}h</strong>total</span>
             </div>
           </Reveal>
         </Container>
       </section>
 
-      {/* UNIT LIBRARY — card stack */}
-      <Section tone="muted" size="sm" containerSize="xl" decorated="muted" decoratedDensity="medium" decoratedContentSafe reveal={false}>
-        <div className="grid lg:grid-cols-12 gap-10 lg:gap-12 items-start">
-          <div className="lg:col-span-8">
-            <Reveal>
-              <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 mb-6">
-                <div>
-                  <p className="eyebrow">The library</p>
-                  <h2 className="h2 mt-2">All seven units</h2>
-                  <p className="small text-[var(--color-ink-muted)] mt-2 max-w-xl leading-relaxed">
-                    Each row is a full unit, broken into short topics — a walkthrough, a video,
-                    practice, and a quick quiz on every one. Open whichever unit you&apos;re working
-                    on in class right now.
-                  </p>
-                </div>
-                <p className="caption font-semibold text-[var(--color-brand-600)] shrink-0">
-                  {UNITS.length} units · pick any to start
-                </p>
-              </div>
-            </Reveal>
+      {/* GRADE PICKER */}
+      <Section tone="muted" size="md" containerSize="xl" decorated="muted" decoratedDensity="medium" decoratedContentSafe reveal={false}>
+        <Reveal>
+          <p className="eyebrow">Choose your grade</p>
+          <h2 className="h2 mt-2">Three grades, the same friendly format.</h2>
+          <p className="small text-[var(--color-ink-muted)] mt-2 max-w-xl leading-relaxed">
+            Each grade follows the Georgia DOE standards and the same topic flow, so once you learn
+            your way around one, you know them all.
+          </p>
+        </Reveal>
 
-            <Reveal stagger className="grid gap-3 sm:gap-4">
-              {UNITS.map((u, i) => (
-                <UnitLibraryCard key={u.id} unit={u} index={i} />
-              ))}
-            </Reveal>
-          </div>
+        <Reveal stagger className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+          {GRADES.map((g) => (
+            <GradeCard key={g.slug} grade={g} />
+          ))}
+        </Reveal>
 
-          <aside className="lg:col-span-4 hidden lg:block">
-            <div className="sticky top-20 grid gap-4">
-              <VisualPanel
-                variant="compact"
-                title="How each topic works"
-                subtitle="Read → watch → practice → quiz. Same shape every time so you always know what's next."
-                stats={[
-                  { value: "1", label: "Read" },
-                  { value: "2", label: "Watch" },
-                  { value: "3", label: "Practice" },
-                  { value: "4", label: "Quiz" },
-                ]}
-              />
-              <Link
-                href="/mathematics/curriculum-frameworks"
-                className="card card-interactive group p-5 flex items-center gap-4 no-underline bg-[var(--color-surface)]"
-              >
-                <DocSymbol />
-                <span className="min-w-0">
-                  <span className="caption font-semibold uppercase tracking-wider text-[var(--color-brand-600)]">
-                    Reference
-                  </span>
-                  <span className="block font-semibold text-[var(--color-ink)] mt-0.5">
-                    GADOE frameworks
-                  </span>
-                </span>
-                <span aria-hidden className="text-[var(--color-ink-soft)] group-hover:text-[var(--color-brand-600)] ml-auto">→</span>
-              </Link>
-            </div>
-          </aside>
-        </div>
-
-        <Reveal delay={100} className="mt-8 lg:hidden">
+        <Reveal delay={100} className="mt-6">
           <Link
             href="/mathematics/curriculum-frameworks"
             className="card card-interactive group p-5 sm:p-6 flex items-center gap-5 no-underline bg-[var(--color-surface)]"
@@ -136,139 +88,71 @@ export default function MathematicsHub() {
         </Reveal>
       </Section>
 
-      {/* HOW EACH UNIT IS BUILT — brand band */}
-      <ColorBand variant="brand" containerSize="xl">
-        <div className="grid lg:grid-cols-12 gap-12 items-start">
-          <div className="lg:col-span-4">
-            <p className="eyebrow text-[var(--color-accent-300)]">What&apos;s inside</p>
-            <h2 className="h2 mt-3 text-white">A consistent shape, so you always know where to go next.</h2>
-            <p className="small text-white/75 mt-4 max-w-sm leading-relaxed">
-              Open any unit and pick a topic. Every topic follows the same four steps in the same
-              order. Skim, skip, or follow it straight through — it&apos;s built to fit how you study.
-            </p>
-          </div>
-          <ol className="lg:col-span-8 divide-y divide-white/15">
-            {STEPS.map((s, i) => (
-              <li key={s.title} className="py-5 grid grid-cols-[auto_1fr] gap-5 items-start">
-                <span
-                  aria-hidden
-                  className="font-display text-2xl font-bold text-[var(--color-accent-300)] tabular-nums"
-                >
-                  {String(i + 1).padStart(2, "0")}
-                </span>
-                <span>
-                  <span className="block font-display font-semibold text-lg text-white">{s.title}</span>
-                  <span className="block small text-white/75 mt-1 leading-relaxed max-w-2xl">
-                    {s.body}
-                  </span>
-                </span>
-              </li>
-            ))}
-          </ol>
-        </div>
-      </ColorBand>
-
       {/* CTA */}
       <ColorBand variant="dark" size="sm">
-          <div className="grid md:grid-cols-12 gap-6 items-center">
-            <div className="md:col-span-8">
-              <h2 className="font-display font-bold text-2xl sm:text-3xl leading-[1.2]">
-                Need help on something specific?
-              </h2>
-              <p className="mt-2 text-white/75">Book a free 1:1 session with Adam — online or in-person.</p>
-            </div>
-            <div className="md:col-span-4 md:justify-self-end btn-stack-mobile md:flex-row md:justify-end">
-              <Button href="/book" rightIcon={<Arrow />}>Book a class</Button>
-            </div>
+        <div className="grid md:grid-cols-12 gap-6 items-center">
+          <div className="md:col-span-8">
+            <h2 className="font-display font-bold text-2xl sm:text-3xl leading-[1.2]">
+              Need help on something specific?
+            </h2>
+            <p className="mt-2 text-white/75">Book a free 1:1 session with Adam — online or in-person.</p>
           </div>
+          <div className="md:col-span-4 md:justify-self-end btn-stack-mobile md:flex-row md:justify-end">
+            <Button href="/book" rightIcon={<Arrow />}>Book a class</Button>
+          </div>
+        </div>
       </ColorBand>
     </>
   );
 }
 
-const STEPS: { title: string; body: string }[] = [
-  { title: "Walkthrough", body: "A short, plain-language explainer with a worked example. Read it first to get the idea." },
-  { title: "Video walk-through", body: "One hand-picked video per topic — sometimes a second take — from teachers students actually like." },
-  { title: "Practice", body: "A printable worksheet from Adam or curated links to trusted external worksheet libraries." },
-  { title: "Quick quiz", body: "Two or three questions at the end of each topic, with explanations. Retake it as many times as you want." },
-];
+function GradeCard({ grade: g }: { grade: Grade }) {
+  const unitCount = g.units.length;
+  const topicCount = g.units.reduce((n, u) => n + u.topics.length, 0);
+  const videoCount = g.units.reduce((n, u) => n + countUnitVideos(u), 0);
+  const ready = unitCount > 0;
 
-function UnitLibraryCard({ unit: u, index }: { unit: Unit; index: number }) {
-  const videoCount = countUnitVideos(u);
-  const worksheetCount = countUnitWorksheets(u);
   return (
     <Link
-      href={`/mathematics/${u.slug}`}
+      href={`/mathematics/${g.slug}`}
       className={[
-        "group relative flex flex-col sm:flex-row sm:items-center gap-4 sm:gap-5",
-        "p-5 sm:p-6 rounded-xl no-underline",
-        "bg-[var(--color-surface)] border border-[var(--color-border)]",
-        "shadow-[var(--shadow-card)]",
-        "transition-[border-color,box-shadow,transform,background] duration-200 ease-out",
+        "group relative flex flex-col gap-4 p-6 rounded-xl no-underline h-full",
+        "bg-[var(--color-surface)] border border-[var(--color-border)] shadow-[var(--shadow-card)]",
+        "transition-[border-color,box-shadow,transform] duration-200 ease-out",
         "hover:border-[var(--color-brand-200)] hover:shadow-[var(--shadow-card-hover)] hover:-translate-y-0.5",
         "focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--color-brand-500)]",
       ].join(" ")}
-      aria-label={`Open Unit ${u.number}: ${u.title}`}
+      aria-label={`Open ${g.title} Mathematics`}
     >
-      <div className="flex items-center gap-4 sm:gap-5 shrink-0">
-        <span
-          aria-hidden
-          className="font-display font-bold text-sm tabular-nums w-9 text-center text-[var(--color-brand-600)] group-hover:text-[var(--color-brand-700)] transition-colors"
-        >
-          {String(index + 1).padStart(2, "0")}
+      <div className="flex items-center justify-between gap-3">
+        <UnitSymbol symbol={g.icon} size="md" className="group-hover:bg-[var(--color-brand-100)] transition-colors" />
+        <span className="caption font-semibold uppercase tracking-wider text-[var(--color-brand-600)] bg-[var(--color-brand-50)] px-2 py-0.5 rounded">
+          GADOE
         </span>
-        <UnitSymbol symbol={u.icon} size="md" className="group-hover:bg-[var(--color-brand-100)] transition-colors" />
       </div>
 
       <div className="min-w-0 flex-1">
-        <div className="flex flex-wrap items-center gap-x-3 gap-y-1">
-          <span className="font-display font-semibold text-lg sm:text-xl text-[var(--color-ink)] group-hover:text-[var(--color-brand-700)] transition-colors leading-snug">
-            {u.title}
-          </span>
-          <span className="caption font-semibold uppercase tracking-wider text-[var(--color-brand-600)] bg-[var(--color-brand-50)] px-2 py-0.5 rounded">
-            Unit {u.number}
-          </span>
-        </div>
-        <p className="small text-[var(--color-ink-muted)] mt-2 leading-relaxed line-clamp-2">
-          {u.short}
-        </p>
-        <ul className="mt-3 flex flex-wrap gap-2 list-none p-0 m-0" aria-label="Unit contents">
-          <StatPill>{u.topics.length} topic{u.topics.length === 1 ? "" : "s"}</StatPill>
-          <StatPill>{videoCount} video{videoCount === 1 ? "" : "s"}</StatPill>
-          {worksheetCount > 0 && (
-            <StatPill>
-              {worksheetCount} worksheet{worksheetCount === 1 ? "" : "s"}
-            </StatPill>
-          )}
-          <StatPill>~{u.estimatedMinutes} min</StatPill>
-        </ul>
+        <h3 className="font-display font-bold text-xl text-[var(--color-ink)] group-hover:text-[var(--color-brand-700)] transition-colors">
+          {g.title} Mathematics
+        </h3>
+        <p className="small text-[var(--color-ink-muted)] mt-2 leading-relaxed">{g.short}</p>
       </div>
 
-      <span
-        aria-hidden
-        className={[
-          "self-end sm:self-center shrink-0 w-10 h-10 rounded-full grid place-items-center",
-          "bg-[var(--color-surface-2)] text-[var(--color-ink-muted)] border border-[var(--color-border)]",
-          "group-hover:bg-[var(--color-brand-600)] group-hover:border-[var(--color-brand-600)] group-hover:text-white",
-          "transition-[background,border-color,color,transform] duration-200 group-hover:translate-x-0.5",
-        ].join(" ")}
-      >
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-          <line x1="5" y1="12" x2="19" y2="12" />
-          <polyline points="13 6 19 12 13 18" />
-        </svg>
-      </span>
+      <div className="flex items-center justify-between gap-3 pt-2 border-t border-[var(--color-border)]">
+        <span className="caption text-[var(--color-ink-muted)]">
+          {ready ? `${unitCount} units · ${topicCount} topics · ${videoCount} videos` : "Coming soon"}
+        </span>
+        <span
+          aria-hidden
+          className="w-9 h-9 rounded-full grid place-items-center bg-[var(--color-surface-2)] text-[var(--color-ink-muted)] border border-[var(--color-border)] group-hover:bg-[var(--color-brand-600)] group-hover:border-[var(--color-brand-600)] group-hover:text-white transition-[background,border-color,color,transform] group-hover:translate-x-0.5"
+        >
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+            <line x1="5" y1="12" x2="19" y2="12" />
+            <polyline points="13 6 19 12 13 18" />
+          </svg>
+        </span>
+      </div>
     </Link>
-  );
-}
-
-function StatPill({ children }: { children: ReactNode }) {
-  return (
-    <li>
-      <span className="inline-flex items-center px-2.5 py-1 rounded-md text-xs font-medium text-[var(--color-ink-muted)] bg-[var(--color-bg)] border border-[var(--color-border)]">
-        {children}
-      </span>
-    </li>
   );
 }
 

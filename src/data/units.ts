@@ -6,6 +6,8 @@
  */
 
 import type { QuizQuestion } from "../components/Quiz";
+import { GRADE_7_UNITS } from "./grade7";
+import { GRADE_8_UNITS } from "./grade8";
 
 export type VideoResource = {
   videoId: string;
@@ -82,7 +84,7 @@ export type Unit = {
   frameworkUrl?: string;
 };
 
-export const UNITS: Unit[] = [
+const GRADE_6_UNITS: Unit[] = [
   // -----------------------------------------------------------------
   {
     id: "unit-1",
@@ -1672,15 +1674,71 @@ export const UNITS: Unit[] = [
   },
 ];
 
-export const getUnit = (slug: string) => UNITS.find((u) => u.slug === slug);
-export const getUnitIndex = (slug: string) => UNITS.findIndex((u) => u.slug === slug);
+export type GradeLevel = 6 | 7 | 8;
 
-export const getTopic = (unitSlug: string, topicSlug: string) => {
-  const unit = getUnit(unitSlug);
+export type Grade = {
+  level: GradeLevel;
+  /** Route slug, e.g. "grade-6". */
+  slug: string;
+  title: string;
+  /** Short tagline shown on the grade picker. */
+  short: string;
+  description: string;
+  /** Math symbol shown on the grade card. */
+  icon: string;
+  units: Unit[];
+};
+
+export const GRADES: Grade[] = [
+  {
+    level: 6,
+    slug: "grade-6",
+    title: "Grade 6",
+    short: "The number system, ratios, expressions, and the geometry that everything builds on.",
+    description:
+      "Grade 6 Mathematics — fractions and decimals, ratios and rates, expressions and equations, area and volume, and an introduction to statistics.",
+    icon: "π",
+    units: GRADE_6_UNITS,
+  },
+  {
+    level: 7,
+    slug: "grade-7",
+    title: "Grade 7",
+    short: "Rational numbers, proportional reasoning, equations, geometry, statistics, and probability.",
+    description:
+      "Grade 7 Mathematics — operations with rational numbers, proportional relationships, expressions and equations, geometry, statistical inferences, and probability.",
+    icon: "%",
+    units: GRADE_7_UNITS,
+  },
+  {
+    level: 8,
+    slug: "grade-8",
+    title: "Grade 8",
+    short: "Real numbers, linear equations, functions, transformations, and the Pythagorean theorem.",
+    description:
+      "Grade 8 Mathematics — exponents and scientific notation, linear equations, functions, systems, transformations and similarity, and the Pythagorean theorem.",
+    icon: "ƒ",
+    units: GRADE_8_UNITS,
+  },
+];
+
+export const getGrade = (gradeSlug: string) => GRADES.find((g) => g.slug === gradeSlug);
+
+export const getUnit = (gradeSlug: string, unitSlug: string) =>
+  getGrade(gradeSlug)?.units.find((u) => u.slug === unitSlug);
+
+export const getUnitIndex = (gradeSlug: string, unitSlug: string) =>
+  getGrade(gradeSlug)?.units.findIndex((u) => u.slug === unitSlug) ?? -1;
+
+export const getTopic = (gradeSlug: string, unitSlug: string, topicSlug: string) => {
+  const grade = getGrade(gradeSlug);
+  if (!grade) return undefined;
+  const unit = grade.units.find((u) => u.slug === unitSlug);
   if (!unit) return undefined;
   const index = unit.topics.findIndex((t) => t.slug === topicSlug);
   if (index === -1) return undefined;
   return {
+    grade,
     unit,
     topic: unit.topics[index],
     index,

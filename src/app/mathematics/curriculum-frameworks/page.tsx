@@ -5,16 +5,19 @@ import Breadcrumbs from "../../../components/Breadcrumbs";
 import SectionHeader from "../../../components/SectionHeader";
 import ResourceLinkCard from "../../../components/ResourceLinkCard";
 import { DocSymbol } from "../../../components/UnitSymbol";
-import { UNITS } from "../../../data/units";
+import { GRADES } from "../../../data/units";
 
 export const metadata: Metadata = {
   title: "GADOE Curriculum Frameworks",
   description:
-    "Official Georgia Department of Education curriculum frameworks for every Grade 6 Mathematics unit.",
+    "Official Georgia Department of Education curriculum frameworks for Grade 6, 7, and 8 Mathematics units.",
 };
 
 export default function FrameworksPage() {
-  const frameworks = UNITS.filter((u) => !!u.frameworkUrl);
+  const gradesWithFrameworks = GRADES.map((g) => ({
+    grade: g,
+    frameworks: g.units.filter((u) => !!u.frameworkUrl),
+  })).filter((entry) => entry.frameworks.length > 0);
 
   return (
     <>
@@ -38,19 +41,29 @@ export default function FrameworksPage() {
       </Section>
 
       <Section tone="default" size="md" containerSize="lg">
-        <SectionHeader eyebrow="By unit" title="Open any framework" />
-        <div className="mt-8 grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
-          {frameworks.map((u) => (
-            <ResourceLinkCard
-              key={u.id}
-              href={u.frameworkUrl as string}
-              title={`Unit ${u.number}: ${u.title}`}
-              description="GADOE official curriculum framework PDF"
-              source="GADOE"
-              icon={<DocSymbol className="w-10 h-10" />}
-            />
-          ))}
-        </div>
+        {gradesWithFrameworks.length > 0 ? (
+          <div className="grid gap-12">
+            {gradesWithFrameworks.map(({ grade, frameworks }) => (
+              <div key={grade.slug}>
+                <SectionHeader eyebrow={grade.title} title="Open any framework" />
+                <div className="mt-8 grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                  {frameworks.map((u) => (
+                    <ResourceLinkCard
+                      key={u.id}
+                      href={u.frameworkUrl as string}
+                      title={`Unit ${u.number}: ${u.title}`}
+                      description="GADOE official curriculum framework PDF"
+                      source="GADOE"
+                      icon={<DocSymbol className="w-10 h-10" />}
+                    />
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
+        ) : (
+          <p className="text-[var(--color-ink-muted)]">Frameworks will appear here as they are added.</p>
+        )}
       </Section>
 
       <Section tone="muted" size="md" containerSize="md">

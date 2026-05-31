@@ -3,23 +3,23 @@ import type { ReactNode } from "react";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 
-import Section from "../../../components/Section";
-import Card from "../../../components/Card";
-import Badge from "../../../components/Badge";
-import Breadcrumbs from "../../../components/Breadcrumbs";
-import ResourceLinkCard from "../../../components/ResourceLinkCard";
-import UnitStudyPanel from "../../../components/UnitStudyPanel";
-import Reveal from "../../../components/Reveal";
-import MathBackdrop from "../../../components/MathBackdrop";
-import { UnitSymbol } from "../../../components/UnitSymbol";
-import Container from "../../../components/Container";
+import Section from "../../../../components/Section";
+import Card from "../../../../components/Card";
+import Badge from "../../../../components/Badge";
+import Breadcrumbs from "../../../../components/Breadcrumbs";
+import ResourceLinkCard from "../../../../components/ResourceLinkCard";
+import UnitStudyPanel from "../../../../components/UnitStudyPanel";
+import Reveal from "../../../../components/Reveal";
+import MathBackdrop from "../../../../components/MathBackdrop";
+import { UnitSymbol } from "../../../../components/UnitSymbol";
+import Container from "../../../../components/Container";
 
-import { UNITS, getUnit, getUnitIndex, countUnitVideos, type Topic } from "../../../data/units";
+import { GRADES, getGrade, getUnit, getUnitIndex, countUnitVideos, type Topic } from "../../../../data/units";
 
-type Params = { unit: string };
+type Params = { grade: string; unit: string };
 
 export function generateStaticParams() {
-  return UNITS.map((u) => ({ unit: u.slug }));
+  return GRADES.flatMap((g) => g.units.map((u) => ({ grade: g.slug, unit: u.slug })));
 }
 
 export async function generateMetadata({
@@ -27,23 +27,25 @@ export async function generateMetadata({
 }: {
   params: Promise<Params>;
 }): Promise<Metadata> {
-  const { unit } = await params;
-  const u = getUnit(unit);
-  if (!u) return { title: "Unit not found" };
+  const { grade, unit } = await params;
+  const g = getGrade(grade);
+  const u = getUnit(grade, unit);
+  if (!g || !u) return { title: "Unit not found" };
   return {
-    title: `Unit ${u.number} · ${u.title}`,
+    title: `${g.title} · Unit ${u.number}: ${u.title}`,
     description: u.description,
   };
 }
 
 export default async function UnitPage({ params }: { params: Promise<Params> }) {
-  const { unit } = await params;
-  const u = getUnit(unit);
-  if (!u) notFound();
+  const { grade, unit } = await params;
+  const g = getGrade(grade);
+  const u = getUnit(grade, unit);
+  if (!g || !u) notFound();
 
-  const idx = getUnitIndex(unit);
-  const prev = idx > 0 ? UNITS[idx - 1] : null;
-  const next = idx < UNITS.length - 1 ? UNITS[idx + 1] : null;
+  const idx = getUnitIndex(grade, unit);
+  const prev = idx > 0 ? g.units[idx - 1] : null;
+  const next = idx < g.units.length - 1 ? g.units[idx + 1] : null;
 
   const firstTopic = u.topics[0];
   const totalVideos = countUnitVideos(u);
@@ -66,13 +68,14 @@ export default async function UnitPage({ params }: { params: Promise<Params> }) 
             items={[
               { label: "Home", href: "/" },
               { label: "Mathematics", href: "/mathematics" },
+              { label: g.title, href: `/mathematics/${g.slug}` },
               { label: `Unit ${u.number}` },
             ]}
           />
 
           <Reveal className="mt-6 max-w-4xl" variant="up">
             <div className="flex items-center gap-3 flex-wrap">
-              <Badge tone="brand">Unit {u.number}</Badge>
+              <Badge tone="brand">{g.title} · Unit {u.number}</Badge>
               <span className="caption text-[var(--color-ink-muted)]">~{u.estimatedMinutes} min</span>
               <span className="caption text-[var(--color-ink-muted)]">
                 {u.topics.length} topics · {totalVideos} videos
@@ -96,7 +99,7 @@ export default async function UnitPage({ params }: { params: Promise<Params> }) 
 
             {firstTopic && (
               <div className="mt-6 btn-stack-mobile sm:flex-row">
-                <Link href={`/mathematics/${u.slug}/${firstTopic.slug}`} className="btn btn-primary btn-sm">
+                <Link href={`/mathematics/${g.slug}/${u.slug}/${firstTopic.slug}`} className="btn btn-primary btn-sm">
                   Start the first topic →
                 </Link>
                 <a href="#topics" className="btn btn-outline btn-sm">
@@ -128,7 +131,7 @@ export default async function UnitPage({ params }: { params: Promise<Params> }) 
               </Reveal>
               <Reveal stagger className="mt-8 grid gap-3 sm:gap-4">
                 {u.topics.map((t, i) => (
-                  <TopicCard key={t.id} unitSlug={u.slug} topic={t} index={i} />
+                  <TopicCard key={t.id} gradeSlug={g.slug} unitSlug={u.slug} topic={t} index={i} />
                 ))}
               </Reveal>
             </section>
@@ -202,14 +205,14 @@ export default async function UnitPage({ params }: { params: Promise<Params> }) 
                 direction="prev"
                 label={`Unit ${prev.number}`}
                 title={prev.title}
-                href={`/mathematics/${prev.slug}`}
+                href={`/mathematics/${g.slug}/${prev.slug}`}
               />
             ) : (
-              <Link href="/mathematics" className="card card-interactive p-6 flex items-center gap-3 no-underline">
+              <Link href={`/mathematics/${g.slug}`} className="card card-interactive p-6 flex items-center gap-3 no-underline">
                 <span aria-hidden>←</span>
                 <span>
                   <span className="caption text-[var(--color-ink-muted)] uppercase tracking-wider">Back to</span>
-                  <span className="block font-semibold text-[var(--color-ink)]">Mathematics library</span>
+                  <span className="block font-semibold text-[var(--color-ink)]">{g.title} library</span>
                 </span>
               </Link>
             )}
@@ -218,16 +221,16 @@ export default async function UnitPage({ params }: { params: Promise<Params> }) 
                 direction="next"
                 label={`Unit ${next.number}`}
                 title={next.title}
-                href={`/mathematics/${next.slug}`}
+                href={`/mathematics/${g.slug}/${next.slug}`}
               />
             ) : (
-              <div className="card p-6 flex items-center gap-3 bg-[var(--color-brand-50)] border-[var(--color-brand-100)]">
+              <Link href={`/mathematics/${g.slug}`} className="card card-interactive p-6 flex items-center gap-3 no-underline sm:flex-row-reverse sm:text-right bg-[var(--color-brand-50)] border-[var(--color-brand-100)]">
                 <UnitSymbol symbol="★" size="sm" className="bg-[var(--color-brand-100)] border-[var(--color-brand-200)] text-[var(--color-brand-700)]" />
-                <span>
+                <span className="flex-1">
                   <span className="caption uppercase tracking-wider text-[var(--color-brand-700)]">You finished</span>
-                  <span className="block font-semibold text-[var(--color-ink)]">All seven units</span>
+                  <span className="block font-semibold text-[var(--color-ink)]">All units in {g.title}</span>
                 </span>
-              </div>
+              </Link>
             )}
           </div>
         </Section>
@@ -236,13 +239,13 @@ export default async function UnitPage({ params }: { params: Promise<Params> }) 
   );
 }
 
-function TopicCard({ unitSlug, topic, index }: { unitSlug: string; topic: Topic; index: number }) {
+function TopicCard({ gradeSlug, unitSlug, topic, index }: { gradeSlug: string; unitSlug: string; topic: Topic; index: number }) {
   const videoCount = 1 + (topic.extraVideo ? 1 : 0);
   const hasPractice = Boolean(topic.worksheet) || (topic.practiceLinks?.length ?? 0) > 0;
 
   return (
     <Link
-      href={`/mathematics/${unitSlug}/${topic.slug}`}
+      href={`/mathematics/${gradeSlug}/${unitSlug}/${topic.slug}`}
       className={[
         "group relative flex flex-col sm:flex-row sm:items-center gap-4 sm:gap-5",
         "p-5 sm:p-6 rounded-xl no-underline",
