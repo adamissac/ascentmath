@@ -27,6 +27,43 @@ export type ExternalLink = {
   description?: string;
 };
 
+/** One block of a topic walkthrough — keep each block short and focused. */
+export type WalkthroughBlock = {
+  heading?: string;
+  paragraphs?: string[];
+  /** Numbered, ordered steps. */
+  steps?: string[];
+  /** A single worked example shown in a highlighted box. */
+  example?: { problem: string; solution: string[] };
+  /** A short aside, e.g. a tip or a common mistake to avoid. */
+  callout?: { label: string; text: string };
+};
+
+/**
+ * A topic is a single focused page within a unit: a short walkthrough,
+ * one (occasionally two) videos, practice, and a quick quiz.
+ */
+export type Topic = {
+  id: string;
+  /** Unique within its unit, e.g. "fractions". */
+  slug: string;
+  title: string;
+  /** One-line summary shown on the unit's topic index. */
+  summary: string;
+  estimatedMinutes: number;
+  walkthrough: WalkthroughBlock[];
+  /** The main video for this topic. */
+  video: VideoResource;
+  /** Optional single "another take" video. */
+  extraVideo?: VideoResource;
+  /** Optional Adam worksheet attached to this topic. */
+  worksheet?: WorksheetResource;
+  /** Topic-relevant external practice links. */
+  practiceLinks?: ExternalLink[];
+  /** Short 2-3 question check at the end of the topic. */
+  quiz: QuizQuestion[];
+};
+
 export type Unit = {
   id: string;
   number: number;
@@ -39,11 +76,19 @@ export type Unit = {
   estimatedMinutes: number;
   objectives: string[];
   vocabulary?: { term: string; meaning: string }[];
-  videos: VideoResource[];
-  worksheets: WorksheetResource[];
+  /** Focused topic pages that make up this unit. */
+  topics: Topic[];
   externalPractice: ExternalLink[];
-  quiz: QuizQuestion[];
   frameworkUrl?: string;
+  /**
+   * @deprecated Legacy unit-level arrays kept only until all topics are
+   * authored and consumers are migrated. Use `topics` instead.
+   */
+  videos: VideoResource[];
+  /** @deprecated Use per-topic worksheets. */
+  worksheets: WorksheetResource[];
+  /** @deprecated Use per-topic quizzes. */
+  quiz: QuizQuestion[];
 };
 
 export const UNITS: Unit[] = [
@@ -51,6 +96,7 @@ export const UNITS: Unit[] = [
   {
     id: "unit-1",
     number: 1,
+    topics: [],
     slug: "unit-1",
     title: "Number System & Operations",
     short: "Fractions, decimals, factors, and the basics that everything else builds on.",
@@ -136,6 +182,7 @@ export const UNITS: Unit[] = [
   {
     id: "unit-2",
     number: 2,
+    topics: [],
     slug: "unit-2",
     title: "Ratios & Proportional Relationships",
     short: "Compare quantities, find unit rates, and reason about proportions.",
@@ -206,6 +253,7 @@ export const UNITS: Unit[] = [
   {
     id: "unit-3",
     number: 3,
+    topics: [],
     slug: "unit-3",
     title: "Expressions & Equations",
     short: "Exponents, variables, and writing math symbolically.",
@@ -274,6 +322,7 @@ export const UNITS: Unit[] = [
   {
     id: "unit-4",
     number: 4,
+    topics: [],
     slug: "unit-4",
     title: "Equations & Inequalities",
     short: "Solving one-step equations and graphing inequalities.",
@@ -341,6 +390,7 @@ export const UNITS: Unit[] = [
   {
     id: "unit-5",
     number: 5,
+    topics: [],
     slug: "unit-5",
     title: "Geometry — Area & Volume",
     short: "Area of polygons, surface area from nets, and volume of prisms.",
@@ -407,6 +457,7 @@ export const UNITS: Unit[] = [
   {
     id: "unit-6",
     number: 6,
+    topics: [],
     slug: "unit-6",
     title: "Statistics & Data Analysis",
     short: "Center, spread, and visualizing data with the right plot.",
@@ -475,6 +526,7 @@ export const UNITS: Unit[] = [
   {
     id: "unit-7",
     number: 7,
+    topics: [],
     slug: "unit-7",
     title: "Geometry in Action — Surface Area & Volume",
     short: "Putting area, surface area, and volume to work in real-world problems.",
@@ -539,3 +591,25 @@ export const UNITS: Unit[] = [
 
 export const getUnit = (slug: string) => UNITS.find((u) => u.slug === slug);
 export const getUnitIndex = (slug: string) => UNITS.findIndex((u) => u.slug === slug);
+
+export const getTopic = (unitSlug: string, topicSlug: string) => {
+  const unit = getUnit(unitSlug);
+  if (!unit) return undefined;
+  const index = unit.topics.findIndex((t) => t.slug === topicSlug);
+  if (index === -1) return undefined;
+  return {
+    unit,
+    topic: unit.topics[index],
+    index,
+    prev: index > 0 ? unit.topics[index - 1] : null,
+    next: index < unit.topics.length - 1 ? unit.topics[index + 1] : null,
+  };
+};
+
+/** Total number of videos across a unit's topics (main + extra). */
+export const countUnitVideos = (unit: Unit) =>
+  unit.topics.reduce((n, t) => n + 1 + (t.extraVideo ? 1 : 0), 0);
+
+/** Total number of Adam worksheets across a unit's topics. */
+export const countUnitWorksheets = (unit: Unit) =>
+  unit.topics.reduce((n, t) => n + (t.worksheet ? 1 : 0), 0);
