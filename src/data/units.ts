@@ -738,7 +738,202 @@ export const UNITS: Unit[] = [
   {
     id: "unit-3",
     number: 3,
-    topics: [],
+    topics: [
+      {
+        id: "u3-t1",
+        slug: "exponents-order-of-operations",
+        title: "Exponents & Order of Operations",
+        summary: "Powers mean repeated multiplication — and PEMDAS sets the order.",
+        estimatedMinutes: 14,
+        walkthrough: [
+          {
+            heading: "What an exponent means",
+            paragraphs: [
+              "An exponent is a shortcut for repeated multiplication. 4³ means 4 × 4 × 4 = 64. The small number (the exponent) tells you how many times to multiply the base by itself.",
+            ],
+          },
+          {
+            heading: "Order of operations (PEMDAS)",
+            paragraphs: [
+              "When an expression has several operations, do them in this order: Parentheses, Exponents, Multiplication and Division (left to right), then Addition and Subtraction (left to right).",
+            ],
+            example: {
+              problem: "2 + 3 × (4² − 6)",
+              solution: [
+                "Parentheses first, and inside them exponents: 4² = 16.",
+                "16 − 6 = 10, so the expression is 2 + 3 × 10.",
+                "Multiply: 3 × 10 = 30. Then add: 2 + 30 = 32.",
+              ],
+            },
+            callout: {
+              label: "Watch out",
+              text: "Multiplication and division are equal in rank — do them left to right, not multiplication first.",
+            },
+          },
+        ],
+        video: { videoId: "dAgfnK528RA", title: "Order of Operations", source: "Math Antics", description: "PEMDAS step by step so you always know what to do first." },
+        extraVideo: { videoId: "LkhPRz7Hocg", title: "Exponents", source: "Math Antics", description: "A clear walk-through of repeated multiplication with exponents." },
+        practiceLinks: [
+          { href: "https://www.mathworksheets4kids.com/order-of-operations.php", title: "Order of operations", source: "Math Worksheets 4 Kids" },
+        ],
+        quiz: [
+          {
+            id: "u3-t1-q1",
+            prompt: "Evaluate: 2 + 3 × (4² − 6)",
+            type: "multiple-choice",
+            options: ["32", "20", "26", "44"],
+            answer: "32",
+            explanation: "4² = 16, then 16 − 6 = 10, then 3 × 10 = 30, then 2 + 30 = 32.",
+            difficulty: "medium",
+          },
+          {
+            id: "u3-t1-q2",
+            prompt: "Evaluate: 2 + 3² × 2",
+            type: "short-answer",
+            answer: "20",
+            explanation: "Exponent first: 3² = 9. Then 9 × 2 = 18, and 2 + 18 = 20.",
+            difficulty: "medium",
+          },
+          {
+            id: "u3-t1-q3",
+            prompt: "In PEMDAS, you handle exponents before multiplication.",
+            type: "true-false",
+            answer: true,
+            explanation: "Exponents (E) come before multiplication and division (MD).",
+            difficulty: "easy",
+          },
+        ],
+      },
+      {
+        id: "u3-t2",
+        slug: "writing-expressions",
+        title: "Writing Algebraic Expressions",
+        summary: "Turn word phrases into math, then plug in numbers to evaluate.",
+        estimatedMinutes: 13,
+        walkthrough: [
+          {
+            heading: "From words to symbols",
+            paragraphs: [
+              "A variable is a letter that stands for an unknown number. \"Five more than a number\" becomes n + 5. \"Three times a number, minus 7\" becomes 3n − 7.",
+            ],
+          },
+          {
+            heading: "Evaluating an expression",
+            paragraphs: [
+              "To evaluate, substitute the given value for the variable and simplify using the order of operations.",
+            ],
+            example: {
+              problem: "Evaluate 2x + 5 when x = 4.",
+              solution: [
+                "Substitute: 2(4) + 5.",
+                "Multiply first: 8 + 5.",
+                "Add: 13.",
+              ],
+            },
+            callout: {
+              label: "Tip",
+              text: "Watch the order of the words: \"7 less than a number\" is n − 7, not 7 − n.",
+            },
+          },
+        ],
+        video: { videoId: "Q1vMNyIP4Us", title: "Writing Expressions with Variables", source: "Khan Academy", description: "Turn word phrases like \"five more than x\" into algebra." },
+        extraVideo: { videoId: "NybHckSEQBI", title: "What Are Variables?", source: "Math Antics", description: "Why letters stand for unknown numbers in math." },
+        practiceLinks: [
+          { href: "https://www.khanacademy.org/math/cc-sixth-grade-math/cc-6th-expressions-and-variables", title: "Expressions & variables practice", source: "Khan Academy" },
+        ],
+        quiz: [
+          {
+            id: "u3-t2-q1",
+            prompt: "Write an expression for \"twice a number plus 9.\"",
+            type: "short-answer",
+            answer: "2n + 9",
+            explanation: "\"Twice a number\" is 2n; \"plus 9\" adds 9, giving 2n + 9.",
+            difficulty: "easy",
+          },
+          {
+            id: "u3-t2-q2",
+            prompt: "Evaluate 2x + 5 when x = 4.",
+            type: "multiple-choice",
+            options: ["13", "11", "18", "14"],
+            answer: "13",
+            explanation: "2(4) + 5 = 8 + 5 = 13.",
+            difficulty: "easy",
+          },
+          {
+            id: "u3-t2-q3",
+            prompt: "The phrase \"7 less than a number\" is written as 7 − n.",
+            type: "true-false",
+            answer: false,
+            explanation: "\"7 less than a number\" is n − 7 — you start with the number and take away 7.",
+            difficulty: "medium",
+          },
+        ],
+      },
+      {
+        id: "u3-t3",
+        slug: "distributive-like-terms",
+        title: "Distributive Property & Like Terms",
+        summary: "Spread the number outside the parentheses, then combine matching terms.",
+        estimatedMinutes: 14,
+        walkthrough: [
+          {
+            heading: "The distributive property",
+            paragraphs: [
+              "To remove parentheses, multiply the number outside by every term inside. For example, 3(x + 4) = 3·x + 3·4 = 3x + 12.",
+            ],
+          },
+          {
+            heading: "Combining like terms",
+            paragraphs: [
+              "Like terms have the exact same variable part. You can add or subtract their coefficients (the numbers in front). Constants combine with constants.",
+            ],
+            example: {
+              problem: "Simplify 2x + 4 + 3x − 1.",
+              solution: [
+                "Group like terms: (2x + 3x) + (4 − 1).",
+                "Combine: 5x + 3.",
+              ],
+            },
+            callout: {
+              label: "Watch out",
+              text: "5x and 5 are NOT like terms — one has a variable and one does not.",
+            },
+          },
+        ],
+        video: { videoId: "3NHSwiv_pSE", title: "Distributive Property", source: "Khan Academy", description: "Multiply a number across terms inside parentheses." },
+        extraVideo: { videoId: "DKC74YKJpNY", title: "Combining Like Terms", source: "Math Antics", description: "Add or subtract terms that share the same variable part." },
+        practiceLinks: [
+          { href: "https://www.khanacademy.org/math/cc-sixth-grade-math/cc-6th-expressions-and-variables", title: "Equivalent expressions practice", source: "Khan Academy" },
+        ],
+        quiz: [
+          {
+            id: "u3-t3-q1",
+            prompt: "Which expression is equivalent to 3(x + 4)?",
+            type: "multiple-choice",
+            options: ["3x + 4", "x + 12", "3x + 12", "3x − 12"],
+            answer: "3x + 12",
+            explanation: "Distribute the 3: 3·x + 3·4 = 3x + 12.",
+            difficulty: "easy",
+          },
+          {
+            id: "u3-t3-q2",
+            prompt: "Simplify 2x + 4 + 3x − 1.",
+            type: "short-answer",
+            answer: "5x + 3",
+            explanation: "Combine like terms: 2x + 3x = 5x and 4 − 1 = 3.",
+            difficulty: "medium",
+          },
+          {
+            id: "u3-t3-q3",
+            prompt: "5x + 2x simplifies to 7x because they are like terms.",
+            type: "true-false",
+            answer: true,
+            explanation: "Both terms have the same variable factor (x), so we add their coefficients.",
+            difficulty: "easy",
+          },
+        ],
+      },
+    ],
     slug: "unit-3",
     title: "Expressions & Equations",
     short: "Exponents, variables, and writing math symbolically.",
@@ -807,7 +1002,193 @@ export const UNITS: Unit[] = [
   {
     id: "unit-4",
     number: 4,
-    topics: [],
+    topics: [
+      {
+        id: "u4-t1",
+        slug: "one-step-equations",
+        title: "One-Step Equations",
+        summary: "Undo whatever is happening to the variable to find its value.",
+        estimatedMinutes: 13,
+        walkthrough: [
+          {
+            heading: "Using inverse operations",
+            paragraphs: [
+              "An equation says two things are equal. To solve for the variable, undo the operation attached to it by doing the opposite to BOTH sides. Addition is undone by subtraction, multiplication by division.",
+            ],
+            example: {
+              problem: "Solve x + 7 = 15",
+              solution: [
+                "The +7 is attached to x, so subtract 7 from both sides.",
+                "x + 7 − 7 = 15 − 7.",
+                "x = 8.",
+              ],
+            },
+          },
+          {
+            heading: "Always check your answer",
+            paragraphs: [
+              "Substitute your answer back into the original equation. If both sides match, you got it right.",
+            ],
+            callout: {
+              label: "Tip",
+              text: "Whatever you do to one side of the equation, you must do to the other — that keeps it balanced.",
+            },
+          },
+        ],
+        video: { videoId: "jWpiMu5LNdg", title: "One-Step Equations", source: "Khan Academy", description: "Use inverse operations to find the missing number." },
+        extraVideo: { videoId: "l3XzepN03KQ", title: "Solving Basic Algebraic Equations", source: "Math Antics", description: "Add, subtract, multiply, or divide both sides to isolate x." },
+        worksheet: { driveFileId: "1gWPLzo75q2usvfROnIeGmCYWT4Xf0mjU", title: "Worksheet — Equations & inequalities", description: "Mixed practice solving equations and inequalities." },
+        quiz: [
+          {
+            id: "u4-t1-q1",
+            prompt: "Solve for x: x + 7 = 12",
+            type: "short-answer",
+            answer: "5",
+            explanation: "Subtract 7 from both sides: x = 12 − 7 = 5.",
+            difficulty: "easy",
+          },
+          {
+            id: "u4-t1-q2",
+            prompt: "Solve for n: n − 9 = 14",
+            type: "short-answer",
+            answer: "23",
+            explanation: "Add 9 to both sides: n = 14 + 9 = 23.",
+            difficulty: "easy",
+          },
+          {
+            id: "u4-t1-q3",
+            prompt: "You can check the solution to an equation by substituting it back in.",
+            type: "true-false",
+            answer: true,
+            explanation: "If both sides are equal after substituting, your answer is correct.",
+            difficulty: "easy",
+          },
+        ],
+      },
+      {
+        id: "u4-t2",
+        slug: "inequalities",
+        title: "Inequalities & Number Lines",
+        summary: "Solve like equations, then graph every value that works.",
+        estimatedMinutes: 14,
+        walkthrough: [
+          {
+            heading: "Reading inequality symbols",
+            paragraphs: [
+              "An inequality compares values that are not necessarily equal: < (less than), > (greater than), ≤ (at most), ≥ (at least). \"At most 9\" means x ≤ 9; \"fewer than 5\" means x < 5.",
+            ],
+          },
+          {
+            heading: "Solving and graphing",
+            paragraphs: [
+              "Solve an inequality the same way you solve an equation. Then graph the solution on a number line: an open circle for < or >, a closed (filled) circle for ≤ or ≥.",
+            ],
+            example: {
+              problem: "Solve and graph x + 3 < 10",
+              solution: [
+                "Subtract 3 from both sides: x < 7.",
+                "Graph an open circle at 7 and shade everything to the left.",
+              ],
+            },
+            callout: {
+              label: "Watch out",
+              text: "If you multiply or divide both sides by a negative number, flip the inequality sign.",
+            },
+          },
+        ],
+        video: { videoId: "VgDe_D8ojxw", title: "Intro to Inequalities", source: "Khan Academy", description: "Symbols like < and ≥ and what they mean on a number line." },
+        extraVideo: { videoId: "mgHO-bsCDrA", title: "Solving Inequalities", source: "Math Antics", description: "Solve inequality problems the same way you solve equations." },
+        practiceLinks: [
+          { href: "https://www.khanacademy.org/math/cc-sixth-grade-math/cc-6th-equations-and-inequalities-topic", title: "Equations & inequalities practice", source: "Khan Academy" },
+        ],
+        quiz: [
+          {
+            id: "u4-t2-q1",
+            prompt: "Which inequality represents 'x is at most 9'?",
+            type: "multiple-choice",
+            options: ["x > 9", "x ≥ 9", "x ≤ 9", "x < 9"],
+            answer: "x ≤ 9",
+            explanation: "'At most' means less than or equal to.",
+            difficulty: "medium",
+          },
+          {
+            id: "u4-t2-q2",
+            prompt: "Solve: x + 3 < 10",
+            type: "short-answer",
+            answer: "x < 7",
+            explanation: "Subtract 3 from both sides to get x < 7.",
+            difficulty: "easy",
+          },
+          {
+            id: "u4-t2-q3",
+            prompt: "You use an open circle on a number line for ≤ and ≥.",
+            type: "true-false",
+            answer: false,
+            explanation: "Open circles are for < and >. Use closed (filled) circles for ≤ and ≥.",
+            difficulty: "medium",
+          },
+        ],
+      },
+      {
+        id: "u4-t3",
+        slug: "independent-dependent-variables",
+        title: "Independent & Dependent Variables",
+        summary: "What you choose vs. what changes because of your choice.",
+        estimatedMinutes: 12,
+        walkthrough: [
+          {
+            heading: "Which is which",
+            paragraphs: [
+              "The independent variable is the input — the value you choose (like hours worked). The dependent variable is the output — the value that depends on it (like money earned).",
+            ],
+            example: {
+              problem: "You earn $9 per hour. Identify the variables.",
+              solution: [
+                "Equation: dollars = 9 × hours.",
+                "Hours is independent (you choose it).",
+                "Dollars is dependent (it depends on hours).",
+              ],
+            },
+            callout: {
+              label: "Tip",
+              text: "Ask yourself: which value causes the other to change? That cause is the independent variable.",
+            },
+          },
+        ],
+        video: { videoId: "SGC_d7O7_Eg", title: "Dependent & Independent Variables", source: "Khan Academy", description: "Which quantity you choose and which one depends on it." },
+        extraVideo: { videoId: "vJclTPm3ofM", title: "Independent & Dependent Variables", source: "Mathispower4u", description: "Identify input and output in tables and graphs." },
+        practiceLinks: [
+          { href: "https://www.khanacademy.org/math/cc-sixth-grade-math/cc-6th-equations-and-inequalities-topic", title: "Dependent & independent variables practice", source: "Khan Academy" },
+        ],
+        quiz: [
+          {
+            id: "u4-t3-q1",
+            prompt: "In y = 4x, x is the dependent variable.",
+            type: "true-false",
+            answer: false,
+            explanation: "x is independent; y depends on x.",
+            difficulty: "medium",
+          },
+          {
+            id: "u4-t3-q2",
+            prompt: "A taxi costs $3 plus $2 per mile. Which equation gives the cost c for m miles?",
+            type: "multiple-choice",
+            options: ["c = 3m + 2", "c = 2m + 3", "c = 5m", "c = 2 + 3m"],
+            answer: "c = 2m + 3",
+            explanation: "$2 for each mile is 2m, plus the flat $3: c = 2m + 3.",
+            difficulty: "medium",
+          },
+          {
+            id: "u4-t3-q3",
+            prompt: "If pay depends on hours worked, hours is the independent variable.",
+            type: "true-false",
+            answer: true,
+            explanation: "Hours is the input you choose; pay is the output that depends on it.",
+            difficulty: "easy",
+          },
+        ],
+      },
+    ],
     slug: "unit-4",
     title: "Equations & Inequalities",
     short: "Solving one-step equations and graphing inequalities.",
