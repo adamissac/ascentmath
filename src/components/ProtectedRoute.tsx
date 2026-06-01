@@ -1,24 +1,36 @@
 "use client";
 
 import { useRouter, usePathname } from "next/navigation";
-import { useEffect, type ReactNode } from "react";
+import { useEffect, useRef, type ReactNode } from "react";
 import { useAuth } from "./AuthProvider";
 
 /**
  * Wrap any client page that requires an authenticated user. While auth
  * state resolves we render a calm loading placeholder; if the resolution
- * shows no user we replace the URL with /login and preserve the original
- * destination as `?next=`.
+ * shows no user we redirect. A visitor who was never signed in is sent to
+ * /login (preserving the original destination as `?next=`); a user who
+ * signed out or whose session ended while on the page is sent home — this
+ * also keeps the sign-out redirect deterministic instead of racing the
+ * page's own `router.replace("/")`.
  */
 export default function ProtectedRoute({ children }: { children: ReactNode }) {
   const { user, loading, configured } = useAuth();
   const router = useRouter();
   const pathname = usePathname();
+  const wasAuthedRef = useRef(false);
+
+  useEffect(() => {
+    if (user) wasAuthedRef.current = true;
+  }, [user]);
 
   useEffect(() => {
     if (!configured) return; // surface a setup banner instead of redirecting
     if (loading) return;
     if (!user) {
+      if (wasAuthedRef.current) {
+        router.replace("/");
+        return;
+      }
       const next = pathname ? `?next=${encodeURIComponent(pathname)}` : "";
       router.replace(`/login${next}`);
     }

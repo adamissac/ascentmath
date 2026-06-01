@@ -211,25 +211,6 @@ function DetailRow({
   );
 }
 
-function ArrowRight() {
-  return (
-    <svg
-      width="16"
-      height="16"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      aria-hidden
-    >
-      <line x1="5" y1="12" x2="19" y2="12" />
-      <polyline points="13 6 19 12 13 18" />
-    </svg>
-  );
-}
-
 function shorten(uid: string) {
   if (uid.length <= 14) return uid;
   return `${uid.slice(0, 8)}…${uid.slice(-4)}`;
