@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState, type ReactNode } from "react";
+import { useEffect, useRef, useState, type ReactNode } from "react";
 import UnitProgressPanel from "./UnitProgressPanel";
 import type { ProgressItem } from "../hooks/useUnitProgress";
 
@@ -11,8 +11,8 @@ const PANEL_LABEL = "Unit menu";
 const DESKTOP_QUERY = "(min-width: 1024px)";
 
 /**
- * Left unit menu — closed by default; opens on demand. On desktop it pushes
- * main content with a gutter; on mobile it slides in as an inset drawer.
+ * Left unit menu — open by default on desktop; users can close it. On mobile
+ * it stays closed until opened. Pushes main content with a gutter on desktop.
  */
 export default function UnitStudyPanel({
   unitId,
@@ -30,11 +30,18 @@ export default function UnitStudyPanel({
   const [isDesktop, setIsDesktop] = useState(false);
   const [open, setOpen] = useState(false);
   const [mounted, setMounted] = useState(false);
+  const userClosedRef = useRef(false);
 
   useEffect(() => {
     const mq = window.matchMedia(DESKTOP_QUERY);
     const sync = () => {
-      setIsDesktop(mq.matches);
+      const desktop = mq.matches;
+      setIsDesktop(desktop);
+      if (desktop) {
+        if (!userClosedRef.current) setOpen(true);
+      } else {
+        setOpen(false);
+      }
     };
     sync();
     setMounted(true);
@@ -60,10 +67,12 @@ export default function UnitStudyPanel({
   }, [isDesktop, open]);
 
   function closePanel() {
+    userClosedRef.current = true;
     setOpen(false);
   }
 
   function openPanel() {
+    userClosedRef.current = false;
     setOpen(true);
   }
 
