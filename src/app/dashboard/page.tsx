@@ -5,7 +5,6 @@ import { useRouter } from "next/navigation";
 import { useState } from "react";
 import Container from "../../components/Container";
 import Card from "../../components/Card";
-import Button from "../../components/Button";
 import Badge from "../../components/Badge";
 import ProtectedRoute from "../../components/ProtectedRoute";
 import MathBackdrop from "../../components/MathBackdrop";

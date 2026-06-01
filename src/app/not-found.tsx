@@ -1,4 +1,3 @@
-import Link from "next/link";
 import Section from "../components/Section";
 import Button from "../components/Button";
 

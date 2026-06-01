@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useMemo, useRef, useState } from "react";
+import Link from "next/link";
 import Section from "../../components/Section";
 import Card from "../../components/Card";
 import Button from "../../components/Button";
@@ -76,7 +77,8 @@ export default function BookPage() {
     setForm((f) => ({ ...f, [key]: value }));
     if (serverErrors[key]) {
       setServerErrors((s) => {
-        const { [key]: _drop, ...rest } = s;
+        const rest = { ...s };
+        delete rest[key];
         return rest;
       });
     }
@@ -433,9 +435,9 @@ export default function BookPage() {
             <p className="eyebrow">While you wait</p>
             <h2 className="font-display font-bold text-xl sm:text-2xl mt-1">Browse the free Grades 6–8 units</h2>
           </div>
-          <a href="/mathematics" className="btn btn-primary btn-lg shrink-0">
+          <Link href="/mathematics" className="btn btn-primary btn-lg shrink-0">
             Open the library →
-          </a>
+          </Link>
         </div>
       </Section>
     </>
@@ -515,9 +517,9 @@ function SuccessPanel({ name, onReset }: { name: string; onReset: () => void }) 
         >
           Send another request
         </button>
-        <a href="/mathematics" className="btn btn-ghost btn-sm">
+        <Link href="/mathematics" className="btn btn-ghost btn-sm">
           Browse units →
-        </a>
+        </Link>
       </div>
     </div>
   );
