@@ -14,8 +14,12 @@ import {
   SubmitButton,
 } from "../../components/AuthFormParts";
 import FirebaseSetupNotice from "../../components/FirebaseSetupNotice";
+import ComingSoonDialog from "../../components/ComingSoonDialog";
 import { authNotConfiguredMessage } from "../../lib/auth-google";
 import { friendlyAuthError } from "../../lib/auth-errors";
+
+const AUTH_COMING_SOON =
+  process.env.NEXT_PUBLIC_AUTH_COMING_SOON !== "false";
 
 export default function LoginPage() {
   return (
@@ -39,6 +43,7 @@ function LoginForm() {
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [fieldErrors, setFieldErrors] = useState<{ email?: string; password?: string }>({});
+  const [comingSoonOpen, setComingSoonOpen] = useState(AUTH_COMING_SOON);
 
   const target = next && next.startsWith("/") ? next : "/dashboard";
 
@@ -55,8 +60,15 @@ function LoginForm() {
     return Object.keys(fe).length === 0;
   }
 
+  function blockIfComingSoon() {
+    if (!AUTH_COMING_SOON) return false;
+    setComingSoonOpen(true);
+    return true;
+  }
+
   async function onSubmit(e: React.FormEvent) {
     e.preventDefault();
+    if (blockIfComingSoon()) return;
     if (submitting) return;
     setError(null);
     clearBootstrapError();
@@ -77,6 +89,7 @@ function LoginForm() {
   }
 
   async function onGoogle() {
+    if (blockIfComingSoon()) return;
     if (submitting) return;
     setError(null);
     clearBootstrapError();
@@ -110,8 +123,32 @@ function LoginForm() {
         </p>
       }
     >
-      <form onSubmit={onSubmit} noValidate className="grid gap-5">
-        {!configured && <FirebaseSetupNotice />}
+      <ComingSoonDialog open={comingSoonOpen} onClose={() => setComingSoonOpen(false)} />
+
+      <form
+        onSubmit={onSubmit}
+        noValidate
+        className={[
+          "grid gap-5",
+          AUTH_COMING_SOON ? "opacity-60 pointer-events-none select-none" : "",
+        ].join(" ")}
+        aria-hidden={AUTH_COMING_SOON ? true : undefined}
+      >
+        {AUTH_COMING_SOON && (
+          <div
+            role="status"
+            className="rounded-md p-4 border border-[var(--color-brand-100)] bg-[var(--color-brand-50)]"
+          >
+            <p className="small font-semibold text-[var(--color-brand-700)]">
+              Sign-in not available yet
+            </p>
+            <p className="caption text-[var(--color-ink-muted)] mt-1 leading-relaxed">
+              Accounts are on the way. You can study every unit without logging in — use the popup
+              above or head to the math library.
+            </p>
+          </div>
+        )}
+        {!configured && !AUTH_COMING_SOON && <FirebaseSetupNotice />}
         <AuthInput
           id="email"
           label="Email"
