@@ -14,6 +14,11 @@ import {
   SubmitButton,
 } from "../../components/AuthFormParts";
 import FirebaseSetupNotice from "../../components/FirebaseSetupNotice";
+import {
+  AuthComingSoonNotice,
+  authFormComingSoonAttrs,
+  useAuthComingSoonGate,
+} from "../../components/AuthComingSoonGate";
 import { authNotConfiguredMessage } from "../../lib/auth-google";
 import { friendlyAuthError } from "../../lib/auth-errors";
 
@@ -41,6 +46,7 @@ function SignupForm() {
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [fieldErrors, setFieldErrors] = useState<Record<string, string>>({});
+  const { comingSoon, dialogOpen, setDialogOpen, blockAction } = useAuthComingSoonGate();
 
   const strength = useMemo(() => passwordStrength(password), [password]);
 
@@ -62,6 +68,7 @@ function SignupForm() {
 
   async function onSubmit(e: React.FormEvent) {
     e.preventDefault();
+    if (blockAction()) return;
     if (submitting) return;
     setError(null);
     clearBootstrapError();
@@ -82,6 +89,7 @@ function SignupForm() {
   }
 
   async function onGoogle() {
+    if (blockAction()) return;
     if (submitting) return;
     setError(null);
     clearBootstrapError();
@@ -117,8 +125,14 @@ function SignupForm() {
         </p>
       }
     >
-      <form onSubmit={onSubmit} noValidate className="grid gap-5">
-        {!configured && <FirebaseSetupNotice />}
+      <AuthComingSoonNotice
+        dialogOpen={dialogOpen}
+        onOpenDialog={() => setDialogOpen(true)}
+        onCloseDialog={() => setDialogOpen(false)}
+      />
+
+      <form onSubmit={onSubmit} noValidate {...authFormComingSoonAttrs(comingSoon)}>
+        {!configured && !comingSoon && <FirebaseSetupNotice />}
         <AuthInput
           id="name"
           label="Your name"

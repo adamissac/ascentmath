@@ -14,8 +14,11 @@ import {
   SubmitButton,
 } from "../../components/AuthFormParts";
 import FirebaseSetupNotice from "../../components/FirebaseSetupNotice";
-import ComingSoonDialog from "../../components/ComingSoonDialog";
-import { isAuthComingSoon } from "../../lib/auth-coming-soon";
+import {
+  AuthComingSoonNotice,
+  authFormComingSoonAttrs,
+  useAuthComingSoonGate,
+} from "../../components/AuthComingSoonGate";
 import { authNotConfiguredMessage } from "../../lib/auth-google";
 import { friendlyAuthError } from "../../lib/auth-errors";
 
@@ -41,8 +44,7 @@ function LoginForm() {
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [fieldErrors, setFieldErrors] = useState<{ email?: string; password?: string }>({});
-  const comingSoon = isAuthComingSoon();
-  const [comingSoonOpen, setComingSoonOpen] = useState(true);
+  const { comingSoon, dialogOpen, setDialogOpen, blockAction } = useAuthComingSoonGate();
 
   const target = next && next.startsWith("/") ? next : "/dashboard";
 
@@ -59,15 +61,9 @@ function LoginForm() {
     return Object.keys(fe).length === 0;
   }
 
-  function blockIfComingSoon() {
-    if (!comingSoon) return false;
-    setComingSoonOpen(true);
-    return true;
-  }
-
   async function onSubmit(e: React.FormEvent) {
     e.preventDefault();
-    if (blockIfComingSoon()) return;
+    if (blockAction()) return;
     if (submitting) return;
     setError(null);
     clearBootstrapError();
@@ -88,7 +84,7 @@ function LoginForm() {
   }
 
   async function onGoogle() {
-    if (blockIfComingSoon()) return;
+    if (blockAction()) return;
     if (submitting) return;
     setError(null);
     clearBootstrapError();
@@ -122,43 +118,13 @@ function LoginForm() {
         </p>
       }
     >
-      {comingSoon && (
-        <ComingSoonDialog
-          open={comingSoonOpen}
-          onClose={() => setComingSoonOpen(false)}
-        />
-      )}
+      <AuthComingSoonNotice
+        dialogOpen={dialogOpen}
+        onOpenDialog={() => setDialogOpen(true)}
+        onCloseDialog={() => setDialogOpen(false)}
+      />
 
-      {comingSoon && (
-        <div
-          role="status"
-          className="mb-5 rounded-lg p-4 border border-[var(--color-brand-200)] bg-[var(--color-brand-50)]"
-        >
-          <p className="small font-semibold text-[var(--color-brand-700)]">
-            Sign-in coming soon
-          </p>
-          <p className="caption text-[var(--color-ink-muted)] mt-1 leading-relaxed">
-            Accounts aren&apos;t open yet. Every unit, video, and quiz works without logging in.
-          </p>
-          <button
-            type="button"
-            onClick={() => setComingSoonOpen(true)}
-            className="mt-3 text-sm font-semibold text-[var(--color-brand-600)] hover:text-[var(--color-brand-700)] underline-offset-2 hover:underline"
-          >
-            Read more
-          </button>
-        </div>
-      )}
-
-      <form
-        onSubmit={onSubmit}
-        noValidate
-        className={[
-          "grid gap-5",
-          comingSoon ? "opacity-50 pointer-events-none select-none" : "",
-        ].join(" ")}
-        aria-hidden={comingSoon ? true : undefined}
-      >
+      <form onSubmit={onSubmit} noValidate {...authFormComingSoonAttrs(comingSoon)}>
         {!configured && !comingSoon && <FirebaseSetupNotice />}
         <AuthInput
           id="email"
