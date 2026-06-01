@@ -27,23 +27,14 @@ export default function TopicFinder({ variant = "default", suggestions = [] }: P
           </span>
         </label>
 
-        <div className="relative mt-4">
-          <span
-            aria-hidden
-            className="absolute left-3 top-1/2 -translate-y-1/2 w-10 h-10 rounded-lg bg-[var(--color-brand-50)] text-[var(--color-brand-600)] grid place-items-center"
-          >
-            <SearchIcon />
-          </span>
-          <input
-            id="topic-finder"
-            type="search"
-            value={query}
-            onChange={(e) => setQuery(e.target.value)}
-            placeholder="Try GCF, slope, fractions, exponents…"
-            className="input w-full pl-14 pr-4 py-4 text-base sm:text-lg border-2 border-[var(--color-brand-200)] focus:border-[var(--color-brand-500)] shadow-sm"
-            autoComplete="off"
-          />
-        </div>
+        <SearchField
+          id="topic-finder"
+          value={query}
+          onChange={setQuery}
+          placeholder="Try GCF, slope, fractions, exponents…"
+          size="lg"
+          className="mt-4"
+        />
 
         {suggestions.length > 0 && !query.trim() && (
           <div className="mt-3 flex flex-wrap gap-2">
@@ -79,23 +70,13 @@ export default function TopicFinder({ variant = "default", suggestions = [] }: P
           Try &ldquo;GCF&rdquo;, &ldquo;slope&rdquo;, &ldquo;fractions&rdquo;, or whatever your class is working on.
         </span>
       </label>
-      <div className="relative mt-4">
-        <span
-          aria-hidden
-          className="absolute left-3 top-1/2 -translate-y-1/2 text-[var(--color-brand-600)]"
-        >
-          <SearchIcon />
-        </span>
-        <input
-          id="topic-finder-default"
-          type="search"
-          value={query}
-          onChange={(e) => setQuery(e.target.value)}
-          placeholder="e.g. how to find GCF, ratios, exponents…"
-          className="input w-full pl-11 pr-4 py-3.5 text-base border-2 border-[var(--color-brand-200)]"
-          autoComplete="off"
-        />
-      </div>
+      <SearchField
+        id="topic-finder-default"
+        value={query}
+        onChange={setQuery}
+        placeholder="e.g. how to find GCF, ratios, exponents…"
+        className="mt-4"
+      />
       {query.trim() && <ResultsList results={results} query={query} className="mt-4" />}
     </div>
   );
@@ -137,6 +118,65 @@ function ResultsList({
           ))}
         </ul>
       )}
+    </div>
+  );
+}
+
+function SearchField({
+  id,
+  value,
+  onChange,
+  placeholder,
+  size = "md",
+  className = "",
+}: {
+  id: string;
+  value: string;
+  onChange: (value: string) => void;
+  placeholder: string;
+  size?: "md" | "lg";
+  className?: string;
+}) {
+  const large = size === "lg";
+
+  return (
+    <div
+      className={[
+        "flex items-stretch overflow-hidden rounded-[var(--radius-md)] border-2 border-[var(--color-brand-200)] bg-[var(--color-surface)] shadow-sm",
+        "focus-within:border-[var(--color-brand-500)] focus-within:shadow-[var(--shadow-focus)]",
+        className,
+      ]
+        .filter(Boolean)
+        .join(" ")}
+    >
+      <span
+        aria-hidden
+        className={[
+          "flex shrink-0 items-center justify-center text-[var(--color-brand-600)]",
+          large
+            ? "w-12 bg-[var(--color-brand-50)]"
+            : "w-11 border-r border-[var(--color-brand-100)] bg-[var(--color-brand-50)]",
+        ].join(" ")}
+      >
+        <SearchIcon />
+      </span>
+      <input
+        id={id}
+        type="text"
+        role="searchbox"
+        inputMode="search"
+        enterKeyHint="search"
+        value={value}
+        onChange={(e) => onChange(e.target.value)}
+        placeholder={placeholder}
+        autoComplete="off"
+        spellCheck={false}
+        className={[
+          "min-w-0 flex-1 border-0 bg-transparent text-[var(--color-ink)] outline-none",
+          "placeholder:text-[var(--color-ink-soft)]",
+          large ? "px-4 py-4 text-base sm:text-lg" : "px-4 py-3.5 text-base",
+        ].join(" ")}
+      />
     </div>
   );
 }
