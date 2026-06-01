@@ -15,11 +15,9 @@ import {
 } from "../../components/AuthFormParts";
 import FirebaseSetupNotice from "../../components/FirebaseSetupNotice";
 import ComingSoonDialog from "../../components/ComingSoonDialog";
+import { isAuthComingSoon } from "../../lib/auth-coming-soon";
 import { authNotConfiguredMessage } from "../../lib/auth-google";
 import { friendlyAuthError } from "../../lib/auth-errors";
-
-const AUTH_COMING_SOON =
-  process.env.NEXT_PUBLIC_AUTH_COMING_SOON !== "false";
 
 export default function LoginPage() {
   return (
@@ -43,7 +41,8 @@ function LoginForm() {
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [fieldErrors, setFieldErrors] = useState<{ email?: string; password?: string }>({});
-  const [comingSoonOpen, setComingSoonOpen] = useState(AUTH_COMING_SOON);
+  const comingSoon = isAuthComingSoon();
+  const [comingSoonOpen, setComingSoonOpen] = useState(true);
 
   const target = next && next.startsWith("/") ? next : "/dashboard";
 
@@ -61,7 +60,7 @@ function LoginForm() {
   }
 
   function blockIfComingSoon() {
-    if (!AUTH_COMING_SOON) return false;
+    if (!comingSoon) return false;
     setComingSoonOpen(true);
     return true;
   }
@@ -123,32 +122,44 @@ function LoginForm() {
         </p>
       }
     >
-      <ComingSoonDialog open={comingSoonOpen} onClose={() => setComingSoonOpen(false)} />
+      {comingSoon && (
+        <ComingSoonDialog
+          open={comingSoonOpen}
+          onClose={() => setComingSoonOpen(false)}
+        />
+      )}
+
+      {comingSoon && (
+        <div
+          role="status"
+          className="mb-5 rounded-lg p-4 border border-[var(--color-brand-200)] bg-[var(--color-brand-50)]"
+        >
+          <p className="small font-semibold text-[var(--color-brand-700)]">
+            Sign-in coming soon
+          </p>
+          <p className="caption text-[var(--color-ink-muted)] mt-1 leading-relaxed">
+            Accounts aren&apos;t open yet. Every unit, video, and quiz works without logging in.
+          </p>
+          <button
+            type="button"
+            onClick={() => setComingSoonOpen(true)}
+            className="mt-3 text-sm font-semibold text-[var(--color-brand-600)] hover:text-[var(--color-brand-700)] underline-offset-2 hover:underline"
+          >
+            Read more
+          </button>
+        </div>
+      )}
 
       <form
         onSubmit={onSubmit}
         noValidate
         className={[
           "grid gap-5",
-          AUTH_COMING_SOON ? "opacity-60 pointer-events-none select-none" : "",
+          comingSoon ? "opacity-50 pointer-events-none select-none" : "",
         ].join(" ")}
-        aria-hidden={AUTH_COMING_SOON ? true : undefined}
+        aria-hidden={comingSoon ? true : undefined}
       >
-        {AUTH_COMING_SOON && (
-          <div
-            role="status"
-            className="rounded-md p-4 border border-[var(--color-brand-100)] bg-[var(--color-brand-50)]"
-          >
-            <p className="small font-semibold text-[var(--color-brand-700)]">
-              Sign-in not available yet
-            </p>
-            <p className="caption text-[var(--color-ink-muted)] mt-1 leading-relaxed">
-              Accounts are on the way. You can study every unit without logging in — use the popup
-              above or head to the math library.
-            </p>
-          </div>
-        )}
-        {!configured && !AUTH_COMING_SOON && <FirebaseSetupNotice />}
+        {!configured && !comingSoon && <FirebaseSetupNotice />}
         <AuthInput
           id="email"
           label="Email"

@@ -1,7 +1,8 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useId, useRef } from "react";
+import { useEffect, useId, useRef, useState } from "react";
+import { createPortal } from "react-dom";
 
 type Props = {
   open: boolean;
@@ -22,6 +23,11 @@ export default function ComingSoonDialog({
   const titleId = useId();
   const descId = useId();
   const closeRef = useRef<HTMLButtonElement>(null);
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   useEffect(() => {
     if (!open) return;
@@ -38,11 +44,11 @@ export default function ComingSoonDialog({
     };
   }, [open, onClose]);
 
-  if (!open) return null;
+  if (!open || !mounted) return null;
 
-  return (
+  return createPortal(
     <div
-      className="fixed inset-0 z-[100] grid place-items-center p-4 sm:p-6"
+      className="fixed inset-0 z-[200] grid place-items-center p-4 sm:p-6"
       role="presentation"
     >
       <button
@@ -81,6 +87,7 @@ export default function ComingSoonDialog({
           </button>
         </div>
       </div>
-    </div>
+    </div>,
+    document.body
   );
 }
