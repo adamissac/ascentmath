@@ -120,11 +120,11 @@ export default function Quiz({ title = "Check yourself", questions, onComplete }
   }
 
   return (
-    <div className="card p-6 sm:p-8">
+    <div className="card p-6 sm:p-8 text-[var(--color-ink)]">
       <div className="flex items-center justify-between gap-3">
         <div>
           <p className="caption font-semibold tracking-wider uppercase text-[var(--color-brand-600)]">{title}</p>
-          <h3 className="h3 mt-1">Question {index + 1} of {total}</h3>
+          <h3 className="h3 mt-1 text-[var(--color-ink)]">Question {index + 1} of {total}</h3>
         </div>
         {q.difficulty && (
           <span className={DIFFICULTY[q.difficulty].tone}>{DIFFICULTY[q.difficulty].label}</span>
