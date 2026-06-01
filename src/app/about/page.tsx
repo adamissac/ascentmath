@@ -86,7 +86,7 @@ export default function AboutPage() {
               </div>
             </Reveal>
 
-            <Reveal className="lg:col-span-4" variant="up" delay={120}>
+            <Reveal className="lg:col-span-4 lg:pl-6 xl:pl-8" variant="up" delay={120}>
               <IdentityCard />
             </Reveal>
           </div>
@@ -109,8 +109,8 @@ export default function AboutPage() {
           STORY — long-form, broken by a pull quote
           =============================================================== */}
       <Section tone="default" size="sm" containerSize="xl" decorated="paper" decoratedDensity="medium">
-        <div className="grid lg:grid-cols-12 gap-8 lg:gap-10 items-start">
-          <aside className="lg:col-span-2">
+        <div className="grid lg:grid-cols-12 gap-8 lg:gap-14 items-start">
+          <aside className="lg:col-span-2 lg:pr-8 xl:pr-10">
             <p className="eyebrow">My story</p>
             <p className="small text-[var(--color-ink-muted)] mt-3 leading-relaxed">
               Why this site exists, in my own words — written over a few weekends in the
@@ -165,8 +165,8 @@ export default function AboutPage() {
           TIMELINE
           =============================================================== */}
       <Section tone="muted" size="sm" containerSize="xl" decorated="muted" decoratedDensity="medium">
-        <div className="grid lg:grid-cols-12 gap-8 lg:gap-10 items-start">
-          <div className="lg:col-span-3">
+        <div className="grid lg:grid-cols-12 gap-8 lg:gap-14 items-start">
+          <div className="lg:col-span-3 lg:pr-6 xl:pr-8">
             <p className="eyebrow">How it grew</p>
             <h2 className="h2 mt-3">From a nickname to a curriculum.</h2>
             <p className="small text-[var(--color-ink-muted)] mt-4 leading-relaxed">

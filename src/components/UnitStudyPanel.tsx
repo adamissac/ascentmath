@@ -133,9 +133,17 @@ export default function UnitStudyPanel({
       )}
 
       <div
+        className={isDesktop ? "lg:px-5 xl:px-8" : undefined}
+      >
+      <div
         className={[
           "w-full items-start",
-          isDesktop ? "grid transition-[grid-template-columns] duration-300 ease-[cubic-bezier(0.22,0.9,0.3,1)] motion-reduce:transition-none" : "block",
+          isDesktop
+            ? [
+                "grid transition-[grid-template-columns] duration-300 ease-[cubic-bezier(0.22,0.9,0.3,1)] motion-reduce:transition-none",
+                open ? "lg:gap-10 xl:gap-12" : "",
+              ].join(" ")
+            : "block",
         ].join(" ")}
         style={
           isDesktop
@@ -152,9 +160,10 @@ export default function UnitStudyPanel({
           aria-label="Study guide"
           aria-hidden={!open}
           className={[
-            "hidden lg:block sticky top-16 z-10 min-w-0 self-start",
-            "max-h-[calc(100dvh-4rem)] overflow-y-auto overscroll-contain",
-            "bg-[var(--color-surface)] border-r border-[var(--color-border)]",
+            "hidden lg:block sticky top-[4.25rem] z-10 min-w-0 self-start",
+            "max-h-[calc(100dvh-4.25rem)] overflow-y-auto overscroll-contain",
+            "bg-[var(--color-surface)] rounded-r-xl",
+            "border border-[var(--color-border)] shadow-[var(--shadow-card)]",
             "transition-opacity duration-200",
             open ? "opacity-100" : "opacity-0 pointer-events-none",
           ].join(" ")}
@@ -168,7 +177,7 @@ export default function UnitStudyPanel({
           aria-label="Study guide"
           aria-hidden={!open}
           className={[
-            "lg:hidden fixed top-16 left-0 z-50 h-[calc(100dvh-4rem)] overflow-y-auto overscroll-contain",
+            "lg:hidden fixed top-[4.25rem] left-0 z-50 h-[calc(100dvh-4.25rem)] overflow-y-auto overscroll-contain",
             "bg-[var(--color-surface)] border-r border-[var(--color-border)] shadow-[var(--shadow-popover)]",
             "transition-transform duration-300 ease-[cubic-bezier(0.22,0.9,0.3,1)] motion-reduce:transition-none",
             open ? "translate-x-0" : "-translate-x-full pointer-events-none",
@@ -178,9 +187,9 @@ export default function UnitStudyPanel({
           {panelContent}
         </aside>
 
-        <div className="min-w-0">
+        <div className={["min-w-0", isDesktop && open ? "lg:pt-1" : ""].join(" ")}>
           {!open && (
-            <div className="sticky top-16 z-20 mb-2 px-4 sm:px-0">
+            <div className="sticky top-[4.25rem] z-20 mb-2 px-4 sm:px-0 lg:px-0">
               <button
                 type="button"
                 onClick={openPanel}
@@ -201,6 +210,7 @@ export default function UnitStudyPanel({
 
           {children}
         </div>
+      </div>
       </div>
     </>
   );

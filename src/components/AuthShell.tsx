@@ -40,7 +40,7 @@ export default function AuthShell({
       </div>
 
       {/* LEFT — white form panel */}
-      <div className="relative flex items-center justify-center px-5 sm:px-10 py-10 lg:py-16 overflow-hidden bg-white border-b lg:border-b-0 lg:border-r border-[var(--color-border)]">
+      <div className="relative flex items-center justify-center px-5 sm:px-10 lg:px-14 xl:px-20 py-10 lg:py-16 overflow-hidden bg-white border-b lg:border-b-0 lg:border-r border-[var(--color-border)]">
         <MathBackdrop variant="paper" density="light" contentSafe />
 
         <div className="relative z-[1] w-full max-w-[440px]">
@@ -74,7 +74,7 @@ export default function AuthShell({
       </div>
 
       {/* RIGHT — deep-blue brand panel (desktop) */}
-      <aside className="hidden lg:flex relative items-center justify-center px-10 xl:px-14 py-16 overflow-hidden bg-[var(--color-brand-700)] text-white">
+      <aside className="hidden lg:flex relative items-center justify-center px-12 xl:px-20 py-16 overflow-hidden bg-[var(--color-brand-700)] text-white">
         <MathBackdrop variant="brand" density="light" contentSafe />
 
         <svg

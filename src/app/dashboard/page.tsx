@@ -90,8 +90,8 @@ function Dashboard() {
 
         {/* --- Account details + quick actions --- */}
         <Reveal delay={80}>
-        <div className="grid grid-cols-12 gap-6">
-          <Card className="col-span-12 lg:col-span-8 p-6 sm:p-8">
+        <div className="grid grid-cols-12 gap-6 lg:gap-10">
+          <Card className="col-span-12 lg:col-span-8 p-6 sm:p-8 min-w-0">
             <div className="flex items-start justify-between gap-4">
               <div>
                 <p className="eyebrow">Account details</p>
@@ -134,7 +134,7 @@ function Dashboard() {
             </p>
           </Card>
 
-          <div className="col-span-12 lg:col-span-4 grid gap-6">
+          <div className="col-span-12 lg:col-span-4 grid gap-6 lg:pl-4 xl:pl-6 lg:border-l lg:border-[var(--color-border)]">
             <Card className="p-6">
               <p className="eyebrow">Quick actions</p>
               <div className="mt-4 grid gap-2">

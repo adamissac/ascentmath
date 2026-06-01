@@ -150,8 +150,8 @@ export default function Home() {
           12-col layout: brief on left (col-span-4), step cards on right (col-span-8)
           ================================================================ */}
       <Section tone="muted" size="sm" containerSize="xl" decorated="muted" decoratedDensity="medium" reveal={false}>
-        <div className="grid grid-cols-12 gap-10 lg:gap-16 items-start">
-          <Reveal className="col-span-12 lg:col-span-4" variant="left">
+        <div className="grid grid-cols-12 gap-10 lg:gap-14 xl:gap-20 items-start">
+          <Reveal className="col-span-12 lg:col-span-4 lg:pr-4 xl:pr-8" variant="left">
             <p className="eyebrow">How it works</p>
             <h2 className="h1 mt-3">
               One simple shape, every unit.

@@ -79,8 +79,8 @@ export default async function GradeLibrary({ params }: { params: Promise<Params>
 
       {/* UNIT LIBRARY */}
       <Section tone="muted" size="sm" containerSize="xl" decorated="muted" decoratedDensity="medium" decoratedContentSafe reveal={false}>
-        <div className="grid lg:grid-cols-12 gap-10 lg:gap-12 items-start">
-          <div className="lg:col-span-8">
+        <div className="grid lg:grid-cols-12 gap-10 lg:gap-14 xl:gap-16 items-start">
+          <div className="lg:col-span-8 min-w-0">
             <Reveal>
               <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 mb-6">
                 <div>
@@ -123,8 +123,8 @@ export default async function GradeLibrary({ params }: { params: Promise<Params>
             )}
           </div>
 
-          <aside className="lg:col-span-4 hidden lg:block">
-            <div className="sticky top-20 grid gap-4">
+          <aside className="lg:col-span-4 hidden lg:block lg:pl-6 xl:pl-8 border-l border-[var(--color-border)]">
+            <div className="sticky top-24 grid gap-4">
               <VisualPanel
                 variant="compact"
                 title="How each topic works"
