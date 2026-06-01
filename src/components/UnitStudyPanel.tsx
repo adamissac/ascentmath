@@ -7,11 +7,12 @@ import type { ProgressItem } from "../hooks/useUnitProgress";
 type NavLink = { href: string; label: string };
 
 const PANEL_WIDTH = 280;
+const PANEL_LABEL = "Unit menu";
 const DESKTOP_QUERY = "(min-width: 1024px)";
 
 /**
- * Left study guide — pushes main content when open on desktop. On mobile it
- * becomes a slide-over drawer so unit content stays full-width.
+ * Left unit menu — closed by default; opens on demand. On desktop it pushes
+ * main content with a gutter; on mobile it slides in as an inset drawer.
  */
 export default function UnitStudyPanel({
   unitId,
@@ -33,9 +34,7 @@ export default function UnitStudyPanel({
   useEffect(() => {
     const mq = window.matchMedia(DESKTOP_QUERY);
     const sync = () => {
-      const desktop = mq.matches;
-      setIsDesktop(desktop);
-      setOpen(desktop);
+      setIsDesktop(mq.matches);
     };
     sync();
     setMounted(true);
@@ -77,7 +76,7 @@ export default function UnitStudyPanel({
       <div className="flex items-center justify-between gap-3 px-4 py-4 border-b border-[var(--color-border)]">
         <div className="min-w-0">
           <p className="caption font-semibold tracking-wider uppercase text-[var(--color-brand-600)]">
-            Study guide
+            {PANEL_LABEL}
           </p>
           <p className="small font-semibold text-[var(--color-ink)] mt-0.5 truncate">
             {unitTitle}
@@ -87,7 +86,7 @@ export default function UnitStudyPanel({
           type="button"
           onClick={closePanel}
           className="w-10 h-10 rounded-full grid place-items-center text-[var(--color-ink-muted)] hover:bg-[var(--color-surface-2)] hover:text-[var(--color-ink)] transition-colors flex-shrink-0"
-          aria-label="Close study guide"
+          aria-label={`Close ${PANEL_LABEL.toLowerCase()}`}
         >
           <ChevronLeft />
         </button>
@@ -126,22 +125,20 @@ export default function UnitStudyPanel({
       {mounted && !isDesktop && open && (
         <button
           type="button"
-          aria-label="Close study guide"
+          aria-label={`Close ${PANEL_LABEL.toLowerCase()}`}
           className="fixed inset-0 z-40 bg-black/40 lg:hidden"
           onClick={closePanel}
         />
       )}
 
-      <div
-        className={isDesktop ? "lg:px-5 xl:px-8" : undefined}
-      >
+      <div className={isDesktop ? "lg:px-6 xl:px-10" : undefined}>
       <div
         className={[
           "w-full items-start",
           isDesktop
             ? [
                 "grid transition-[grid-template-columns] duration-300 ease-[cubic-bezier(0.22,0.9,0.3,1)] motion-reduce:transition-none",
-                open ? "lg:gap-10 xl:gap-12" : "",
+                open ? "lg:gap-12 xl:gap-16" : "",
               ].join(" ")
             : "block",
         ].join(" ")}
@@ -157,10 +154,10 @@ export default function UnitStudyPanel({
       >
         {/* Desktop — sticky sidebar that pushes content */}
         <aside
-          aria-label="Study guide"
+          aria-label={PANEL_LABEL}
           aria-hidden={!open}
           className={[
-            "hidden lg:block sticky top-[4.25rem] z-10 min-w-0 self-start",
+            "hidden lg:block sticky top-[4.25rem] z-10 min-w-0 self-start lg:mr-1",
             "max-h-[calc(100dvh-4.25rem)] overflow-y-auto overscroll-contain",
             "bg-[var(--color-surface)] rounded-r-xl",
             "border border-[var(--color-border)] shadow-[var(--shadow-card)]",
@@ -174,36 +171,41 @@ export default function UnitStudyPanel({
 
         {/* Mobile — fixed slide-over drawer */}
         <aside
-          aria-label="Study guide"
+          aria-label={PANEL_LABEL}
           aria-hidden={!open}
           className={[
-            "lg:hidden fixed top-[4.25rem] left-0 z-50 h-[calc(100dvh-4.25rem)] overflow-y-auto overscroll-contain",
-            "bg-[var(--color-surface)] border-r border-[var(--color-border)] shadow-[var(--shadow-popover)]",
+            "lg:hidden fixed top-[4.25rem] left-3 z-50 h-[calc(100dvh-4.25rem-0.75rem)] overflow-y-auto overscroll-contain",
+            "bg-[var(--color-surface)] rounded-r-xl border border-[var(--color-border)] shadow-[var(--shadow-popover)]",
             "transition-transform duration-300 ease-[cubic-bezier(0.22,0.9,0.3,1)] motion-reduce:transition-none",
-            open ? "translate-x-0" : "-translate-x-full pointer-events-none",
+            open ? "translate-x-0" : "-translate-x-[calc(100%+0.75rem)] pointer-events-none",
           ].join(" ")}
-          style={{ width: PANEL_WIDTH, maxWidth: "min(280px, 85vw)" }}
+          style={{ width: PANEL_WIDTH, maxWidth: "min(280px, calc(100vw - 1.5rem))" }}
         >
           {panelContent}
         </aside>
 
-        <div className={["min-w-0", isDesktop && open ? "lg:pt-1" : ""].join(" ")}>
+        <div
+          className={[
+            "min-w-0",
+            isDesktop && open ? "lg:pl-2 xl:pl-4" : "",
+          ].join(" ")}
+        >
           {!open && (
-            <div className="sticky top-[4.25rem] z-20 mb-2 px-4 sm:px-0 lg:px-0">
+            <div className="sticky top-[4.25rem] z-20 mb-3 px-4 sm:px-0 lg:px-0">
               <button
                 type="button"
                 onClick={openPanel}
                 className={[
                   "inline-flex items-center gap-2 min-h-[44px]",
-                  "px-3 py-2 rounded-r-lg rounded-l-none",
+                  "px-3.5 py-2 rounded-lg",
                   "bg-[var(--color-brand-600)] text-white font-semibold text-sm",
                   "shadow-[var(--shadow-popover)] hover:bg-[var(--color-brand-700)] transition-colors",
                 ].join(" ")}
-                aria-label="Open study guide"
+                aria-label={`Open ${PANEL_LABEL.toLowerCase()}`}
                 aria-expanded={false}
               >
                 <GuideIcon />
-                <span className="hidden sm:inline">Study guide</span>
+                <span>{PANEL_LABEL}</span>
               </button>
             </div>
           )}
