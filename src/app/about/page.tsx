@@ -61,10 +61,10 @@ export default function AboutPage() {
                 <ul className="mt-4 flex flex-wrap gap-2">
                   <ActivityChip dot="brand">100% on the Algebra EOC</ActivityChip>
                   <ActivityChip dot="accent">Score of 5 — AP Pre-Calculus</ActivityChip>
-                  <ActivityChip dot="brand">Score of 5 — AP Calculus AB</ActivityChip>
-                  <ActivityChip dot="brand">Score of 5 — AP Calculus BC</ActivityChip>
+                  <ActivityChip dot="brand">97+ in AP Calculus AB · Exam score of 5</ActivityChip>
+                  <ActivityChip dot="brand">97+ in AP Calculus BC · Exam score of 5</ActivityChip>
                   <ActivityChip dot="accent">
-                    97+ at Georgia Tech — Linear Algebra &amp; Multivariable Calculus
+                    98%+ at Georgia Tech — Linear Algebra &amp; Multivariable Calculus
                   </ActivityChip>
                 </ul>
               </div>
