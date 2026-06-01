@@ -50,16 +50,18 @@ export default function AboutPage() {
                 <Stat num="20" label="units across Grades 6–8" />
               </dl>
 
-              {/* Currently — small list of in-flight work, tag style */}
+              {/* Math qualifications — tag style */}
               <div className="mt-8">
                 <p className="caption font-semibold tracking-[0.14em] uppercase text-[var(--color-ink-soft)]">
-                  Right now
+                  Qualifications
                 </p>
                 <ul className="mt-3 flex flex-wrap gap-2">
-                  <ActivityChip dot="brand">Recording Unit 4 walk-throughs</ActivityChip>
-                  <ActivityChip dot="accent">Tightening Grades 7 &amp; 8</ActivityChip>
-                  <ActivityChip dot="brand">Studying for AP exams</ActivityChip>
-                  <ActivityChip dot="accent">Free 1-on-1 sessions, weekends</ActivityChip>
+                  <ActivityChip dot="brand">100% on Algebra EOC</ActivityChip>
+                  <ActivityChip dot="accent">5 on AP Pre-Calc</ActivityChip>
+                  <ActivityChip dot="brand">AP Calc AB &amp; BC</ActivityChip>
+                  <ActivityChip dot="accent">
+                    97+ in Calc AB/BC · Linear Alg &amp; Multivariable Calc at GT
+                  </ActivityChip>
                 </ul>
               </div>
 
