@@ -50,17 +50,21 @@ export default function AboutPage() {
                 <Stat num="20" label="units across Grades 6–8" />
               </dl>
 
-              {/* Math qualifications — tag style */}
+              {/* Math credentials — tag style */}
               <div className="mt-8">
                 <p className="caption font-semibold tracking-[0.14em] uppercase text-[var(--color-ink-soft)]">
-                  Qualifications
+                  Math credentials
                 </p>
-                <ul className="mt-3 flex flex-wrap gap-2">
-                  <ActivityChip dot="brand">100% on Algebra EOC</ActivityChip>
-                  <ActivityChip dot="accent">5 on AP Pre-Calc</ActivityChip>
-                  <ActivityChip dot="brand">AP Calc AB &amp; BC</ActivityChip>
+                <p className="small text-[var(--color-ink-muted)] mt-2 max-w-xl leading-relaxed">
+                  The scores behind the teaching — not just good at math, but tested on it.
+                </p>
+                <ul className="mt-4 flex flex-wrap gap-2">
+                  <ActivityChip dot="brand">100% on the Algebra EOC</ActivityChip>
+                  <ActivityChip dot="accent">Score of 5 — AP Pre-Calculus</ActivityChip>
+                  <ActivityChip dot="brand">Score of 5 — AP Calculus AB</ActivityChip>
+                  <ActivityChip dot="brand">Score of 5 — AP Calculus BC</ActivityChip>
                   <ActivityChip dot="accent">
-                    97+ in Calc AB/BC · Linear Alg &amp; Multivariable Calc at GT
+                    97+ at Georgia Tech — Linear Algebra &amp; Multivariable Calculus
                   </ActivityChip>
                 </ul>
               </div>
