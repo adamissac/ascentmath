@@ -421,7 +421,7 @@ export default function BookPage() {
         </Reveal>
         <Reveal stagger className="mt-10 grid sm:grid-cols-2 gap-5">
           <Faq dark q="Is this really free?" a="Yes — every session and every resource on this site is free. The mission is helping students, not selling anything." />
-          <Faq dark q="What ages do you tutor?" a="Mainly Grade 6, but I take on Grade 5–7 students depending on what they need." />
+          <Faq dark q="What ages do you tutor?" a="Mainly Grades 6–8, though I'll help younger or older students depending on what they need." />
           <Faq dark q="How long is a session?" a="Most sessions run 45–60 minutes. We can do shorter ones for a quick question." />
           <Faq dark q="How quickly will Adam reply?" a="Usually within a day. If a school day is busy, give it 48 hours." />
         </Reveal>
@@ -431,7 +431,7 @@ export default function BookPage() {
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
           <div>
             <p className="eyebrow">While you wait</p>
-            <h2 className="font-display font-bold text-xl sm:text-2xl mt-1">Browse the free Grade 6 units</h2>
+            <h2 className="font-display font-bold text-xl sm:text-2xl mt-1">Browse the free Grades 6–8 units</h2>
           </div>
           <a href="/mathematics" className="btn btn-primary btn-lg shrink-0">
             Open the library →
