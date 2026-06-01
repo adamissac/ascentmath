@@ -31,6 +31,7 @@ export default function Footer() {
               <h3 className="caption font-semibold text-[var(--color-ink)] uppercase tracking-wider">Learn</h3>
               <ul className="mt-3 space-y-2 small">
                 <li><Link href="/mathematics" className="link">Mathematics</Link></li>
+                <li><Link href="/mathematics/find-your-start" className="link">Find your start</Link></li>
                 <li><Link href="/mathematics/curriculum-frameworks" className="link">GADOE frameworks</Link></li>
               </ul>
             </div>
@@ -38,6 +39,7 @@ export default function Footer() {
               <h3 className="caption font-semibold text-[var(--color-ink)] uppercase tracking-wider">Site</h3>
               <ul className="mt-3 space-y-2 small">
                 <li><Link href="/about" className="link">About Adam</Link></li>
+                <li><Link href="/parents" className="link">For parents &amp; teachers</Link></li>
                 <li><Link href="/book" className="link">Book a class</Link></li>
               </ul>
             </div>
