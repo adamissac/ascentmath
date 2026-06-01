@@ -9,7 +9,7 @@ import MathBackdrop from "../../components/MathBackdrop";
 import ColorBand from "../../components/ColorBand";
 import Reveal from "../../components/Reveal";
 import { DocSymbol, UnitSymbol } from "../../components/UnitSymbol";
-import TopicFinder from "../../components/TopicFinder";
+import MathematicsQuickPaths from "../../components/MathematicsQuickPaths";
 import { GRADES, countUnitVideos, type Grade } from "../../data/units";
 
 export const metadata: Metadata = {
@@ -46,22 +46,11 @@ export default function MathematicsHub() {
               <span><strong>{totalUnits}</strong>units</span>
               <span><strong>{totalTopics}</strong>topics</span>
             </div>
-            <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
-              <Button href="/mathematics/find-your-start" variant="outline" size="lg">
-                Find your start
-              </Button>
-              <Button href="/parents" variant="ghost" size="lg">
-                For parents &amp; teachers
-              </Button>
-            </div>
           </Reveal>
         </Container>
       </section>
 
-      {/* TOPIC SEARCH */}
-      <Section tone="default" size="sm" containerSize="lg" reveal={false}>
-        <TopicFinder />
-      </Section>
+      <MathematicsQuickPaths />
 
       {/* GRADE PICKER */}
       <Section tone="muted" size="md" containerSize="xl" decorated="muted" decoratedDensity="medium" decoratedContentSafe reveal={false}>
