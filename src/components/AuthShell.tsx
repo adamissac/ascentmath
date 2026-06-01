@@ -15,7 +15,7 @@ export default function AuthShell({
   subtitle,
   footer,
   children,
-  panelTitle = "Free Grade 6 math, your way.",
+  panelTitle = "Free Grades 6–8 math, your way.",
   panelSubtitle = "Sign in to track progress across devices, pick up where you left off, and book free 1-on-1 sessions when you get stuck.",
 }: {
   eyebrow: string;
