@@ -389,7 +389,7 @@ const GRADE_6_UNITS: Unit[] = [
       "Master factors, multiples, fractions, and decimal operations. This is the foundation every later unit relies on.",
     icon: "π",
     estimatedMinutes: 55,
-    frameworkUrl: "https://drive.google.com/file/u/0/d/1GH3oj67h-27Nrr0h-XdQNavn-MpJnTHJ/view",
+    frameworkUrl: "https://drive.google.com/file/d/1GH3oj67h-27Nrr0h-XdQNavn-MpJnTHJ/view",
     objectives: [
       "Find factors, multiples, GCF, and LCM",
       "Add, subtract, multiply, and divide fractions",
