@@ -50,23 +50,32 @@ export default function AboutPage() {
                 <Stat num="20" label="units across Grades 6–8" />
               </dl>
 
-              {/* Math credentials — tag style */}
-              <div className="mt-8">
-                <p className="caption font-semibold tracking-[0.14em] uppercase text-[var(--color-ink-soft)]">
-                  Math credentials
-                </p>
+              {/* Math credentials */}
+              <div className="mt-8 rounded-xl border border-[var(--color-brand-100)] bg-[var(--color-brand-50)] p-5 sm:p-6">
+                <p className="eyebrow text-[var(--color-brand-600)]">Math credentials</p>
                 <p className="small text-[var(--color-ink-muted)] mt-2 max-w-xl leading-relaxed">
-                  The scores behind the teaching — not just good at math, but tested on it.
+                  Course grades and exam scores — the background behind the lessons on this site.
                 </p>
-                <ul className="mt-4 flex flex-wrap gap-2">
-                  <ActivityChip dot="brand">100% on the Algebra EOC</ActivityChip>
-                  <ActivityChip dot="accent">Score of 5 — AP Pre-Calculus</ActivityChip>
-                  <ActivityChip dot="brand">97+ in AP Calculus AB · Exam score of 5</ActivityChip>
-                  <ActivityChip dot="brand">97+ in AP Calculus BC · Exam score of 5</ActivityChip>
-                  <ActivityChip dot="accent">
-                    98%+ at Georgia Tech — Linear Algebra &amp; Multivariable Calculus
-                  </ActivityChip>
-                </ul>
+                <dl className="mt-5 grid gap-3 sm:grid-cols-2">
+                  <CredentialRow label="Algebra EOC" value="100%" detail="End-of-course exam" />
+                  <CredentialRow label="AP Pre-Calculus" value="5" detail="AP exam score" />
+                  <CredentialRow
+                    label="AP Calculus AB"
+                    value="97+"
+                    detail="Class grade · 5 on the AP exam"
+                  />
+                  <CredentialRow
+                    label="AP Calculus BC"
+                    value="97+"
+                    detail="Class grade · 5 on the AP exam"
+                  />
+                  <CredentialRow
+                    label="Georgia Tech"
+                    value="98%+"
+                    detail="Linear Algebra & Multivariable Calculus"
+                    className="sm:col-span-2"
+                  />
+                </dl>
               </div>
 
               {/* Quick contact strip */}
@@ -369,24 +378,32 @@ function Stat({ num, label }: { num: string; label: string }) {
   );
 }
 
-function ActivityChip({
-  dot,
-  children,
+function CredentialRow({
+  label,
+  value,
+  detail,
+  className = "",
 }: {
-  dot: "brand" | "accent";
-  children: React.ReactNode;
+  label: string;
+  value: string;
+  detail: string;
+  className?: string;
 }) {
-  const dotColor =
-    dot === "brand" ? "var(--color-brand-500)" : "var(--color-accent-500)";
   return (
-    <li className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-[var(--color-surface)] border border-[var(--color-border)] text-[13px] font-medium text-[var(--color-ink)]">
-      <span
-        aria-hidden
-        className="w-1.5 h-1.5 rounded-full flex-shrink-0"
-        style={{ background: dotColor }}
-      />
-      {children}
-    </li>
+    <div
+      className={[
+        "flex items-center gap-4 rounded-lg bg-white border border-[var(--color-border)] px-4 py-3",
+        className,
+      ].join(" ")}
+    >
+      <dd className="font-display font-bold text-2xl tabular-nums text-[var(--color-brand-700)] shrink-0">
+        {value}
+      </dd>
+      <div className="min-w-0">
+        <dt className="text-sm font-semibold text-[var(--color-ink)]">{label}</dt>
+        <p className="caption text-[var(--color-ink-muted)] mt-0.5 leading-snug">{detail}</p>
+      </div>
+    </div>
   );
 }
 
