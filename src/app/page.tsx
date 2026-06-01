@@ -40,7 +40,7 @@ export default function Home() {
               </h1>
 
               <p className="lede mt-6 max-w-[52ch]">
-                Hand-picked video walkthroughs, clear walkthroughs, and quick
+                Hand-picked video walkthroughs, clear lessons, and quick
                 self-checks for Grades 6, 7, and 8 — designed for students who learn
                 best when math stops feeling like a wall.
               </p>
