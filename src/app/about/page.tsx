@@ -13,7 +13,7 @@ import Reveal from "../../components/Reveal";
 export const metadata: Metadata = {
   title: "About",
   description:
-    "Adam Issac is a senior at Denmark High School and the creator of Adam's Alphabet — a free Grade 6 math resource built for students who learn differently.",
+    "Adam Issac is a senior at Denmark High School and the creator of Adam's Alphabet — a free Grades 6–8 math resource built for students who learn differently.",
 };
 
 export default function AboutPage() {
@@ -47,7 +47,7 @@ export default function AboutPage() {
                 <Stat num="Sr." label="at Denmark High School" />
                 <Stat num="2+" label="years tutoring" />
                 <Stat num="30+" label="students helped 1-on-1" />
-                <Stat num="7" label="Grade 6 units published" />
+                <Stat num="20" label="units across Grades 6–8" />
               </dl>
 
               {/* Currently — small list of in-flight work, tag style */}
@@ -57,7 +57,7 @@ export default function AboutPage() {
                 </p>
                 <ul className="mt-3 flex flex-wrap gap-2">
                   <ActivityChip dot="brand">Recording Unit 4 walk-throughs</ActivityChip>
-                  <ActivityChip dot="accent">Drafting Grade 7 outlines</ActivityChip>
+                  <ActivityChip dot="accent">Tightening Grades 7 &amp; 8</ActivityChip>
                   <ActivityChip dot="brand">Studying for AP exams</ActivityChip>
                   <ActivityChip dot="accent">Free 1-on-1 sessions, weekends</ActivityChip>
                 </ul>
@@ -99,7 +99,7 @@ export default function AboutPage() {
       <ColorBand variant="brand" size="sm" containerSize="md">
         <p className="caption font-semibold tracking-wider uppercase text-[var(--color-accent-300)]">The mission</p>
         <p className="font-display font-medium text-2xl sm:text-3xl lg:text-4xl leading-[1.3] tracking-[-0.01em] mt-4 text-white">
-          Make every important Grade 6 math idea{" "}
+          Make every important middle-school math idea{" "}
           <span className="text-[var(--color-accent-300)]">easy to find,</span> easy to follow, and free
           to use — especially for students who can&apos;t afford private tutoring.
         </p>
@@ -192,13 +192,13 @@ export default function AboutPage() {
               />
               <Milestone
                 tag="Now"
-                title="Seven units, free for everyone"
-                body="All seven Grade 6 units published, with hand-picked videos, printable worksheets, and self-check quizzes. Reach has grown to 30+ tutored students across 10+ counties and 150+ schools online."
+                title="Three grades, free for everyone"
+                body="All of Grades 6, 7, and 8 published — 20 units with hand-picked videos, printable worksheets, and self-check quizzes. Reach has grown to 30+ tutored students across 10+ counties and 150+ schools online."
               />
               <Milestone
                 tag="Next"
                 title="Recording, refining, expanding"
-                body="I’m recording original walk-throughs, writing new worksheets, and starting on Grade 7 — based on what real students keep asking about."
+                body="I’m recording original walk-throughs, writing new worksheets, and deepening practice across all three grades — based on what real students keep asking about."
                 last
               />
             </ol>
@@ -333,7 +333,7 @@ function IdentityCard() {
           2026
         </FactRow>
         <FactRow icon={<BookIcon />} label="Teaching">
-          Grade 6 math · expanding to 7
+          Grades 6–8 math
         </FactRow>
         <FactRow icon={<ZoomIcon />} label="Meets">
           Zoom + in-person (ATL)
