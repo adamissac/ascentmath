@@ -37,7 +37,7 @@ export default function HeroSection({ totalUnits, totalVideos }: HeroSectionProp
     <section className="hero-surface relative min-h-[min(100dvh,920px)] overflow-hidden bg-[#FBFAF7]">
       <HeroCanvas />
 
-      <div className="relative z-[1] flex min-h-[min(100dvh,920px)] items-center justify-center px-4 py-12 sm:px-6 sm:py-16 lg:px-8">
+      <div className="relative z-[1] flex min-h-[min(100dvh,920px)] items-center justify-center page-x py-12 sm:py-16">
         <div className="mx-auto flex w-full min-w-0 max-w-4xl flex-col items-center text-center">
           <span
             className={`${rise} ${STAGGER[0]} inline-flex max-w-full items-center rounded-full border border-[#1a1a2e]/12 bg-[#1a1a2e]/[0.04] px-3.5 py-1.5 text-center text-[0.6875rem] font-semibold uppercase tracking-[0.14em] text-[#4a4a6a]`}

@@ -49,7 +49,7 @@ export default function ProtectedRoute({ children }: { children: ReactNode }) {
 
 function AuthLoading() {
   return (
-    <div className="min-h-[60vh] grid place-items-center px-4">
+    <div className="min-h-[60vh] grid place-items-center page-x">
       <div className="flex items-center gap-3 text-[var(--color-ink-muted)]">
         <Spinner />
         <span className="small">Checking your session…</span>
@@ -60,7 +60,7 @@ function AuthLoading() {
 
 function FirebaseNotConfiguredNotice() {
   return (
-    <div className="min-h-[60vh] grid place-items-center px-4">
+    <div className="min-h-[60vh] grid place-items-center page-x">
       <div className="max-w-md w-full card p-6">
         <p className="caption font-semibold tracking-wider uppercase text-[var(--color-warning)]">
           Setup needed

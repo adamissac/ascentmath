@@ -918,23 +918,23 @@ body {
 }
 .skip-link:focus { left: 1rem; }
 
-/* Safe-area padding for notched phones (adds to existing horizontal padding) */
-.safe-x {
-  padding-left: env(safe-area-inset-left, 0px);
-  padding-right: env(safe-area-inset-right, 0px);
+/* Horizontal gutters + notched-phone safe areas (max so inset never replaces gutter) */
+.page-x,
+.site-container {
+  padding-left: max(var(--page-gutter-x), env(safe-area-inset-left, 0px));
+  padding-right: max(var(--page-gutter-x), env(safe-area-inset-right, 0px));
 }
 
-/* Site container - horizontal padding at desktop (avoid lg:px-8 utilities
-   overriding unit-study offsets). */
-@media (min-width: 1024px) {
-  .site-container {
-    padding-left: 2rem;
-    padding-right: 2rem;
-  }
+/* Legacy alias — prefer .page-x for layout shells */
+.safe-x {
+  padding-left: max(var(--page-gutter-x), env(safe-area-inset-left, 0px));
+  padding-right: max(var(--page-gutter-x), env(safe-area-inset-right, 0px));
+}
 
+@media (min-width: 1024px) {
   /* Unit menu overlays backgrounds; lesson copy clears panel + one modest gap. */
   .unit-study-panel:not(.unit-study-panel--closed) .unit-study-main .site-container {
-    padding-left: calc(280px + 1.25rem);
+    padding-left: calc(280px + var(--page-gutter-x));
   }
 }
 .safe-bottom {
