@@ -80,7 +80,7 @@ export default function UnitProgressPanel({ unitId, unitTitle, items }: Props) {
       {hydrated && percent === 100 && (
         <div className="mt-5 p-3 rounded-md bg-[var(--color-brand-50)] border border-[var(--color-brand-100)]">
           <p className="small font-semibold text-[var(--color-brand-700)]">
-            Nice work — you finished {unitTitle}!
+            Nice work - you finished {unitTitle}!
           </p>
           <p className="caption text-[var(--color-brand-600)] mt-1">
             Try the quiz at the bottom of the page to lock it in.

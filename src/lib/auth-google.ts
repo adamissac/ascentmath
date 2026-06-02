@@ -1,5 +1,5 @@
 /**
- * Google sign-in helpers — production hosts use redirect (popups are
+ * Google sign-in helpers - production hosts use redirect (popups are
  * unreliable on custom domains, mobile Safari, and strict browsers).
  */
 

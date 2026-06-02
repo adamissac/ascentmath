@@ -108,7 +108,7 @@ function LoginForm() {
       title="Log in to your account."
       subtitle="Pick up where you left off and book free 1-on-1 sessions with Adam."
       panelTitle="Pick up right where you left off."
-      panelSubtitle="Your progress, saved units, and booking history — all in one place, free forever."
+      panelSubtitle="Your progress, saved units, and booking history - all in one place, free forever."
       footer={
         <p>
           New here?{" "}

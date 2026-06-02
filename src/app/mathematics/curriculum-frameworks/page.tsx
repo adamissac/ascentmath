@@ -34,7 +34,7 @@ export default function FrameworksPage() {
           <h1 className="h-display">GADOE curriculum frameworks</h1>
           <p className="lede mt-5">
             Official Georgia Department of Education unit frameworks. Use them to
-            see what teachers are aiming for in each unit — useful for parents,
+            see what teachers are aiming for in each unit - useful for parents,
             tutors, and students who want the full picture.
           </p>
         </div>

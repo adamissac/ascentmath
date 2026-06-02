@@ -7,7 +7,7 @@ import MathBackdrop from "./MathBackdrop";
 
 /**
  * Shared chrome for /login, /signup, /forgot-password.
- * White form panel + deep-blue brand panel — equal split on desktop.
+ * White form panel + deep-blue brand panel - equal split on desktop.
  */
 export default function AuthShell({
   eyebrow,
@@ -28,7 +28,7 @@ export default function AuthShell({
 }) {
   return (
     <div className="min-h-[calc(100dvh-4.25rem-3px)] grid lg:grid-cols-2">
-      {/* Mobile — compact blue band so small screens aren't all plain white */}
+      {/* Mobile - compact blue band so small screens aren't all plain white */}
       <div className="lg:hidden relative overflow-hidden bg-[var(--color-brand-700)] text-white px-5 py-8">
         <MathBackdrop variant="brand" density="light" contentSafe watermark={false} />
         <div className="relative z-[1] max-w-lg mx-auto text-center">
@@ -39,7 +39,7 @@ export default function AuthShell({
         </div>
       </div>
 
-      {/* LEFT — white form panel */}
+      {/* LEFT - white form panel */}
       <div className="relative flex items-center justify-center px-5 sm:px-10 lg:px-14 xl:px-20 py-10 lg:py-16 overflow-hidden bg-white border-b lg:border-b-0 lg:border-r border-[var(--color-border)]">
         <MathBackdrop variant="paper" density="light" contentSafe />
 
@@ -47,7 +47,7 @@ export default function AuthShell({
           <Link
             href="/"
             className="inline-flex items-center gap-2.5 mb-8 group"
-            aria-label="Adam's Alphabet — home"
+            aria-label="Adam's Alphabet - home"
           >
             <span className="relative w-9 h-9 rounded-lg overflow-hidden ring-1 ring-[var(--color-border)] shadow-sm">
               <Image src="/newLogo.png" alt="" fill sizes="36px" className="object-cover" />
@@ -73,7 +73,7 @@ export default function AuthShell({
         </div>
       </div>
 
-      {/* RIGHT — deep-blue brand panel (desktop) */}
+      {/* RIGHT - deep-blue brand panel (desktop) */}
       <aside className="hidden lg:flex relative items-center justify-center px-12 xl:px-20 py-16 overflow-hidden bg-[var(--color-brand-700)] text-white">
         <MathBackdrop variant="brand" density="light" contentSafe />
 

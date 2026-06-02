@@ -29,7 +29,7 @@ yarn-error.log*
 .pnpm-debug.log*
 firestore-debug.log
 
-# env files (do NOT commit secrets — use .env.example as a template)
+# env files (do NOT commit secrets  - use .env.example as a template)
 .env*
 !.env.example
 

@@ -19,7 +19,7 @@ export default function GlobalError({
     <Section tone="hero" size="lg" containerSize="md">
       <div className="text-center max-w-xl mx-auto">
         <p className="eyebrow">Something went wrong</p>
-        <h1 className="h-display mt-3">Oops — that didn&apos;t load.</h1>
+        <h1 className="h-display mt-3">Oops - that didn&apos;t load.</h1>
         <p className="lede mt-4">
           Try again, or head back home. If this keeps happening, let Adam know.
         </p>

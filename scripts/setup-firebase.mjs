@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * Guided Firebase setup — creates .env.local if missing and prints next steps.
+ * Guided Firebase setup - creates .env.local if missing and prints next steps.
  * After `firebase login`, can pull web SDK config via the Firebase CLI.
  */
 
@@ -60,7 +60,7 @@ function tryFirebaseSdkConfig(projectId) {
 }
 
 async function main() {
-  console.log("\nAdam's Alphabet — Firebase auth setup\n");
+  console.log("\nAdam's Alphabet - Firebase auth setup\n");
 
   if (!existsSync(envLocal)) {
     copyFileSync(envExample, envLocal);

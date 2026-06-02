@@ -61,7 +61,7 @@ export default async function GradeLibrary({ params }: { params: Promise<Params>
             <Badge tone="brand" className="mb-5">{g.title} · GADOE aligned</Badge>
             <h1 className="h-display">The full {g.title} curriculum, in one place.</h1>
             <p className="lede mt-5 mx-auto max-w-[52ch]">
-              Each unit is split into short topics — read a walkthrough, watch a video, try the
+              Each unit is split into short topics - read a walkthrough, watch a video, try the
               practice, take a quick check. Jump to any topic; there&apos;s no &ldquo;right&rdquo; order.
             </p>
             {units.length > 0 && (
@@ -87,7 +87,7 @@ export default async function GradeLibrary({ params }: { params: Promise<Params>
                   <p className="eyebrow">The library</p>
                   <h2 className="h2 mt-2">{g.title} units</h2>
                   <p className="small text-[var(--color-ink-muted)] mt-2 max-w-xl leading-relaxed">
-                    Each row is a full unit, broken into short topics — a walkthrough, a video,
+                    Each row is a full unit, broken into short topics - a walkthrough, a video,
                     practice, and a quick quiz on every one. Open whichever unit you&apos;re working
                     on in class right now.
                   </p>
@@ -164,7 +164,7 @@ export default async function GradeLibrary({ params }: { params: Promise<Params>
             <h2 className="h2 mt-3 text-white">A consistent shape, so you always know where to go next.</h2>
             <p className="small text-white/75 mt-4 max-w-sm leading-relaxed">
               Open any unit and pick a topic. Every topic follows the same four steps in the same
-              order. Skim, skip, or follow it straight through — it&apos;s built to fit how you study.
+              order. Skim, skip, or follow it straight through - it&apos;s built to fit how you study.
             </p>
           </div>
           <ol className="lg:col-span-8 divide-y divide-white/15">
@@ -195,7 +195,7 @@ export default async function GradeLibrary({ params }: { params: Promise<Params>
             <h2 className="font-display font-bold text-2xl sm:text-3xl leading-[1.2]">
               Need help on something specific?
             </h2>
-            <p className="mt-2 text-white/75">Book a free 1:1 session with Adam — online or in-person.</p>
+            <p className="mt-2 text-white/75">Book a free 1:1 session with Adam - online or in-person.</p>
           </div>
           <div className="md:col-span-4 md:justify-self-end btn-stack-mobile md:flex-row md:justify-end">
             <Button href="/book" rightIcon={<Arrow />}>Book a class</Button>
@@ -208,7 +208,7 @@ export default async function GradeLibrary({ params }: { params: Promise<Params>
 
 const STEPS: { title: string; body: string }[] = [
   { title: "Walkthrough", body: "A short, plain-language explainer with a worked example. Read it first to get the idea." },
-  { title: "Video walk-through", body: "One hand-picked video per topic — sometimes a second take — from teachers students actually like." },
+  { title: "Video walk-through", body: "One hand-picked video per topic - sometimes a second take - from teachers students actually like." },
   { title: "Practice", body: "A printable worksheet from Adam or curated links to trusted external worksheet libraries." },
   { title: "Quick quiz", body: "Two or three questions at the end of each topic, with explanations. Retake it as many times as you want." },
 ];

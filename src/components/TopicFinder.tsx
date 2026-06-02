@@ -23,7 +23,7 @@ export default function TopicFinder({ variant = "default", suggestions = [] }: P
             Search by keyword
           </span>
           <span className="block small text-[var(--color-ink-muted)] mt-1">
-            Type anything your class is working on — we&apos;ll find the matching lesson.
+            Type anything your class is working on - we&apos;ll find the matching lesson.
           </span>
         </label>
 

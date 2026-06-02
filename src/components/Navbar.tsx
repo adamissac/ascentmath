@@ -85,7 +85,7 @@ export default function Navbar() {
           <Link
             href="/"
             className="flex items-center gap-2.5 font-display font-bold text-[1.0625rem] text-[var(--color-brand-700)] hover:text-[var(--color-brand-600)] transition-colors min-w-0"
-            aria-label="Adam's Alphabet — home"
+            aria-label="Adam's Alphabet - home"
           >
             <span className="relative w-10 h-10 rounded-lg overflow-hidden ring-2 ring-[var(--color-brand-100)] shadow-sm shrink-0">
               <Image

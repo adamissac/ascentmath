@@ -27,7 +27,7 @@ type FormState = {
   preferredDate: string;
   preferredTime: string;
   notes: string;
-  /* honeypot — must stay empty */
+  /* honeypot - must stay empty */
   website: string;
 };
 
@@ -142,7 +142,7 @@ export default function BookPage() {
       setStatus("success");
     } catch {
       setErrorMsg(
-        "Network error — please check your connection and try again, or email Adam directly."
+        "Network error - please check your connection and try again, or email Adam directly."
       );
       setStatus("error");
     } finally {
@@ -169,7 +169,7 @@ export default function BookPage() {
             <h1 className="h-display">Book a class with Adam.</h1>
             <p className="lede mt-5 max-w-xl">
               Pick a topic you want to work on. Choose Zoom or in-person. We&apos;ll
-              meet at a time that works for both of us — and there&apos;s never a
+              meet at a time that works for both of us - and there&apos;s never a
               charge.
             </p>
             <ul className="mt-8 grid gap-3">
@@ -186,7 +186,7 @@ export default function BookPage() {
                 description={
                   bookingConfigured
                     ? "Your request lands in Adam's inbox instantly. Reply usually comes within a day."
-                    : "Your email app opens with everything filled in — just hit send."
+                    : "Your email app opens with everything filled in - just hit send."
                 }
               />
             </ul>
@@ -209,7 +209,7 @@ export default function BookPage() {
                         Send through your email app
                       </p>
                       <p className="caption text-[var(--color-ink-muted)] mt-1 leading-relaxed">
-                        Fill this out, then click send — your email app will open with
+                        Fill this out, then click send - your email app will open with
                         everything ready. Just hit send there and Adam will get it.
                       </p>
                     </div>
@@ -422,7 +422,7 @@ export default function BookPage() {
         />
         </Reveal>
         <Reveal stagger className="mt-10 grid sm:grid-cols-2 gap-5">
-          <Faq dark q="Is this really free?" a="Yes — every session and every resource on this site is free. The mission is helping students, not selling anything." />
+          <Faq dark q="Is this really free?" a="Yes - every session and every resource on this site is free. The mission is helping students, not selling anything." />
           <Faq dark q="What ages do you tutor?" a="Mainly Grades 6–8, though I'll help younger or older students depending on what they need." />
           <Faq dark q="How long is a session?" a="Most sessions run 45–60 minutes. We can do shorter ones for a quick question." />
           <Faq dark q="How quickly will Adam reply?" a="Usually within a day. If a school day is busy, give it 48 hours." />
@@ -469,7 +469,7 @@ function buildMailtoLink(form: FormState) {
     .join("\n");
 
   const params = new URLSearchParams({
-    subject: "Book a class — Adam's Alphabet",
+    subject: "Book a class - Adam's Alphabet",
     body,
   });
   return `mailto:${RECIPIENT_EMAIL}?${params.toString()}`;
@@ -506,7 +506,7 @@ function SuccessPanel({ name, onReset }: { name: string; onReset: () => void }) 
       <ul className="mt-7 grid gap-3 text-left max-w-sm mx-auto">
         <SuccessRow label="Delivered to" value={RECIPIENT_EMAIL} />
         <SuccessRow label="Reply time" value="Within 24 hours, usually" />
-        <SuccessRow label="Cost" value="$0 — free, always" />
+        <SuccessRow label="Cost" value="$0 - free, always" />
       </ul>
 
       <div className="mt-8 flex flex-wrap items-center justify-center gap-3">

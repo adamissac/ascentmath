@@ -21,7 +21,7 @@ const lexend = Lexend({
 export const metadata: Metadata = {
   metadataBase: new URL("https://adamsalphabet.com"),
   title: {
-    default: "Adam's Alphabet — Free Middle School Math (Grades 6–8)",
+    default: "Adam's Alphabet - Free Middle School Math (Grades 6–8)",
     template: "%s · Adam's Alphabet",
   },
   description:
@@ -37,9 +37,9 @@ export const metadata: Metadata = {
     "GADOE",
   ],
   openGraph: {
-    title: "Adam's Alphabet — Free Middle School Math (Grades 6–8)",
+    title: "Adam's Alphabet - Free Middle School Math (Grades 6–8)",
     description:
-      "Free Grades 6–8 math lessons, videos, worksheets, and quizzes — built by a student tutor.",
+      "Free Grades 6–8 math lessons, videos, worksheets, and quizzes - built by a student tutor.",
     type: "website",
     siteName: "Adam's Alphabet",
   },

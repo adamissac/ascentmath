@@ -24,7 +24,7 @@ const RECIPIENT = getBookingRecipient();
 const FROM = getBookingFromEmail();
 
 /* ----------------------------------------------------------------
-   Validation schema — matches the form on /book
+   Validation schema - matches the form on /book
    ---------------------------------------------------------------- */
 
 const schema = z.object({
@@ -37,7 +37,7 @@ const schema = z.object({
   preferredDate: z.string().trim().max(40).optional().or(z.literal("")),
   preferredTime: z.string().trim().max(40).optional().or(z.literal("")),
   notes: z.string().trim().max(2000).optional().or(z.literal("")),
-  // Spam honeypot — must be empty.
+  // Spam honeypot - must be empty.
   website: z.string().max(0).optional().or(z.literal("")),
 });
 
@@ -176,7 +176,7 @@ export async function POST(req: Request) {
   }
 }
 
-/* Health check — lets the /book page know if submissions will work */
+/* Health check - lets the /book page know if submissions will work */
 export async function GET() {
   const configured = isResendConfigured();
   return NextResponse.json({

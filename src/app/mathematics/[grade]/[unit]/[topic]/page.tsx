@@ -91,14 +91,14 @@ export default async function TopicPage({ params }: { params: Promise<Params> })
         </Container>
       </section>
 
-      {/* STEP 1 — WALKTHROUGH */}
+      {/* STEP 1 - WALKTHROUGH */}
       <Section tone="default" size="sm" containerSize="lg" decorated="paper" decoratedDensity="medium" reveal={false}>
         <section aria-labelledby="learn-h">
           <Reveal>
             <span className="eyebrow">Step 1 · Learn</span>
             <h2 id="learn-h" className="h2 mt-2">Walkthrough</h2>
             <p className="lede mt-2 max-w-2xl">
-              Read this first — it covers the idea in plain language with a worked example.
+              Read this first - it covers the idea in plain language with a worked example.
             </p>
           </Reveal>
           <Reveal className="mt-8">
@@ -107,7 +107,7 @@ export default async function TopicPage({ params }: { params: Promise<Params> })
         </section>
       </Section>
 
-      {/* STEP 2 — VIDEO */}
+      {/* STEP 2 - VIDEO */}
       <Section tone="muted" size="sm" containerSize="lg" decorated="muted" decoratedDensity="medium" reveal={false}>
         <section aria-labelledby="watch-h">
           <Reveal>
@@ -138,7 +138,7 @@ export default async function TopicPage({ params }: { params: Promise<Params> })
         </section>
       </Section>
 
-      {/* STEP 3 — PRACTICE */}
+      {/* STEP 3 - PRACTICE */}
       {hasPractice && (
         <Section tone="muted" size="sm" containerSize="lg" decorated="muted" decoratedDensity="medium" reveal={false}>
           <section aria-labelledby="practice-h">
@@ -175,7 +175,7 @@ export default async function TopicPage({ params }: { params: Promise<Params> })
         </Section>
       )}
 
-      {/* STEP 4 — QUIZ */}
+      {/* STEP 4 - QUIZ */}
       {t.quiz.length > 0 && (
         <ColorBand variant="dark" containerSize="lg" reveal={false}>
           <section aria-labelledby="quiz-h">

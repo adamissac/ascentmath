@@ -1,5 +1,5 @@
 /**
- * Curriculum data — single source of truth for all Mathematics units.
+ * Curriculum data - single source of truth for all Mathematics units.
  *
  * Add or edit units, lessons, videos, worksheets, or quiz questions here
  * and every page picks up the change automatically.
@@ -29,7 +29,7 @@ export type ExternalLink = {
   description?: string;
 };
 
-/** One block of a topic walkthrough — keep each block short and focused. */
+/** One block of a topic walkthrough - keep each block short and focused. */
 export type WalkthroughBlock = {
   heading?: string;
   paragraphs?: string[];
@@ -114,7 +114,7 @@ const GRADE_6_UNITS: Unit[] = [
               solution: [
                 "Factors of 18: 1, 2, 3, 6, 9, 18",
                 "Factors of 24: 1, 2, 3, 4, 6, 8, 12, 24",
-                "Shared factors: 1, 2, 3, 6 — the greatest is 6.",
+                "Shared factors: 1, 2, 3, 6 - the greatest is 6.",
               ],
             },
           },
@@ -133,11 +133,11 @@ const GRADE_6_UNITS: Unit[] = [
             },
             callout: {
               label: "Tip",
-              text: "For larger numbers, break each one into primes (prime factorization) — it makes finding the GCF and LCM much faster.",
+              text: "For larger numbers, break each one into primes (prime factorization) - it makes finding the GCF and LCM much faster.",
             },
           },
         ],
-        video: { videoId: "XGbOiYhHY2c", title: "Prime Factorization", source: "Math Antics", description: "Break any number into its prime building blocks — the key to GCF and LCM." },
+        video: { videoId: "XGbOiYhHY2c", title: "Prime Factorization", source: "Math Antics", description: "Break any number into its prime building blocks - the key to GCF and LCM." },
         practiceLinks: [
           { href: "https://www.mathworksheets4kids.com/greatest-common-factor.php", title: "Greatest Common Factor", source: "Math Worksheets 4 Kids" },
           { href: "https://www.mathworksheets4kids.com/least-common-multiple.php", title: "Least Common Multiple", source: "Math Worksheets 4 Kids" },
@@ -186,7 +186,7 @@ const GRADE_6_UNITS: Unit[] = [
           {
             heading: "Different denominators",
             paragraphs: [
-              "When the bottoms are different, you first rewrite both fractions with a common denominator — usually the LCM of the two denominators.",
+              "When the bottoms are different, you first rewrite both fractions with a common denominator - usually the LCM of the two denominators.",
             ],
             steps: [
               "Find a common denominator (the LCM of the bottom numbers).",
@@ -255,7 +255,7 @@ const GRADE_6_UNITS: Unit[] = [
             ],
           },
           {
-            heading: "Dividing fractions — keep, change, flip",
+            heading: "Dividing fractions - keep, change, flip",
             paragraphs: [
               "To divide by a fraction, you multiply by its reciprocal (the fraction flipped upside down).",
             ],
@@ -281,7 +281,7 @@ const GRADE_6_UNITS: Unit[] = [
         ],
         video: { videoId: "qmfXyR7Z6Lk", title: "Multiplying Fractions", source: "Math Antics", description: "Multiply across the top and bottom, then simplify." },
         extraVideo: { videoId: "4lkq3DgvmJo", title: "Dividing Fractions", source: "Math Antics", description: "Flip the second fraction, then multiply (keep–change–flip)." },
-        worksheet: { driveFileId: "1VZEQx-BOXpIIYYMpvdp-EsYO8Q9fwnfV", title: "Worksheet — Operations practice", description: "Mixed practice covering fraction and decimal operations." },
+        worksheet: { driveFileId: "1VZEQx-BOXpIIYYMpvdp-EsYO8Q9fwnfV", title: "Worksheet - Operations practice", description: "Mixed practice covering fraction and decimal operations." },
         quiz: [
           {
             id: "u1-t3-q1",
@@ -344,13 +344,13 @@ const GRADE_6_UNITS: Unit[] = [
             },
             callout: {
               label: "Watch out",
-              text: "When multiplying you do NOT line up the decimal points — lining up is only for adding and subtracting.",
+              text: "When multiplying you do NOT line up the decimal points - lining up is only for adding and subtracting.",
             },
           },
         ],
         video: { videoId: "REcdCxWTZrw", title: "Multiplying Decimals", source: "Virtual Nerd", description: "Multiply first, then place the decimal point." },
         extraVideo: { videoId: "eQU_uLDoyoQ", title: "Subtracting Decimals", source: "Virtual Nerd", description: "Line up the decimal points, then subtract like whole numbers." },
-        worksheet: { driveFileId: "1RAoa5x7bEpbnBNA1CL68F7pvIaIW19_s", title: "Worksheet — Word problems", description: "Apply decimal and fraction operations to real situations." },
+        worksheet: { driveFileId: "1RAoa5x7bEpbnBNA1CL68F7pvIaIW19_s", title: "Worksheet - Word problems", description: "Apply decimal and fraction operations to real situations." },
         practiceLinks: [
           { href: "https://www.mathworksheets4kids.com/decimals.php", title: "Decimal operations", source: "Math Worksheets 4 Kids" },
         ],
@@ -400,11 +400,11 @@ const GRADE_6_UNITS: Unit[] = [
     vocabulary: [
       { term: "Factor", meaning: "A number that divides evenly into another." },
       { term: "Multiple", meaning: "The product of a number and an integer." },
-      { term: "GCF", meaning: "Greatest Common Factor — the biggest shared factor." },
-      { term: "LCM", meaning: "Least Common Multiple — the smallest shared multiple." },
+      { term: "GCF", meaning: "Greatest Common Factor - the biggest shared factor." },
+      { term: "LCM", meaning: "Least Common Multiple - the smallest shared multiple." },
     ],
     externalPractice: [
-      { href: "https://www.k5learning.com/free-math-worksheets/sixth-grade-6", title: "K5 Learning — Grade 6 worksheets", source: "K5 Learning", description: "Free Grade 6 worksheets across all topics." },
+      { href: "https://www.k5learning.com/free-math-worksheets/sixth-grade-6", title: "K5 Learning - Grade 6 worksheets", source: "K5 Learning", description: "Free Grade 6 worksheets across all topics." },
       { href: "https://www.mathworksheets4kids.com/factors.php", title: "Factors & prime factorization", source: "Math Worksheets 4 Kids" },
       { href: "https://www.mathworksheets4kids.com/greatest-common-factor.php", title: "Greatest Common Factor", source: "Math Worksheets 4 Kids" },
       { href: "https://www.mathworksheets4kids.com/least-common-multiple.php", title: "Least Common Multiple", source: "Math Worksheets 4 Kids" },
@@ -422,13 +422,13 @@ const GRADE_6_UNITS: Unit[] = [
         id: "u2-t1",
         slug: "ratios",
         title: "What Is a Ratio?",
-        summary: "Compare two quantities — and find ratios that mean the same thing.",
+        summary: "Compare two quantities - and find ratios that mean the same thing.",
         estimatedMinutes: 12,
         walkthrough: [
           {
             heading: "Comparing with ratios",
             paragraphs: [
-              "A ratio compares two amounts. If a recipe uses 2 cups of flour and 3 cups of sugar, the ratio of flour to sugar is 2 to 3 — written 2:3 or 2/3.",
+              "A ratio compares two amounts. If a recipe uses 2 cups of flour and 3 cups of sugar, the ratio of flour to sugar is 2 to 3 - written 2:3 or 2/3.",
             ],
           },
           {
@@ -447,7 +447,7 @@ const GRADE_6_UNITS: Unit[] = [
               solution: [
                 "Multiply both parts of 2:3 by 4.",
                 "2 × 4 = 8 and 3 × 4 = 12, so 2:3 → 8:12.",
-                "Yes — they are equivalent.",
+                "Yes - they are equivalent.",
               ],
             },
           },
@@ -463,7 +463,7 @@ const GRADE_6_UNITS: Unit[] = [
             prompt: "Write the ratio of 5 dogs to 8 cats.",
             type: "short-answer",
             answer: "5:8",
-            explanation: "Keep the order given — dogs first, then cats: 5:8.",
+            explanation: "Keep the order given - dogs first, then cats: 5:8.",
             difficulty: "easy",
           },
           {
@@ -489,13 +489,13 @@ const GRADE_6_UNITS: Unit[] = [
         id: "u2-t2",
         slug: "unit-rates",
         title: "Unit Rates",
-        summary: "How much for just ONE — speed, price per item, and more.",
+        summary: "How much for just ONE - speed, price per item, and more.",
         estimatedMinutes: 13,
         walkthrough: [
           {
             heading: "Rates vs. unit rates",
             paragraphs: [
-              "A rate compares two different units, like miles and hours. A unit rate tells you the amount for just one — like miles per ONE hour, or dollars per ONE item.",
+              "A rate compares two different units, like miles and hours. A unit rate tells you the amount for just one - like miles per ONE hour, or dollars per ONE item.",
             ],
           },
           {
@@ -518,13 +518,13 @@ const GRADE_6_UNITS: Unit[] = [
             },
             callout: {
               label: "Tip",
-              text: "Unit rates make it easy to compare deals — $0.80 per apple is a better buy than $0.90 per apple.",
+              text: "Unit rates make it easy to compare deals - $0.80 per apple is a better buy than $0.90 per apple.",
             },
           },
         ],
         video: { videoId: "qGTYSAeLTOE", title: "Rates and Unit Rates", source: "Other", description: "Find cost per item, speed, and other per-one rates." },
         extraVideo: { videoId: "jC1K7fM91sE", title: "Rates and Unit Rates (extra examples)", source: "Other", description: "More practice turning a rate into a unit rate." },
-        worksheet: { driveFileId: "1W-fu-btydoCDyL6PbW8lAEcrDA--EYhk", title: "Worksheet — Ratios & proportions", description: "Mixed practice across ratios, rates, and proportions." },
+        worksheet: { driveFileId: "1W-fu-btydoCDyL6PbW8lAEcrDA--EYhk", title: "Worksheet - Ratios & proportions", description: "Mixed practice across ratios, rates, and proportions." },
         quiz: [
           {
             id: "u2-t2-q1",
@@ -555,7 +555,7 @@ const GRADE_6_UNITS: Unit[] = [
           {
             heading: "What makes a relationship proportional",
             paragraphs: [
-              "Two quantities are proportional when they always change by the same rate. If you earn $12 every hour, dollars and hours are proportional — the rate stays 12 no matter how many hours you work.",
+              "Two quantities are proportional when they always change by the same rate. If you earn $12 every hour, dollars and hours are proportional - the rate stays 12 no matter how many hours you work.",
             ],
           },
           {
@@ -646,7 +646,7 @@ const GRADE_6_UNITS: Unit[] = [
         id: "u3-t1",
         slug: "exponents-order-of-operations",
         title: "Exponents & Order of Operations",
-        summary: "Powers mean repeated multiplication — and PEMDAS sets the order.",
+        summary: "Powers mean repeated multiplication - and PEMDAS sets the order.",
         estimatedMinutes: 14,
         walkthrough: [
           {
@@ -670,7 +670,7 @@ const GRADE_6_UNITS: Unit[] = [
             },
             callout: {
               label: "Watch out",
-              text: "Multiplication and division are equal in rank — do them left to right, not multiplication first.",
+              text: "Multiplication and division are equal in rank - do them left to right, not multiplication first.",
             },
           },
         ],
@@ -767,7 +767,7 @@ const GRADE_6_UNITS: Unit[] = [
             prompt: "The phrase \"7 less than a number\" is written as 7 − n.",
             type: "true-false",
             answer: false,
-            explanation: "\"7 less than a number\" is n − 7 — you start with the number and take away 7.",
+            explanation: "\"7 less than a number\" is n − 7 - you start with the number and take away 7.",
             difficulty: "medium",
           },
         ],
@@ -799,7 +799,7 @@ const GRADE_6_UNITS: Unit[] = [
             },
             callout: {
               label: "Watch out",
-              text: "5x and 5 are NOT like terms — one has a variable and one does not.",
+              text: "5x and 5 are NOT like terms - one has a variable and one does not.",
             },
           },
         ],
@@ -841,7 +841,7 @@ const GRADE_6_UNITS: Unit[] = [
     title: "Expressions & Equations",
     short: "Exponents, variables, and writing math symbolically.",
     description:
-      "Learn how mathematicians write ideas as expressions — including exponents, variables, and equivalent forms.",
+      "Learn how mathematicians write ideas as expressions - including exponents, variables, and equivalent forms.",
     icon: "x²",
     estimatedMinutes: 55,
     frameworkUrl: "https://drive.google.com/file/d/1gErsfpHBR0vh54AEtpx9ZGxCWR50F7Ki/view",
@@ -891,13 +891,13 @@ const GRADE_6_UNITS: Unit[] = [
             ],
             callout: {
               label: "Tip",
-              text: "Whatever you do to one side of the equation, you must do to the other — that keeps it balanced.",
+              text: "Whatever you do to one side of the equation, you must do to the other - that keeps it balanced.",
             },
           },
         ],
         video: { videoId: "jWpiMu5LNdg", title: "One-Step Equations", source: "Khan Academy", description: "Use inverse operations to find the missing number." },
         extraVideo: { videoId: "l3XzepN03KQ", title: "Solving Basic Algebraic Equations", source: "Math Antics", description: "Add, subtract, multiply, or divide both sides to isolate x." },
-        worksheet: { driveFileId: "1gWPLzo75q2usvfROnIeGmCYWT4Xf0mjU", title: "Worksheet — Equations & inequalities", description: "Mixed practice solving equations and inequalities." },
+        worksheet: { driveFileId: "1gWPLzo75q2usvfROnIeGmCYWT4Xf0mjU", title: "Worksheet - Equations & inequalities", description: "Mixed practice solving equations and inequalities." },
         quiz: [
           {
             id: "u4-t1-q1",
@@ -999,7 +999,7 @@ const GRADE_6_UNITS: Unit[] = [
           {
             heading: "Which is which",
             paragraphs: [
-              "The independent variable is the input — the value you choose (like hours worked). The dependent variable is the output — the value that depends on it (like money earned).",
+              "The independent variable is the input - the value you choose (like hours worked). The dependent variable is the output - the value that depends on it (like money earned).",
             ],
             example: {
               problem: "You earn $9 per hour. Identify the variables.",
@@ -1078,7 +1078,7 @@ const GRADE_6_UNITS: Unit[] = [
         id: "u5-t1",
         slug: "area-of-shapes",
         title: "Area of Triangles & Quadrilaterals",
-        summary: "The space inside flat shapes — rectangles, triangles, and parallelograms.",
+        summary: "The space inside flat shapes - rectangles, triangles, and parallelograms.",
         estimatedMinutes: 14,
         walkthrough: [
           {
@@ -1168,7 +1168,7 @@ const GRADE_6_UNITS: Unit[] = [
             },
             callout: {
               label: "Tip",
-              text: "Sketch the figure and label every length before you start — it prevents missed pieces.",
+              text: "Sketch the figure and label every length before you start - it prevents missed pieces.",
             },
           },
         ],
@@ -1228,9 +1228,9 @@ const GRADE_6_UNITS: Unit[] = [
             },
           },
         ],
-        video: { videoId: "qJwecTgce6c", title: "Volume", source: "Math Antics", description: "How much space a 3-D object fills — measured in cubic units." },
+        video: { videoId: "qJwecTgce6c", title: "Volume", source: "Math Antics", description: "How much space a 3-D object fills - measured in cubic units." },
         extraVideo: { videoId: "ny5DVYNpqM8", title: "Surface Area Using Nets", source: "Khan Academy", description: "Unfold a 3-D shape and add up the flat faces." },
-        worksheet: { driveFileId: "1vWT_exmaDi6YkbiMXVmwztS0nDPKyfyU", title: "Worksheet — Area & volume", description: "Mixed practice for area, surface area, and volume." },
+        worksheet: { driveFileId: "1vWT_exmaDi6YkbiMXVmwztS0nDPKyfyU", title: "Worksheet - Area & volume", description: "Mixed practice for area, surface area, and volume." },
         quiz: [
           {
             id: "u5-t3-q1",
@@ -1260,10 +1260,10 @@ const GRADE_6_UNITS: Unit[] = [
       },
     ],
     slug: "unit-5",
-    title: "Geometry — Area & Volume",
+    title: "Geometry - Area & Volume",
     short: "Area of polygons, surface area from nets, and volume of prisms.",
     description:
-      "Compute area, surface area, and volume — and apply them to real measurement problems.",
+      "Compute area, surface area, and volume - and apply them to real measurement problems.",
     icon: "△",
     estimatedMinutes: 60,
     frameworkUrl: "https://drive.google.com/file/d/1VQ164yBRTVIgTD-NCh2IjW_r3uTaPosC/view",
@@ -1287,13 +1287,13 @@ const GRADE_6_UNITS: Unit[] = [
         id: "u6-t1",
         slug: "statistical-questions-center",
         title: "Statistical Questions & Center",
-        summary: "When an answer varies — and how to describe the middle of the data.",
+        summary: "When an answer varies - and how to describe the middle of the data.",
         estimatedMinutes: 14,
         walkthrough: [
           {
             heading: "Statistical questions",
             paragraphs: [
-              "A statistical question expects answers that vary. \"How tall are the kids in our class?\" is statistical because heights differ. \"How tall is the door?\" is not — it has one answer.",
+              "A statistical question expects answers that vary. \"How tall are the kids in our class?\" is statistical because heights differ. \"How tall is the door?\" is not - it has one answer.",
             ],
           },
           {
@@ -1436,7 +1436,7 @@ const GRADE_6_UNITS: Unit[] = [
         ],
         video: { videoId: "gSEYtAjuZ-Y", title: "Histograms", source: "Khan Academy", description: "Group numeric data into ranges and display as bars." },
         extraVideo: { videoId: "nV8jR8M8C74", title: "Box and Whisker Plots", source: "Math Antics", description: "Summarize a data set with five key numbers." },
-        worksheet: { driveFileId: "1GD8IoL1vAQ5gB-SrgNLIkxKhUfrhL12C", title: "Worksheet — Statistics & data", description: "Mixed practice for center, spread, and data displays." },
+        worksheet: { driveFileId: "1GD8IoL1vAQ5gB-SrgNLIkxKhUfrhL12C", title: "Worksheet - Statistics & data", description: "Mixed practice for center, spread, and data displays." },
         quiz: [
           {
             id: "u6-t3-q1",
@@ -1569,7 +1569,7 @@ const GRADE_6_UNITS: Unit[] = [
             },
             callout: {
               label: "Tip",
-              text: "Read the problem carefully — sometimes you need all faces, sometimes only the walls (no top or bottom).",
+              text: "Read the problem carefully - sometimes you need all faces, sometimes only the walls (no top or bottom).",
             },
           },
         ],
@@ -1601,7 +1601,7 @@ const GRADE_6_UNITS: Unit[] = [
         id: "u7-t3",
         slug: "volume-fractions",
         title: "Volume with Fractions",
-        summary: "Same length × width × height — even when the edges are fractions.",
+        summary: "Same length × width × height - even when the edges are fractions.",
         estimatedMinutes: 14,
         walkthrough: [
           {
@@ -1625,7 +1625,7 @@ const GRADE_6_UNITS: Unit[] = [
         ],
         video: { videoId: "EJTPGyWqhqc", title: "Volume of Rectangular Prisms", source: "Khan Academy", description: "Length × width × height for box-shaped objects." },
         extraVideo: { videoId: "By7sVb2IhFs", title: "Volume", source: "Math with Mr. J", description: "Practice finding how much space a solid fills." },
-        worksheet: { driveFileId: "1ctTOKapYtWPf0B_IyX6nlaOS8K0vXaOI", title: "Worksheet — Applied geometry", description: "End-of-year mixed practice across area, surface area, and volume." },
+        worksheet: { driveFileId: "1ctTOKapYtWPf0B_IyX6nlaOS8K0vXaOI", title: "Worksheet - Applied geometry", description: "End-of-year mixed practice across area, surface area, and volume." },
         quiz: [
           {
             id: "u7-t3-q1",
@@ -1655,10 +1655,10 @@ const GRADE_6_UNITS: Unit[] = [
       },
     ],
     slug: "unit-7",
-    title: "Geometry in Action — Surface Area & Volume",
+    title: "Geometry in Action - Surface Area & Volume",
     short: "Putting area, surface area, and volume to work in real-world problems.",
     description:
-      "Apply geometry to packaging, water tanks, and design — a culminating unit that revisits the year's measurement ideas.",
+      "Apply geometry to packaging, water tanks, and design - a culminating unit that revisits the year's measurement ideas.",
     icon: "▭",
     estimatedMinutes: 50,
     frameworkUrl: "https://drive.google.com/file/d/1YgLlErTGZ1Fbga1Elh11l8_Io0ik9Zz3/view",
@@ -1696,7 +1696,7 @@ export const GRADES: Grade[] = [
     title: "Grade 6",
     short: "The number system, ratios, expressions, and the geometry that everything builds on.",
     description:
-      "Grade 6 Mathematics — fractions and decimals, ratios and rates, expressions and equations, area and volume, and an introduction to statistics.",
+      "Grade 6 Mathematics - fractions and decimals, ratios and rates, expressions and equations, area and volume, and an introduction to statistics.",
     icon: "π",
     units: GRADE_6_UNITS,
   },
@@ -1706,7 +1706,7 @@ export const GRADES: Grade[] = [
     title: "Grade 7",
     short: "Rational numbers, proportional reasoning, equations, geometry, statistics, and probability.",
     description:
-      "Grade 7 Mathematics — operations with rational numbers, proportional relationships, expressions and equations, geometry, statistical inferences, and probability.",
+      "Grade 7 Mathematics - operations with rational numbers, proportional relationships, expressions and equations, geometry, statistical inferences, and probability.",
     icon: "%",
     units: GRADE_7_UNITS,
   },
@@ -1716,7 +1716,7 @@ export const GRADES: Grade[] = [
     title: "Grade 8",
     short: "Real numbers, linear equations, functions, transformations, and the Pythagorean theorem.",
     description:
-      "Grade 8 Mathematics — exponents and scientific notation, linear equations, functions, systems, transformations and similarity, and the Pythagorean theorem.",
+      "Grade 8 Mathematics - exponents and scientific notation, linear equations, functions, systems, transformations and similarity, and the Pythagorean theorem.",
     icon: "ƒ",
     units: GRADE_8_UNITS,
   },

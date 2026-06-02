@@ -3,7 +3,7 @@
 /**
  * Single source of truth for the current user, their Firestore profile,
  * and every auth action the rest of the app needs. Everything that
- * touches Firebase Auth goes through this provider — pages just call
+ * touches Firebase Auth goes through this provider - pages just call
  * `useAuth()` and stay agnostic of the SDK.
  */
 
@@ -208,7 +208,7 @@ export default function AuthProvider({ children }: { children: ReactNode }) {
       provider.addScope("profile");
       provider.setCustomParameters({ prompt: "select_account" });
 
-      /* Popups break often on live domains — use a full-page redirect instead. */
+      /* Popups break often on live domains - use a full-page redirect instead. */
       if (preferGoogleRedirect()) {
         await signInWithRedirect(auth, provider);
         return;
@@ -220,7 +220,7 @@ export default function AuthProvider({ children }: { children: ReactNode }) {
         await loadOrCreateProfile(cred.user);
       } catch (err) {
         /* Popup blocked, storage restricted, or environment can't host a
-         * popup — fall back to a full-page redirect. getRedirectResult()
+         * popup - fall back to a full-page redirect. getRedirectResult()
          * above completes the exchange when the user lands back here. */
         if (
           err instanceof FirebaseError &&
@@ -283,7 +283,7 @@ export default function AuthProvider({ children }: { children: ReactNode }) {
 }
 
 /* -------------------------------------------------------------------- */
-/* Firestore profile read/upsert. Profiles are best-effort — if Firestore
+/* Firestore profile read/upsert. Profiles are best-effort - if Firestore
  * isn't enabled in the user's Firebase project, auth still works and we
  * just return a synthesized profile from the auth record.            */
 /* -------------------------------------------------------------------- */
@@ -328,7 +328,7 @@ async function loadOrCreateProfile(
       createdAt: data.createdAt?.toDate().toISOString() ?? null,
     };
   } catch (err) {
-    // Firestore probably isn't enabled — return a minimal profile from auth.
+    // Firestore probably isn't enabled - return a minimal profile from auth.
     if (process.env.NODE_ENV === "development") {
       console.warn(
         "[auth] Firestore profile read failed (auth still works). Enable Firestore in Firebase Console to persist profiles.",

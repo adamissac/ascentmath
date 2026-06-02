@@ -24,7 +24,7 @@ const MESSAGES: Record<string, string> = {
   "auth/too-many-requests":
     "Too many attempts. Take a short break and try again.",
   "auth/network-request-failed":
-    "Network hiccup — check your connection and try again.",
+    "Network hiccup - check your connection and try again.",
   /* --- popup / OAuth --- */
   "auth/popup-closed-by-user":
     "Sign-in window closed before finishing. Try once more.",

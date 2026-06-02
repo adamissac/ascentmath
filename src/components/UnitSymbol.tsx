@@ -1,5 +1,5 @@
 /**
- * Math-style unit glyph — replaces emoji icons with typographic symbols.
+ * Math-style unit glyph - replaces emoji icons with typographic symbols.
  */
 
 const BOX: Record<"sm" | "md" | "lg", string> = {

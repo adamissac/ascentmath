@@ -41,7 +41,7 @@ async function main() {
     process.exit(1);
   }
 
-  console.log("Success — test booking email sent.");
+  console.log("Success - test booking email sent.");
   console.log("Check adamissac08@gmail.com (and spam).\n");
 }
 

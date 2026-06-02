@@ -22,7 +22,7 @@ const vercelHost = process.argv[2] || "v2adamsalphabet.vercel.app";
 const customDomain = process.argv[3] || "adamsalphabet.com";
 
 console.log(`
-Adam's Alphabet — Google sign-in on production
+Adam's Alphabet - Google sign-in on production
 ==============================================
 
 Firebase project: ${projectId}

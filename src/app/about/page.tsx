@@ -13,14 +13,14 @@ import Reveal from "../../components/Reveal";
 export const metadata: Metadata = {
   title: "About",
   description:
-    "Adam Issac is a senior at Denmark High School and the creator of Adam's Alphabet — a free Grades 6–8 math resource built for students who learn differently.",
+    "Adam Issac is a senior at Denmark High School and the creator of Adam's Alphabet - a free Grades 6–8 math resource built for students who learn differently.",
 };
 
 export default function AboutPage() {
   return (
     <>
       {/* ===============================================================
-          HERO — magazine layout: big headline + stats + "what I'm up to"
+          HERO - magazine layout: big headline + stats + "what I'm up to"
           on the left; compact identity card (small portrait + structured
           meta) on the right.
           =============================================================== */}
@@ -39,10 +39,10 @@ export default function AboutPage() {
 
               <p className="lede mt-5 max-w-2xl">
                 A high-school senior turning the help my friends asked for
-                into something every student can use — without paying for it.
+                into something every student can use - without paying for it.
               </p>
 
-              {/* Stat strip — punchier than the old proof row */}
+              {/* Stat strip - punchier than the old proof row */}
               <dl className="mt-8 grid grid-cols-2 sm:grid-cols-4 gap-x-6 gap-y-5 max-w-2xl">
                 <Stat num="Sr." label="at Denmark High School" />
                 <Stat num="2+" label="years tutoring" />
@@ -54,7 +54,7 @@ export default function AboutPage() {
               <div className="mt-8 rounded-xl border border-[var(--color-brand-100)] bg-[var(--color-brand-50)] p-5 sm:p-6">
                 <p className="eyebrow text-[var(--color-brand-600)]">Math credentials</p>
                 <p className="small text-[var(--color-ink-muted)] mt-2 max-w-xl leading-relaxed">
-                  Course grades and exam scores — the background behind the lessons on this site.
+                  Course grades and exam scores - the background behind the lessons on this site.
                 </p>
                 <dl className="mt-5 grid gap-3 sm:grid-cols-2">
                   <CredentialRow label="Algebra EOC" value="100%" detail="End-of-course exam" />
@@ -116,19 +116,19 @@ export default function AboutPage() {
         <p className="font-display font-medium text-2xl sm:text-3xl lg:text-4xl leading-[1.3] tracking-[-0.01em] mt-4 text-white">
           Make every important middle-school math idea{" "}
           <span className="text-[var(--color-accent-300)]">easy to find,</span> easy to follow, and free
-          to use — especially for students who can&apos;t afford private tutoring.
+          to use - especially for students who can&apos;t afford private tutoring.
         </p>
       </ColorBand>
 
       {/* ===============================================================
-          STORY — long-form, broken by a pull quote
+          STORY - long-form, broken by a pull quote
           =============================================================== */}
       <Section tone="default" size="sm" containerSize="xl" decorated="paper" decoratedDensity="medium">
         <div className="grid lg:grid-cols-12 gap-8 lg:gap-14 items-start">
           <aside className="lg:col-span-2 lg:pr-8 xl:pr-10">
             <p className="eyebrow">My story</p>
             <p className="small text-[var(--color-ink-muted)] mt-3 leading-relaxed">
-              Why this site exists, in my own words — written over a few weekends in the
+              Why this site exists, in my own words - written over a few weekends in the
               library at school.
             </p>
           </aside>
@@ -141,7 +141,7 @@ export default function AboutPage() {
             </p>
 
             <p className="body mt-5 leading-relaxed text-[var(--color-ink)]">
-              Math was the one subject that always made sense to me — partly because of how
+              Math was the one subject that always made sense to me - partly because of how
               it&apos;s built, and partly because the people who explained it well made all the
               difference. Friends started calling me their &ldquo;math tutor.&rdquo; That nickname
               stuck.
@@ -149,7 +149,7 @@ export default function AboutPage() {
 
             <figure className="my-10">
               <blockquote className="pullquote pl-8">
-                I started tutoring two of my family&apos;s friends&apos; kids — sixth and eighth
+                I started tutoring two of my family&apos;s friends&apos; kids - sixth and eighth
                 grade. Watching how relieved they felt when something clicked is what
                 hooked me.
               </blockquote>
@@ -163,7 +163,7 @@ export default function AboutPage() {
             <p className="body mt-5 leading-relaxed text-[var(--color-ink)]">
               When I dug into the research, I learned that students who are below grade
               level are often also in families that can&apos;t afford private tutoring. That&apos;s
-              the gap Adam&apos;s Alphabet is built for — a free, friendly resource that meets
+              the gap Adam&apos;s Alphabet is built for - a free, friendly resource that meets
               students where they actually are.
             </p>
 
@@ -198,22 +198,22 @@ export default function AboutPage() {
               <Milestone
                 tag="Summer between"
                 title="Two students. One kitchen table."
-                body="I start tutoring two family-friend kids — 6th and 8th grade — at a kitchen table. Watching their confidence grow week over week is the moment this stops being a favor and starts being a project."
+                body="I start tutoring two family-friend kids - 6th and 8th grade - at a kitchen table. Watching their confidence grow week over week is the moment this stops being a favor and starts being a project."
               />
               <Milestone
                 tag="Junior year"
                 title="The site goes live"
-                body="Adam’s Alphabet launches with the first three units of Grade 6 math — written for the students who can’t afford private tutoring."
+                body="Adam’s Alphabet launches with the first three units of Grade 6 math - written for the students who can’t afford private tutoring."
               />
               <Milestone
                 tag="Now"
                 title="Three grades, free for everyone"
-                body="All of Grades 6, 7, and 8 published — 20 units with hand-picked videos, printable worksheets, and self-check quizzes. Reach has grown to 30+ tutored students across 10+ counties and 150+ schools online."
+                body="All of Grades 6, 7, and 8 published - 20 units with hand-picked videos, printable worksheets, and self-check quizzes. Reach has grown to 30+ tutored students across 10+ counties and 150+ schools online."
               />
               <Milestone
                 tag="Next"
                 title="Recording, refining, expanding"
-                body="I’m recording original walk-throughs, writing new worksheets, and deepening practice across all three grades — based on what real students keep asking about."
+                body="I’m recording original walk-throughs, writing new worksheets, and deepening practice across all three grades - based on what real students keep asking about."
                 last
               />
             </ol>
@@ -498,7 +498,7 @@ function ZoomIcon() {
 
 const VALUES: { tag: string; title: string; body: string }[] = [
   { tag: "01", title: "Always free", body: "No paid tier, no upsell, no ads. The mission is access, not revenue." },
-  { tag: "02", title: "Honest about hard", body: "When a topic is genuinely confusing, I slow down — not skip past it." },
+  { tag: "02", title: "Honest about hard", body: "When a topic is genuinely confusing, I slow down - not skip past it." },
   { tag: "03", title: "Cited, not invented", body: "Every video and worksheet is from a real teacher or trusted source." },
   { tag: "04", title: "Built for parents too", body: "Plain language and clear structure so parents can help, even if it’s been a while." },
 ];

@@ -64,7 +64,7 @@ export default function MathematicsQuickPaths() {
                   For parents &amp; teachers
                 </span>
                 <span className="block small text-white/75 mt-1 leading-relaxed">
-                  Plain-language guide — how to help your child use each lesson step by step.
+                  Plain-language guide - how to help your child use each lesson step by step.
                 </span>
                 <span className="inline-flex items-center gap-1 mt-3 text-sm font-semibold text-[var(--color-accent-300)]">
                   Read the guide <span aria-hidden>→</span>

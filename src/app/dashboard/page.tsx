@@ -104,7 +104,7 @@ function Dashboard() {
 
             <dl className="mt-6 grid sm:grid-cols-2 gap-x-8 gap-y-5">
               <DetailRow label="Name" value={displayName} />
-              <DetailRow label="Email" value={user.email || "—"} mono />
+              <DetailRow label="Email" value={user.email || "-"} mono />
               <DetailRow
                 label="User ID"
                 value={shorten(user.uid)}
@@ -129,7 +129,7 @@ function Dashboard() {
 
             <p className="caption text-[var(--color-ink-muted)] leading-relaxed">
               Need to change your name, email, or password? Use the &ldquo;Forgot
-              password&rdquo; flow to reset, or contact Adam directly — full
+              password&rdquo; flow to reset, or contact Adam directly - full
               account-management UI is on the roadmap.
             </p>
           </Card>
@@ -169,7 +169,7 @@ function Dashboard() {
         <div>
           <p className="caption font-semibold tracking-wider uppercase text-[var(--color-brand-300)]">Your sessions</p>
           <h2 className="font-display font-bold text-xl sm:text-2xl mt-1 text-white">Book a free 1-on-1 with Adam</h2>
-          <p className="small text-[#C8C9CC] mt-2 max-w-lg">Bring a topic from any unit — Zoom or in-person in the Atlanta area.</p>
+          <p className="small text-[#C8C9CC] mt-2 max-w-lg">Bring a topic from any unit - Zoom or in-person in the Atlanta area.</p>
         </div>
         <Link href="/book" className="btn btn-lg bg-white text-[var(--color-brand-700)] hover:bg-white/90 shrink-0 w-full sm:w-auto">
           Book a session →
@@ -216,9 +216,9 @@ function shorten(uid: string) {
 }
 
 function fmtDate(iso: string | null, withTime = false): string {
-  if (!iso) return "—";
+  if (!iso) return "-";
   const d = new Date(iso);
-  if (Number.isNaN(d.getTime())) return "—";
+  if (Number.isNaN(d.getTime())) return "-";
   return d.toLocaleDateString("en-US", {
     month: "long",
     day: "numeric",

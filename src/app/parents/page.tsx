@@ -12,7 +12,7 @@ import Reveal from "../../components/Reveal";
 export const metadata: Metadata = {
   title: "For parents & teachers",
   description:
-    "Plain-language guide for parents and teachers — how to use Adam's Alphabet to help a student with middle-school math.",
+    "Plain-language guide for parents and teachers - how to use Adam's Alphabet to help a student with middle-school math.",
 };
 
 const STEPS = [
@@ -30,7 +30,7 @@ const STEPS = [
   },
   {
     title: "Track progress locally",
-    body: "Topic checkmarks save in the browser — no account required. For extra help, book a free 1-on-1 session with Adam.",
+    body: "Topic checkmarks save in the browser - no account required. For extra help, book a free 1-on-1 session with Adam.",
   },
 ];
 
@@ -47,7 +47,7 @@ export default function ParentsPage() {
             <Badge tone="brand" className="mb-5">Parents &amp; teachers</Badge>
             <h1 className="h-display">Help your child without re-learning the whole book.</h1>
             <p className="lede mt-5 mx-auto max-w-[54ch]">
-              Adam&apos;s Alphabet is built in plain language with a clear structure — so you can
+              Adam&apos;s Alphabet is built in plain language with a clear structure - so you can
               sit beside a student, find the right lesson in minutes, and know what to do next.
             </p>
           </Reveal>
@@ -89,7 +89,7 @@ export default function ParentsPage() {
             <div>
               <dt className="font-semibold text-[var(--color-ink)]">Walkthrough</dt>
               <dd className="small text-[var(--color-ink-muted)] mt-1 leading-relaxed">
-                Short explanation with a worked example — good for you to skim before helping.
+                Short explanation with a worked example - good for you to skim before helping.
               </dd>
             </div>
             <div>
@@ -101,7 +101,7 @@ export default function ParentsPage() {
             <div>
               <dt className="font-semibold text-[var(--color-ink)]">Practice &amp; quiz</dt>
               <dd className="small text-[var(--color-ink-muted)] mt-1 leading-relaxed">
-                Printable worksheets and a short self-check with explanations — safe to retake.
+                Printable worksheets and a short self-check with explanations - safe to retake.
               </dd>
             </div>
           </dl>
@@ -115,7 +115,7 @@ export default function ParentsPage() {
               Still stuck after the lesson?
             </h2>
             <p className="mt-2 text-white/75">
-              Adam offers free 1-on-1 sessions — online or in-person in the Atlanta area.
+              Adam offers free 1-on-1 sessions - online or in-person in the Atlanta area.
             </p>
           </div>
           <div className="md:col-span-4 md:justify-self-end">

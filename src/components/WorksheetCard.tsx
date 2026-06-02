@@ -11,7 +11,7 @@ export default function WorksheetCard({ driveFileId, title, description }: Props
 
   return (
     <article className="card card-interactive overflow-hidden flex flex-col">
-      {/* Compact preview — a thumbnail of the first page, not the full document */}
+      {/* Compact preview - a thumbnail of the first page, not the full document */}
       <a
         href={view}
         target="_blank"

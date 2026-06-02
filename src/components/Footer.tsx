@@ -13,7 +13,7 @@ export default function Footer() {
               Adam&apos;s Alphabet
             </Link>
             <p className="mt-3 small text-[var(--color-ink-muted)] max-w-md leading-relaxed">
-              A free Grades 6–8 math library — clear lessons, hand-picked video walkthroughs,
+              A free Grades 6–8 math library - clear lessons, hand-picked video walkthroughs,
               printable worksheets, and quizzes. Built by a student tutor for students who
               learn differently.
             </p>
@@ -66,7 +66,7 @@ export default function Footer() {
             © {YEAR} Adam&apos;s Alphabet · Free educational resources
           </p>
           <p className="caption text-[var(--color-ink-soft)]">
-            Designed for extra help — not limited to students in Georgia.
+            Designed for extra help - not limited to students in Georgia.
           </p>
         </div>
       </div>

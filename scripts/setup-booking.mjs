@@ -29,7 +29,7 @@ function hasValidKey(text) {
 }
 
 async function main() {
-  console.log("\nAdam's Alphabet — Book a class (Resend) setup\n");
+  console.log("\nAdam's Alphabet - Book a class (Resend) setup\n");
 
   if (!existsSync(envLocal)) {
     copyFileSync(envExample, envLocal);

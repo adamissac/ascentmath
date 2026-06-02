@@ -2,8 +2,8 @@
  * Booking-email composition.
  *
  * Two outputs:
- *   • `text`  — plain-text body (used as fallback + as preview content)
- *   • `html`  — branded HTML body for clients that render markup
+ *   • `text`  - plain-text body (used as fallback + as preview content)
+ *   • `html`  - branded HTML body for clients that render markup
  *
  * Kept framework-agnostic so this module can be unit-tested or reused on
  * the edge runtime without pulling in React.
@@ -33,7 +33,7 @@ const labelMode = (mode: BookingPayload["mode"]) =>
   mode === "zoom" ? "Zoom (online)" : "In-person";
 
 const fmtDate = (iso?: string) => {
-  if (!iso) return "—";
+  if (!iso) return "-";
   const d = new Date(iso + "T00:00:00");
   if (Number.isNaN(d.getTime())) return iso;
   return d.toLocaleDateString("en-US", {
@@ -45,25 +45,25 @@ const fmtDate = (iso?: string) => {
 };
 
 export function renderBookingEmail(p: BookingPayload) {
-  const subject = `New booking request — ${p.name}`;
+  const subject = `New booking request - ${p.name}`;
 
   const text = [
     "New booking request from adamsalphabet.com",
     "",
     `Name:       ${p.name}`,
     `Email:      ${p.email}`,
-    `Phone:      ${p.phone || "—"}`,
+    `Phone:      ${p.phone || "-"}`,
     `Mode:       ${labelMode(p.mode)}`,
-    `Grade:      ${p.grade || "—"}`,
-    `Topic:      ${p.topic || "—"}`,
+    `Grade:      ${p.grade || "-"}`,
+    `Topic:      ${p.topic || "-"}`,
     `Date:       ${fmtDate(p.preferredDate)}`,
-    `Time:       ${p.preferredTime || "—"}`,
+    `Time:       ${p.preferredTime || "-"}`,
     "",
     "Notes",
     "─────",
     p.notes?.trim() || "(none)",
     "",
-    "—",
+    "-",
     "Adam's Alphabet · adamsalphabet.com",
   ].join("\n");
 
@@ -100,12 +100,12 @@ export function renderBookingEmail(p: BookingPayload) {
                     p.email
                   )}</a>`
                 )}
-                ${row("Phone", p.phone ? escapeHtml(p.phone) : "—")}
+                ${row("Phone", p.phone ? escapeHtml(p.phone) : "-")}
                 ${row("Mode", labelMode(p.mode))}
-                ${row("Grade", p.grade ? escapeHtml(p.grade) : "—")}
-                ${row("Topic", p.topic ? escapeHtml(p.topic) : "—")}
+                ${row("Grade", p.grade ? escapeHtml(p.grade) : "-")}
+                ${row("Topic", p.topic ? escapeHtml(p.topic) : "-")}
                 ${row("Date", escapeHtml(fmtDate(p.preferredDate)))}
-                ${row("Time", p.preferredTime ? escapeHtml(p.preferredTime) : "—")}
+                ${row("Time", p.preferredTime ? escapeHtml(p.preferredTime) : "-")}
               </table>
 
               <h2 style="margin:24px 0 8px;font-size:13px;letter-spacing:0.12em;text-transform:uppercase;color:#1F3CB1;font-weight:700;">Notes</h2>

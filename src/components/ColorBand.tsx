@@ -29,7 +29,7 @@ const VARIANT: Record<
 };
 
 /**
- * Full-width contrast section — dark ink or deep brand blue,
+ * Full-width contrast section - dark ink or deep brand blue,
  * with math backdrop. Use between lighter sections for rhythm.
  */
 export default function ColorBand({

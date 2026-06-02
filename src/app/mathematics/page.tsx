@@ -15,7 +15,7 @@ import { GRADES, countUnitVideos, type Grade } from "../../data/units";
 export const metadata: Metadata = {
   title: "Mathematics",
   description:
-    "Grade 6, 7, and 8 Mathematics — units of walkthroughs, videos, practice, and quizzes aligned to Georgia DOE standards.",
+    "Grade 6, 7, and 8 Mathematics - units of walkthroughs, videos, practice, and quizzes aligned to Georgia DOE standards.",
 };
 
 export default function MathematicsHub() {
@@ -38,7 +38,7 @@ export default function MathematicsHub() {
             <Badge tone="brand" className="mb-5">Grades 6–8 · GADOE aligned</Badge>
             <h1 className="h-display">Middle school math, one grade at a time.</h1>
             <p className="lede mt-5 mx-auto max-w-[54ch]">
-              Pick your grade to see its full curriculum. Every unit is broken into short topics —
+              Pick your grade to see its full curriculum. Every unit is broken into short topics - 
               read a walkthrough, watch a video, try the practice, take a quick check.
             </p>
             <div className="proof-row mt-8 justify-center">
@@ -83,7 +83,7 @@ export default function MathematicsHub() {
                 GADOE Curriculum Frameworks
               </span>
               <span className="block small text-[var(--color-ink-muted)] mt-1">
-                Official Georgia DOE unit frameworks (PDF) — useful for parents and teachers.
+                Official Georgia DOE unit frameworks (PDF) - useful for parents and teachers.
               </span>
             </span>
             <span aria-hidden className="text-[var(--color-ink-soft)] group-hover:text-[var(--color-brand-600)] transition-colors text-xl">→</span>
@@ -98,7 +98,7 @@ export default function MathematicsHub() {
             <h2 className="font-display font-bold text-2xl sm:text-3xl leading-[1.2]">
               Need help on something specific?
             </h2>
-            <p className="mt-2 text-white/75">Book a free 1:1 session with Adam — online or in-person.</p>
+            <p className="mt-2 text-white/75">Book a free 1:1 session with Adam - online or in-person.</p>
           </div>
           <div className="md:col-span-4 md:justify-self-end btn-stack-mobile md:flex-row md:justify-end">
             <Button href="/book" rightIcon={<Arrow />}>Book a class</Button>

@@ -72,7 +72,7 @@ export default function Quiz({ title = "Check yourself", questions, onComplete }
     const pct = Math.round((score / total) * 100);
     const tone = pct >= 80 ? "success" : pct >= 60 ? "warning" : "danger";
     const message =
-      pct >= 80 ? "Strong work — you have this!" : pct >= 60 ? "Good progress — try the misses again." : "Practice the ideas in the videos and try again.";
+      pct >= 80 ? "Strong work - you have this!" : pct >= 60 ? "Good progress - try the misses again." : "Practice the ideas in the videos and try again.";
     return (
       <div className="card p-8 text-[var(--color-ink)]">
         <div className="flex flex-col items-center text-center">
@@ -102,7 +102,7 @@ export default function Quiz({ title = "Check yourself", questions, onComplete }
                 </div>
                 <p className="mt-2 small font-medium">{qq.prompt}</p>
                 <p className="mt-2 caption text-[var(--color-ink-muted)]">
-                  Your answer: <span className="text-[var(--color-ink)] font-medium">{userAns || "—"}</span>
+                  Your answer: <span className="text-[var(--color-ink)] font-medium">{userAns || "-"}</span>
                 </p>
                 <p className="caption text-[var(--color-ink-muted)]">
                   Correct: <span className="text-[var(--color-brand-700)] font-medium">{String(qq.answer)}</span>

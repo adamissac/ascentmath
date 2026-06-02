@@ -260,7 +260,7 @@ export default function MathBackdrop({
         </span>
       )}
 
-      {/* Secondary watermark — book-ish curve on left for paper/muted */}
+      {/* Secondary watermark - book-ish curve on left for paper/muted */}
       {(variant === "paper" || variant === "muted") && density !== "light" && !contentSafe && (
         <span
           className="absolute font-display font-bold leading-none"

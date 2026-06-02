@@ -1,6 +1,6 @@
 # Adam's Alphabet
 
-Free Grade 6 Mathematics resources — lessons, video walkthroughs, worksheets, and quizzes. Built with Next.js 15, React 19, and Tailwind CSS v4.
+Free Grade 6 Mathematics resources - lessons, video walkthroughs, worksheets, and quizzes. Built with Next.js 15, React 19, and Tailwind CSS v4.
 
 ## Quick start
 
@@ -14,7 +14,7 @@ Open <http://localhost:3000>.
 
 ## Booking system (Resend)
 
-The `/book` page sends real emails to `adamissac08@gmail.com` via [Resend](https://resend.com). The form posts to the in-app API route `src/app/api/book/route.ts` — no `mailto:` redirects, no third-party widgets.
+The `/book` page sends real emails to `adamissac08@gmail.com` via [Resend](https://resend.com). The form posts to the in-app API route `src/app/api/book/route.ts` - no `mailto:` redirects, no third-party widgets.
 
 ### One-time setup
 
@@ -45,7 +45,7 @@ Once `adamsalphabet.com` is verified in Resend (Settings → Domains), switch `B
 - **Rate-limits** to 5 submissions per minute per IP.
 - **Honeypot** field hidden in the form catches bots.
 - **Templates** the email (HTML + plain text) in `src/lib/bookingEmail.ts`.
-- Returns structured JSON: `{ ok: true }` on success, or `{ ok: false, error, fieldErrors? }` on failure — the form surfaces these inline.
+- Returns structured JSON: `{ ok: true }` on success, or `{ ok: false, error, fieldErrors? }` on failure - the form surfaces these inline.
 
 ## Authentication (Firebase)
 
@@ -55,11 +55,11 @@ Account pages live at `/signup`, `/login`, `/forgot-password`, and `/dashboard`.
 
 1. **Create a Firebase project** at <https://console.firebase.google.com>.
 2. **Enable sign-in methods**:
-   - Authentication → Sign-in method → enable **Email/Password**.
-   - Authentication → Sign-in method → enable **Google** (set a support email).
+  - Authentication → Sign-in method → enable **Email/Password**.
+  - Authentication → Sign-in method → enable **Google** (set a support email).
 3. **(Optional) Enable Firestore** to persist user profiles:
-   - Build → Firestore Database → Create database (Production mode → pick a region).
-   - Replace the default rules with the snippet below so a user can only read/write their own profile:
+  - Build → Firestore Database → Create database (Production mode → pick a region).
+  - Replace the default rules with the snippet below so a user can only read/write their own profile:
 
      ```rules
      rules_version = '2';
@@ -83,7 +83,7 @@ Account pages live at `/signup`, `/login`, `/forgot-password`, and `/dashboard`.
    NEXT_PUBLIC_FIREBASE_APP_ID=1:123456789012:web:abc...
    ```
 
-   These keys are **public by design** — the Firebase Web SDK requires them in the browser bundle. Security is enforced by the rules above, not by hiding the key.
+   These keys are **public by design** - the Firebase Web SDK requires them in the browser bundle. Security is enforced by the rules above, not by hiding the key.
 
 5. **Authorized domains**: still in Authentication → Settings → Authorized domains, add `localhost` (already there) and any production domain you'll deploy on (e.g. `adamsalphabet.com`, `adamsalphabet.vercel.app`).
 6. Restart `npm run dev`. Sign up at `/signup`, log out from the navbar avatar menu, and try `/forgot-password`.
@@ -103,12 +103,12 @@ Account pages live at `/signup`, `/login`, `/forgot-password`, and `/dashboard`.
 
 Key behaviors:
 
-- **Persistent sessions** — `browserLocalPersistence` by default. Uncheck "Remember me" on the login screen to switch to `browserSessionPersistence`.
-- **Protected routes** — `/dashboard` redirects to `/login?next=/dashboard` if not authenticated. After login the user is sent back to the original `next` path.
-- **Already-logged-in guard** — `/login`, `/signup`, `/forgot-password` redirect to `/dashboard` if the visitor already has a session.
-- **Graceful degradation** — if `NEXT_PUBLIC_FIREBASE_*` aren't set, every auth screen and the dashboard show a friendly "Firebase not configured" banner instead of crashing.
-- **Profiles** — on first sign-in a `users/{uid}` document is created in Firestore (name, email, role, createdAt). If Firestore isn't enabled the auth still works; we just synthesize the profile from the Auth record.
-- **Google sign-in resilience** — tries `signInWithPopup` first; if the browser blocks the popup or refuses third-party storage, automatically falls back to `signInWithRedirect`. `getRedirectResult` is consumed on mount so the user lands back in `/dashboard` without an extra click.
+- **Persistent sessions** - `browserLocalPersistence` by default. Uncheck "Remember me" on the login screen to switch to `browserSessionPersistence`.
+- **Protected routes** - `/dashboard` redirects to `/login?next=/dashboard` if not authenticated. After login the user is sent back to the original `next` path.
+- **Already-logged-in guard** - `/login`, `/signup`, `/forgot-password` redirect to `/dashboard` if the visitor already has a session.
+- **Graceful degradation** - if `NEXT_PUBLIC_FIREBASE_*` aren't set, every auth screen and the dashboard show a friendly "Firebase not configured" banner instead of crashing.
+- **Profiles** - on first sign-in a `users/{uid}` document is created in Firestore (name, email, role, createdAt). If Firestore isn't enabled the auth still works; we just synthesize the profile from the Auth record.
+- **Google sign-in resilience** - tries `signInWithPopup` first; if the browser blocks the popup or refuses third-party storage, automatically falls back to `signInWithRedirect`. `getRedirectResult` is consumed on mount so the user lands back in `/dashboard` without an extra click.
 
 ### Troubleshooting Google sign-in
 
@@ -117,9 +117,9 @@ If "Continue with Google" doesn't work, walk this checklist:
 1. **Method enabled?** Firebase Console → Authentication → Sign-in method → confirm **Google** shows "Enabled". Setting a support email is required to turn it on. If you haven't done this you'll see `auth/operation-not-allowed`.
 2. **Domain authorized?** Authentication → Settings → **Authorized domains** must include the host the user is on. `localhost` is added by default; your production host (e.g. `adamsalphabet.com`, `adamsalphabet.vercel.app`) must be added manually. Missing entries throw `auth/unauthorized-domain`.
 3. **Env vars filled?** All six `NEXT_PUBLIC_FIREBASE_*` values must be set in `.env.local` and the dev server restarted afterwards (Next.js bakes them in at build time).
-4. **Popup blocker?** Some browsers (especially Safari + Firefox in strict mode) block OAuth popups. The app will auto-fall-back to a full-page redirect — if you'd rather use the popup, allow popups for this site.
+4. **Popup blocker?** Some browsers (especially Safari + Firefox in strict mode) block OAuth popups. The app will auto-fall-back to a full-page redirect - if you'd rather use the popup, allow popups for this site.
 5. **Strict tracking protection?** Brave / Safari ITP can disable the storage Firebase needs. You'll see `auth/web-storage-unsupported`. Disable strict tracking for the site or use the redirect flow.
-6. **Verified support email?** If you change the support email in GCP, Google sign-in can briefly stop working — re-saving the Sign-in method config refreshes it.
+6. **Verified support email?** If you change the support email in GCP, Google sign-in can briefly stop working - re-saving the Sign-in method config refreshes it.
 
 ## Project structure
 
@@ -149,7 +149,7 @@ src/
 
 ## Adding or editing content
 
-All curriculum data — units, videos, worksheets, quiz questions — lives in `src/data/units.ts`. Edit that file and every page (home, math hub, unit pages, frameworks page) updates automatically.
+All curriculum data - units, videos, worksheets, quiz questions - lives in `src/data/units.ts`. Edit that file and every page (home, math hub, unit pages, frameworks page) updates automatically.
 
 ### Add a video to a unit
 
@@ -190,8 +190,8 @@ Design tokens are defined as CSS custom properties in `src/app/globals.css` unde
 
 Tokens include:
 
-- Brand palette (`--color-brand-50` … `--color-brand-900`) — teal-green
-- Accent palette (`--color-accent-*`) — warm amber
+- Brand palette (`--color-brand-50` … `--color-brand-900`) - teal-green
+- Accent palette (`--color-accent-*`) - warm amber
 - Surface, ink, border tokens
 - Semantic colors (info, success, warning, danger)
 - Radii, shadows, focus rings

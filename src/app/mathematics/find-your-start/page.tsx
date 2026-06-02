@@ -32,7 +32,7 @@ export default function FindYourStartPage() {
             <h1 className="h-display">Find the right unit for you.</h1>
             <p className="lede mt-4">
               You don&apos;t have to browse all {totalUnits} units blind. Tell us your grade and what your
-              class is covering — we&apos;ll drop you into a sensible starting point.
+              class is covering - we&apos;ll drop you into a sensible starting point.
             </p>
           </Reveal>
         </Container>

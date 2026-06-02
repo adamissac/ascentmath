@@ -20,10 +20,10 @@ export default function Home() {
     <>
       {/* ================================================================
           HERO
-          - Strict 12-col grid (lg: 7 / 5 split)
-          - Vertical rhythm on an 8-px scale: 16 / 24 / 32 / 40 / 56 / 80
-          - Subtle dot-grid + radial accent replace the floating α
-          - Product-preview card on the right makes the offer tangible
+         - Strict 12-col grid (lg: 7 / 5 split)
+         - Vertical rhythm on an 8-px scale: 16 / 24 / 32 / 40 / 56 / 80
+         - Subtle dot-grid + radial accent replace the floating α
+         - Product-preview card on the right makes the offer tangible
           ================================================================ */}
       <section className="hero-surface relative overflow-hidden">
         <MathBackdrop variant="paper" density="dense" fadeEdges />
@@ -41,13 +41,13 @@ export default function Home() {
 
               <p className="lede mt-6 max-w-[52ch]">
                 Hand-picked video walkthroughs, clear lessons, and quick
-                self-checks for Grades 6, 7, and 8 — designed for students who learn
+                self-checks for Grades 6, 7, and 8 - designed for students who learn
                 best when math stops feeling like a wall.
               </p>
 
               <div className="mt-8 btn-stack-mobile">
                 <Button href="/mathematics" size="lg" rightIcon={<ArrowRight />}>
-                  Start learning — it&apos;s free
+                  Start learning - it&apos;s free
                 </Button>
                 <Button href="/book" variant="outline" size="lg" rightIcon={<ArrowRight />}>
                   Book a free 1:1
@@ -64,7 +64,7 @@ export default function Home() {
                 <Stat num={totalUnits} label="Units, aligned to GADOE" />
                 <Stat num={`${totalVideos}+`} label="Video walkthroughs" />
                 <Stat num="30+" label="Students tutored 1-on-1" />
-                <Stat num="$0" label="Cost — now and forever" />
+                <Stat num="$0" label="Cost - now and forever" />
               </div>
             </Reveal>
 
@@ -76,7 +76,7 @@ export default function Home() {
       </section>
 
       {/* ================================================================
-          CURRICULUM — editorial numbered list on brand blue
+          CURRICULUM - editorial numbered list on brand blue
           ================================================================ */}
       <ColorBand variant="brand" size="sm" containerSize="xl" reveal={false}>
         <Reveal>
@@ -146,7 +146,7 @@ export default function Home() {
       </ColorBand>
 
       {/* ================================================================
-          HOW IT WORKS — 4 numbered step cards
+          HOW IT WORKS - 4 numbered step cards
           12-col layout: brief on left (col-span-4), step cards on right (col-span-8)
           ================================================================ */}
       <Section tone="muted" size="sm" containerSize="xl" decorated="muted" decoratedDensity="medium" reveal={false}>
@@ -158,7 +158,7 @@ export default function Home() {
             </h2>
             <p className="lede mt-6 max-w-md">
               Open any unit and you&apos;ll see the same four sections, in the same
-              order. Skim, skip, or follow it through — it&apos;s built to fit how you
+              order. Skim, skip, or follow it through - it&apos;s built to fit how you
               study.
             </p>
             <div className="mt-8">
@@ -188,7 +188,7 @@ export default function Home() {
               <Step
                 n="04"
                 title="Track"
-                body="A progress bar saves what you've finished — locally, no account needed. Pick up where you left off, on any device."
+                body="A progress bar saves what you've finished - locally, no account needed. Pick up where you left off, on any device."
               />
             </Reveal>
           </div>
@@ -204,7 +204,7 @@ export default function Home() {
           <div className="col-span-12 md:col-span-10">
             <blockquote className="font-display text-2xl sm:text-3xl font-medium leading-[1.4] tracking-[-0.01em] text-[var(--color-ink)] max-w-3xl">
               Adam really helped me understand fractions. I feel so much more
-              confident now — and I actually like math class.
+              confident now - and I actually like math class.
             </blockquote>
             <footer className="mt-6 flex items-center gap-3">
               <span className="w-10 h-10 rounded-full bg-[var(--color-brand-100)] text-[var(--color-brand-700)] grid place-items-center font-semibold">A</span>
@@ -223,7 +223,7 @@ export default function Home() {
         </div>
       </Section>
 
-      {/* CLOSING CTA — single dark band */}
+      {/* CLOSING CTA - single dark band */}
       <ColorBand variant="dark" size="lg">
         <div className="grid grid-cols-12 gap-8 items-center">
           <div className="col-span-12 md:col-span-7">
@@ -231,11 +231,11 @@ export default function Home() {
               Stuck on something?
             </p>
             <h2 className="font-display font-bold mt-3 text-3xl sm:text-4xl leading-[1.15] tracking-[-0.02em] max-w-2xl text-white">
-              Book a free 1-on-1 with Adam — online or in&#8209;person.
+              Book a free 1-on-1 with Adam - online or in&#8209;person.
             </h2>
             <p className="mt-4 text-[#C8C9CC] max-w-xl">
               Bring the problem you&apos;re working on. He&apos;ll walk through it
-              with you — no charge, no sales pitch, no follow-up emails.
+              with you - no charge, no sales pitch, no follow-up emails.
             </p>
             <div className="mt-6 flex flex-wrap gap-x-6 gap-y-2 text-sm text-[#9AA0A8]">
               <span className="inline-flex items-center gap-2"><Check tone="light" /> 45 minutes</span>
@@ -261,7 +261,7 @@ export default function Home() {
 }
 
 /* ============================================================
-   Local components — kept inline because they only ship on this
+   Local components - kept inline because they only ship on this
    page and are tightly coupled to its content & layout.
    ============================================================ */
 
@@ -300,7 +300,7 @@ function MiniQuote({ text, name, role, dark }: { text: string; name: string; rol
 function UnitPreview() {
   return (
     <div className="relative">
-      {/* watermark α behind the card — replaces the floating decoration */}
+      {/* watermark α behind the card - replaces the floating decoration */}
       <span
         aria-hidden
         className="brand-watermark hidden lg:block"

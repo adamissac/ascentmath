@@ -1,13 +1,13 @@
 @import "tailwindcss";
 
 /* =============================================================
-   Adam's Alphabet — Design System
+   Adam's Alphabet - Design System
    Khan-Academy inspired, but with our own identity.
    Light, calm, friendly, and focused on readability.
    ============================================================= */
 
 @theme {
-  /* Brand — royal blue, pulled from the A in the logo. Light end stays
+  /* Brand - royal blue, pulled from the A in the logo. Light end stays
      desaturated (so background washes don't look like Facebook); dark end
      matches the deepest tone in the logo's gradient. */
   --color-brand-50:  #EEF2FE;
@@ -21,7 +21,7 @@
   --color-brand-800: #132573;
   --color-brand-900: #0B1A57;
 
-  /* Accent — vibrant orange, pulled from the swoosh and star in the logo. */
+  /* Accent - vibrant orange, pulled from the swoosh and star in the logo. */
   --color-accent-50:  #FFF3E8;
   --color-accent-100: #FFDEC0;
   --color-accent-300: #FFB670;
@@ -105,7 +105,7 @@ body {
    Typography utilities
    ============================================================= */
 
-/* Display headings — Lexend has tall vertical metrics, so we keep line-heights
+/* Display headings - Lexend has tall vertical metrics, so we keep line-heights
    generous (≥1.15 on tight sizes) to prevent ascenders/descenders from kissing
    the line above. Letter-spacing is mild; very negative tracking collapses
    counters at larger sizes. */
@@ -303,7 +303,7 @@ body {
 .help { font-size: 0.8125rem; color: var(--color-ink-muted); }
 .error-text { font-size: 0.8125rem; color: var(--color-danger); }
 
-/* Topic finder — grid keeps icon and text in separate columns (no overlap) */
+/* Topic finder - grid keeps icon and text in separate columns (no overlap) */
 .topic-search-field {
   display: grid;
   grid-template-columns: 3.25rem minmax(0, 1fr);
@@ -380,7 +380,7 @@ body {
 }
 
 /* =============================================================
-   Hero surfaces — flat background + optional grid watermark
+   Hero surfaces - flat background + optional grid watermark
    ============================================================= */
 
 .hero-surface {
@@ -400,7 +400,7 @@ body {
   background-size: 32px 32px;
 }
 
-/* Faded ghost α used as background watermark — replaces the float-deco
+/* Faded ghost α used as background watermark - replaces the float-deco
    that previously appeared as a stray oversized character. */
 .brand-watermark {
   position: absolute;
@@ -585,7 +585,7 @@ body {
   font-family: var(--font-display);
 }
 
-/* Wrappable highlight — replaces inline-block underline spans so the
+/* Wrappable highlight - replaces inline-block underline spans so the
    highlighted phrase can break across lines on narrow viewports. */
 .hl {
   background-color: var(--color-accent-100);
@@ -633,7 +633,7 @@ body {
   margin-right: 0.375rem;
 }
 
-/* Hero stat strip — 4 column grid with vertical divider rules. Each cell
+/* Hero stat strip - 4 column grid with vertical divider rules. Each cell
    uses display number (Lexend) over a micro caption. */
 .stat-strip {
   display: grid;
@@ -739,7 +739,7 @@ body {
   .spotlight-grid { grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); gap: 4rem; align-items: end; }
 }
 
-/* Soft glow behind product-preview visuals — flat tint, no gradient */
+/* Soft glow behind product-preview visuals - flat tint, no gradient */
 .glow-soft {
   display: none;
 }
@@ -821,7 +821,7 @@ body {
   padding-right: env(safe-area-inset-right, 0px);
 }
 
-/* Site container — horizontal padding at desktop (avoid lg:px-8 utilities
+/* Site container - horizontal padding at desktop (avoid lg:px-8 utilities
    overriding unit-study offsets). */
 @media (min-width: 1024px) {
   .site-container {

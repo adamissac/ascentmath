@@ -18,7 +18,7 @@ export default function ComingSoonDialog({
   open,
   onClose,
   title = "Accounts are coming soon",
-  description = "We're still setting up sign-in. You can use every math unit, video, worksheet, and quiz right now — no account needed.",
+  description = "We're still setting up sign-in. You can use every math unit, video, worksheet, and quiz right now - no account needed.",
 }: Props) {
   const titleId = useId();
   const descId = useId();

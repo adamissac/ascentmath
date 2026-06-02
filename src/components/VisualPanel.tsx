@@ -5,7 +5,7 @@ import { UnitSymbol } from "./UnitSymbol";
 type Stat = { value: string; label: string };
 
 /**
- * Decorative panel — logo, unit icons, and math backdrop to fill empty
+ * Decorative panel - logo, unit icons, and math backdrop to fill empty
  * column space on heroes and long scrolling sections.
  */
 export default function VisualPanel({

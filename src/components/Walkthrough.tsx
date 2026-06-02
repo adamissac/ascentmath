@@ -1,7 +1,7 @@
 import type { WalkthroughBlock } from "../data/units";
 
 /**
- * Renders a topic walkthrough — a short, structured explainer made of
+ * Renders a topic walkthrough - a short, structured explainer made of
  * headings, paragraphs, ordered steps, worked examples, and callouts.
  */
 export default function Walkthrough({ blocks }: { blocks: WalkthroughBlock[] }) {

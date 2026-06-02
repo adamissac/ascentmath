@@ -11,7 +11,7 @@ const PANEL_LABEL = "Unit menu";
 const DESKTOP_QUERY = "(min-width: 1024px)";
 
 /**
- * Left unit menu — open by default on desktop; users can close it. On mobile
+ * Left unit menu - open by default on desktop; users can close it. On mobile
  * it stays closed until opened. Overlays content on desktop so section
  * backgrounds run full width behind the menu.
  */
@@ -176,7 +176,7 @@ export default function UnitStudyPanel({
             {panelContent}
           </aside>
 
-          {/* Mobile — fixed slide-over drawer */}
+          {/* Mobile - fixed slide-over drawer */}
           <aside
             aria-label={PANEL_LABEL}
             aria-hidden={!open}

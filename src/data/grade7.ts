@@ -1,5 +1,5 @@
 /**
- * Grade 7 Mathematics units — aligned to Georgia DOE (GADOE) standards.
+ * Grade 7 Mathematics units - aligned to Georgia DOE (GADOE) standards.
  * Same shape as Grade 6: each unit is split into focused topics with a
  * walkthrough, a video, practice, and a short quiz.
  *
@@ -14,14 +14,14 @@ const KHAN_7 = "https://www.khanacademy.org/math/cc-seventh-grade-math";
 
 export const GRADE_7_UNITS: Unit[] = [
   // ================================================================
-  // UNIT 1 — Operations with Rational Numbers
+  // UNIT 1 - Operations with Rational Numbers
   // ================================================================
   {
     id: "g7-unit-1",
     number: 1,
     slug: "rational-numbers",
     title: "Operations with Rational Numbers",
-    short: "Add, subtract, multiply, and divide positive and negative numbers — integers, fractions, and decimals.",
+    short: "Add, subtract, multiply, and divide positive and negative numbers - integers, fractions, and decimals.",
     description:
       "Extend everything you know about arithmetic to negative numbers. You'll learn the sign rules for adding, subtracting, multiplying, and dividing integers, then apply them to fractions and decimals.",
     icon: "±",
@@ -106,7 +106,7 @@ export const GRADE_7_UNITS: Unit[] = [
             prompt: "Adding a negative number is the same as subtracting a positive number.",
             type: "true-false",
             answer: true,
-            explanation: "Yes — for example, 8 + (-3) = 8 - 3 = 5.",
+            explanation: "Yes - for example, 8 + (-3) = 8 - 3 = 5.",
             difficulty: "medium",
           },
         ],
@@ -215,7 +215,7 @@ export const GRADE_7_UNITS: Unit[] = [
             },
           },
         ],
-        video: { videoId: "5juto2ze8Lg", title: "Adding & Subtracting Fractions", source: "Math Antics", description: "Find common denominators, then combine — the same process works with negatives." },
+        video: { videoId: "5juto2ze8Lg", title: "Adding & Subtracting Fractions", source: "Math Antics", description: "Find common denominators, then combine - the same process works with negatives." },
         practiceLinks: [
           { href: `${KHAN_7}/cc-7th-negative-numbers-add-and-subtract`, title: "Rational number operations", source: "Khan Academy" },
           { href: "https://www.mathworksheets4kids.com/fractions.php", title: "Fraction operations worksheets", source: "Math Worksheets 4 Kids" },
@@ -250,7 +250,7 @@ export const GRADE_7_UNITS: Unit[] = [
   },
 
   // ================================================================
-  // UNIT 2 — Ratios & Proportional Relationships
+  // UNIT 2 - Ratios & Proportional Relationships
   // ================================================================
   {
     id: "g7-unit-2",
@@ -285,14 +285,14 @@ export const GRADE_7_UNITS: Unit[] = [
           {
             heading: "A unit rate is 'per one'",
             paragraphs: [
-              "A unit rate tells you how much of one quantity goes with exactly one of another — like miles per hour or cost per pound.",
+              "A unit rate tells you how much of one quantity goes with exactly one of another - like miles per hour or cost per pound.",
             ],
           },
           {
             heading: "When the numbers are fractions",
             steps: [
               "Write the rate as a fraction (a complex fraction).",
-              "Divide the top by the bottom — multiply by the reciprocal.",
+              "Divide the top by the bottom - multiply by the reciprocal.",
               "Simplify to get the rate per one.",
             ],
           },
@@ -328,7 +328,7 @@ export const GRADE_7_UNITS: Unit[] = [
             prompt: "Dividing by a fraction is the same as multiplying by its reciprocal.",
             type: "true-false",
             answer: true,
-            explanation: "Yes — that is the key step for computing unit rates from fractions.",
+            explanation: "Yes - that is the key step for computing unit rates from fractions.",
             difficulty: "easy",
           },
         ],
@@ -366,7 +366,7 @@ export const GRADE_7_UNITS: Unit[] = [
           {
             callout: {
               label: "Tip",
-              text: "The constant of proportionality is the same as the unit rate — the value of y when x = 1.",
+              text: "The constant of proportionality is the same as the unit rate - the value of y when x = 1.",
             },
           },
         ],
@@ -478,7 +478,7 @@ export const GRADE_7_UNITS: Unit[] = [
   },
 
   // ================================================================
-  // UNIT 3 — Expressions & Equations
+  // UNIT 3 - Expressions & Equations
   // ================================================================
   {
     id: "g7-unit-3",
@@ -487,7 +487,7 @@ export const GRADE_7_UNITS: Unit[] = [
     title: "Expressions & Equations",
     short: "Expand and factor linear expressions, then solve two-step equations and inequalities.",
     description:
-      "Work with algebraic expressions and equations. You'll use the distributive property to expand and factor, combine like terms, and solve two-step equations and inequalities — including knowing when to flip an inequality sign.",
+      "Work with algebraic expressions and equations. You'll use the distributive property to expand and factor, combine like terms, and solve two-step equations and inequalities - including knowing when to flip an inequality sign.",
     icon: "x",
     estimatedMinutes: 66,
     objectives: [
@@ -636,7 +636,7 @@ export const GRADE_7_UNITS: Unit[] = [
         id: "g7u3-t3",
         slug: "two-step-inequalities",
         title: "Two-Step Inequalities",
-        summary: "Solve like equations — but flip the sign when you multiply or divide by a negative.",
+        summary: "Solve like equations - but flip the sign when you multiply or divide by a negative.",
         estimatedMinutes: 22,
         walkthrough: [
           {
@@ -697,7 +697,7 @@ export const GRADE_7_UNITS: Unit[] = [
   },
 
   // ================================================================
-  // UNIT 4 — Geometry
+  // UNIT 4 - Geometry
   // ================================================================
   {
     id: "g7-unit-4",
@@ -953,7 +953,7 @@ export const GRADE_7_UNITS: Unit[] = [
   },
 
   // ================================================================
-  // UNIT 5 — Statistics & Inferences
+  // UNIT 5 - Statistics & Inferences
   // ================================================================
   {
     id: "g7-unit-5",
@@ -1000,7 +1000,7 @@ export const GRADE_7_UNITS: Unit[] = [
           {
             callout: {
               label: "Watch out for bias",
-              text: "Surveying only your friends, or only people in one place, can make a sample unrepresentative — even if the sample is large.",
+              text: "Surveying only your friends, or only people in one place, can make a sample unrepresentative - even if the sample is large.",
             },
           },
         ],
@@ -1096,7 +1096,7 @@ export const GRADE_7_UNITS: Unit[] = [
   },
 
   // ================================================================
-  // UNIT 6 — Probability
+  // UNIT 6 - Probability
   // ================================================================
   {
     id: "g7-unit-6",

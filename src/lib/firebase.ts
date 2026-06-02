@@ -2,7 +2,7 @@
  * Firebase bootstrap.
  *
  * - All config is read from public env vars (`NEXT_PUBLIC_FIREBASE_*`).
- *   These are bundled into the client — that is the standard pattern for
+ *   These are bundled into the client - that is the standard pattern for
  *   Firebase web SDKs and is safe; security comes from Auth + Firestore
  *   rules, not from hiding the API key.
  * - We initialize lazily so the rest of the app doesn't crash if env
@@ -77,7 +77,7 @@ export function getFirebaseDb(): Firestore {
 }
 
 /**
- * Switch persistence between "remember me" (browserLocal — survives
+ * Switch persistence between "remember me" (browserLocal - survives
  * browser restarts) and one-session-only (browserSession).
  */
 export async function applyPersistence(remember: boolean) {

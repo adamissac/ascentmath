@@ -1,5 +1,5 @@
 /**
- * Grade 8 Mathematics units — aligned to Georgia DOE (GADOE) standards.
+ * Grade 8 Mathematics units - aligned to Georgia DOE (GADOE) standards.
  * Same shape as Grade 6: each unit is split into focused topics with a
  * walkthrough, a video, practice, and a short quiz.
  *
@@ -14,7 +14,7 @@ const KHAN_8 = "https://www.khanacademy.org/math/cc-eighth-grade-math";
 
 export const GRADE_8_UNITS: Unit[] = [
   // ================================================================
-  // UNIT 1 — Real Numbers & Exponents
+  // UNIT 1 - Real Numbers & Exponents
   // ================================================================
   {
     id: "g8-unit-1",
@@ -55,9 +55,9 @@ export const GRADE_8_UNITS: Unit[] = [
           {
             heading: "The key rules",
             steps: [
-              "Product rule: same base, add exponents — x³ · x² = x⁵.",
-              "Quotient rule: same base, subtract exponents — x⁵ ÷ x² = x³.",
-              "Power rule: power of a power, multiply exponents — (x³)² = x⁶.",
+              "Product rule: same base, add exponents - x³ · x² = x⁵.",
+              "Quotient rule: same base, subtract exponents - x⁵ ÷ x² = x³.",
+              "Power rule: power of a power, multiply exponents - (x³)² = x⁶.",
               "Zero exponent: any nonzero base to the 0 power is 1.",
             ],
           },
@@ -128,7 +128,7 @@ export const GRADE_8_UNITS: Unit[] = [
             heading: "Converting",
             steps: [
               "Move the decimal so one nonzero digit is in front of it.",
-              "Count how many places you moved — that is the exponent.",
+              "Count how many places you moved - that is the exponent.",
               "Large numbers get a positive exponent; small numbers (less than 1) get a negative exponent.",
             ],
           },
@@ -229,7 +229,7 @@ export const GRADE_8_UNITS: Unit[] = [
   },
 
   // ================================================================
-  // UNIT 2 — Linear Equations
+  // UNIT 2 - Linear Equations
   // ================================================================
   {
     id: "g8-unit-2",
@@ -280,7 +280,7 @@ export const GRADE_8_UNITS: Unit[] = [
             },
           },
         ],
-        video: { videoId: "LDIiYKYvvdA", title: "Solving 2-Step Equations", source: "Math Antics", description: "Undo operations in reverse — the same idea extends to multi-step equations." },
+        video: { videoId: "LDIiYKYvvdA", title: "Solving 2-Step Equations", source: "Math Antics", description: "Undo operations in reverse - the same idea extends to multi-step equations." },
         practiceLinks: [
           { href: `${KHAN_8}/cc-8th-solving-equations`, title: "Multi-step equations", source: "Khan Academy" },
           { href: "https://www.mathworksheets4kids.com/equation.php", title: "Equation worksheets", source: "Math Worksheets 4 Kids" },
@@ -310,7 +310,7 @@ export const GRADE_8_UNITS: Unit[] = [
         id: "g8u2-t2",
         slug: "variables-on-both-sides",
         title: "Variables on Both Sides",
-        summary: "Move variable terms to one side, then solve — and spot special cases.",
+        summary: "Move variable terms to one side, then solve - and spot special cases.",
         estimatedMinutes: 24,
         walkthrough: [
           {
@@ -372,7 +372,7 @@ export const GRADE_8_UNITS: Unit[] = [
   },
 
   // ================================================================
-  // UNIT 3 — Functions
+  // UNIT 3 - Functions
   // ================================================================
   {
     id: "g8-unit-3",
@@ -466,7 +466,7 @@ export const GRADE_8_UNITS: Unit[] = [
           {
             heading: "Nonlinear functions",
             paragraphs: [
-              "Anything that is not a straight line is nonlinear — for example y = x². In a table, the change between outputs is not constant.",
+              "Anything that is not a straight line is nonlinear - for example y = x². In a table, the change between outputs is not constant.",
             ],
           },
           {
@@ -508,7 +508,7 @@ export const GRADE_8_UNITS: Unit[] = [
   },
 
   // ================================================================
-  // UNIT 4 — Linear Functions
+  // UNIT 4 - Linear Functions
   // ================================================================
   {
     id: "g8-unit-4",
@@ -659,14 +659,14 @@ export const GRADE_8_UNITS: Unit[] = [
   },
 
   // ================================================================
-  // UNIT 5 — Systems of Equations
+  // UNIT 5 - Systems of Equations
   // ================================================================
   {
     id: "g8-unit-5",
     number: 5,
     slug: "systems-of-equations",
     title: "Systems of Equations",
-    short: "Find the point that satisfies two equations — by graphing and by algebra.",
+    short: "Find the point that satisfies two equations - by graphing and by algebra.",
     description:
       "A system is two equations at once. You'll solve systems by graphing to find the intersection point, then use algebra (substitution and elimination) for exact answers.",
     icon: "⋂",
@@ -768,7 +768,7 @@ export const GRADE_8_UNITS: Unit[] = [
           {
             callout: {
               label: "Elimination",
-              text: "If you line up the equations, you can add or subtract them to cancel a variable — handy when nothing is solved for y yet.",
+              text: "If you line up the equations, you can add or subtract them to cancel a variable - handy when nothing is solved for y yet.",
             },
           },
         ],
@@ -804,7 +804,7 @@ export const GRADE_8_UNITS: Unit[] = [
   },
 
   // ================================================================
-  // UNIT 6 — Transformations & Similarity
+  // UNIT 6 - Transformations & Similarity
   // ================================================================
   {
     id: "g8-unit-6",
@@ -1003,7 +1003,7 @@ export const GRADE_8_UNITS: Unit[] = [
   },
 
   // ================================================================
-  // UNIT 7 — Pythagorean Theorem & Volume
+  // UNIT 7 - Pythagorean Theorem & Volume
   // ================================================================
   {
     id: "g8-unit-7",
@@ -1095,7 +1095,7 @@ export const GRADE_8_UNITS: Unit[] = [
             heading: "Three formulas",
             steps: [
               "Cylinder: V = πr²h.",
-              "Cone: V = (1/3)πr²h — a third of a cylinder with the same base and height.",
+              "Cone: V = (1/3)πr²h - a third of a cylinder with the same base and height.",
               "Sphere: V = (4/3)πr³.",
             ],
           },
@@ -1111,7 +1111,7 @@ export const GRADE_8_UNITS: Unit[] = [
           {
             callout: {
               label: "Tip",
-              text: "A cone holds exactly one-third of the cylinder with the same base and height — that's where the 1/3 comes from.",
+              text: "A cone holds exactly one-third of the cylinder with the same base and height - that's where the 1/3 comes from.",
             },
           },
         ],
