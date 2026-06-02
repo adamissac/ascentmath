@@ -820,6 +820,20 @@ body {
   padding-left: env(safe-area-inset-left, 0px);
   padding-right: env(safe-area-inset-right, 0px);
 }
+
+/* Site container — horizontal padding at desktop (avoid lg:px-8 utilities
+   overriding unit-study offsets). */
+@media (min-width: 1024px) {
+  .site-container {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+
+  /* Unit menu overlays backgrounds; lesson copy clears the panel. */
+  .unit-study-panel:not(.unit-study-panel--closed) .unit-study-main .site-container {
+    padding-left: calc(280px + 48px + 2rem);
+  }
+}
 .safe-bottom {
   padding-bottom: env(safe-area-inset-bottom, 0px);
 }

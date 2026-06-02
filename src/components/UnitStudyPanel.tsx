@@ -1,14 +1,12 @@
 "use client";
 
-import { useEffect, useRef, useState, type CSSProperties, type ReactNode } from "react";
+import { useEffect, useRef, useState, type ReactNode } from "react";
 import UnitProgressPanel from "./UnitProgressPanel";
 import type { ProgressItem } from "../hooks/useUnitProgress";
 
 type NavLink = { href: string; label: string };
 
 const PANEL_WIDTH = 280;
-/** Space between the menu and the main column when open on desktop. */
-const PANEL_GUTTER = 48;
 const PANEL_LABEL = "Unit menu";
 const DESKTOP_QUERY = "(min-width: 1024px)";
 
@@ -131,11 +129,17 @@ export default function UnitStudyPanel({
     </>
   );
 
-  const desktopInset =
-    isDesktop && open ? PANEL_WIDTH + PANEL_GUTTER : 0;
+  const panelClosed = mounted && isDesktop && !open;
 
   return (
-    <div style={{ "--unit-study-inset": `${desktopInset}px` } as CSSProperties}>
+    <div
+      className={[
+        "unit-study-panel",
+        panelClosed ? "unit-study-panel--closed" : "",
+      ]
+        .filter(Boolean)
+        .join(" ")}
+    >
       {/* Mobile backdrop */}
       {mounted && !isDesktop && open && (
         <button
@@ -187,7 +191,7 @@ export default function UnitStudyPanel({
             {panelContent}
           </aside>
 
-          <div className="col-start-1 row-start-1 min-w-0 w-full z-0">
+          <div className="unit-study-main col-start-1 row-start-1 min-w-0 w-full z-0">
             {!open && (
               <div className="sticky top-[4.25rem] z-20 mb-3 px-4 sm:px-0 lg:px-0">
                 <button
