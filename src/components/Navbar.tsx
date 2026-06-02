@@ -16,18 +16,10 @@ export default function Navbar() {
   const pathname = usePathname();
   const router = useRouter();
   const [open, setOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const menuRef = useRef<HTMLDivElement | null>(null);
 
   const { user, profile, loading, signOut } = useAuth();
-
-  useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 4);
-    onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
 
   useEffect(() => {
     setOpen(false);
@@ -70,24 +62,15 @@ export default function Navbar() {
   const initial = (displayName[0] || user?.email?.[0] || "?").toUpperCase();
 
   return (
-    <header
-      className={[
-        "sticky top-0 z-40 w-full border-b border-[var(--color-brand-100)]",
-        "border-t-[3px] border-t-[var(--color-brand-600)] bg-white",
-        "transition-shadow duration-200",
-        scrolled
-          ? "shadow-[0_4px_24px_rgba(15,17,21,0.12)]"
-          : "shadow-[var(--shadow-card)]",
-      ].join(" ")}
-    >
+    <header className="sticky top-0 z-40 w-full border-b border-[var(--color-brand-100)] border-t-[3px] border-t-[var(--color-brand-600)] bg-white shadow-sm">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 safe-x">
         <div className="flex h-[4.25rem] items-center justify-between gap-6">
           <Link
             href="/"
-            className="flex items-center gap-2.5 font-display font-bold text-[1.0625rem] text-[var(--color-brand-700)] hover:text-[var(--color-brand-600)] transition-colors min-w-0"
+            className="group flex items-center gap-2.5 font-display font-bold text-[1.0625rem] text-[var(--color-brand-700)] hover:text-[var(--color-brand-600)] transition-all min-w-0"
             aria-label="Adam's Alphabet - home"
           >
-            <span className="relative w-10 h-10 rounded-lg overflow-hidden ring-2 ring-[var(--color-brand-100)] shadow-sm shrink-0">
+            <span className="relative w-10 h-10 rounded-lg overflow-hidden shrink-0 ring-2 ring-[var(--color-brand-100)] shadow-sm group-hover:ring-[var(--color-brand-300)]">
               <Image
                 src="/newLogo.png"
                 alt=""
@@ -100,16 +83,16 @@ export default function Navbar() {
             <span className="truncate hidden min-[400px]:inline">Adam&apos;s Alphabet</span>
           </Link>
 
-          <nav className="hidden md:flex items-center gap-1" aria-label="Primary">
+          <nav className="hidden md:flex items-center gap-1 rounded-full bg-[var(--color-brand-50)]/50 p-1 ring-1 ring-[var(--color-brand-100)]/60" aria-label="Primary">
             {NAV_LINKS.map((l) => (
               <Link
                 key={l.href}
                 href={l.href}
                 className={[
-                  "px-3.5 py-2 rounded-md text-sm font-semibold transition-colors",
+                  "relative px-4 py-2 rounded-full text-sm font-semibold transition-all duration-300 ease-[cubic-bezier(0.16,1,0.3,1)]",
                   isActive(l.href)
-                    ? "text-[var(--color-brand-700)] bg-[var(--color-brand-50)] ring-1 ring-[var(--color-brand-100)]"
-                    : "text-[var(--color-ink)] hover:text-[var(--color-brand-700)] hover:bg-[var(--color-brand-50)]",
+                    ? "text-[var(--color-brand-700)] bg-white shadow-sm ring-1 ring-[var(--color-brand-100)]"
+                    : "text-[var(--color-ink)] hover:text-[var(--color-brand-700)] hover:bg-white/70",
                 ].join(" ")}
               >
                 {l.label}
@@ -174,7 +157,10 @@ export default function Navbar() {
                 >
                   Log in
                 </Link>
-                <Link href="/signup" className="btn btn-primary btn-sm">
+                <Link
+                  href="/signup"
+                  className="btn btn-primary btn-sm shadow-[0_8px_20px_-8px_rgba(42,75,203,0.55)] hover:-translate-y-0.5 hover:shadow-[0_12px_24px_-10px_rgba(42,75,203,0.5)] transition-[transform,box-shadow]"
+                >
                   Start learning
                   <span aria-hidden>→</span>
                 </Link>
@@ -209,7 +195,10 @@ export default function Navbar() {
       </div>
 
       {open && (
-        <div id="mobile-menu" className="md:hidden border-t border-[var(--color-brand-100)] bg-white shadow-[var(--shadow-card)] max-h-[calc(100dvh-4.25rem)] overflow-y-auto overscroll-contain">
+        <div
+          id="mobile-menu"
+          className="md:hidden border-t border-[var(--color-brand-100)] bg-white shadow-[0_16px_40px_-16px_rgba(26,26,46,0.15)] max-h-[calc(100dvh-4.25rem)] overflow-y-auto overscroll-contain animate-fade-up"
+        >
           <nav className="px-4 py-3 flex flex-col gap-1" aria-label="Mobile">
             {NAV_LINKS.map((l) => (
               <Link

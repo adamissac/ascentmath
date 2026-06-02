@@ -9,12 +9,8 @@ import {
   type ReactNode,
 } from "react";
 
-type RevealVariant = "up" | "fade" | "left" | "right";
+type RevealVariant = "up" | "up-lg" | "fade" | "left" | "right" | "scale";
 
-/**
- * Scroll-triggered reveal. Fades/slides content in once when it enters
- * the viewport. Respects prefers-reduced-motion.
- */
 export default function Reveal({
   children,
   as: Tag = "div",
@@ -53,17 +49,27 @@ export default function Reveal({
           observer.disconnect();
         }
       },
-      { threshold, rootMargin: "0px 0px -32px 0px" }
+      {
+        threshold,
+        rootMargin: "0px 0px -12% 0px",
+      },
     );
 
     observer.observe(el);
-    return () => observer.disconnect();
+
+    const fallback = window.setTimeout(() => setVisible(true), 4000);
+
+    return () => {
+      observer.disconnect();
+      window.clearTimeout(fallback);
+    };
   }, [threshold]);
 
   const classes = [
     "reveal",
     `reveal-${variant}`,
     stagger ? "reveal-stagger" : "",
+    stagger && variant === "scale" ? "reveal-stagger-scale" : "",
     visible ? "is-visible" : "",
     className,
   ]
