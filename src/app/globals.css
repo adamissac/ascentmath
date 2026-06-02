@@ -71,7 +71,7 @@
 
 * { box-sizing: border-box; }
 
-html { -webkit-text-size-adjust: 100%; scroll-behavior: auto; overflow-x: clip; }
+html { -webkit-text-size-adjust: 100%; scroll-behavior: auto; overflow-x: hidden; }
 
 body {
   margin: 0;
@@ -83,7 +83,7 @@ body {
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
   line-height: 1.55;
-  overflow-x: clip;
+  overflow-x: hidden;
 }
 
 ::selection { background: var(--color-brand-100); color: var(--color-brand-900); }
@@ -946,6 +946,36 @@ body {
    ============================================================= */
 
 @media (max-width: 639px) {
+  .site-container {
+    min-width: 0;
+  }
+
+  .h-display,
+  .h1,
+  .h2 {
+    text-wrap: wrap;
+    word-break: normal;
+    overflow-wrap: break-word;
+    hyphens: auto;
+  }
+
+  .h-display {
+    font-size: clamp(1.875rem, 7vw + 0.5rem, 2.75rem);
+    line-height: 1.18;
+  }
+
+  .lede,
+  .body,
+  .small {
+    overflow-wrap: break-word;
+  }
+
+  .btn {
+    white-space: normal;
+    text-align: center;
+    max-width: 100%;
+  }
+
   .list-row {
     gap: 0.75rem;
     padding: 1rem 0;
@@ -959,8 +989,6 @@ body {
   .btn-lg {
     padding: 0.85rem 1.15rem;
     font-size: 0.9375rem;
-    white-space: normal;
-    text-align: center;
   }
 
   .stat-strip__num {
@@ -969,6 +997,20 @@ body {
 
   .step-card {
     padding: 1.25rem;
+  }
+
+  .proof-row {
+    justify-content: center;
+    gap: 1rem 1.5rem;
+  }
+
+  .proof-row strong {
+    font-size: 1.125rem;
+  }
+
+  .hero-surface {
+    padding-left: env(safe-area-inset-left, 0px);
+    padding-right: env(safe-area-inset-right, 0px);
   }
 }
 

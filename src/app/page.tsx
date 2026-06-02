@@ -110,7 +110,7 @@ export default function Home() {
             <p className="caption font-semibold tracking-[0.16em] uppercase text-[var(--color-brand-300)]">
               Stuck on something?
             </p>
-            <h2 className="font-display font-bold mt-3 text-3xl sm:text-4xl leading-[1.15] tracking-[-0.02em] max-w-2xl text-white">
+            <h2 className="font-display font-bold mt-3 min-w-0 break-words text-2xl sm:text-4xl leading-[1.2] tracking-[-0.02em] max-w-2xl text-white">
               Book a free 1-on-1 with Adam - online or in&#8209;person.
             </h2>
             <p className="mt-4 text-[#C8C9CC] max-w-xl">

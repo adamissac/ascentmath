@@ -64,7 +64,7 @@ export default function Navbar() {
   return (
     <header className="sticky top-0 z-40 w-full border-b border-[var(--color-brand-100)] border-t-[3px] border-t-[var(--color-brand-600)] bg-white shadow-sm">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 safe-x">
-        <div className="flex h-[4.25rem] items-center justify-between gap-6">
+        <div className="flex h-[4.25rem] items-center justify-between gap-2 sm:gap-6">
           <Link
             href="/"
             className="group flex items-center gap-2.5 font-display font-bold text-[1.0625rem] text-[var(--color-brand-700)] hover:text-[var(--color-brand-600)] transition-all min-w-0"

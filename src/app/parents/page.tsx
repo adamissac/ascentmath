@@ -43,10 +43,10 @@ export default function ParentsPage() {
           <div className="flex justify-center">
             <Breadcrumbs items={[{ label: "Home", href: "/" }, { label: "For parents & teachers" }]} />
           </div>
-          <Reveal className="mt-8 text-center max-w-3xl mx-auto" variant="up">
+          <Reveal className="mt-8 w-full min-w-0 max-w-3xl mx-auto text-center" variant="up">
             <Badge tone="brand" className="mb-5">Parents &amp; teachers</Badge>
-            <h1 className="h-display">Help your child without re-learning the whole book.</h1>
-            <p className="lede mt-5 mx-auto max-w-[54ch]">
+            <h1 className="h-display min-w-0 break-words">Help your child without re-learning the whole book.</h1>
+            <p className="lede mt-5 mx-auto max-w-[54ch] min-w-0">
               Adam&apos;s Alphabet is built in plain language with a clear structure - so you can
               sit beside a student, find the right lesson in minutes, and know what to do next.
             </p>

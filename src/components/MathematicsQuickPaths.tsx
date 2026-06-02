@@ -12,7 +12,7 @@ export default function MathematicsQuickPaths() {
             <p className="caption font-semibold tracking-[0.14em] uppercase text-[var(--color-accent-300)]">
               Start here
             </p>
-            <h2 className="font-display font-bold text-2xl sm:text-3xl mt-2 text-white leading-snug tracking-[-0.02em]">
+            <h2 className="font-display font-bold text-xl sm:text-3xl mt-2 min-w-0 break-words text-white leading-snug tracking-[-0.02em]">
               Not sure where to go? Search or pick a path.
             </h2>
             <p className="small text-white/80 mt-2 max-w-2xl leading-relaxed">

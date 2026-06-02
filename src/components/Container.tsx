@@ -17,7 +17,7 @@ export default function Container({
 }: HTMLAttributes<HTMLDivElement> & { size?: Size }) {
   return (
     <div
-      className={`site-container mx-auto w-full ${MAX[size]} px-4 sm:px-6 lg:px-0 safe-x ${className}`}
+      className={`site-container mx-auto w-full min-w-0 ${MAX[size]} px-4 sm:px-6 lg:px-0 safe-x ${className}`}
       {...rest}
     >
       {children}

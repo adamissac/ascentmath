@@ -34,17 +34,17 @@ export default function MathematicsHub() {
           <div className="flex justify-center">
             <Breadcrumbs items={[{ label: "Home", href: "/" }, { label: "Mathematics" }]} />
           </div>
-          <Reveal className="mt-8 text-center max-w-3xl mx-auto" variant="up">
+          <Reveal className="mt-8 w-full min-w-0 max-w-3xl mx-auto text-center" variant="up">
             <Badge tone="brand" className="mb-5">Grades 6–8 · GADOE aligned</Badge>
-            <h1 className="h-display">Middle school math, one grade at a time.</h1>
-            <p className="lede mt-5 mx-auto max-w-[54ch]">
+            <h1 className="h-display min-w-0 break-words">Middle school math, one grade at a time.</h1>
+            <p className="lede mt-5 mx-auto max-w-[54ch] min-w-0">
               Pick your grade to see its full curriculum. Every unit is broken into short topics - 
               read a walkthrough, watch a video, try the practice, take a quick check.
             </p>
             <div className="proof-row mt-8 justify-center">
-              <span><strong>{GRADES.length}</strong>grades</span>
-              <span><strong>{totalUnits}</strong>units</span>
-              <span><strong>{totalTopics}</strong>topics</span>
+              <span><strong>{GRADES.length}</strong> grades</span>
+              <span><strong>{totalUnits}</strong> units</span>
+              <span><strong>{totalTopics}</strong> topics</span>
             </div>
           </Reveal>
         </Container>

@@ -28,9 +28,9 @@ export default function FindYourStartPage() {
               { label: "Find your start" },
             ]}
           />
-          <Reveal className="mt-6 max-w-2xl" variant="up">
-            <h1 className="h-display">Find the right unit for you.</h1>
-            <p className="lede mt-4">
+          <Reveal className="mt-6 w-full min-w-0 max-w-2xl" variant="up">
+            <h1 className="h-display min-w-0 break-words">Find the right unit for you.</h1>
+            <p className="lede mt-4 min-w-0">
               You don&apos;t have to browse all {totalUnits} units blind. Tell us your grade and what your
               class is covering - we&apos;ll drop you into a sensible starting point.
             </p>

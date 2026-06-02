@@ -28,16 +28,16 @@ export default function AboutPage() {
         <FloatingMathCanvas variant="about" />
         <Container size="xl" className="relative pt-14 sm:pt-20 pb-14 sm:pb-20">
           <div className="grid lg:grid-cols-12 gap-10 lg:gap-14 items-start">
-            <Reveal className="lg:col-span-8" variant="up">
+            <Reveal className="lg:col-span-8 min-w-0" variant="up">
               <Badge tone="brand" className="mb-6"><span className="marker">About</span></Badge>
 
-              <h1 className="font-display font-bold leading-[1.1] tracking-[-0.02em] text-[2.5rem] sm:text-[3.25rem] lg:text-[3.75rem] text-[var(--color-ink)]">
+              <h1 className="h-display min-w-0 break-words">
                 I&apos;m Adam.
                 <br />
                 <span className="text-[var(--color-ink-muted)]">I built this for kids like me.</span>
               </h1>
 
-              <p className="lede mt-5 max-w-2xl">
+              <p className="lede mt-5 max-w-2xl min-w-0">
                 A high-school senior turning the help my friends asked for
                 into something every student can use - without paying for it.
               </p>
@@ -369,7 +369,7 @@ function FactRow({
         <span className="block caption uppercase tracking-wider text-[var(--color-ink-soft)] text-[11px]">
           {label}
         </span>
-        <span className="block text-[15px] font-medium text-[var(--color-ink)] truncate">
+        <span className="block text-[15px] font-medium text-[var(--color-ink)] break-words">
           {children}
         </span>
       </span>
@@ -471,7 +471,7 @@ function ContactRow({ label, value, href }: { label: string; value: string; href
   const content = (
     <>
       <span className="caption tracking-wider uppercase text-[#9AA0A8] w-20 flex-shrink-0">{label}</span>
-      <span className="text-white font-medium">{value}</span>
+      <span className="text-white font-medium min-w-0 break-words">{value}</span>
     </>
   );
   return href ? (
@@ -479,7 +479,7 @@ function ContactRow({ label, value, href }: { label: string; value: string; href
       href={href}
       target={href.startsWith("http") ? "_blank" : undefined}
       rel={href.startsWith("http") ? "noopener noreferrer" : undefined}
-      className="group flex items-baseline gap-4 py-3 border-b border-white/10 hover:border-white/30 transition-colors"
+      className="group flex flex-col gap-1 py-3 border-b border-white/10 hover:border-white/30 transition-colors sm:flex-row sm:items-baseline sm:gap-4"
     >
       {content}
       <span aria-hidden className="ml-auto text-[#9AA0A8] group-hover:text-white transition-colors">→</span>

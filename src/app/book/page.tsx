@@ -163,11 +163,11 @@ export default function BookPage() {
   return (
     <>
       <Section tone="hero" size="lg" containerSize="lg" floatingVariant="session" reveal={false}>
-        <div className="grid lg:grid-cols-2 gap-10 xl:gap-14 items-start">
-          <Reveal variant="up">
+        <div className="grid min-w-0 lg:grid-cols-2 gap-10 xl:gap-14 items-start">
+          <Reveal className="min-w-0" variant="up">
             <Badge tone="brand" className="mb-5">1:1 session · Free</Badge>
-            <h1 className="h-display">Book a class with Adam.</h1>
-            <p className="lede mt-5 max-w-xl">
+            <h1 className="h-display min-w-0 break-words">Book a class with Adam.</h1>
+            <p className="lede mt-5 max-w-xl min-w-0">
               Pick a topic you want to work on. Choose Zoom or in-person. We&apos;ll
               meet at a time that works for both of us - and there&apos;s never a
               charge.
@@ -430,12 +430,12 @@ export default function BookPage() {
       </ColorBand>
 
       <Section tone="muted" size="sm" containerSize="md" reveal={false}>
-        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+        <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between min-w-0">
           <div>
             <p className="eyebrow">While you wait</p>
             <h2 className="font-display font-bold text-xl sm:text-2xl mt-1">Browse the free Grades 6–8 units</h2>
           </div>
-          <Link href="/mathematics" className="btn btn-primary btn-lg shrink-0">
+          <Link href="/mathematics" className="btn btn-primary btn-lg w-full sm:w-auto sm:shrink-0">
             Open the library →
           </Link>
         </div>

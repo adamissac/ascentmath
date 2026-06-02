@@ -57,20 +57,20 @@ export default async function GradeLibrary({ params }: { params: Promise<Params>
               ]}
             />
           </div>
-          <Reveal className="mt-8 text-center max-w-3xl mx-auto" variant="up">
+          <Reveal className="mt-8 w-full min-w-0 max-w-3xl mx-auto text-center" variant="up">
             <Badge tone="brand" className="mb-5">{g.title} · GADOE aligned</Badge>
-            <h1 className="h-display">The full {g.title} curriculum, in one place.</h1>
-            <p className="lede mt-5 mx-auto max-w-[52ch]">
+            <h1 className="h-display min-w-0 break-words">The full {g.title} curriculum, in one place.</h1>
+            <p className="lede mt-5 mx-auto max-w-[52ch] min-w-0">
               Each unit is split into short topics - read a walkthrough, watch a video, try the
               practice, take a quick check. Jump to any topic; there&apos;s no &ldquo;right&rdquo; order.
             </p>
             {units.length > 0 && (
               <div className="proof-row mt-8 justify-center">
-                <span><strong>{units.length}</strong>units</span>
-                <span><strong>{totalTopics}</strong>topics</span>
-                <span><strong>{totalVideos}</strong>videos</span>
-                {totalWorksheets > 0 && <span><strong>{totalWorksheets}</strong>worksheets</span>}
-                <span><strong>~{Math.round(totalMinutes / 60)}h</strong>total</span>
+                <span><strong>{units.length}</strong> units</span>
+                <span><strong>{totalTopics}</strong> topics</span>
+                <span><strong>{totalVideos}</strong> videos</span>
+                {totalWorksheets > 0 && <span><strong>{totalWorksheets}</strong> worksheets</span>}
+                <span><strong>~{Math.round(totalMinutes / 60)}h</strong> total</span>
               </div>
             )}
           </Reveal>
@@ -82,10 +82,10 @@ export default async function GradeLibrary({ params }: { params: Promise<Params>
         <div className="grid lg:grid-cols-12 gap-10 lg:gap-14 xl:gap-16 items-start">
           <div className="lg:col-span-8 min-w-0">
             <Reveal>
-              <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 mb-6">
-                <div>
+              <div className="flex flex-col gap-4 mb-6 md:flex-row md:items-end md:justify-between">
+                <div className="min-w-0">
                   <p className="eyebrow">The library</p>
-                  <h2 className="h2 mt-2">{g.title} units</h2>
+                  <h2 className="h2 mt-2 min-w-0 break-words">{g.title} units</h2>
                   <p className="small text-[var(--color-ink-muted)] mt-2 max-w-xl leading-relaxed">
                     Each row is a full unit, broken into short topics - a walkthrough, a video,
                     practice, and a quick quiz on every one. Open whichever unit you&apos;re working
@@ -93,7 +93,7 @@ export default async function GradeLibrary({ params }: { params: Promise<Params>
                   </p>
                 </div>
                 {units.length > 0 && (
-                  <p className="caption font-semibold text-[var(--color-brand-600)] shrink-0">
+                  <p className="caption font-semibold text-[var(--color-brand-600)] md:shrink-0 md:text-right">
                     {units.length} units · pick any to start
                   </p>
                 )}
