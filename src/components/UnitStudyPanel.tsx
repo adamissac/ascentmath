@@ -193,7 +193,7 @@ export default function UnitStudyPanel({
 
           <div className="unit-study-main col-start-1 row-start-1 min-w-0 w-full z-0">
             {!open && (
-              <div className="sticky top-[4.25rem] z-20 mb-3 px-4 sm:px-0 lg:px-0">
+              <div className="sticky top-[4.25rem] z-20 mb-3 page-x sm:px-0 lg:px-0">
                 <button
                   type="button"
                   onClick={openPanel}

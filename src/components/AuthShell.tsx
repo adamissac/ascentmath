@@ -40,7 +40,7 @@ export default function AuthShell({
       </div>
 
       {/* LEFT - white form panel */}
-      <div className="relative flex items-center justify-center px-5 sm:px-10 lg:px-14 xl:px-20 py-10 lg:py-16 overflow-hidden bg-white border-b lg:border-b-0 lg:border-r border-[var(--color-border)]">
+      <div className="relative flex items-center justify-center page-x sm:px-10 lg:px-14 xl:px-20 py-10 lg:py-16 overflow-hidden bg-white border-b lg:border-b-0 lg:border-r border-[var(--color-border)]">
         <MathBackdrop variant="paper" density="light" contentSafe />
 
         <div className="relative z-[1] w-full max-w-[440px]">

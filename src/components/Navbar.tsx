@@ -199,7 +199,7 @@ export default function Navbar() {
           id="mobile-menu"
           className="md:hidden border-t border-[var(--color-brand-100)] bg-white shadow-[0_16px_40px_-16px_rgba(26,26,46,0.15)] max-h-[calc(100dvh-4.25rem)] overflow-y-auto overscroll-contain animate-fade-up"
         >
-          <nav className="px-4 py-3 flex flex-col gap-1" aria-label="Mobile">
+          <nav className="page-x py-3 flex flex-col gap-1" aria-label="Mobile">
             {NAV_LINKS.map((l) => (
               <Link
                 key={l.href}

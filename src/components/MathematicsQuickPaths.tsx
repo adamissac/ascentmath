@@ -6,7 +6,7 @@ const SUGGESTIONS = ["GCF", "fractions", "slope", "ratios", "exponents", "equati
 export default function MathematicsQuickPaths() {
   return (
     <section className="relative z-[2] -mt-6 sm:-mt-10 mb-2">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 safe-x">
+      <div className="mx-auto max-w-7xl page-x">
         <div className="rounded-2xl border border-[var(--color-brand-200)] bg-gradient-to-br from-[var(--color-brand-700)] via-[var(--color-brand-600)] to-[var(--color-brand-700)] shadow-[0_20px_50px_rgba(31,60,177,0.25)] overflow-hidden">
           <div className="px-5 sm:px-8 py-8 sm:py-10">
             <p className="caption font-semibold tracking-[0.14em] uppercase text-[var(--color-accent-300)]">
