@@ -37,26 +37,27 @@ type LinkProps = Common & AnchorHTMLAttributes<HTMLAnchorElement> & {
 };
 
 export default function Button(props: ButtonProps | LinkProps) {
-  const {
-    variant = "primary",
-    size = "md",
-    className,
-    leftIcon,
-    rightIcon,
-    children,
-    ...rest
-  } = props as ButtonProps & LinkProps;
+  if ("href" in props && props.href) {
+    const {
+      variant = "primary",
+      size = "md",
+      className,
+      leftIcon,
+      rightIcon,
+      children,
+      href,
+      external,
+      ...anchor
+    } = props;
 
-  const content = (
-    <>
-      {leftIcon}
-      <span>{children}</span>
-      {rightIcon}
-    </>
-  );
+    const content = (
+      <>
+        {leftIcon}
+        <span>{children}</span>
+        {rightIcon}
+      </>
+    );
 
-  if ("href" in rest && rest.href) {
-    const { href, external, ...anchor } = rest;
     const isExternal = external ?? /^https?:\/\//.test(href);
     if (isExternal) {
       return (
@@ -78,9 +79,21 @@ export default function Button(props: ButtonProps | LinkProps) {
     );
   }
 
+  const {
+    variant = "primary",
+    size = "md",
+    className,
+    leftIcon,
+    rightIcon,
+    children,
+    ...rest
+  } = props as ButtonProps;
+
   return (
-    <button className={classes(variant, size, className)} {...(rest as ButtonHTMLAttributes<HTMLButtonElement>)}>
-      {content}
+    <button className={classes(variant, size, className)} {...rest}>
+      {leftIcon}
+      <span>{children}</span>
+      {rightIcon}
     </button>
   );
 }

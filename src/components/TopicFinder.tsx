@@ -137,27 +137,17 @@ function SearchField({
   size?: "md" | "lg";
   className?: string;
 }) {
-  const large = size === "lg";
+  const rootClass = [
+    "topic-search-field",
+    size === "lg" ? "topic-search-field--lg" : "",
+    className,
+  ]
+    .filter(Boolean)
+    .join(" ");
 
   return (
-    <div
-      className={[
-        "flex items-stretch overflow-hidden rounded-[var(--radius-md)] border-2 border-[var(--color-brand-200)] bg-[var(--color-surface)] shadow-sm",
-        "focus-within:border-[var(--color-brand-500)] focus-within:shadow-[var(--shadow-focus)]",
-        className,
-      ]
-        .filter(Boolean)
-        .join(" ")}
-    >
-      <span
-        aria-hidden
-        className={[
-          "flex shrink-0 items-center justify-center text-[var(--color-brand-600)]",
-          large
-            ? "w-12 bg-[var(--color-brand-50)]"
-            : "w-11 border-r border-[var(--color-brand-100)] bg-[var(--color-brand-50)]",
-        ].join(" ")}
-      >
+    <div className={rootClass}>
+      <span className="topic-search-field__icon" aria-hidden>
         <SearchIcon />
       </span>
       <input
@@ -171,11 +161,7 @@ function SearchField({
         placeholder={placeholder}
         autoComplete="off"
         spellCheck={false}
-        className={[
-          "min-w-0 flex-1 border-0 bg-transparent text-[var(--color-ink)] outline-none",
-          "placeholder:text-[var(--color-ink-soft)]",
-          large ? "px-4 py-4 text-base sm:text-lg" : "px-4 py-3.5 text-base",
-        ].join(" ")}
+        className="topic-search-field__input"
       />
     </div>
   );

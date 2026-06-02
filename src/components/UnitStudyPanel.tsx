@@ -1,18 +1,21 @@
 "use client";
 
-import { useEffect, useRef, useState, type ReactNode } from "react";
+import { useEffect, useRef, useState, type CSSProperties, type ReactNode } from "react";
 import UnitProgressPanel from "./UnitProgressPanel";
 import type { ProgressItem } from "../hooks/useUnitProgress";
 
 type NavLink = { href: string; label: string };
 
 const PANEL_WIDTH = 280;
+/** Space between the menu and the main column when open on desktop. */
+const PANEL_GUTTER = 48;
 const PANEL_LABEL = "Unit menu";
 const DESKTOP_QUERY = "(min-width: 1024px)";
 
 /**
  * Left unit menu — open by default on desktop; users can close it. On mobile
- * it stays closed until opened. Pushes main content with a gutter on desktop.
+ * it stays closed until opened. Overlays content on desktop so section
+ * backgrounds run full width behind the menu.
  */
 export default function UnitStudyPanel({
   unitId,
@@ -128,8 +131,11 @@ export default function UnitStudyPanel({
     </>
   );
 
+  const desktopInset =
+    isDesktop && open ? PANEL_WIDTH + PANEL_GUTTER : 0;
+
   return (
-    <>
+    <div style={{ "--unit-study-inset": `${desktopInset}px` } as CSSProperties}>
       {/* Mobile backdrop */}
       {mounted && !isDesktop && open && (
         <button
@@ -141,89 +147,72 @@ export default function UnitStudyPanel({
       )}
 
       <div className={isDesktop ? "lg:px-6 xl:px-10" : undefined}>
-      <div
-        className={[
-          "w-full items-start",
-          isDesktop
-            ? [
-                "grid transition-[grid-template-columns] duration-300 ease-[cubic-bezier(0.22,0.9,0.3,1)] motion-reduce:transition-none",
-                open ? "lg:gap-12 xl:gap-16" : "",
-              ].join(" ")
-            : "block",
-        ].join(" ")}
-        style={
-          isDesktop
-            ? {
-                gridTemplateColumns: open
-                  ? `${PANEL_WIDTH}px minmax(0, 1fr)`
-                  : "0px minmax(0, 1fr)",
-              }
-            : undefined
-        }
-      >
-        {/* Desktop — sticky sidebar that pushes content */}
-        <aside
-          aria-label={PANEL_LABEL}
-          aria-hidden={!open}
-          className={[
-            "hidden lg:block sticky top-[4.25rem] z-10 min-w-0 self-start lg:mr-1",
-            "max-h-[calc(100dvh-4.25rem)] overflow-y-auto overscroll-contain",
-            "bg-[var(--color-surface)] rounded-r-xl",
-            "border border-[var(--color-border)] shadow-[var(--shadow-card)]",
-            "transition-opacity duration-200",
-            open ? "opacity-100" : "opacity-0 pointer-events-none",
-          ].join(" ")}
-          style={{ width: PANEL_WIDTH }}
-        >
-          {panelContent}
-        </aside>
-
-        {/* Mobile — fixed slide-over drawer */}
-        <aside
-          aria-label={PANEL_LABEL}
-          aria-hidden={!open}
-          className={[
-            "lg:hidden fixed top-[4.25rem] left-3 z-50 h-[calc(100dvh-4.25rem-0.75rem)] overflow-y-auto overscroll-contain",
-            "bg-[var(--color-surface)] rounded-r-xl border border-[var(--color-border)] shadow-[var(--shadow-popover)]",
-            "transition-transform duration-300 ease-[cubic-bezier(0.22,0.9,0.3,1)] motion-reduce:transition-none",
-            open ? "translate-x-0" : "-translate-x-[calc(100%+0.75rem)] pointer-events-none",
-          ].join(" ")}
-          style={{ width: PANEL_WIDTH, maxWidth: "min(280px, calc(100vw - 1.5rem))" }}
-        >
-          {panelContent}
-        </aside>
-
+        {/* Desktop: menu overlays the stack so section backgrounds run full width. */}
         <div
           className={[
-            "min-w-0",
-            isDesktop && open ? "lg:pl-2 xl:pl-4" : "",
+            "w-full",
+            isDesktop ? "grid grid-cols-1" : "block",
           ].join(" ")}
         >
-          {!open && (
-            <div className="sticky top-[4.25rem] z-20 mb-3 px-4 sm:px-0 lg:px-0">
-              <button
-                type="button"
-                onClick={openPanel}
-                className={[
-                  "inline-flex items-center gap-2 min-h-[44px]",
-                  "px-3.5 py-2 rounded-lg",
-                  "bg-[var(--color-brand-600)] text-white font-semibold text-sm",
-                  "shadow-[var(--shadow-popover)] hover:bg-[var(--color-brand-700)] transition-colors",
-                ].join(" ")}
-                aria-label={`Open ${PANEL_LABEL.toLowerCase()}`}
-                aria-expanded={false}
-              >
-                <GuideIcon />
-                <span>{PANEL_LABEL}</span>
-              </button>
-            </div>
-          )}
+          <aside
+            aria-label={PANEL_LABEL}
+            aria-hidden={!open}
+            className={[
+              "hidden lg:block col-start-1 row-start-1 sticky top-[4.25rem] z-20 justify-self-start self-start",
+              "max-h-[calc(100dvh-4.25rem)] overflow-y-auto overscroll-contain",
+              "bg-[var(--color-surface)]/92 backdrop-blur-md rounded-r-xl",
+              "border border-[var(--color-border)] shadow-[var(--shadow-card)]",
+              "transition-[opacity,transform] duration-300 ease-[cubic-bezier(0.22,0.9,0.3,1)] motion-reduce:transition-none",
+              open
+                ? "opacity-100 translate-x-0"
+                : "opacity-0 -translate-x-3 pointer-events-none",
+            ].join(" ")}
+            style={{ width: PANEL_WIDTH }}
+          >
+            {panelContent}
+          </aside>
 
-          {children}
+          {/* Mobile — fixed slide-over drawer */}
+          <aside
+            aria-label={PANEL_LABEL}
+            aria-hidden={!open}
+            className={[
+              "lg:hidden fixed top-[4.25rem] left-3 z-50 h-[calc(100dvh-4.25rem-0.75rem)] overflow-y-auto overscroll-contain",
+              "bg-[var(--color-surface)] rounded-r-xl border border-[var(--color-border)] shadow-[var(--shadow-popover)]",
+              "transition-transform duration-300 ease-[cubic-bezier(0.22,0.9,0.3,1)] motion-reduce:transition-none",
+              open ? "translate-x-0" : "-translate-x-[calc(100%+0.75rem)] pointer-events-none",
+            ].join(" ")}
+            style={{ width: PANEL_WIDTH, maxWidth: "min(280px, calc(100vw - 1.5rem))" }}
+          >
+            {panelContent}
+          </aside>
+
+          <div className="col-start-1 row-start-1 min-w-0 w-full z-0">
+            {!open && (
+              <div className="sticky top-[4.25rem] z-20 mb-3 px-4 sm:px-0 lg:px-0">
+                <button
+                  type="button"
+                  onClick={openPanel}
+                  className={[
+                    "inline-flex items-center gap-2 min-h-[44px]",
+                    "px-3.5 py-2 rounded-lg",
+                    "bg-[var(--color-brand-600)] text-white font-semibold text-sm",
+                    "shadow-[var(--shadow-popover)] hover:bg-[var(--color-brand-700)] transition-colors",
+                  ].join(" ")}
+                  aria-label={`Open ${PANEL_LABEL.toLowerCase()}`}
+                  aria-expanded={false}
+                >
+                  <GuideIcon />
+                  <span>{PANEL_LABEL}</span>
+                </button>
+              </div>
+            )}
+
+            {children}
+          </div>
         </div>
       </div>
-      </div>
-    </>
+    </div>
   );
 }
 

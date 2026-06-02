@@ -1,9 +1,9 @@
-import type { HTMLAttributes } from "react";
+import type { HTMLAttributes, ElementType } from "react";
 
 type Props = HTMLAttributes<HTMLDivElement> & {
   interactive?: boolean;
   flat?: boolean;
-  as?: "div" | "article" | "section" | "li";
+  as?: ElementType;
 };
 
 export default function Card({

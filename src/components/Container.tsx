@@ -17,7 +17,11 @@ export default function Container({
 }: HTMLAttributes<HTMLDivElement> & { size?: Size }) {
   return (
     <div
-      className={`mx-auto w-full ${MAX[size]} px-4 sm:px-6 lg:px-8 safe-x ${className}`}
+      className={[
+        `mx-auto w-full ${MAX[size]} px-4 sm:px-6 safe-x`,
+        "lg:pr-8 lg:pl-[calc(var(--unit-study-inset,0px)+2rem)]",
+        className,
+      ].join(" ")}
       {...rest}
     >
       {children}
