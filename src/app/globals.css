@@ -829,9 +829,9 @@ body {
     padding-right: 2rem;
   }
 
-  /* Unit menu overlays backgrounds; lesson copy clears the panel. */
+  /* Unit menu overlays backgrounds; lesson copy clears panel + one modest gap. */
   .unit-study-panel:not(.unit-study-panel--closed) .unit-study-main .site-container {
-    padding-left: calc(280px + 48px + 2rem);
+    padding-left: calc(280px + 1.25rem);
   }
 }
 .safe-bottom {
