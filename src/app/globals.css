@@ -410,6 +410,13 @@ body {
   background: var(--color-bg);
   overflow: hidden;
 }
+.hero-surface > .hero-canvas-wrap {
+  z-index: 0;
+}
+.hero-surface > *:not(.hero-canvas-wrap) {
+  position: relative;
+  z-index: 1;
+}
 
 /* Subtle dot grid integrated into hero backgrounds; opacity tuned so it
    reads as paper texture, not noise. */
@@ -511,17 +518,54 @@ body {
 .hero-canvas-wrap {
   position: absolute;
   inset: 0;
+  z-index: 0;
   overflow: hidden;
   pointer-events: none;
 }
-.hero-canvas-vignette {
+.hero-canvas-wrap--margins {
+  -webkit-mask-image: radial-gradient(
+    ellipse 62% 56% at 50% 42%,
+    transparent 0%,
+    transparent 36%,
+    rgba(0, 0, 0, 0.35) 58%,
+    black 78%
+  );
+  mask-image: radial-gradient(
+    ellipse 62% 56% at 50% 42%,
+    transparent 0%,
+    transparent 36%,
+    rgba(0, 0, 0, 0.35) 58%,
+    black 78%
+  );
+}
+.hero-canvas-vignette,
+.hero-canvas-vignette--warm {
   position: absolute;
   inset: 0;
+  pointer-events: none;
+}
+.hero-canvas-vignette--warm {
   background: radial-gradient(
     ellipse 80% 70% at 50% 42%,
     rgba(255, 255, 255, 0.2) 0%,
     rgba(251, 250, 247, 0.05) 50%,
     rgba(251, 250, 247, 0.45) 100%
+  );
+}
+.hero-canvas-vignette--paper {
+  background: radial-gradient(
+    ellipse 88% 78% at 50% 38%,
+    rgba(255, 255, 255, 0.22) 0%,
+    rgba(255, 255, 255, 0.04) 55%,
+    rgba(255, 255, 255, 0.28) 100%
+  );
+}
+.hero-canvas-vignette--session {
+  background: radial-gradient(
+    ellipse 90% 80% at 42% 40%,
+    rgba(255, 255, 255, 0.28) 0%,
+    rgba(251, 250, 247, 0.06) 50%,
+    rgba(251, 250, 247, 0.32) 100%
   );
 }
 

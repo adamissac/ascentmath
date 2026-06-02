@@ -162,7 +162,7 @@ export default function BookPage() {
 
   return (
     <>
-      <Section tone="hero" size="lg" containerSize="lg" decorated="paper" decoratedDensity="light" decoratedContentSafe reveal={false}>
+      <Section tone="hero" size="lg" containerSize="lg" floatingVariant="session" reveal={false}>
         <div className="grid lg:grid-cols-2 gap-10 xl:gap-14 items-start">
           <Reveal variant="up">
             <Badge tone="brand" className="mb-5">1:1 session · Free</Badge>

@@ -5,7 +5,7 @@ import Section from "../../components/Section";
 import Badge from "../../components/Badge";
 import Breadcrumbs from "../../components/Breadcrumbs";
 import Button from "../../components/Button";
-import MathBackdrop from "../../components/MathBackdrop";
+import FloatingMathCanvas from "../../components/FloatingMathCanvas";
 import ColorBand from "../../components/ColorBand";
 import Reveal from "../../components/Reveal";
 
@@ -38,7 +38,7 @@ export default function ParentsPage() {
   return (
     <>
       <section className="hero-surface relative overflow-hidden">
-        <MathBackdrop variant="paper" density="dense" fadeEdges />
+        <FloatingMathCanvas variant="grade" />
         <Container size="xl" className="relative pt-10 pb-14 sm:pb-16">
           <div className="flex justify-center">
             <Breadcrumbs items={[{ label: "Home", href: "/" }, { label: "For parents & teachers" }]} />

@@ -1,6 +1,7 @@
 import type { HTMLAttributes } from "react";
 import Container from "./Container";
 import MathBackdrop, { type BackdropDensity, type BackdropVariant } from "./MathBackdrop";
+import FloatingMathCanvas, { type FloatingMathVariant } from "./FloatingMathCanvas";
 import Reveal from "./Reveal";
 
 type Tone = "default" | "muted" | "brand" | "hero" | "dark";
@@ -24,6 +25,8 @@ type Props = HTMLAttributes<HTMLElement> & {
   decoratedContentSafe?: boolean;
   /** Fade/slide section content in when scrolled into view. */
   reveal?: boolean;
+  /** Animated floating symbols in the hero (replaces static MathBackdrop for this section). */
+  floatingVariant?: FloatingMathVariant;
 };
 
 const PADDING = {
@@ -41,11 +44,14 @@ export default function Section({
   decoratedDensity = "dense",
   decoratedContentSafe = false,
   reveal = true,
+  floatingVariant,
   className = "",
   children,
   ...rest
 }: Props) {
-  const showBackdrop = Boolean(decorated) || tone === "dark";
+  const showFloating = Boolean(floatingVariant);
+  const showBackdrop = !showFloating && (Boolean(decorated) || tone === "dark");
+  const showOverlay = showFloating || showBackdrop;
   const backdropVariant: BackdropVariant =
     tone === "dark" ? "dark" : (decorated as BackdropVariant);
 
@@ -53,9 +59,10 @@ export default function Section({
 
   return (
     <section
-      className={`${TONE[tone]} ${PADDING[size]} ${showBackdrop ? "relative overflow-hidden" : ""} ${className}`}
+      className={`${TONE[tone]} ${PADDING[size]} ${showOverlay ? "relative overflow-hidden" : ""} ${className}`}
       {...rest}
     >
+      {showFloating && <FloatingMathCanvas variant={floatingVariant!} />}
       {showBackdrop && (
         <MathBackdrop
           variant={backdropVariant}
@@ -64,7 +71,7 @@ export default function Section({
           watermark={tone !== "dark"}
         />
       )}
-      <Container size={containerSize} className={showBackdrop ? "relative z-[1]" : undefined}>
+      <Container size={containerSize} className={showOverlay ? "relative z-[1]" : undefined}>
         {inner}
       </Container>
     </section>

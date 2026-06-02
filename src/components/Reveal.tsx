@@ -57,6 +57,17 @@ export default function Reveal({
 
     observer.observe(el);
 
+    const revealIfInView = () => {
+      const rect = el.getBoundingClientRect();
+      const vh = window.innerHeight || document.documentElement.clientHeight;
+      if (rect.top < vh * 0.92 && rect.bottom > vh * 0.06) {
+        setVisible(true);
+        observer.disconnect();
+      }
+    };
+
+    requestAnimationFrame(() => requestAnimationFrame(revealIfInView));
+
     const fallback = window.setTimeout(() => setVisible(true), 4000);
 
     return () => {

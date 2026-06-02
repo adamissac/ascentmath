@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import Container from "../../../components/Container";
 import Breadcrumbs from "../../../components/Breadcrumbs";
-import MathBackdrop from "../../../components/MathBackdrop";
+import FloatingMathCanvas from "../../../components/FloatingMathCanvas";
 import TopicStartFinder from "../../../components/TopicStartFinder";
 import Reveal from "../../../components/Reveal";
 import { GRADES } from "../../../data/units";
@@ -19,7 +19,7 @@ export default function FindYourStartPage() {
   return (
     <>
       <section className="hero-surface relative overflow-hidden">
-        <MathBackdrop variant="paper" density="dense" fadeEdges />
+        <FloatingMathCanvas variant="compass" />
         <Container size="lg" className="relative pt-10 pb-12 sm:pb-14">
           <Breadcrumbs
             items={[

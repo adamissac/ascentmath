@@ -34,10 +34,10 @@ export default function HeroSection({ totalUnits, totalVideos }: HeroSectionProp
   const rise = ["hero-enter", ready ? "is-visible" : ""].filter(Boolean).join(" ");
 
   return (
-    <section className="relative min-h-[min(100dvh,920px)] overflow-hidden bg-[#FBFAF7]">
+    <section className="hero-surface relative min-h-[min(100dvh,920px)] overflow-hidden bg-[#FBFAF7]">
       <HeroCanvas />
 
-      <div className="relative z-10 flex min-h-[min(100dvh,920px)] items-center justify-center px-4 py-16 sm:px-6 lg:px-8">
+      <div className="relative z-[1] flex min-h-[min(100dvh,920px)] items-center justify-center px-4 py-16 sm:px-6 lg:px-8">
         <div className="mx-auto flex w-full max-w-4xl flex-col items-center text-center">
           <span
             className={`${rise} ${STAGGER[0]} inline-flex items-center rounded-full border border-[#1a1a2e]/12 bg-[#1a1a2e]/[0.04] px-3.5 py-1.5 text-[0.6875rem] font-semibold uppercase tracking-[0.14em] text-[#4a4a6a]`}

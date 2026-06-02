@@ -6,7 +6,7 @@ import Section from "../../components/Section";
 import Card from "../../components/Card";
 import Button from "../../components/Button";
 import Badge from "../../components/Badge";
-import MathBackdrop from "../../components/MathBackdrop";
+import FloatingMathCanvas from "../../components/FloatingMathCanvas";
 import ColorBand from "../../components/ColorBand";
 import Reveal from "../../components/Reveal";
 
@@ -25,7 +25,7 @@ export default function AboutPage() {
           meta) on the right.
           =============================================================== */}
       <section className="hero-surface relative overflow-hidden">
-        <MathBackdrop variant="paper" density="dense" fadeEdges />
+        <FloatingMathCanvas variant="about" />
         <Container size="xl" className="relative pt-14 sm:pt-20 pb-14 sm:pb-20">
           <div className="grid lg:grid-cols-12 gap-10 lg:gap-14 items-start">
             <Reveal className="lg:col-span-8" variant="up">
@@ -119,62 +119,6 @@ export default function AboutPage() {
           to use - especially for students who can&apos;t afford private tutoring.
         </p>
       </ColorBand>
-
-      {/* ===============================================================
-          STORY - long-form, broken by a pull quote
-          =============================================================== */}
-      <Section tone="default" size="sm" containerSize="xl" decorated="paper" decoratedDensity="medium">
-        <div className="grid lg:grid-cols-12 gap-8 lg:gap-14 items-start">
-          <aside className="lg:col-span-2 lg:pr-8 xl:pr-10">
-            <p className="eyebrow">My story</p>
-            <p className="small text-[var(--color-ink-muted)] mt-3 leading-relaxed">
-              Why this site exists, in my own words - written over a few weekends in the
-              library at school.
-            </p>
-          </aside>
-
-          <div className="lg:col-span-10">
-            <p className="lede">
-              I&apos;m a senior at Denmark High School. The longer I&apos;ve been here, the more I&apos;ve
-              noticed the same thing: a lot of us struggle to follow lectures, the material
-              gets dense fast, and the feeling of being lost is hard to admit out loud.
-            </p>
-
-            <p className="body mt-5 leading-relaxed text-[var(--color-ink)]">
-              Math was the one subject that always made sense to me - partly because of how
-              it&apos;s built, and partly because the people who explained it well made all the
-              difference. Friends started calling me their &ldquo;math tutor.&rdquo; That nickname
-              stuck.
-            </p>
-
-            <figure className="my-10">
-              <blockquote className="pullquote pl-8">
-                I started tutoring two of my family&apos;s friends&apos; kids - sixth and eighth
-                grade. Watching how relieved they felt when something clicked is what
-                hooked me.
-              </blockquote>
-            </figure>
-
-            <p className="body leading-relaxed text-[var(--color-ink)]">
-              Their grades went up. Their confidence went up faster. That&apos;s when the
-              project went bigger than a few weekend sessions.
-            </p>
-
-            <p className="body mt-5 leading-relaxed text-[var(--color-ink)]">
-              When I dug into the research, I learned that students who are below grade
-              level are often also in families that can&apos;t afford private tutoring. That&apos;s
-              the gap Adam&apos;s Alphabet is built for - a free, friendly resource that meets
-              students where they actually are.
-            </p>
-
-            <p className="body mt-5 leading-relaxed text-[var(--color-ink)]">
-              The site is still growing. I&apos;m adding worksheets, recording videos, and
-              tightening the curriculum every month. If something here helps even one
-              student feel less lost, the whole thing is worth it.
-            </p>
-          </div>
-        </div>
-      </Section>
 
       {/* ===============================================================
           TIMELINE

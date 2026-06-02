@@ -5,7 +5,7 @@ import Section from "../../components/Section";
 import Badge from "../../components/Badge";
 import Breadcrumbs from "../../components/Breadcrumbs";
 import Button from "../../components/Button";
-import MathBackdrop from "../../components/MathBackdrop";
+import FloatingMathCanvas from "../../components/FloatingMathCanvas";
 import ColorBand from "../../components/ColorBand";
 import Reveal from "../../components/Reveal";
 import { DocSymbol, UnitSymbol } from "../../components/UnitSymbol";
@@ -29,7 +29,7 @@ export default function MathematicsHub() {
     <>
       {/* HERO */}
       <section className="hero-surface relative overflow-hidden">
-        <MathBackdrop variant="paper" density="dense" fadeEdges />
+        <FloatingMathCanvas variant="library" />
         <Container size="xl" className="relative pt-10 pb-16 sm:pb-20">
           <div className="flex justify-center">
             <Breadcrumbs items={[{ label: "Home", href: "/" }, { label: "Mathematics" }]} />
