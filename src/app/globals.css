@@ -66,6 +66,21 @@
   --shadow-card-hover:  0 4px 12px rgba(15, 17, 21, 0.06), 0 12px 28px rgba(15, 17, 21, 0.08);
   --shadow-popover:     0 12px 32px rgba(15, 17, 21, 0.14);
   --shadow-focus:       0 0 0 4px rgba(42, 75, 203, 0.20);
+
+  /* Match Tailwind page-x (px-4 / sm:px-6 / lg:px-8) for .site-container & .page-x */
+  --page-gutter-x: 1rem;
+}
+
+@media (min-width: 640px) {
+  :root {
+    --page-gutter-x: 1.5rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  :root {
+    --page-gutter-x: 2rem;
+  }
 }
 
 /* =============================================================
@@ -1203,12 +1218,6 @@ body {
   padding-right: max(var(--page-gutter-x), env(safe-area-inset-right, 0px));
 }
 
-@media (min-width: 1024px) {
-  /* Unit menu overlays backgrounds; lesson copy clears panel + one modest gap. */
-  .unit-study-panel:not(.unit-study-panel--closed) .unit-study-main .site-container {
-    padding-left: calc(280px + var(--page-gutter-x));
-  }
-}
 .safe-bottom {
   padding-bottom: env(safe-area-inset-bottom, 0px);
 }

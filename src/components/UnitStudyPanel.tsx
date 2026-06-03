@@ -12,8 +12,8 @@ const DESKTOP_QUERY = "(min-width: 1024px)";
 
 /**
  * Left unit menu - open by default on desktop; users can close it. On mobile
- * it stays closed until opened. Overlays content on desktop so section
- * backgrounds run full width behind the menu.
+ * it stays closed until opened as a slide-over drawer. On desktop, opening
+ * the menu uses a two-column layout so lesson content shifts right.
  */
 export default function UnitStudyPanel({
   unitId,
@@ -129,17 +129,10 @@ export default function UnitStudyPanel({
     </>
   );
 
-  const panelClosed = mounted && isDesktop && !open;
+  const desktopOpen = mounted && isDesktop && open;
 
   return (
-    <div
-      className={[
-        "unit-study-panel",
-        panelClosed ? "unit-study-panel--closed" : "",
-      ]
-        .filter(Boolean)
-        .join(" ")}
-    >
+    <div className="unit-study-panel">
       {/* Mobile backdrop */}
       {mounted && !isDesktop && open && (
         <button
@@ -151,25 +144,23 @@ export default function UnitStudyPanel({
       )}
 
       <div className={isDesktop ? "lg:px-6 xl:px-10" : undefined}>
-        {/* Desktop: menu overlays the stack so section backgrounds run full width. */}
         <div
           className={[
             "w-full",
-            isDesktop ? "grid grid-cols-1" : "block",
+            desktopOpen
+              ? "lg:grid lg:grid-cols-[280px_minmax(0,1fr)] lg:gap-x-6 lg:items-start"
+              : "",
           ].join(" ")}
         >
           <aside
             aria-label={PANEL_LABEL}
             aria-hidden={!open}
             className={[
-              "hidden lg:block col-start-1 row-start-1 sticky top-[4.25rem] z-20 justify-self-start self-start",
+              "hidden lg:block sticky top-[4.25rem] z-20 self-start shrink-0",
               "max-h-[calc(100dvh-4.25rem)] overflow-y-auto overscroll-contain",
-              "bg-[var(--color-surface)]/92 backdrop-blur-md rounded-r-xl",
+              "bg-[var(--color-surface)] rounded-r-xl",
               "border border-[var(--color-border)] shadow-[var(--shadow-card)]",
-              "transition-[opacity,transform] duration-300 ease-[cubic-bezier(0.22,0.9,0.3,1)] motion-reduce:transition-none",
-              open
-                ? "opacity-100 translate-x-0"
-                : "opacity-0 -translate-x-3 pointer-events-none",
+              desktopOpen ? "" : "lg:hidden",
             ].join(" ")}
             style={{ width: PANEL_WIDTH }}
           >
@@ -191,8 +182,8 @@ export default function UnitStudyPanel({
             {panelContent}
           </aside>
 
-          <div className="unit-study-main col-start-1 row-start-1 min-w-0 w-full z-0">
-            {!open && (
+          <div className="unit-study-main min-w-0 w-full">
+            {mounted && !open && (
               <div className="sticky top-[4.25rem] z-20 mb-3 page-x sm:px-0 lg:px-0">
                 <button
                   type="button"
