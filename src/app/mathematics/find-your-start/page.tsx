@@ -6,11 +6,13 @@ import FloatingMathCanvas from "../../../components/FloatingMathCanvas";
 import TopicStartFinder from "../../../components/TopicStartFinder";
 import Reveal from "../../../components/Reveal";
 import { GRADES } from "../../../data/units";
+import { STUDY_PATHS_HREF } from "../../../lib/site-paths";
+import StudyPathsLink from "../../../components/StudyPathsLink";
 
 export const metadata: Metadata = {
   title: "Find your start",
   description:
-    "Answer three quick questions to find the right grade, unit, and topic in the Adam's Alphabet math library.",
+    "Answer three quick questions to find the right grade, unit, and topic in the free Grades 6–8 study paths.",
 };
 
 export default function FindYourStartPage() {
@@ -24,7 +26,7 @@ export default function FindYourStartPage() {
           <Breadcrumbs
             items={[
               { label: "Home", href: "/" },
-              { label: "Mathematics", href: "/mathematics" },
+              { label: "Mathematics", href: STUDY_PATHS_HREF },
               { label: "Find your start" },
             ]}
           />
@@ -43,13 +45,14 @@ export default function FindYourStartPage() {
           <TopicStartFinder />
           <p className="small text-[var(--color-ink-muted)] mt-8 text-center">
             Already know the topic name?{" "}
-            <Link href="/mathematics" className="link font-semibold">
-              Search the math library
-            </Link>
+            <StudyPathsLink className="link font-semibold">
+              Search study paths
+            </StudyPathsLink>
             .
           </p>
         </Container>
       </section>
+
     </>
   );
 }

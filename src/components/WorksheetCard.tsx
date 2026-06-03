@@ -1,3 +1,5 @@
+"use client";
+
 type Props = {
   driveFileId: string;
   title: string;

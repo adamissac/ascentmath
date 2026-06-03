@@ -1,4 +1,9 @@
+"use client";
+
 import Link from "next/link";
+import HashLink from "./HashLink";
+import { SITE_POSITIONING } from "../data/site-copy";
+import { BOOK_SESSION_HREF, STUDY_PATHS_HREF } from "../lib/site-paths";
 
 const YEAR = new Date().getFullYear();
 
@@ -13,9 +18,7 @@ export default function Footer() {
               Adam&apos;s Alphabet
             </Link>
             <p className="mt-3 small text-[var(--color-ink-muted)] max-w-md leading-relaxed">
-              A free Grades 6–8 math library - clear lessons, hand-picked video walkthroughs,
-              printable worksheets, and quizzes. Built by a student tutor for students who
-              learn differently.
+              {SITE_POSITIONING}
             </p>
             <p className="caption text-[var(--color-ink-soft)] mt-4">
               Made in Georgia. Open to learners everywhere.
@@ -26,11 +29,18 @@ export default function Footer() {
           <div className="hidden lg:block lg:col-span-1" />
 
           {/* Right: link columns */}
-          <div className="lg:col-span-6 grid sm:grid-cols-3 gap-8">
+          <div className="lg:col-span-6 grid grid-cols-2 sm:grid-cols-4 gap-8">
             <div>
-              <h3 className="caption font-semibold text-[var(--color-ink)] uppercase tracking-wider">Learn</h3>
+              <h3 className="caption font-semibold text-[var(--color-ink)] uppercase tracking-wider">Tutoring</h3>
               <ul className="mt-3 space-y-2 small">
-                <li><Link href="/mathematics" className="link">Mathematics</Link></li>
+                <li><HashLink href={BOOK_SESSION_HREF} className="link">Book a session</HashLink></li>
+                <li><HashLink href="/#what-i-teach" className="link">Tutoring tiers</HashLink></li>
+              </ul>
+            </div>
+            <div>
+              <h3 className="caption font-semibold text-[var(--color-ink)] uppercase tracking-wider">Study paths</h3>
+              <ul className="mt-3 space-y-2 small">
+                <li><HashLink href={STUDY_PATHS_HREF} className="link">Grades 6–8 paths (free)</HashLink></li>
                 <li><Link href="/mathematics/find-your-start" className="link">Find your start</Link></li>
                 <li><Link href="/mathematics/curriculum-frameworks" className="link">GADOE frameworks</Link></li>
               </ul>
@@ -38,9 +48,7 @@ export default function Footer() {
             <div>
               <h3 className="caption font-semibold text-[var(--color-ink)] uppercase tracking-wider">Site</h3>
               <ul className="mt-3 space-y-2 small">
-                <li><Link href="/about" className="link">About Adam</Link></li>
-                <li><Link href="/parents" className="link">For parents &amp; teachers</Link></li>
-                <li><Link href="/book" className="link">Book a class</Link></li>
+                <li><Link href="/about" className="link">About</Link></li>
               </ul>
             </div>
             <div>
@@ -63,7 +71,7 @@ export default function Footer() {
 
         <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
           <p className="caption text-[var(--color-ink-soft)]">
-            © {YEAR} Adam&apos;s Alphabet · Free educational resources
+            © {YEAR} Adam&apos;s Alphabet · Paid tutoring · Free study tracks
           </p>
           <p className="caption text-[var(--color-ink-soft)]">
             Designed for extra help - not limited to students in Georgia.

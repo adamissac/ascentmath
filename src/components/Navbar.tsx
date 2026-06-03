@@ -3,20 +3,31 @@
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname, useRouter } from "next/navigation";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, type ReactNode } from "react";
 import { useAuth } from "./AuthProvider";
+import HashLink from "./HashLink";
+import { BOOK_SESSION_HREF, STUDY_PATHS_HREF } from "../lib/site-paths";
 
 const NAV_LINKS = [
-  { href: "/mathematics", label: "Mathematics" },
-  { href: "/about", label: "About" },
-  { href: "/book", label: "Book a class" },
-];
+  { href: "/#what-i-teach", label: "Tutoring", sectionId: "what-i-teach" },
+  { href: STUDY_PATHS_HREF, label: "Study paths", sectionId: "study-paths" },
+  { href: "/about", label: "About", sectionId: null },
+] as const;
+
+const HOME_NAV_SECTIONS = ["what-i-teach", "study-paths"] as const;
+type HomeNavSection = (typeof HOME_NAV_SECTIONS)[number];
+
+function hashToHomeSection(hash: string): HomeNavSection | null {
+  const id = hash.replace(/^#/, "");
+  return HOME_NAV_SECTIONS.includes(id as HomeNavSection) ? (id as HomeNavSection) : null;
+}
 
 export default function Navbar() {
   const pathname = usePathname();
   const router = useRouter();
   const [open, setOpen] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+  const [homeSection, setHomeSection] = useState<HomeNavSection | null>(null);
   const menuRef = useRef<HTMLDivElement | null>(null);
 
   const { user, profile, loading, signOut } = useAuth();
@@ -42,8 +53,69 @@ export default function Navbar() {
     };
   }, [menuOpen]);
 
-  const isActive = (href: string) =>
-    href === "/" ? pathname === "/" : pathname?.startsWith(href);
+  useEffect(() => {
+    if (pathname !== "/") {
+      setHomeSection(null);
+      return;
+    }
+
+    const syncFromHash = () => {
+      setHomeSection(hashToHomeSection(window.location.hash));
+    };
+    syncFromHash();
+    window.addEventListener("hashchange", syncFromHash);
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const visible = entries
+          .filter((e) => e.isIntersecting)
+          .sort((a, b) => b.intersectionRatio - a.intersectionRatio);
+        if (visible[0]?.target.id) {
+          const id = visible[0].target.id;
+          if (HOME_NAV_SECTIONS.includes(id as HomeNavSection)) {
+            setHomeSection(id as HomeNavSection);
+          }
+        }
+      },
+      { rootMargin: "-30% 0px -55% 0px", threshold: [0, 0.1, 0.25, 0.5, 0.75, 1] },
+    );
+
+    for (const id of HOME_NAV_SECTIONS) {
+      const el = document.getElementById(id);
+      if (el) observer.observe(el);
+    }
+
+    return () => {
+      window.removeEventListener("hashchange", syncFromHash);
+      observer.disconnect();
+    };
+  }, [pathname]);
+
+  const isActive = (href: string, sectionId: HomeNavSection | null) => {
+    if (sectionId === "study-paths") {
+      if (pathname?.startsWith("/mathematics")) return true;
+      return pathname === "/" && homeSection === "study-paths";
+    }
+    if (sectionId === "what-i-teach") {
+      return pathname === "/" && homeSection === "what-i-teach";
+    }
+    if (href === "/") return pathname === "/";
+    return pathname === href || (pathname?.startsWith(`${href}/`) ?? false);
+  };
+
+  const NavAnchor = ({ href, className, children, onNavigate }: {
+    href: string;
+    className: string;
+    children: ReactNode;
+    onNavigate?: () => void;
+  }) => {
+    const props = { href, className, onClick: onNavigate };
+    return href.includes("#") ? (
+      <HashLink {...props}>{children}</HashLink>
+    ) : (
+      <Link {...props}>{children}</Link>
+    );
+  };
 
   async function handleSignOut() {
     setMenuOpen(false);
@@ -62,7 +134,7 @@ export default function Navbar() {
   const initial = (displayName[0] || user?.email?.[0] || "?").toUpperCase();
 
   return (
-    <header className="sticky top-0 z-40 w-full border-b border-[var(--color-brand-100)] border-t-[3px] border-t-[var(--color-brand-600)] bg-white shadow-sm">
+    <header className="fixed top-0 left-0 right-0 z-50 w-full border-b border-[var(--color-brand-100)] border-t-[3px] border-t-[var(--color-brand-600)] bg-white shadow-sm">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 safe-x">
         <div className="flex h-[4.25rem] items-center justify-between gap-2 sm:gap-6">
           <Link
@@ -70,13 +142,14 @@ export default function Navbar() {
             className="group flex items-center gap-2.5 font-display font-bold text-[1.0625rem] text-[var(--color-brand-700)] hover:text-[var(--color-brand-600)] transition-all min-w-0"
             aria-label="Adam's Alphabet - home"
           >
-            <span className="relative w-10 h-10 rounded-lg overflow-hidden shrink-0 ring-2 ring-[var(--color-brand-100)] shadow-sm group-hover:ring-[var(--color-brand-300)]">
+            <span className="nav-logo-wrap">
               <Image
                 src="/newLogo.png"
                 alt=""
-                fill
+                width={40}
+                height={40}
                 sizes="40px"
-                className="object-cover"
+                className="h-full w-full object-cover"
                 priority
               />
             </span>
@@ -85,24 +158,24 @@ export default function Navbar() {
 
           <nav className="hidden md:flex items-center gap-1 rounded-full bg-[var(--color-brand-50)]/50 p-1 ring-1 ring-[var(--color-brand-100)]/60" aria-label="Primary">
             {NAV_LINKS.map((l) => (
-              <Link
+              <NavAnchor
                 key={l.href}
                 href={l.href}
                 className={[
                   "relative px-4 py-2 rounded-full text-sm font-semibold transition-all duration-300 ease-[cubic-bezier(0.16,1,0.3,1)]",
-                  isActive(l.href)
+                  isActive(l.href, l.sectionId)
                     ? "text-[var(--color-brand-700)] bg-white shadow-sm ring-1 ring-[var(--color-brand-100)]"
                     : "text-[var(--color-ink)] hover:text-[var(--color-brand-700)] hover:bg-white/70",
                 ].join(" ")}
               >
                 {l.label}
-              </Link>
+              </NavAnchor>
             ))}
           </nav>
 
           {/* Right-side CTAs depend on auth state */}
           <div className="hidden md:flex items-center gap-2">
-            {loading ? (
+            {loading && user ? (
               <span className="w-9 h-9 rounded-full bg-[var(--color-surface-2)] animate-pulse" />
             ) : user ? (
               <div className="relative" ref={menuRef}>
@@ -135,8 +208,8 @@ export default function Navbar() {
                       </p>
                     </div>
                     <MenuLink href="/dashboard">My account</MenuLink>
-                    <MenuLink href="/book">Book a session</MenuLink>
-                    <MenuLink href="/mathematics">Continue learning</MenuLink>
+                    <MenuLink href={BOOK_SESSION_HREF}>Book a session</MenuLink>
+                    <MenuLink href={STUDY_PATHS_HREF}>Continue learning</MenuLink>
                     <div className="my-1 h-px bg-[var(--color-border)]" />
                     <button
                       type="button"
@@ -157,13 +230,13 @@ export default function Navbar() {
                 >
                   Log in
                 </Link>
-                <Link
-                  href="/signup"
+                <HashLink
+                  href={BOOK_SESSION_HREF}
                   className="btn btn-primary btn-sm shadow-[0_8px_20px_-8px_rgba(42,75,203,0.55)] hover:-translate-y-0.5 hover:shadow-[0_12px_24px_-10px_rgba(42,75,203,0.5)] transition-[transform,box-shadow]"
                 >
-                  Start learning
+                  Book a session
                   <span aria-hidden>→</span>
-                </Link>
+                </HashLink>
               </>
             )}
           </div>
@@ -201,23 +274,24 @@ export default function Navbar() {
         >
           <nav className="page-x py-3 flex flex-col gap-1" aria-label="Mobile">
             {NAV_LINKS.map((l) => (
-              <Link
+              <NavAnchor
                 key={l.href}
                 href={l.href}
+                onNavigate={() => setOpen(false)}
                 className={[
                   "px-3 py-3 rounded-md text-base font-medium min-h-[44px] flex items-center",
-                  isActive(l.href)
+                  isActive(l.href, l.sectionId)
                     ? "text-[var(--color-brand-700)] bg-[var(--color-brand-50)]"
                     : "text-[var(--color-ink)] hover:bg-[var(--color-surface-2)]",
                 ].join(" ")}
               >
                 {l.label}
-              </Link>
+              </NavAnchor>
             ))}
 
             <div className="my-2 h-px bg-[var(--color-border)]" />
 
-            {loading ? (
+            {loading && user ? (
               <span className="px-3 py-2 text-sm text-[var(--color-ink-muted)]">…</span>
             ) : user ? (
               <>
@@ -251,8 +325,14 @@ export default function Navbar() {
                 >
                   Log in
                 </Link>
-                <Link href="/signup" className="btn btn-primary mt-2">
-                  Create account →
+                <HashLink href={BOOK_SESSION_HREF} className="btn btn-primary mt-2">
+                  Book a session →
+                </HashLink>
+                <Link
+                  href="/signup"
+                  className="px-3 py-2 rounded-md text-base font-medium text-[var(--color-ink)] hover:bg-[var(--color-surface-2)]"
+                >
+                  Create account
                 </Link>
               </>
             )}
@@ -264,12 +344,17 @@ export default function Navbar() {
 }
 
 function MenuLink({ href, children }: { href: string; children: React.ReactNode }) {
+  const className =
+    "block px-3 py-2 text-sm text-[var(--color-ink)] hover:bg-[var(--color-surface-2)] transition-colors";
+  if (href.includes("#")) {
+    return (
+      <HashLink href={href} role="menuitem" className={className}>
+        {children}
+      </HashLink>
+    );
+  }
   return (
-    <Link
-      href={href}
-      role="menuitem"
-      className="block px-3 py-2 text-sm text-[var(--color-ink)] hover:bg-[var(--color-surface-2)] transition-colors"
-    >
+    <Link href={href} role="menuitem" className={className}>
       {children}
     </Link>
   );

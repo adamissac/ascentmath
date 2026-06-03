@@ -1,3 +1,5 @@
+"use client";
+
 import type { CSSProperties, ReactNode } from "react";
 
 /**
@@ -5,8 +7,10 @@ import type { CSSProperties, ReactNode } from "react";
  * Purely visual (`aria-hidden`, no pointer events).
  */
 
-export type BackdropVariant = "paper" | "muted" | "brand" | "dark";
+export type BackdropVariant = "paper" | "muted" | "brand" | "dark" | "tracks";
 export type BackdropDensity = "light" | "medium" | "dense";
+
+type GlyphTint = "blue" | "orange" | "gray";
 
 type Glyph = {
   ch: string;
@@ -16,6 +20,13 @@ type Glyph = {
   rot?: number;
   o?: number;
   font?: "display" | "sans";
+  tint?: GlyphTint;
+};
+
+const GLYPH_TINT: Record<GlyphTint, { color: string; opacity: number }> = {
+  blue: { color: "rgba(42, 75, 203, 0.7)", opacity: 0.12 },
+  orange: { color: "rgba(244, 123, 22, 0.75)", opacity: 0.11 },
+  gray: { color: "rgba(90, 95, 104, 0.65)", opacity: 0.1 },
 };
 
 type Clip = {
@@ -119,6 +130,43 @@ const BRAND_GLYPHS: Record<BackdropDensity, Glyph[]> = {
   dense: PAPER_GLYPHS.dense.map((g) => ({ ...g, o: (g.o ?? 1) * 0.9 })),
 };
 
+/** Static mixed-color symbols for light sections below the hero (no animation). */
+const TRACKS_GLYPHS: Record<BackdropDensity, Glyph[]> = {
+  light: [
+    { ch: "π", top: 10, left: 8, size: 2.8, rot: -6, tint: "blue" },
+    { ch: "Σ", top: 18, left: 90, size: 2.4, rot: 4, tint: "gray" },
+    { ch: "θ", top: 72, left: 6, size: 2.2, rot: -5, tint: "blue" },
+    { ch: "÷", top: 82, left: 88, size: 2.0, rot: 6, tint: "orange" },
+    { ch: "x²", top: 38, left: 92, size: 1.8, rot: 8, font: "sans", tint: "orange" },
+    { ch: "λ", top: 48, left: 5, size: 2.4, rot: 3, tint: "gray" },
+  ],
+  medium: [
+    { ch: "π", top: 8, left: 7, size: 3.0, rot: -6, tint: "blue" },
+    { ch: "Σ", top: 14, left: 88, size: 2.6, rot: 4, tint: "gray" },
+    { ch: "∞", top: 22, left: 12, size: 2.2, rot: -8, tint: "blue" },
+    { ch: "θ", top: 30, left: 78, size: 2.4, rot: -4, tint: "orange" },
+    { ch: "√", top: 58, left: 90, size: 2.8, rot: 2, tint: "blue" },
+    { ch: "≠", top: 66, left: 8, size: 2.0, rot: -6, tint: "gray" },
+    { ch: "∫", top: 74, left: 72, size: 3.2, rot: -2, tint: "orange" },
+    { ch: "+", top: 86, left: 14, size: 2.2, rot: 4, tint: "blue" },
+    { ch: "½", top: 92, left: 52, size: 1.9, rot: 6, font: "sans", tint: "gray" },
+  ],
+  dense: [
+    { ch: "π", top: 6, left: 6, size: 3.2, rot: -6, tint: "blue" },
+    { ch: "Σ", top: 12, left: 86, size: 2.6, rot: 4, tint: "gray" },
+    { ch: "∞", top: 18, left: 10, size: 2.2, rot: -8, tint: "blue" },
+    { ch: "θ", top: 26, left: 80, size: 2.4, rot: -4, tint: "orange" },
+    { ch: "√", top: 34, left: 92, size: 2.8, rot: 2, tint: "blue" },
+    { ch: "x²", top: 42, left: 6, size: 1.9, rot: 6, font: "sans", tint: "orange" },
+    { ch: "≠", top: 50, left: 68, size: 2.0, rot: -6, tint: "gray" },
+    { ch: "∫", top: 58, left: 8, size: 3.4, rot: -2, tint: "blue" },
+    { ch: "÷", top: 64, left: 88, size: 2.1, rot: 4, tint: "orange" },
+    { ch: "α", top: 72, left: 22, size: 2.6, rot: -3, tint: "gray" },
+    { ch: "Δ", top: 80, left: 58, size: 2.4, rot: 5, tint: "blue" },
+    { ch: "φ", top: 88, left: 78, size: 2.2, rot: -5, tint: "orange" },
+  ],
+};
+
 const CLIPART: Record<BackdropDensity, Clip[]> = {
   light: [
     { kind: "book", top: 14, left: 88, size: 44, rot: -12 },
@@ -158,8 +206,14 @@ const VARIANT_STYLE: Record<
     watermark: "var(--color-brand-100)",
   },
   muted: {
-    glyph: "rgba(42, 75, 203, 0.45)",
-    glyphOpacity: 0.12,
+    glyph: "rgba(90, 95, 104, 0.55)",
+    glyphOpacity: 0.1,
+    grid: "rgba(90, 95, 104, 0.04)",
+    watermark: "rgba(90, 95, 104, 0.08)",
+  },
+  tracks: {
+    glyph: "rgba(42, 75, 203, 0.55)",
+    glyphOpacity: 0.11,
     grid: "rgba(42, 75, 203, 0.05)",
     watermark: "var(--color-brand-100)",
   },
@@ -198,10 +252,17 @@ export default function MathBackdrop({
 }) {
   const palette = VARIANT_STYLE[variant];
   const baseGlyphs =
-    variant === "brand" || variant === "dark" ? BRAND_GLYPHS[density] : PAPER_GLYPHS[density];
-  const glyphs = contentSafe
-    ? [...edgeGlyphs(baseGlyphs), ...INTERIOR_GLYPHS]
-    : baseGlyphs;
+    variant === "tracks"
+      ? TRACKS_GLYPHS[density]
+      : variant === "brand" || variant === "dark"
+        ? BRAND_GLYPHS[density]
+        : PAPER_GLYPHS[density];
+  const glyphs =
+    variant === "tracks"
+      ? edgeGlyphs(baseGlyphs)
+      : contentSafe
+        ? [...edgeGlyphs(baseGlyphs), ...INTERIOR_GLYPHS]
+        : baseGlyphs;
   const baseClips = CLIPART[density];
   const clips = contentSafe
     ? [...edgeClips(baseClips), ...INTERIOR_CLIPS]
@@ -261,7 +322,9 @@ export default function MathBackdrop({
       )}
 
       {/* Secondary watermark - book-ish curve on left for paper/muted */}
-      {(variant === "paper" || variant === "muted") && density !== "light" && !contentSafe && (
+      {(variant === "paper" || variant === "muted" || variant === "tracks") &&
+        density !== "light" &&
+        !contentSafe && (
         <span
           className="absolute font-display font-bold leading-none"
           style={{
@@ -305,13 +368,14 @@ function Glyph({
   color: string;
   defaultOpacity: number;
 }) {
+  const tint = item.tint ? GLYPH_TINT[item.tint] : null;
   const style: CSSProperties = {
     top: `${item.top}%`,
     left: `${item.left}%`,
     fontSize: `${item.size}rem`,
     transform: `translate(-50%, -50%) rotate(${item.rot ?? 0}deg)`,
-    color,
-    opacity: item.o ?? defaultOpacity,
+    color: tint?.color ?? color,
+    opacity: item.o ?? tint?.opacity ?? defaultOpacity,
     lineHeight: 1,
     fontFamily: item.font === "sans" ? "var(--font-sans)" : "var(--font-display)",
     fontWeight: 700,

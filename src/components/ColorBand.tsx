@@ -1,15 +1,18 @@
+"use client";
+
 import type { ReactNode } from "react";
 import Container from "./Container";
 import MathBackdrop, { type BackdropDensity } from "./MathBackdrop";
 import Reveal from "./Reveal";
 
 type BandVariant = "dark" | "brand";
-type BandSize = "sm" | "md" | "lg";
+type BandSize = "sm" | "md" | "lg" | "xl";
 
 const PADDING: Record<BandSize, string> = {
-  sm: "py-10 sm:py-16",
-  md: "py-14 sm:py-20",
-  lg: "py-16 sm:py-24",
+  sm: "py-8 sm:py-12",
+  md: "py-10 sm:py-14",
+  lg: "py-12 sm:py-16",
+  xl: "py-14 sm:py-20",
 };
 
 const VARIANT: Record<
@@ -37,25 +40,54 @@ export default function ColorBand({
   size = "md",
   containerSize = "xl",
   reveal = true,
+  /** Dot grid only: skips symbols and clipart (smoother scroll). */
+  minimalBackdrop = false,
+  /** Faint edge symbols only (brand/dark bands). */
+  faintSymbols = false,
+  id,
+  className = "",
   children,
 }: {
   variant?: BandVariant;
   size?: BandSize;
   containerSize?: "sm" | "md" | "lg" | "xl";
   reveal?: boolean;
+  minimalBackdrop?: boolean;
+  faintSymbols?: boolean;
+  id?: string;
+  className?: string;
   children: ReactNode;
 }) {
   const v = VARIANT[variant];
   const inner = reveal ? <Reveal variant="fade">{children}</Reveal> : children;
+  const gridColor =
+    variant === "brand" ? "rgba(255,255,255,0.08)" : "rgba(255,255,255,0.06)";
 
   return (
-    <section className={`relative overflow-hidden ${v.shell}`}>
-      <MathBackdrop
-        variant={v.backdrop}
-        density={v.density}
-        watermark={false}
-        contentSafe
-      />
+    <section
+      id={id}
+      className={`relative overflow-hidden ${v.shell} ${className}`.trim()}
+      style={{ contain: "layout paint" }}
+    >
+      {minimalBackdrop ? (
+        <div
+          aria-hidden
+          className="absolute inset-0 pointer-events-none"
+          style={{
+            backgroundImage: `radial-gradient(circle at 1px 1px, ${gridColor} 1px, transparent 0)`,
+            backgroundSize: "28px 28px",
+          }}
+        />
+      ) : (
+        <MathBackdrop
+          variant={v.backdrop}
+          density={faintSymbols ? "light" : v.density}
+          watermark={false}
+          contentSafe={faintSymbols}
+          clipart={!faintSymbols}
+          fadeEdges={faintSymbols}
+        />
+      )}
       <Container size={containerSize} className={`relative z-[1] ${PADDING[size]}`}>
         {inner}
       </Container>

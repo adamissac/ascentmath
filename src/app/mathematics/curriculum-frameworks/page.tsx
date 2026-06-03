@@ -6,6 +6,7 @@ import SectionHeader from "../../../components/SectionHeader";
 import ResourceLinkCard from "../../../components/ResourceLinkCard";
 import { DocSymbol } from "../../../components/UnitSymbol";
 import { GRADES } from "../../../data/units";
+import { STUDY_PATHS_HREF } from "../../../lib/site-paths";
 
 export const metadata: Metadata = {
   title: "GADOE Curriculum Frameworks",
@@ -25,7 +26,7 @@ export default function FrameworksPage() {
         <Breadcrumbs
           items={[
             { label: "Home", href: "/" },
-            { label: "Mathematics", href: "/mathematics" },
+            { label: "Mathematics", href: STUDY_PATHS_HREF },
             { label: "Curriculum frameworks" },
           ]}
         />
@@ -34,7 +35,7 @@ export default function FrameworksPage() {
           <h1 className="h-display">GADOE curriculum frameworks</h1>
           <p className="lede mt-5">
             Official Georgia Department of Education unit frameworks. Use them to
-            see what teachers are aiming for in each unit - useful for parents,
+            see what teachers are aiming for in each unit - useful for planning,
             tutors, and students who want the full picture.
           </p>
         </div>
@@ -98,6 +99,7 @@ export default function FrameworksPage() {
           </div>
         </div>
       </Section>
+
     </>
   );
 }

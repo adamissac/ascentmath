@@ -1,5 +1,8 @@
 @import "tailwindcss";
 
+/* Scan all app source so utilities (relative, sticky, md:flex, etc.) generate in dev + prod */
+@source "../**/*.{js,ts,jsx,tsx,mdx}";
+
 /* =============================================================
    Adam's Alphabet - Design System
    Khan-Academy inspired, but with our own identity.
@@ -71,7 +74,13 @@
 
 * { box-sizing: border-box; }
 
-html { -webkit-text-size-adjust: 100%; scroll-behavior: auto; overflow-x: hidden; }
+html {
+  -webkit-text-size-adjust: 100%;
+  scroll-behavior: auto;
+  overflow-x: hidden;
+  /* Fixed navbar — keep hash / in-page links from hiding section titles */
+  scroll-padding-top: 5.5rem;
+}
 
 body {
   margin: 0;
@@ -162,10 +171,10 @@ body {
   --ease-smooth: cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-/* Hero copy — always readable; motion is transform-only */
+/* Hero copy. always readable; motion is transform-only */
 .hero-enter {
   opacity: 1;
-  transform: translate3d(0, 16px, 0);
+  transform: translate3d(0, 10px, 0);
   transition:
     transform 0.75s var(--ease-smooth),
     opacity 0.75s var(--ease-smooth);
@@ -376,6 +385,30 @@ body {
   padding: 1rem 1rem;
   font-size: 1.0625rem;
 }
+.topic-search-field--lg.topic-search-field--compact {
+  grid-template-columns: 2.75rem minmax(0, 1fr);
+}
+.topic-search-field--lg.topic-search-field--compact .topic-search-field__input {
+  padding: 0.625rem 0.875rem;
+  font-size: 0.9375rem;
+}
+.topic-search-field--lg.topic-search-field--compact .topic-search-field__icon {
+  font-size: 0.9rem;
+}
+.topic-search-field--flat {
+  border-radius: 0.375rem;
+  border-width: 1px;
+  border-color: var(--color-border);
+  box-shadow: none;
+}
+.topic-search-field--flat .topic-search-field__icon {
+  background: var(--color-surface-2);
+  border-right-color: var(--color-border);
+}
+.topic-search-field--flat .topic-search-field__input {
+  padding: 0.75rem 0.875rem;
+  font-size: 0.9375rem;
+}
 @media (min-width: 640px) {
   .topic-search-field--lg .topic-search-field__input {
     font-size: 1.125rem;
@@ -459,60 +492,259 @@ body {
 }
 .animate-fade-up { animation: fadeUp 0.6s var(--ease-smooth) both; }
 
-/* ---- Scroll reveals (Reveal.tsx) — GPU-friendly, no will-change spam ---- */
-.reveal {
-  --reveal-delay: 0ms;
-  --reveal-duration: 0.75s;
-  --reveal-ease: var(--ease-smooth);
+/* ---- Scroll reveals: hidden until in view, then animate in ---- */
+.reveal-await-up,
+.reveal-stagger.reveal-await-up > * {
+  opacity: 0;
+  transform: translate3d(0, 28px, 0);
 }
-
-.reveal:not(.is-visible):not(.reveal-stagger) {
+.reveal-await-up-lg,
+.reveal-stagger.reveal-await-up-lg > * {
+  opacity: 0;
+  transform: translate3d(0, 36px, 0);
+}
+.reveal-await-fade,
+.reveal-stagger.reveal-await-fade > * {
   opacity: 0;
 }
-.reveal:not(.reveal-stagger) {
-  transition:
-    opacity calc(var(--reveal-duration) * 0.75) var(--reveal-ease) var(--reveal-delay),
-    transform var(--reveal-duration) var(--reveal-ease) var(--reveal-delay);
-}
-.reveal-fade:not(.reveal-stagger)   { transform: translate3d(0, 0, 0); }
-.reveal-up:not(.reveal-stagger)     { transform: translate3d(0, 12px, 0); }
-.reveal-up-lg:not(.reveal-stagger)  { transform: translate3d(0, 18px, 0); }
-.reveal-left:not(.reveal-stagger)   { transform: translate3d(-12px, 0, 0); }
-.reveal-right:not(.reveal-stagger)  { transform: translate3d(12px, 0, 0); }
-.reveal-scale:not(.reveal-stagger)  { transform: translate3d(0, 8px, 0) scale(0.98); }
-
-.reveal-slow { --reveal-duration: 0.88s; }
-
-.reveal:not(.reveal-stagger).is-visible {
-  opacity: 1;
-  transform: translate3d(0, 0, 0);
-}
-
-.reveal-stagger:not(.is-visible) > * {
+.reveal-await-left,
+.reveal-stagger.reveal-await-left > * {
   opacity: 0;
+  transform: translate3d(-24px, 0, 0);
 }
-.reveal-stagger > * {
-  transform: translate3d(0, 12px, 0);
-  transition:
-    opacity calc(var(--reveal-duration) * 0.75) var(--reveal-ease),
-    transform var(--reveal-duration) var(--reveal-ease);
+.reveal-await-right,
+.reveal-stagger.reveal-await-right > * {
+  opacity: 0;
+  transform: translate3d(24px, 0, 0);
 }
-.reveal-stagger-scale > * {
-  transform: translate3d(0, 14px, 0) scale(0.97);
+.reveal-await-scale,
+.reveal-stagger.reveal-await-scale > * {
+  opacity: 0;
+  transform: translate3d(0, 20px, 0) scale(0.96);
 }
-.reveal-stagger.is-visible > * {
-  opacity: 1;
-  transform: translate3d(0, 0, 0);
+.reveal-await-blur,
+.reveal-stagger.reveal-await-blur > * {
+  opacity: 0;
+  filter: blur(8px);
+  transform: translate3d(0, 24px, 0);
 }
-.reveal-stagger.is-visible > *:nth-child(1)  { transition-delay: 0ms; }
-.reveal-stagger.is-visible > *:nth-child(2)  { transition-delay: 80ms; }
-.reveal-stagger.is-visible > *:nth-child(3)  { transition-delay: 160ms; }
-.reveal-stagger.is-visible > *:nth-child(4)  { transition-delay: 240ms; }
-.reveal-stagger.is-visible > *:nth-child(5)  { transition-delay: 320ms; }
-.reveal-stagger.is-visible > *:nth-child(6)  { transition-delay: 400ms; }
-.reveal-stagger.is-visible > *:nth-child(7)  { transition-delay: 480ms; }
-.reveal-stagger.is-visible > *:nth-child(8)  { transition-delay: 560ms; }
-.reveal-stagger.is-visible > *:nth-child(n+9) { transition-delay: 640ms; }
+.reveal-await-pop,
+.reveal-stagger.reveal-await-pop > * {
+  opacity: 0;
+  transform: translate3d(0, 32px, 0) scale(0.94);
+}
+
+@keyframes reveal-up {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 28px, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+@keyframes reveal-up-lg {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 36px, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+@keyframes reveal-fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes reveal-left {
+  from {
+    opacity: 0;
+    transform: translate3d(-24px, 0, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+@keyframes reveal-right {
+  from {
+    opacity: 0;
+    transform: translate3d(24px, 0, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+@keyframes reveal-scale {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 20px, 0) scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+@keyframes reveal-blur {
+  from {
+    opacity: 0;
+    filter: blur(8px);
+    transform: translate3d(0, 24px, 0);
+  }
+  to {
+    opacity: 1;
+    filter: blur(0);
+    transform: translate3d(0, 0, 0);
+  }
+}
+@keyframes reveal-pop {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 32px, 0) scale(0.94);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+}
+@keyframes ambient-drift-a {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(4%, -3%) scale(1.06); }
+}
+@keyframes ambient-drift-b {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(-5%, 4%) scale(1.05); }
+}
+@keyframes ambient-drift-c {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(3%, 5%) scale(1.04); }
+}
+@keyframes ambient-glyph-float {
+  0%, 100% { transform: translateY(0) rotate(-6deg); opacity: 0.55; }
+  50% { transform: translateY(-10px) rotate(4deg); opacity: 1; }
+}
+
+.ambient-blob--a { animation: ambient-drift-a 22s ease-in-out infinite; }
+.ambient-blob--b { animation: ambient-drift-b 26s ease-in-out infinite; }
+.ambient-blob--c { animation: ambient-drift-c 20s ease-in-out infinite; }
+.ambient-glyph { animation: ambient-glyph-float 14s ease-in-out infinite; }
+.ambient-glyph--delay { animation-delay: -4s; }
+.ambient-glyph--delay-2 { animation-delay: -9s; }
+
+.reveal-animate-up {
+  animation: reveal-up 0.65s var(--ease-smooth) forwards;
+}
+.reveal-animate-up-lg {
+  animation: reveal-up-lg 0.7s var(--ease-smooth) forwards;
+}
+.reveal-animate-fade {
+  animation: reveal-fade 0.6s var(--ease-smooth) forwards;
+}
+.reveal-animate-left {
+  animation: reveal-left 0.65s var(--ease-smooth) forwards;
+}
+.reveal-animate-right {
+  animation: reveal-right 0.65s var(--ease-smooth) forwards;
+}
+.reveal-animate-scale {
+  animation: reveal-scale 0.65s var(--ease-smooth) forwards;
+}
+.reveal-animate-blur {
+  animation: reveal-blur 0.75s var(--ease-smooth) forwards;
+}
+.reveal-animate-pop {
+  animation: reveal-pop 0.7s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+.reveal-stagger-animate-up > *,
+.reveal-stagger-animate-scale > *,
+.reveal-stagger-animate-left > *,
+.reveal-stagger-animate-right > *,
+.reveal-stagger-animate-blur > *,
+.reveal-stagger-animate-pop > * {
+  animation-fill-mode: forwards;
+}
+.reveal-stagger-animate-up > * {
+  animation: reveal-up 0.6s var(--ease-smooth) forwards;
+}
+.reveal-stagger-animate-scale > * {
+  animation: reveal-scale 0.6s var(--ease-smooth) forwards;
+}
+.reveal-stagger-animate-left > * {
+  animation: reveal-left 0.65s var(--ease-smooth) forwards;
+}
+.reveal-stagger-animate-right > * {
+  animation: reveal-right 0.65s var(--ease-smooth) forwards;
+}
+.reveal-stagger-animate-blur > * {
+  animation: reveal-blur 0.7s var(--ease-smooth) forwards;
+}
+.reveal-stagger-animate-pop > * {
+  animation: reveal-pop 0.7s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+.reveal-stagger-animate-up > *:nth-child(1),
+.reveal-stagger-animate-scale > *:nth-child(1),
+.reveal-stagger-animate-left > *:nth-child(1),
+.reveal-stagger-animate-right > *:nth-child(1),
+.reveal-stagger-animate-blur > *:nth-child(1),
+.reveal-stagger-animate-pop > *:nth-child(1) {
+  animation-delay: 0ms;
+}
+.reveal-stagger-animate-up > *:nth-child(2),
+.reveal-stagger-animate-scale > *:nth-child(2),
+.reveal-stagger-animate-left > *:nth-child(2),
+.reveal-stagger-animate-right > *:nth-child(2),
+.reveal-stagger-animate-blur > *:nth-child(2),
+.reveal-stagger-animate-pop > *:nth-child(2) {
+  animation-delay: 70ms;
+}
+.reveal-stagger-animate-up > *:nth-child(3),
+.reveal-stagger-animate-scale > *:nth-child(3),
+.reveal-stagger-animate-left > *:nth-child(3),
+.reveal-stagger-animate-right > *:nth-child(3),
+.reveal-stagger-animate-blur > *:nth-child(3),
+.reveal-stagger-animate-pop > *:nth-child(3) {
+  animation-delay: 140ms;
+}
+.reveal-stagger-animate-up > *:nth-child(4),
+.reveal-stagger-animate-scale > *:nth-child(4),
+.reveal-stagger-animate-left > *:nth-child(4),
+.reveal-stagger-animate-right > *:nth-child(4),
+.reveal-stagger-animate-blur > *:nth-child(4),
+.reveal-stagger-animate-pop > *:nth-child(4) {
+  animation-delay: 210ms;
+}
+.reveal-stagger-animate-up > *:nth-child(5),
+.reveal-stagger-animate-scale > *:nth-child(5),
+.reveal-stagger-animate-left > *:nth-child(5),
+.reveal-stagger-animate-right > *:nth-child(5),
+.reveal-stagger-animate-blur > *:nth-child(5),
+.reveal-stagger-animate-pop > *:nth-child(5) {
+  animation-delay: 280ms;
+}
+.reveal-stagger-animate-up > *:nth-child(6),
+.reveal-stagger-animate-scale > *:nth-child(6),
+.reveal-stagger-animate-left > *:nth-child(6),
+.reveal-stagger-animate-right > *:nth-child(6),
+.reveal-stagger-animate-blur > *:nth-child(6),
+.reveal-stagger-animate-pop > *:nth-child(6) {
+  animation-delay: 350ms;
+}
+.reveal-stagger-animate-up > *:nth-child(n + 7),
+.reveal-stagger-animate-scale > *:nth-child(n + 7),
+.reveal-stagger-animate-left > *:nth-child(n + 7),
+.reveal-stagger-animate-right > *:nth-child(n + 7),
+.reveal-stagger-animate-blur > *:nth-child(n + 7),
+.reveal-stagger-animate-pop > *:nth-child(n + 7) {
+  animation-delay: 420ms;
+}
 
 /* ---- Hero canvas wrap ---- */
 .hero-canvas-wrap {
@@ -591,11 +823,17 @@ body {
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
   }
-  .reveal:not(.reveal-stagger),
-  .reveal-stagger > * {
+  [class*="reveal-await"],
+  [class*="reveal-animate"],
+  [class*="reveal-stagger-animate"] > * {
+    animation: none !important;
     opacity: 1 !important;
     transform: none !important;
-    transition: none !important;
+    filter: none !important;
+  }
+  .ambient-blob,
+  .ambient-glyph {
+    animation: none !important;
   }
   .hero-enter,
   .hero-enter.is-visible {
@@ -844,7 +1082,22 @@ body {
   display: none;
 }
 
-/* Numbered step card used in the "How it works" section */
+/* Homepage session flow. horizontal on desktop, vertical on mobile */
+.session-flow {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0;
+}
+@media (min-width: 1024px) {
+  .session-flow {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 1.25rem;
+  }
+  .session-flow__step:last-child .session-flow__connector-h {
+    display: none;
+  }
+}
+
 .step-card {
   position: relative;
   padding: 1.5rem;
@@ -917,6 +1170,25 @@ body {
   z-index: 100;
 }
 .skip-link:focus { left: 1rem; }
+
+/* Navbar logo, fixed box so images cannot cover the page if utility CSS fails to load */
+.nav-logo-wrap {
+  position: relative;
+  width: 2.5rem;
+  height: 2.5rem;
+  flex-shrink: 0;
+  overflow: hidden;
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-card);
+  outline: 2px solid var(--color-brand-100);
+  outline-offset: 0;
+}
+.nav-logo-wrap img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
 
 /* Horizontal gutters + notched-phone safe areas (max so inset never replaces gutter) */
 .page-x,

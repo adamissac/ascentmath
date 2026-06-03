@@ -1,8 +1,10 @@
 "use client";
 
 import Link from "next/link";
+import HashLink from "./HashLink";
 import { useEffect, useId, useRef, useState } from "react";
 import { createPortal } from "react-dom";
+import { STUDY_PATHS_HREF } from "../lib/site-paths";
 
 type Props = {
   open: boolean;
@@ -74,9 +76,9 @@ export default function ComingSoonDialog({
         </p>
 
         <div className="mt-7 grid gap-2.5">
-          <Link href="/mathematics" className="btn btn-primary w-full justify-center">
-            Browse the math library
-          </Link>
+          <HashLink href={STUDY_PATHS_HREF} className="btn btn-primary w-full justify-center">
+            Browse study paths
+          </HashLink>
           <button
             ref={closeRef}
             type="button"

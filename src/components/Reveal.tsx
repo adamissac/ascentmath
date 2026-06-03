@@ -9,7 +9,14 @@ import {
   type ReactNode,
 } from "react";
 
-type RevealVariant = "up" | "up-lg" | "fade" | "left" | "right" | "scale";
+type RevealVariant = "up" | "up-lg" | "fade" | "left" | "right" | "scale" | "blur" | "pop";
+
+function isInViewport(el: HTMLElement, marginRatio = 0.12) {
+  const rect = el.getBoundingClientRect();
+  const vh = window.innerHeight || document.documentElement.clientHeight;
+  const margin = vh * marginRatio;
+  return rect.top < vh - margin && rect.bottom > margin;
+}
 
 export default function Reveal({
   children,
@@ -19,6 +26,7 @@ export default function Reveal({
   variant = "up",
   stagger = false,
   threshold = 0.12,
+  rootMargin = "0px 0px -10% 0px",
   style,
 }: {
   children: ReactNode;
@@ -28,68 +36,77 @@ export default function Reveal({
   variant?: RevealVariant;
   stagger?: boolean;
   threshold?: number;
+  rootMargin?: string;
   style?: CSSProperties;
 }) {
   const ref = useRef<HTMLElement | null>(null);
-  const [visible, setVisible] = useState(false);
+  const [played, setPlayed] = useState(false);
 
   useEffect(() => {
     const el = ref.current;
-    if (!el) return;
+    if (!el || played) return;
 
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-      setVisible(true);
+    const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (reduced) {
+      setPlayed(true);
       return;
     }
 
+    let done = false;
+    const play = () => {
+      if (done) return;
+      done = true;
+      setPlayed(true);
+    };
+
+    const tryPlay = () => {
+      if (isInViewport(el)) play();
+    };
+
     const observer = new IntersectionObserver(
       ([entry]) => {
-        if (entry.isIntersecting) {
-          setVisible(true);
-          observer.disconnect();
-        }
+        if (entry.isIntersecting) play();
       },
-      {
-        threshold,
-        rootMargin: "0px 0px -12% 0px",
-      },
+      { threshold, rootMargin },
     );
 
     observer.observe(el);
 
-    const revealIfInView = () => {
-      const rect = el.getBoundingClientRect();
-      const vh = window.innerHeight || document.documentElement.clientHeight;
-      if (rect.top < vh * 0.92 && rect.bottom > vh * 0.06) {
-        setVisible(true);
-        observer.disconnect();
-      }
-    };
+    const onScroll = () => tryPlay();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll, { passive: true });
+    window.addEventListener("hashchange", tryPlay);
 
-    requestAnimationFrame(() => requestAnimationFrame(revealIfInView));
-
-    const fallback = window.setTimeout(() => setVisible(true), 4000);
+    const t1 = window.setTimeout(tryPlay, 80);
+    const t2 = window.setTimeout(tryPlay, 320);
 
     return () => {
       observer.disconnect();
-      window.clearTimeout(fallback);
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onScroll);
+      window.removeEventListener("hashchange", tryPlay);
+      window.clearTimeout(t1);
+      window.clearTimeout(t2);
     };
-  }, [threshold]);
+  }, [played, threshold, rootMargin]);
+
+  const awaitClass = `reveal-await-${variant}`;
 
   const classes = [
-    "reveal",
-    `reveal-${variant}`,
-    stagger ? "reveal-stagger" : "",
-    stagger && variant === "scale" ? "reveal-stagger-scale" : "",
-    visible ? "is-visible" : "",
     className,
+    !played ? awaitClass : "",
+    stagger ? "reveal-stagger" : "",
+    played && !stagger ? `reveal-animate-${variant}` : "",
+    played && stagger ? `reveal-stagger-animate-${variant}` : "",
   ]
     .filter(Boolean)
     .join(" ");
 
   const mergedStyle: CSSProperties = {
     ...style,
-    ...(delay > 0 && !stagger ? ({ "--reveal-delay": `${delay}ms` } as CSSProperties) : {}),
+    ...(delay > 0 && !stagger && played
+      ? ({ animationDelay: `${delay}ms` } as CSSProperties)
+      : {}),
   };
 
   return (

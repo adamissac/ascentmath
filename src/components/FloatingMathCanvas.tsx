@@ -37,7 +37,7 @@ const VARIANTS: Record<FloatingMathVariant, VariantConfig> = {
     ink: "#1a1a2e",
     accent: "#2A4BCB",
     accentRate: 0.18,
-    counts: [50, 74, 90],
+    counts: [32, 48, 58],
     opacity: [0.11, 0.2, 0.3],
     speed: [0.3, 0.7],
     size: [14, 46],
@@ -53,7 +53,7 @@ const VARIANTS: Record<FloatingMathVariant, VariantConfig> = {
     ink: "#182573",
     accent: "#2A4BCB",
     accentRate: 0.14,
-    counts: [28, 42, 50],
+    counts: [18, 28, 34],
     opacity: [0.07, 0.14, 0.22],
     speed: [0.22, 0.48],
     size: [13, 40],
@@ -435,10 +435,10 @@ export default function FloatingMathCanvas({
 
     const visObs = new IntersectionObserver(
       ([entry]) => {
-        if (entry.isIntersecting) start();
+        if (entry.isIntersecting && entry.intersectionRatio > 0.05) start();
         else stop();
       },
-      { threshold: 0, rootMargin: "80px 0px 80px 0px" },
+      { threshold: [0, 0.05, 0.15], rootMargin: "0px" },
     );
 
     ensureLayout();
@@ -452,11 +452,6 @@ export default function FloatingMathCanvas({
       if (resize()) draw();
     };
     window.addEventListener("resize", onWindowResize);
-
-    requestAnimationFrame(() => {
-      ensureLayout();
-      start();
-    });
 
     return () => {
       stop();

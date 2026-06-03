@@ -1,4 +1,4 @@
-/** Home route loading — matches hero background so the swap is not a gray skeleton flash. */
+﻿/** Home route loading. matches hero background so the swap is not a gray skeleton flash. */
 export default function Loading() {
   return (
     <section

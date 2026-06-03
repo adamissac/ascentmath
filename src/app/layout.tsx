@@ -1,8 +1,10 @@
 import type { Metadata, Viewport } from "next";
 import { Inter, Lexend } from "next/font/google";
 import AuthProvider from "../components/AuthProvider";
+import HashScrollHandler from "../components/HashScrollHandler";
 import Navbar from "../components/Navbar";
 import ConditionalFooter from "../components/ConditionalFooter";
+import { SITE_POSITIONING } from "../data/site-copy";
 import "./globals.css";
 
 const inter = Inter({
@@ -21,25 +23,23 @@ const lexend = Lexend({
 export const metadata: Metadata = {
   metadataBase: new URL("https://adamsalphabet.com"),
   title: {
-    default: "Adam's Alphabet - Free Middle School Math (Grades 6–8)",
+    default: "Adam's Alphabet - Math Tutor (K-6 through College)",
     template: "%s · Adam's Alphabet",
   },
-  description:
-    "Free, beginner-friendly Grades 6–8 math resources: lessons, video walkthroughs, worksheets, and quizzes. Built by a student tutor for students who learn differently.",
+  description: SITE_POSITIONING,
   keywords: [
-    "middle school math",
-    "6th grade math",
-    "7th grade math",
-    "8th grade math",
-    "free math resources",
+    "math tutor",
     "math tutoring",
-    "Khan Academy alternatives",
-    "GADOE",
+    "SAT math tutor",
+    "AP pre-calculus tutor",
+    "AP calculus tutor",
+    "linear algebra tutor",
+    "multivariable calculus tutor",
+    "Atlanta math tutor",
   ],
   openGraph: {
-    title: "Adam's Alphabet - Free Middle School Math (Grades 6–8)",
-    description:
-      "Free Grades 6–8 math lessons, videos, worksheets, and quizzes - built by a student tutor.",
+    title: "Adam's Alphabet - Math Tutor (K-6 through College)",
+    description: SITE_POSITIONING,
     type: "website",
     siteName: "Adam's Alphabet",
   },
@@ -61,8 +61,9 @@ export default function RootLayout({
       <body className="min-h-screen flex flex-col antialiased" suppressHydrationWarning>
         <a href="#main" className="skip-link">Skip to main content</a>
         <AuthProvider>
+          <HashScrollHandler />
           <Navbar />
-          <main id="main" className="flex-1">{children}</main>
+          <main id="main" className="flex-1 pt-[4.25rem]">{children}</main>
           <ConditionalFooter />
         </AuthProvider>
       </body>

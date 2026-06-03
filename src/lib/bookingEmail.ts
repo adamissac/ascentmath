@@ -13,6 +13,8 @@ export type BookingPayload = {
   name: string;
   email: string;
   phone?: string;
+  tier: "tier1" | "tier2" | "tier3";
+  pricingSummary?: string;
   mode: "zoom" | "in_person";
   grade?: string;
   topic?: string;
@@ -53,6 +55,7 @@ export function renderBookingEmail(p: BookingPayload) {
     `Name:       ${p.name}`,
     `Email:      ${p.email}`,
     `Phone:      ${p.phone || "-"}`,
+    `Pricing:    ${p.pricingSummary || "-"}`,
     `Mode:       ${labelMode(p.mode)}`,
     `Grade:      ${p.grade || "-"}`,
     `Topic:      ${p.topic || "-"}`,
@@ -101,6 +104,7 @@ export function renderBookingEmail(p: BookingPayload) {
                   )}</a>`
                 )}
                 ${row("Phone", p.phone ? escapeHtml(p.phone) : "-")}
+                ${row("Pricing", p.pricingSummary ? escapeHtml(p.pricingSummary) : "-")}
                 ${row("Mode", labelMode(p.mode))}
                 ${row("Grade", p.grade ? escapeHtml(p.grade) : "-")}
                 ${row("Topic", p.topic ? escapeHtml(p.topic) : "-")}

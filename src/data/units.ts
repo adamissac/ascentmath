@@ -6,6 +6,7 @@
  */
 
 import type { QuizQuestion } from "../components/Quiz";
+import { enrichGrades } from "./enrichCurriculum";
 import { GRADE_7_UNITS } from "./grade7";
 import { GRADE_8_UNITS } from "./grade8";
 
@@ -64,6 +65,20 @@ export type Topic = {
   practiceLinks?: ExternalLink[];
   /** Short 2-3 question check at the end of the topic. */
   quiz: QuizQuestion[];
+  /** Guided practice problems with hints and worked solutions. */
+  exercises?: PracticeExercise[];
+  /** Extra skills to practice after finishing the topic. */
+  skillChecks?: string[];
+};
+
+export type PracticeExercise = {
+  id: string;
+  problem: string;
+  hint?: string;
+  /** Step-by-step solution students reveal after trying. */
+  steps: string[];
+  answer: string;
+  difficulty?: "easy" | "medium" | "hard";
 };
 
 export type Unit = {
@@ -82,6 +97,10 @@ export type Unit = {
   topics: Topic[];
   externalPractice: ExternalLink[];
   frameworkUrl?: string;
+  /** How to work through this unit on the site (shown on unit page). */
+  studyGuide?: string[];
+  /** What a student should be able to do after the unit. */
+  masteryOutcomes?: string[];
 };
 
 const GRADE_6_UNITS: Unit[] = [
@@ -94,7 +113,7 @@ const GRADE_6_UNITS: Unit[] = [
         id: "u1-t1",
         slug: "factors-multiples-gcf-lcm",
         title: "Factors, Multiples, GCF & LCM",
-        summary: "Numbers that divide in, numbers you count by, and the values they share.",
+        summary: "Numbers that divide evenly, numbers you count by, and the values they share.",
         estimatedMinutes: 14,
         walkthrough: [
           {
@@ -245,7 +264,7 @@ const GRADE_6_UNITS: Unit[] = [
         id: "u1-t3",
         slug: "multiplying-dividing-fractions",
         title: "Multiplying & Dividing Fractions",
-        summary: "Multiply straight across. To divide, keep–change–flip.",
+        summary: "Multiply straight across. To divide, keep-change-flip.",
         estimatedMinutes: 15,
         walkthrough: [
           {
@@ -280,7 +299,7 @@ const GRADE_6_UNITS: Unit[] = [
           },
         ],
         video: { videoId: "qmfXyR7Z6Lk", title: "Multiplying Fractions", source: "Math Antics", description: "Multiply across the top and bottom, then simplify." },
-        extraVideo: { videoId: "4lkq3DgvmJo", title: "Dividing Fractions", source: "Math Antics", description: "Flip the second fraction, then multiply (keep–change–flip)." },
+        extraVideo: { videoId: "4lkq3DgvmJo", title: "Dividing Fractions", source: "Math Antics", description: "Flip the second fraction, then multiply (keep-change-flip)." },
         worksheet: { driveFileId: "1VZEQx-BOXpIIYYMpvdp-EsYO8Q9fwnfV", title: "Worksheet - Operations practice", description: "Mixed practice covering fraction and decimal operations." },
         quiz: [
           {
@@ -289,7 +308,7 @@ const GRADE_6_UNITS: Unit[] = [
             type: "multiple-choice",
             options: ["1/2", "9/8", "6/12", "5/7"],
             answer: "9/8",
-            explanation: "Keep–change–flip: 3/4 × 3/2 = 9/8.",
+            explanation: "Keep-change-flip: 3/4 × 3/2 = 9/8.",
             difficulty: "medium",
           },
           {
@@ -305,7 +324,7 @@ const GRADE_6_UNITS: Unit[] = [
             prompt: "Dividing by a fraction is the same as multiplying by its reciprocal.",
             type: "true-false",
             answer: true,
-            explanation: "That is exactly what keep–change–flip does.",
+            explanation: "That is exactly what keep-change-flip does.",
             difficulty: "easy",
           },
         ],
@@ -1689,7 +1708,7 @@ export type Grade = {
   units: Unit[];
 };
 
-export const GRADES: Grade[] = [
+const BASE_GRADES: Grade[] = [
   {
     level: 6,
     slug: "grade-6",
@@ -1721,6 +1740,9 @@ export const GRADES: Grade[] = [
     units: GRADE_8_UNITS,
   },
 ];
+
+/** Grades 6–8 with exercises, extra quiz questions, study guides, and expanded walkthroughs. */
+export const GRADES: Grade[] = enrichGrades(BASE_GRADES);
 
 export const getGrade = (gradeSlug: string) => GRADES.find((g) => g.slug === gradeSlug);
 

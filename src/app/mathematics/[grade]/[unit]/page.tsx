@@ -5,16 +5,24 @@ import Link from "next/link";
 
 import Section from "../../../../components/Section";
 import Card from "../../../../components/Card";
-import Badge from "../../../../components/Badge";
-import Breadcrumbs from "../../../../components/Breadcrumbs";
+import CurriculumHero from "../../../../components/CurriculumHero";
+import DarkAccordionSection from "../../../../components/DarkAccordionSection";
+import { unitAccordion } from "../../../../data/dark-sections";
 import ResourceLinkCard from "../../../../components/ResourceLinkCard";
 import UnitStudyPanel from "../../../../components/UnitStudyPanel";
 import Reveal from "../../../../components/Reveal";
-import MathBackdrop from "../../../../components/MathBackdrop";
 import { UnitSymbol } from "../../../../components/UnitSymbol";
-import Container from "../../../../components/Container";
 
-import { GRADES, getGrade, getUnit, getUnitIndex, countUnitVideos, type Topic } from "../../../../data/units";
+import {
+  GRADES,
+  getGrade,
+  getUnit,
+  getUnitIndex,
+  countUnitVideos,
+  countUnitWorksheets,
+  type Topic,
+} from "../../../../data/units";
+import { STUDY_PATHS_HREF } from "../../../../lib/site-paths";
 
 type Params = { grade: string; unit: string };
 
@@ -49,6 +57,14 @@ export default async function UnitPage({ params }: { params: Promise<Params> }) 
 
   const firstTopic = u.topics[0];
   const totalVideos = countUnitVideos(u);
+  const totalWorksheets = countUnitWorksheets(u);
+
+  const unitStats = [
+    { value: u.topics.length, label: "topics" },
+    { value: totalVideos, label: "videos" },
+    ...(totalWorksheets > 0 ? [{ value: totalWorksheets, label: "worksheets" }] : []),
+    { value: `~${u.estimatedMinutes}`, label: "min" },
+  ];
 
   const progressItems = u.topics.map((t) => ({ id: t.id, label: t.title }));
 
@@ -60,56 +76,37 @@ export default async function UnitPage({ params }: { params: Promise<Params> }) 
 
   return (
     <>
-      {/* HERO */}
-      <section className="hero-surface relative overflow-hidden">
-        <MathBackdrop variant="paper" density="dense" fadeEdges />
-        <Container size="xl" className="relative pt-10 pb-14 sm:pb-16">
-          <Breadcrumbs
-            items={[
-              { label: "Home", href: "/" },
-              { label: "Mathematics", href: "/mathematics" },
-              { label: g.title, href: `/mathematics/${g.slug}` },
-              { label: `Unit ${u.number}` },
-            ]}
-          />
-
-          <Reveal className="mt-6 max-w-4xl" variant="up">
-            <div className="flex items-center gap-3 flex-wrap">
-              <Badge tone="brand">{g.title} · Unit {u.number}</Badge>
-              <span className="caption text-[var(--color-ink-muted)]">~{u.estimatedMinutes} min</span>
-              <span className="caption text-[var(--color-ink-muted)]">
-                {u.topics.length} topics · {totalVideos} videos
-              </span>
-              {u.frameworkUrl && (
-                <a
-                  href={u.frameworkUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="caption text-[var(--color-brand-600)] hover:underline inline-flex items-center gap-1"
-                >
-                  GADOE framework
-                  <span aria-hidden>↗</span>
-                </a>
-              )}
+      <CurriculumHero
+        variant="unit"
+        breadcrumbs={[
+          { label: "Home", href: "/" },
+          { label: "Mathematics", href: STUDY_PATHS_HREF },
+          { label: g.title, href: `/mathematics/${g.slug}` },
+          { label: `Unit ${u.number}` },
+        ]}
+        gradeTitle={g.title}
+        unitNumber={u.number}
+        unitTitle={u.title}
+        unitIcon={u.icon}
+        description={u.description}
+        stats={unitStats}
+        frameworkUrl={u.frameworkUrl}
+        actions={
+          firstTopic ? (
+            <div className="btn-stack-mobile sm:flex-row">
+              <Link
+                href={`/mathematics/${g.slug}/${u.slug}/${firstTopic.slug}`}
+                className="btn btn-primary btn-sm"
+              >
+                Start the first topic →
+              </Link>
+              <a href="#topics" className="btn btn-outline btn-sm">
+                See all topics
+              </a>
             </div>
-
-            <h1 className="h-display mt-5 min-w-0 break-words">{u.title}</h1>
-
-            <p className="lede mt-5">{u.description}</p>
-
-            {firstTopic && (
-              <div className="mt-6 btn-stack-mobile sm:flex-row">
-                <Link href={`/mathematics/${g.slug}/${u.slug}/${firstTopic.slug}`} className="btn btn-primary btn-sm">
-                  Start the first topic →
-                </Link>
-                <a href="#topics" className="btn btn-outline btn-sm">
-                  See all topics
-                </a>
-              </div>
-            )}
-          </Reveal>
-        </Container>
-      </section>
+          ) : undefined
+        }
+      />
 
       <UnitStudyPanel
         unitId={u.id}
@@ -125,14 +122,39 @@ export default async function UnitPage({ params }: { params: Promise<Params> }) 
                 <span className="eyebrow">Work through these</span>
                 <h2 id="topics-h" className="h2 mt-2">Topics in this unit</h2>
                 <p className="lede mt-2 max-w-3xl">
-                  Each topic is a short page: read the walkthrough, watch the video, try the practice,
-                  then take a quick quiz. Go in order or jump to what you need.
+                  Each topic has a walkthrough, video, five practice problems with solutions, extra
+                  links, and a quiz (usually 5+ questions). Go in order or jump to what your class is
+                  covering now.
                 </p>
               </Reveal>
               <Reveal stagger className="mt-8 grid gap-3 sm:gap-4">
                 {u.topics.map((t, i) => (
                   <TopicCard key={t.id} gradeSlug={g.slug} unitSlug={u.slug} topic={t} index={i} />
                 ))}
+              </Reveal>
+            </section>
+          </Section>
+        )}
+
+        {/* STUDY GUIDE */}
+        {u.studyGuide && u.studyGuide.length > 0 && (
+          <Section tone="default" size="sm" containerSize="xl" decorated="paper" decoratedDensity="light" reveal={false}>
+            <section id="study-guide" aria-labelledby="study-guide-h">
+              <Reveal>
+                <span className="eyebrow">How to use this unit</span>
+                <h2 id="study-guide-h" className="h2 mt-2">Study guide</h2>
+                <p className="lede mt-2 max-w-3xl">
+                  Follow these steps to actually learn the material, not just click through pages.
+                </p>
+              </Reveal>
+              <Reveal className="mt-6">
+                <ol className="grid gap-3 list-decimal list-inside marker:font-bold marker:text-[var(--color-brand-600)]">
+                  {u.studyGuide.map((step) => (
+                    <li key={step} className="pl-2 text-[var(--color-ink)] leading-relaxed">
+                      {step}
+                    </li>
+                  ))}
+                </ol>
               </Reveal>
             </section>
           </Section>
@@ -147,7 +169,7 @@ export default async function UnitPage({ params }: { params: Promise<Params> }) 
               <p className="lede mt-2">By the end of this unit, you should be able to:</p>
             </Reveal>
             <ul className="mt-6 grid gap-3">
-              {u.objectives.map((o) => (
+              {(u.masteryOutcomes ?? u.objectives).map((o) => (
                 <li key={o} className="flex items-start gap-3">
                   <span aria-hidden className="mt-1 w-5 h-5 rounded-full bg-[var(--color-brand-500)] text-white grid place-items-center text-xs font-bold flex-shrink-0">✓</span>
                   <span className="text-[var(--color-ink)] leading-relaxed">{o}</span>
@@ -197,44 +219,55 @@ export default async function UnitPage({ params }: { params: Promise<Params> }) 
           </Section>
         )}
 
-        {/* PREV / NEXT */}
-        <Section tone="muted" size="sm" decorated="muted" decoratedDensity="medium">
-          <div className="grid sm:grid-cols-2 gap-4">
-            {prev ? (
-              <PrevNextCard
-                direction="prev"
-                label={`Unit ${prev.number}`}
-                title={prev.title}
-                href={`/mathematics/${g.slug}/${prev.slug}`}
-              />
-            ) : (
-              <Link href={`/mathematics/${g.slug}`} className="card card-interactive p-6 flex items-center gap-3 no-underline">
-                <span aria-hidden>←</span>
-                <span>
-                  <span className="caption text-[var(--color-ink-muted)] uppercase tracking-wider">Back to</span>
-                  <span className="block font-semibold text-[var(--color-ink)]">{g.title} library</span>
-                </span>
-              </Link>
-            )}
-            {next ? (
-              <PrevNextCard
-                direction="next"
-                label={`Unit ${next.number}`}
-                title={next.title}
-                href={`/mathematics/${g.slug}/${next.slug}`}
-              />
-            ) : (
-              <Link href={`/mathematics/${g.slug}`} className="card card-interactive p-6 flex items-center gap-3 no-underline sm:flex-row-reverse sm:text-right bg-[var(--color-brand-50)] border-[var(--color-brand-100)]">
-                <UnitSymbol symbol="★" size="sm" className="bg-[var(--color-brand-100)] border-[var(--color-brand-200)] text-[var(--color-brand-700)]" />
-                <span className="flex-1">
-                  <span className="caption uppercase tracking-wider text-[var(--color-brand-700)]">You finished</span>
-                  <span className="block font-semibold text-[var(--color-ink)]">All units in {g.title}</span>
-                </span>
-              </Link>
-            )}
-          </div>
-        </Section>
       </UnitStudyPanel>
+
+      <DarkAccordionSection
+        eyebrow="Unit help"
+        title="Questions about this unit"
+        items={unitAccordion(u.title, g.title)}
+        containerSize="xl"
+        lightSectionBelow={
+          <Section tone="muted" size="sm" decorated="muted" decoratedDensity="medium">
+            <div className="grid sm:grid-cols-2 gap-4">
+              {prev ? (
+                <PrevNextCard
+                  direction="prev"
+                  label={`Unit ${prev.number}`}
+                  title={prev.title}
+                  href={`/mathematics/${g.slug}/${prev.slug}`}
+                />
+              ) : (
+                <Link href={`/mathematics/${g.slug}`} className="card card-interactive p-6 flex items-center gap-3 no-underline">
+                  <span aria-hidden>←</span>
+                  <span>
+                    <span className="caption text-[var(--color-ink-muted)] uppercase tracking-wider">Back to</span>
+                    <span className="block font-semibold text-[var(--color-ink)]">{g.title} study paths</span>
+                  </span>
+                </Link>
+              )}
+              {next ? (
+                <PrevNextCard
+                  direction="next"
+                  label={`Unit ${next.number}`}
+                  title={next.title}
+                  href={`/mathematics/${g.slug}/${next.slug}`}
+                />
+              ) : (
+                <Link
+                  href={`/mathematics/${g.slug}`}
+                  className="card card-interactive p-6 flex items-center gap-3 no-underline sm:flex-row-reverse sm:text-right bg-[var(--color-brand-50)] border-[var(--color-brand-100)]"
+                >
+                  <UnitSymbol symbol="★" size="sm" className="bg-[var(--color-brand-100)] border-[var(--color-brand-200)] text-[var(--color-brand-700)]" />
+                  <span className="flex-1">
+                    <span className="caption uppercase tracking-wider text-[var(--color-brand-700)]">You finished</span>
+                    <span className="block font-semibold text-[var(--color-ink)]">All units in {g.title}</span>
+                  </span>
+                </Link>
+              )}
+            </div>
+          </Section>
+        }
+      />
     </>
   );
 }

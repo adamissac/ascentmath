@@ -30,7 +30,7 @@ export default function TopicStartFinder() {
       <p className="eyebrow">Find your start</p>
       <h2 className="h2 mt-2">Not sure which unit to open?</h2>
       <p className="small text-[var(--color-ink-muted)] mt-2 max-w-xl leading-relaxed">
-        Answer three quick questions and we&apos;ll point you to the right place in the library.
+        Answer three quick questions and we&apos;ll point you to the right place in the study paths.
       </p>
 
       <ol className="mt-6 flex flex-wrap gap-2" aria-label="Progress">

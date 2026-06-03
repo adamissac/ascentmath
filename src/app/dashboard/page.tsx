@@ -1,6 +1,8 @@
 "use client";
 
 import Link from "next/link";
+import BookSessionLink from "../../components/BookSessionLink";
+import StudyPathsLink from "../../components/StudyPathsLink";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import Container from "../../components/Container";
@@ -138,12 +140,12 @@ function Dashboard() {
             <Card className="p-6">
               <p className="eyebrow">Quick actions</p>
               <div className="mt-4 grid gap-2">
-                <Link href="/mathematics" className="btn btn-primary btn-sm justify-between">
-                  Continue learning <span aria-hidden>→</span>
-                </Link>
-                <Link href="/book" className="btn btn-outline btn-sm justify-between">
-                  Book a free 1-on-1 <span aria-hidden>→</span>
-                </Link>
+                <BookSessionLink className="btn btn-primary btn-sm justify-between">
+                  Book tutoring <span aria-hidden>→</span>
+                </BookSessionLink>
+                <StudyPathsLink className="btn btn-outline btn-sm justify-between">
+                  Study paths <span aria-hidden>→</span>
+                </StudyPathsLink>
                 <Link href="/about" className="btn btn-ghost btn-sm justify-between">
                   About Adam <span aria-hidden>→</span>
                 </Link>
@@ -153,9 +155,8 @@ function Dashboard() {
             <Card className="p-6 bg-[var(--color-brand-50)] border-[var(--color-brand-100)]">
               <p className="eyebrow">Tip</p>
               <p className="small text-[var(--color-ink)] mt-2 leading-relaxed">
-                Keep this tab open while you study. Your progress through each
-                unit will save automatically on every device you&apos;re signed
-                in on.
+                Need help beyond the free paths? Book a tutoring session. Your
+                progress on study paths saves automatically while you&apos;re signed in.
               </p>
             </Card>
           </div>
@@ -168,12 +169,12 @@ function Dashboard() {
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
         <div>
           <p className="caption font-semibold tracking-wider uppercase text-[var(--color-brand-300)]">Your sessions</p>
-          <h2 className="font-display font-bold text-xl sm:text-2xl mt-1 text-white">Book a free 1-on-1 with Adam</h2>
+          <h2 className="font-display font-bold text-xl sm:text-2xl mt-1 text-white">Book a session with Adam</h2>
           <p className="small text-[#C8C9CC] mt-2 max-w-lg">Bring a topic from any unit - Zoom or in-person in the Atlanta area.</p>
         </div>
-        <Link href="/book" className="btn btn-lg bg-white text-[var(--color-brand-700)] hover:bg-white/90 shrink-0 w-full sm:w-auto">
+        <BookSessionLink className="btn btn-lg bg-white text-[var(--color-brand-700)] hover:bg-white/90 shrink-0 w-full sm:w-auto">
           Book a session →
-        </Link>
+        </BookSessionLink>
       </div>
     </ColorBand>
     </>

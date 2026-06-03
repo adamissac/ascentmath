@@ -35,15 +35,23 @@ export default function Quiz({ title = "Check yourself", questions, onComplete }
   const [done, setDone] = useState(false);
 
   const total = questions.length;
-  const q = questions[index];
-  const current = answers[q.id] ?? "";
-  const isCorrect = normalize(current) === normalize(q.answer);
-  const isLast = index === total - 1;
-
   const score = useMemo(
     () => questions.filter((qq) => normalize(answers[qq.id] ?? "") === normalize(qq.answer)).length,
     [answers, questions]
   );
+
+  if (total === 0) {
+    return (
+      <div className="card p-6 text-[var(--color-ink-muted)]">
+        <p className="small">Quiz questions are not available for this topic yet.</p>
+      </div>
+    );
+  }
+
+  const q = questions[index];
+  const current = answers[q.id] ?? "";
+  const isCorrect = normalize(current) === normalize(q.answer);
+  const isLast = index === total - 1;
 
   const select = (value: string) => {
     if (revealed[q.id]) return;
@@ -54,8 +62,11 @@ export default function Quiz({ title = "Check yourself", questions, onComplete }
 
   const next = () => {
     if (isLast) {
+      const finalScore = questions.filter(
+        (qq) => normalize(answers[qq.id] ?? "") === normalize(qq.answer)
+      ).length;
       setDone(true);
-      onComplete?.(score, total);
+      onComplete?.(finalScore, total);
       return;
     }
     setIndex((i) => Math.min(total - 1, i + 1));

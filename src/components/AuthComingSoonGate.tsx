@@ -6,7 +6,7 @@ import { isAuthComingSoon } from "../lib/auth-coming-soon";
 
 export function useAuthComingSoonGate() {
   const comingSoon = isAuthComingSoon();
-  const [dialogOpen, setDialogOpen] = useState(true);
+  const [dialogOpen, setDialogOpen] = useState(false);
 
   function blockAction() {
     if (!comingSoon) return false;

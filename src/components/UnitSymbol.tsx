@@ -1,3 +1,5 @@
+"use client";
+
 /**
  * Math-style unit glyph - replaces emoji icons with typographic symbols.
  */

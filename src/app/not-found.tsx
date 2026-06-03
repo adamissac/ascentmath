@@ -1,5 +1,6 @@
 import Section from "../components/Section";
 import Button from "../components/Button";
+import { STUDY_PATHS_HREF } from "../lib/site-paths";
 
 export default function NotFound() {
   return (
@@ -12,7 +13,7 @@ export default function NotFound() {
         </p>
         <div className="mt-7 btn-stack-mobile justify-center">
           <Button href="/">Take me home</Button>
-          <Button href="/mathematics" variant="outline">Open the math library</Button>
+          <Button href={STUDY_PATHS_HREF} variant="outline">Browse study paths</Button>
         </div>
       </div>
     </Section>

@@ -2,17 +2,16 @@ import type { ReactNode } from "react";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Link from "next/link";
-import Container from "../../../components/Container";
 import Section from "../../../components/Section";
-import Badge from "../../../components/Badge";
-import Breadcrumbs from "../../../components/Breadcrumbs";
 import Button from "../../../components/Button";
-import FloatingMathCanvas from "../../../components/FloatingMathCanvas";
+import CurriculumHero from "../../../components/CurriculumHero";
 import ColorBand from "../../../components/ColorBand";
 import Reveal from "../../../components/Reveal";
 import VisualPanel from "../../../components/VisualPanel";
 import { DocSymbol, UnitSymbol } from "../../../components/UnitSymbol";
 import { GRADES, getGrade, countUnitVideos, countUnitWorksheets, type Unit } from "../../../data/units";
+import { STUDY_PATHS_HREF } from "../../../lib/site-paths";
+import StudyPathsLink from "../../../components/StudyPathsLink";
 
 type Params = { grade: string };
 
@@ -41,50 +40,47 @@ export default async function GradeLibrary({ params }: { params: Promise<Params>
   const totalTopics = units.reduce((s, u) => s + u.topics.length, 0);
   const totalVideos = units.reduce((s, u) => s + countUnitVideos(u), 0);
   const totalWorksheets = units.reduce((s, u) => s + countUnitWorksheets(u), 0);
+  const firstUnit = units[0];
+  const heroStats = [
+    { value: units.length, label: "units" },
+    { value: totalTopics, label: "topics" },
+    { value: totalVideos, label: "videos" },
+    ...(totalWorksheets > 0 ? [{ value: totalWorksheets, label: "worksheets" }] : []),
+    { value: `~${Math.round(totalMinutes / 60)}h`, label: "total" },
+  ];
 
   return (
     <>
-      {/* HERO */}
-      <section className="hero-surface relative overflow-hidden">
-        <FloatingMathCanvas variant="grade" />
-        <Container size="xl" className="relative pt-10 pb-16 sm:pb-20">
-          <div className="flex justify-center">
-            <Breadcrumbs
-              items={[
-                { label: "Home", href: "/" },
-                { label: "Mathematics", href: "/mathematics" },
-                { label: g.title },
-              ]}
-            />
-          </div>
-          <Reveal className="mt-8 w-full min-w-0 max-w-3xl mx-auto text-center" variant="up">
-            <Badge tone="brand" className="mb-5">{g.title} · GADOE aligned</Badge>
-            <h1 className="h-display min-w-0 break-words">The full {g.title} curriculum, in one place.</h1>
-            <p className="lede mt-5 mx-auto max-w-[52ch] min-w-0">
-              Each unit is split into short topics - read a walkthrough, watch a video, try the
-              practice, take a quick check. Jump to any topic; there&apos;s no &ldquo;right&rdquo; order.
-            </p>
-            {units.length > 0 && (
-              <div className="proof-row mt-8 justify-center">
-                <span><strong>{units.length}</strong> units</span>
-                <span><strong>{totalTopics}</strong> topics</span>
-                <span><strong>{totalVideos}</strong> videos</span>
-                {totalWorksheets > 0 && <span><strong>{totalWorksheets}</strong> worksheets</span>}
-                <span><strong>~{Math.round(totalMinutes / 60)}h</strong> total</span>
-              </div>
-            )}
-          </Reveal>
-        </Container>
-      </section>
+      <CurriculumHero
+        variant="grade"
+        breadcrumbs={[
+          { label: "Home", href: "/" },
+          { label: "Mathematics", href: STUDY_PATHS_HREF },
+          { label: g.title },
+        ]}
+        gradeTitle={g.title}
+        description="Free on this site, built for middle schoolers to learn a full grade. Every topic has lessons, videos, five practice problems, and quizzes. Follow units in order for the best results, or jump to what your class is on now."
+        stats={units.length > 0 ? heroStats : []}
+        unitIcons={units.map((u) => u.icon)}
+        primaryCta={
+          firstUnit
+            ? {
+                href: `/mathematics/${g.slug}/${firstUnit.slug}`,
+                label: `Start Unit ${firstUnit.number} →`,
+              }
+            : undefined
+        }
+        secondaryCta={units.length > 0 ? { href: "#units", label: "See all units" } : undefined}
+      />
 
       {/* UNIT LIBRARY */}
-      <Section tone="muted" size="sm" containerSize="xl" decorated="muted" decoratedDensity="medium" decoratedContentSafe reveal={false}>
+      <Section id="units" tone="muted" size="sm" containerSize="xl" decorated="muted" decoratedDensity="medium" decoratedContentSafe reveal={false}>
         <div className="grid lg:grid-cols-12 gap-10 lg:gap-14 xl:gap-16 items-start">
           <div className="lg:col-span-8 min-w-0">
             <Reveal>
               <div className="flex flex-col gap-4 mb-6 md:flex-row md:items-end md:justify-between">
                 <div className="min-w-0">
-                  <p className="eyebrow">The library</p>
+                  <p className="eyebrow">Study paths</p>
                   <h2 className="h2 mt-2 min-w-0 break-words">{g.title} units</h2>
                   <p className="small text-[var(--color-ink-muted)] mt-2 max-w-xl leading-relaxed">
                     Each row is a full unit, broken into short topics - a walkthrough, a video,
@@ -115,9 +111,9 @@ export default async function GradeLibrary({ params }: { params: Promise<Params>
                   <p className="small text-[var(--color-ink-muted)] mt-2">
                     {g.title} units are being added. Check back shortly.
                   </p>
-                  <Link href="/mathematics" className="btn btn-outline btn-sm mt-5">
+                  <StudyPathsLink className="btn btn-outline btn-sm mt-5">
                     Back to all grades
-                  </Link>
+                  </StudyPathsLink>
                 </div>
               </Reveal>
             )}
@@ -195,10 +191,10 @@ export default async function GradeLibrary({ params }: { params: Promise<Params>
             <h2 className="font-display font-bold text-2xl sm:text-3xl leading-[1.2]">
               Need help on something specific?
             </h2>
-            <p className="mt-2 text-white/75">Book a free 1:1 session with Adam - online or in-person.</p>
+            <p className="mt-2 text-white/75">Need help beyond these tracks? Book a paid tutoring session with Adam.</p>
           </div>
           <div className="md:col-span-4 md:justify-self-end btn-stack-mobile md:flex-row md:justify-end">
-            <Button href="/book" rightIcon={<Arrow />}>Book a class</Button>
+            <Button href="/#book-session" rightIcon={<Arrow />}>Book a class</Button>
           </div>
         </div>
       </ColorBand>

@@ -8,6 +8,7 @@ import {
   isResendConfigured,
 } from "../../../lib/booking-config";
 import { renderBookingEmail } from "../../../lib/bookingEmail";
+import { describeBookingSelection } from "../../../data/pricing";
 
 /* ----------------------------------------------------------------
    Runtime
@@ -31,6 +32,7 @@ const schema = z.object({
   name: z.string().trim().min(2, "Please enter your full name.").max(120),
   email: z.string().trim().toLowerCase().email("Please enter a valid email address.").max(200),
   phone: z.string().trim().max(40).optional().or(z.literal("")),
+  tier: z.enum(["tier1", "tier2", "tier3"]),
   mode: z.enum(["zoom", "in_person"]),
   grade: z.string().trim().max(60).optional().or(z.literal("")),
   topic: z.string().trim().max(160).optional().or(z.literal("")),
@@ -131,6 +133,8 @@ export async function POST(req: Request) {
     name: parsed.data.name,
     email: parsed.data.email,
     phone: parsed.data.phone || undefined,
+    tier: parsed.data.tier,
+    pricingSummary: describeBookingSelection(parsed.data.tier),
     mode: parsed.data.mode,
     grade: parsed.data.grade || undefined,
     topic: parsed.data.topic || undefined,

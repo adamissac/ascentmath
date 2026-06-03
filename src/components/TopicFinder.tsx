@@ -5,24 +5,73 @@ import { useMemo, useState } from "react";
 import { searchTopics } from "../data/topic-search";
 
 type Props = {
-  variant?: "default" | "prominent";
+  variant?: "default" | "prominent" | "compact";
   suggestions?: string[];
+  /** Shorter search field and tighter chips (prominent variant) */
+  dense?: boolean;
 };
 
-export default function TopicFinder({ variant = "default", suggestions = [] }: Props) {
+export default function TopicFinder({ variant = "default", suggestions = [], dense = false }: Props) {
   const [query, setQuery] = useState("");
   const prominent = variant === "prominent";
+  const compact = variant === "compact";
 
   const results = useMemo(() => searchTopics(query), [query]);
 
+  if (compact) {
+    return (
+      <div>
+        <SearchField
+          id="topic-finder-compact"
+          value={query}
+          onChange={setQuery}
+          placeholder="Search topics, GCF, slope, fractions…"
+          className="topic-search-field--flat"
+        />
+
+        {suggestions.length > 0 && !query.trim() && (
+          <div className="mt-2 flex flex-wrap items-center gap-1.5">
+            <span className="text-[0.75rem] font-medium text-[var(--color-ink-soft)]">Popular:</span>
+            {suggestions.map((term) => (
+              <button
+                key={term}
+                type="button"
+                onClick={() => setQuery(term)}
+                className="rounded-sm border border-[rgba(26,26,46,0.12)] bg-[#FBFAF7] px-2.5 py-1 text-[0.75rem] font-medium text-[#4a4a6a] transition-colors hover:border-[#2A4BCB]/30 hover:text-[#2A4BCB]"
+              >
+                {term}
+              </button>
+            ))}
+          </div>
+        )}
+
+        {query.trim() ? (
+          <ResultsList results={results} query={query} className="mt-3" />
+        ) : null}
+      </div>
+    );
+  }
+
   if (prominent) {
     return (
-      <div className="rounded-xl bg-white shadow-[0_8px_32px_rgba(15,17,21,0.12)] p-4 sm:p-5">
+      <div
+        className={`rounded-xl bg-white shadow-[0_8px_32px_rgba(15,17,21,0.12)] ${
+          dense ? "p-3 sm:p-3.5" : "p-4 sm:p-5"
+        }`}
+      >
         <label htmlFor="topic-finder" className="block">
-          <span className="font-display font-bold text-lg text-[var(--color-ink)]">
+          <span
+            className={`font-display font-bold text-[var(--color-ink)] ${
+              dense ? "text-base" : "text-lg"
+            }`}
+          >
             Search by keyword
           </span>
-          <span className="block small text-[var(--color-ink-muted)] mt-1">
+          <span
+            className={`block small text-[var(--color-ink-muted)] ${
+              dense ? "mt-0.5 text-[0.8125rem]" : "mt-1"
+            }`}
+          >
             Type anything your class is working on - we&apos;ll find the matching lesson.
           </span>
         </label>
@@ -33,18 +82,20 @@ export default function TopicFinder({ variant = "default", suggestions = [] }: P
           onChange={setQuery}
           placeholder="Try GCF, slope, fractions, exponents…"
           size="lg"
-          className="mt-4"
+          className={dense ? "mt-2.5 topic-search-field--compact" : "mt-4"}
         />
 
         {suggestions.length > 0 && !query.trim() && (
-          <div className="mt-3 flex flex-wrap gap-2">
+          <div className={`flex flex-wrap gap-1.5 ${dense ? "mt-2" : "mt-3"}`}>
             <span className="caption text-[var(--color-ink-soft)] font-semibold py-1">Popular:</span>
             {suggestions.map((term) => (
               <button
                 key={term}
                 type="button"
                 onClick={() => setQuery(term)}
-                className="px-3 py-1.5 rounded-full text-sm font-semibold bg-[var(--color-brand-50)] text-[var(--color-brand-700)] border border-[var(--color-brand-100)] hover:bg-[var(--color-brand-100)] transition-colors"
+                className={`rounded-full border border-[var(--color-brand-100)] bg-[var(--color-brand-50)] font-semibold text-[var(--color-brand-700)] transition-colors hover:bg-[var(--color-brand-100)] ${
+                  dense ? "px-2.5 py-1 text-xs" : "px-3 py-1.5 text-sm"
+                }`}
               >
                 {term}
               </button>
@@ -64,7 +115,7 @@ export default function TopicFinder({ variant = "default", suggestions = [] }: P
       <label htmlFor="topic-finder-default" className="block">
         <span className="eyebrow">Find a topic</span>
         <span className="block font-display font-semibold text-xl mt-2 text-[var(--color-ink)]">
-          Search the library
+          Search study paths
         </span>
         <span className="block small text-[var(--color-ink-muted)] mt-1 leading-relaxed">
           Try &ldquo;GCF&rdquo;, &ldquo;slope&rdquo;, &ldquo;fractions&rdquo;, or whatever your class is working on.

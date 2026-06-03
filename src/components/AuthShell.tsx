@@ -15,8 +15,8 @@ export default function AuthShell({
   subtitle,
   footer,
   children,
-  panelTitle = "Free Grades 6–8 math, your way.",
-  panelSubtitle = "Sign in to track progress across devices, pick up where you left off, and book free 1-on-1 sessions when you get stuck.",
+  panelTitle = "Math tutoring with Adam.",
+  panelSubtitle = "Sign in to book paid 1-on-1 sessions and track progress on free Grades 6–8 self-paced paths.",
 }: {
   eyebrow: string;
   title: string;
@@ -49,8 +49,15 @@ export default function AuthShell({
             className="inline-flex items-center gap-2.5 mb-8 group"
             aria-label="Adam's Alphabet - home"
           >
-            <span className="relative w-9 h-9 rounded-lg overflow-hidden ring-1 ring-[var(--color-border)] shadow-sm">
-              <Image src="/newLogo.png" alt="" fill sizes="36px" className="object-cover" />
+            <span className="nav-logo-wrap w-9 h-9">
+              <Image
+                src="/newLogo.png"
+                alt=""
+                width={36}
+                height={36}
+                sizes="36px"
+                className="h-full w-full object-cover"
+              />
             </span>
             <span className="font-display font-bold text-[1.05rem] text-[var(--color-ink)] group-hover:text-[var(--color-brand-600)] transition-colors">
               Adam&apos;s Alphabet
@@ -108,7 +115,7 @@ export default function AuthShell({
 
           <ul className="mt-10 grid gap-4">
             <Bullet>Save where you stop in every unit</Bullet>
-            <Bullet>Book free 1-on-1 sessions with Adam</Bullet>
+            <Bullet>Book paid 1-on-1 sessions with Adam</Bullet>
             <Bullet>Never see an ad, ever</Bullet>
           </ul>
 

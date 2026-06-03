@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useCallback, useEffect, useState } from "react";
 
@@ -49,13 +49,13 @@ function write(state: UnitProgressState) {
  * @param unitId - Unique identifier for the unit (used as the storage key).
  * @param items  - The list of progress items that belong to the unit.
  * @returns An object with completion state and helper actions:
- *   - `hydrated`        – true once localStorage has been read on the client.
- *   - `percent`         – completion percentage (0–100).
- *   - `completedCount`  – number of completed items.
- *   - `total`           – total number of items.
- *   - `isComplete(id)`  – returns true if the item with the given id is done.
- *   - `toggle(id)`      – marks an item complete or incomplete.
- *   - `reset()`         – clears all progress for this unit.
+ *   - `hydrated`        - true once localStorage has been read on the client.
+ *   - `percent`         - completion percentage (0-100).
+ *   - `completedCount`  - number of completed items.
+ *   - `total`           - total number of items.
+ *   - `isComplete(id)`  - returns true if the item with the given id is done.
+ *   - `toggle(id)`      - marks an item complete or incomplete.
+ *   - `reset()`         - clears all progress for this unit.
  */
 export function useUnitProgress(unitId: string, items: ProgressItem[]) {
   const [state, setState] = useState<UnitProgressState>({ unitId, completed: {} });

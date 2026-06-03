@@ -4,7 +4,7 @@ import { useEffect } from "react";
 import Section from "../components/Section";
 import Button from "../components/Button";
 
-export default function GlobalError({
+export default function Error({
   error,
   reset,
 }: {

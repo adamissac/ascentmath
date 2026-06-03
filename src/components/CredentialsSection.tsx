@@ -1,0 +1,168 @@
+"use client";
+
+import Image from "next/image";
+import Link from "next/link";
+import Container from "./Container";
+import HeroCanvas from "./HeroCanvas";
+import Reveal from "./Reveal";
+import BookSessionLink from "./BookSessionLink";
+import { MATH_CREDENTIALS, TUTOR_INTRO } from "../data/credentials";
+
+const BLUE = "#2A4BCB";
+const INK = "#1a1a2e";
+const BODY = "#4a4a6a";
+const MUTED = "#6b6b80";
+const BTN_RADIUS = "6px";
+
+const btnBase =
+  "inline-flex min-h-[44px] items-center justify-center gap-2 px-5 text-sm font-semibold tracking-[0.01em] transition-colors duration-150 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#2A4BCB]";
+
+export default function CredentialsSection() {
+  return (
+    <section
+      className="hero-surface relative overflow-hidden border-b border-[var(--color-border)] bg-[#FBFAF7]"
+      aria-labelledby="credentials"
+    >
+      <HeroCanvas />
+
+      <Container size="lg" className="relative z-[1] py-10 sm:py-12 lg:py-14">
+        <div className="grid items-start gap-8 sm:gap-10 lg:grid-cols-[auto_minmax(0,1fr)] lg:grid-rows-[auto_auto] lg:gap-x-12 lg:gap-y-7 xl:gap-x-14">
+          <Reveal variant="left" className="flex justify-center lg:row-start-1 lg:justify-start">
+            <div
+              className="relative size-44 shrink-0 overflow-hidden rounded-full sm:size-48"
+              style={{
+                boxShadow: "0 0 0 3px #2A4BCB, 0 6px 24px rgba(42, 75, 203, 0.2)",
+              }}
+            >
+              <Image
+                src="/adampic.jpg"
+                alt="Adam Issac, math tutor"
+                fill
+                sizes="(max-width: 1023px) 192px, 192px"
+                className="object-cover"
+                style={{ objectPosition: "50% 22%" }}
+                priority
+              />
+            </div>
+          </Reveal>
+
+          <Reveal
+            variant="right"
+            className="flex min-w-0 flex-col text-center lg:col-start-2 lg:row-start-1 lg:text-left"
+          >
+            <h2
+              id="credentials"
+              tabIndex={-1}
+              className="font-display font-bold tracking-[-0.03em] focus:outline-none"
+              style={{
+                color: INK,
+                fontSize: "clamp(1.75rem, 4vw, 2.25rem)",
+                lineHeight: 1.12,
+              }}
+            >
+              <span className="block">{TUTOR_INTRO.title}</span>
+              <span className="block">{TUTOR_INTRO.titleMuted}</span>
+            </h2>
+            <p className="mt-4 text-sm font-medium tracking-[0.02em]" style={{ color: BLUE }}>
+              {TUTOR_INTRO.meta}
+            </p>
+            <p
+              className="mx-auto mt-5 max-w-[40rem] text-[1.0625rem] lg:mx-0"
+              style={{ color: BODY, lineHeight: 1.8 }}
+            >
+              {TUTOR_INTRO.bio}
+            </p>
+
+            <Reveal
+              as="ul"
+              stagger
+              variant="fade"
+              className="mx-auto mt-5 max-w-[40rem] list-none space-y-1 text-left lg:mx-0"
+              aria-label="Math credentials"
+            >
+              {MATH_CREDENTIALS.map((item) => (
+                <li
+                  key={item.label}
+                  className="text-[0.9375rem] leading-snug"
+                  style={{ color: INK }}
+                >
+                  <span className="text-[var(--color-ink-soft)]" aria-hidden>
+                    —
+                  </span>{" "}
+                  <span className="font-semibold tabular-nums" style={{ color: BLUE }}>
+                    {item.value}
+                  </span>{" "}
+                  <span className="font-medium">{item.label}</span>
+                  <span style={{ color: MUTED }}> · {item.detail}</span>
+                </li>
+              ))}
+            </Reveal>
+          </Reveal>
+
+          <Reveal
+            variant="up"
+            delay={80}
+            className="flex flex-col items-stretch gap-3 sm:flex-row sm:items-center sm:justify-center lg:col-start-2 lg:row-start-2 lg:justify-start"
+          >
+            <BookSessionLink
+              className={`${btnBase} hover:bg-[#1F3CB1]`}
+              style={{
+                borderRadius: BTN_RADIUS,
+                backgroundColor: BLUE,
+                color: "#fff",
+                border: `1px solid ${BLUE}`,
+              }}
+            >
+              Book a session
+              <Arrow />
+            </BookSessionLink>
+            <Link
+              href="/about"
+              className={`${btnBase} border border-[rgba(26,26,46,0.12)] bg-white hover:border-[rgba(26,26,46,0.22)] hover:bg-[#F7F7F5]`}
+              style={{ borderRadius: BTN_RADIUS, color: INK }}
+            >
+              My story
+              <Arrow />
+            </Link>
+          </Reveal>
+        </div>
+
+        <Reveal variant="fade" delay={120} as="footer"
+          className="mt-8 flex flex-col gap-1 border-t border-[rgba(26,26,46,0.1)] pt-6 text-center text-[0.8125rem] sm:flex-row sm:flex-wrap sm:items-center sm:justify-center sm:gap-x-3 lg:justify-start lg:text-left"
+          style={{ color: MUTED }}
+        >
+          <a
+            href={`mailto:${TUTOR_INTRO.email}`}
+            className="font-semibold transition-colors hover:underline"
+            style={{ color: BLUE }}
+          >
+            {TUTOR_INTRO.email}
+          </a>
+          <span className="hidden sm:inline text-[var(--color-ink-soft)]" aria-hidden>
+            ·
+          </span>
+          <span>Zoom or in-person in the Atlanta area</span>
+        </Reveal>
+      </Container>
+    </section>
+  );
+}
+
+function Arrow() {
+  return (
+    <svg
+      width="14"
+      height="14"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden
+    >
+      <line x1="5" y1="12" x2="19" y2="12" />
+      <polyline points="13 6 19 12 13 18" />
+    </svg>
+  );
+}

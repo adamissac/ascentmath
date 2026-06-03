@@ -1,3 +1,5 @@
+"use client";
+
 import Image from "next/image";
 import MathBackdrop from "./MathBackdrop";
 import { UnitSymbol } from "./UnitSymbol";

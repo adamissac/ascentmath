@@ -1,3 +1,5 @@
+"use client";
+
 import type { HTMLAttributes, ReactNode } from "react";
 
 type Tone = "neutral" | "brand" | "accent" | "info" | "success" | "warning" | "danger";

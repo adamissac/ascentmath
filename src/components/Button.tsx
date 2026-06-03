@@ -1,5 +1,8 @@
+"use client";
+
 import Link from "next/link";
 import type { AnchorHTMLAttributes, ButtonHTMLAttributes, ReactNode } from "react";
+import HashLink from "./HashLink";
 
 type Variant = "primary" | "outline" | "ghost" | "accent";
 type Size = "sm" | "md" | "lg";
@@ -72,10 +75,11 @@ export default function Button(props: ButtonProps | LinkProps) {
         </a>
       );
     }
+    const LinkComponent = href.includes("#") ? HashLink : Link;
     return (
-      <Link href={href} className={classes(variant, size, className)} {...anchor}>
+      <LinkComponent href={href} className={classes(variant, size, className)} {...anchor}>
         {content}
-      </Link>
+      </LinkComponent>
     );
   }
 

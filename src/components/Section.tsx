@@ -1,3 +1,5 @@
+"use client";
+
 import type { HTMLAttributes } from "react";
 import Container from "./Container";
 import MathBackdrop, { type BackdropDensity, type BackdropVariant } from "./MathBackdrop";
@@ -23,6 +25,8 @@ type Props = HTMLAttributes<HTMLElement> & {
   decoratedDensity?: BackdropDensity;
   /** Keep symbols in the margins so they don't cover text. */
   decoratedContentSafe?: boolean;
+  /** Faint symbols only, no clipart or large watermark. */
+  decoratedMinimal?: boolean;
   /** Fade/slide section content in when scrolled into view. */
   reveal?: boolean;
   /** Animated floating symbols in the hero (replaces static MathBackdrop for this section). */
@@ -30,10 +34,10 @@ type Props = HTMLAttributes<HTMLElement> & {
 };
 
 const PADDING = {
-  sm: "py-8 sm:py-12",
-  md: "py-12 sm:py-20",
-  lg: "py-16 sm:py-28",
-  xl: "py-20 sm:py-32",
+  sm: "py-8 sm:py-10",
+  md: "py-10 sm:py-14",
+  lg: "py-12 sm:py-16",
+  xl: "py-14 sm:py-20",
 };
 
 export default function Section({
@@ -43,6 +47,7 @@ export default function Section({
   decorated = false,
   decoratedDensity = "dense",
   decoratedContentSafe = false,
+  decoratedMinimal = false,
   reveal = true,
   floatingVariant,
   className = "",
@@ -66,9 +71,10 @@ export default function Section({
       {showBackdrop && (
         <MathBackdrop
           variant={backdropVariant}
-          density={tone === "dark" ? "medium" : decoratedDensity}
-          contentSafe={decoratedContentSafe || tone === "dark"}
-          watermark={tone !== "dark"}
+          density={decoratedMinimal ? "light" : tone === "dark" ? "medium" : decoratedDensity}
+          contentSafe={decoratedContentSafe || decoratedMinimal || tone === "dark"}
+          clipart={!decoratedMinimal}
+          watermark={!decoratedMinimal && tone !== "dark"}
         />
       )}
       <Container size={containerSize} className={showOverlay ? "relative z-[1]" : undefined}>

@@ -1,3 +1,5 @@
+"use client";
+
 import type { HTMLAttributes, ElementType } from "react";
 
 type Props = HTMLAttributes<HTMLDivElement> & {

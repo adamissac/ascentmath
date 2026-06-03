@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
@@ -106,9 +106,9 @@ function LoginForm() {
     <AuthShell
       eyebrow="Welcome back"
       title="Log in to your account."
-      subtitle="Pick up where you left off and book free 1-on-1 sessions with Adam."
+      subtitle="Pick up where you left off and book paid 1-on-1 sessions with Adam."
       panelTitle="Pick up right where you left off."
-      panelSubtitle="Your progress, saved units, and booking history - all in one place, free forever."
+      panelSubtitle="Accounts are free. Book paid tutoring anytime; sign in to save progress on self-paced study paths."
       footer={
         <p>
           New here?{" "}
