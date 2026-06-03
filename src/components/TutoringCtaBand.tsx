@@ -10,7 +10,7 @@ type TutoringCtaBandProps = {
   tiersHref?: string;
 };
 
-export default function TutoringCtaBand({ tiersHref = "#tutoring-tiers" }: TutoringCtaBandProps) {
+export default function TutoringCtaBand({ tiersHref = "/#what-i-teach" }: TutoringCtaBandProps) {
   return (
     <ColorBand variant="dark" size="sm" reveal={false} faintSymbols>
       <div className="grid grid-cols-12 items-center gap-8">
@@ -22,7 +22,7 @@ export default function TutoringCtaBand({ tiersHref = "#tutoring-tiers" }: Tutor
             Book a tutoring session with me.
           </h2>
           <p className="mt-4 max-w-xl text-[#C8C9CC]">
-            From K-6 through {TIER3_PHRASE} math. Pick your tier on the booking form —{" "}
+            From K-6 through {TIER3_PHRASE} math. Pick your tier on the booking form.{" "}
             {TUTORING_TIERS_SUMMARY}. {TIER_PRICING_SHORT}
           </p>
           <div className="mt-6 flex flex-wrap gap-x-6 gap-y-2 text-sm text-[#9AA0A8]">

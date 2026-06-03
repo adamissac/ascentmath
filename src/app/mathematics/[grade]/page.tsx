@@ -204,7 +204,7 @@ export default async function GradeLibrary({ params }: { params: Promise<Params>
 
 const STEPS: { title: string; body: string }[] = [
   { title: "Walkthrough", body: "A short, plain-language explainer with a worked example. Read it first to get the idea." },
-  { title: "Video walk-through", body: "One hand-picked video per topic - sometimes a second take - from teachers students actually like." },
+  { title: "Video walkthrough", body: "One hand-picked video per topic - sometimes a second take - from teachers students actually like." },
   { title: "Practice", body: "A printable worksheet from Adam or curated links to trusted external worksheet libraries." },
   { title: "Quick quiz", body: "Two or three questions at the end of each topic, with explanations. Retake it as many times as you want." },
 ];

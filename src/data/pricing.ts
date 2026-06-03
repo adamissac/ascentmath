@@ -84,7 +84,7 @@ export const TUTORING_TIERS: readonly TutoringTier[] = [
     id: "tier2",
     tierLabel: "Tier 2",
     label: "Middle school",
-    range: "Grades 6–8",
+    range: "Grades 6-8",
     accent: "bg-white/70",
     blurb: "Pre-algebra through early algebra, ratios, and the geometry that shows up in middle school.",
     rigorNote: "Where most students first hit abstract math, steady 1-on-1 help on school pacing.",

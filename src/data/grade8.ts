@@ -1059,7 +1059,7 @@ export const GRADE_8_UNITS: Unit[] = [
           },
         ],
         video: { videoId: "WqhlG3Vakw8", title: "The Pythagorean Theorem", source: "Math Antics", description: "Use a² + b² = c² to find a missing side." },
-        extraVideo: { videoId: "AA6RfgP-AHU", title: "Pythagorean Theorem Intro", source: "Khan Academy", description: "Another walk-through of the theorem with examples." },
+        extraVideo: { videoId: "AA6RfgP-AHU", title: "Pythagorean Theorem Intro", source: "Khan Academy", description: "Another walkthrough of the theorem with examples." },
         practiceLinks: [
           { href: `${KHAN_8}/cc-8th-geometry`, title: "Pythagorean theorem", source: "Khan Academy" },
           { href: "https://www.mathworksheets4kids.com/pythagorean-theorem.php", title: "Pythagorean theorem worksheets", source: "Math Worksheets 4 Kids" },

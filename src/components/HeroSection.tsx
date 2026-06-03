@@ -65,7 +65,7 @@ export default function HeroSection({ totalUnits }: HeroSectionProps) {
           >
             I&apos;m Adam. I tutor pre-algebra through AP Pre-Calc, AP Calc, SAT Math, linear
             algebra, and multivariable calc, plus K-6 basics. Book a paid 1-on-1 session, or use
-            my free Grades 6-8 study tracks on your own.
+            my free Grades 6-8 study paths on your own.
           </p>
 
           <div
@@ -93,7 +93,7 @@ export default function HeroSection({ totalUnits }: HeroSectionProps) {
               </HashLink>
               <span
                 className="hidden shrink-0 items-center gap-0.5 text-[#F47B16] sm:flex"
-                aria-label="Free Grades 6–8 study paths"
+                aria-label="Free Grades 6-8 study paths"
               >
                 <svg width="36" height="20" viewBox="0 0 36 20" fill="none" aria-hidden className="-mr-0.5">
                   <path

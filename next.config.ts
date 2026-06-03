@@ -13,7 +13,7 @@ const nextConfig: NextConfig = {
   async redirects() {
     return [
       { source: "/book", destination: "/?section=book-session", permanent: false },
-      { source: "/pricing", destination: "/#tutoring-tiers", permanent: true },
+      { source: "/pricing", destination: "/#what-i-teach", permanent: true },
       { source: "/parents", destination: "/?section=study-paths", permanent: true },
       { source: "/tutoring", destination: "/#what-i-teach", permanent: false },
     ];

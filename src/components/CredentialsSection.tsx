@@ -87,7 +87,7 @@ export default function CredentialsSection() {
                   style={{ color: INK }}
                 >
                   <span className="text-[var(--color-ink-soft)]" aria-hidden>
-                    —
+                    ·
                   </span>{" "}
                   <span className="font-semibold tabular-nums" style={{ color: BLUE }}>
                     {item.value}

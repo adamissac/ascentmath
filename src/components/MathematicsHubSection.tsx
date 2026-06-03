@@ -41,7 +41,7 @@ export default function MathematicsHubSection() {
               className="text-[0.6875rem] font-semibold uppercase tracking-[0.18em]"
               style={{ color: BLUE }}
             >
-              Free · Grades 6–8 · self-paced · no account
+              Free · Grades 6-8 · self-paced · no account
             </p>
             <h1
               className="font-display mt-3 font-bold tracking-[-0.03em]"
@@ -193,7 +193,7 @@ export default function MathematicsHubSection() {
             <HashLink href={BOOK_SESSION_HREF} className="font-semibold hover:underline" style={{ color: BLUE }}>
               Book a tutoring session
             </HashLink>{" "}
-            for K–6, middle school, or high school, AP, and college math.
+            for K-6, middle school, or high school, AP, and college math.
           </p>
         </Reveal>
       </Container>

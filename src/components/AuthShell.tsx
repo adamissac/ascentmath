@@ -16,7 +16,7 @@ export default function AuthShell({
   footer,
   children,
   panelTitle = "Math tutoring with Adam.",
-  panelSubtitle = "Sign in to book paid 1-on-1 sessions and track progress on free Grades 6–8 self-paced paths.",
+  panelSubtitle = "Sign in to book paid 1-on-1 sessions and track progress on free Grades 6-8 self-paced paths.",
 }: {
   eyebrow: string;
   title: string;

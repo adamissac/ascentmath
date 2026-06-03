@@ -472,7 +472,7 @@ const GRADE_6_UNITS: Unit[] = [
           },
         ],
         video: { videoId: "RQ2nYUBVvqI", title: "Ratios & Rates", source: "Math Antics", description: "What a ratio is and how it shows up in everyday comparisons." },
-        extraVideo: { videoId: "bIKmw0aTmYc", title: "Introduction to Ratios", source: "Khan Academy", description: "Another walk-through of writing a ratio to compare two quantities." },
+        extraVideo: { videoId: "bIKmw0aTmYc", title: "Introduction to Ratios", source: "Khan Academy", description: "Another walkthrough of writing a ratio to compare two quantities." },
         practiceLinks: [
           { href: "https://www.mathworksheets4kids.com/ratio.php", title: "Ratio worksheets", source: "Math Worksheets 4 Kids" },
         ],
@@ -694,7 +694,7 @@ const GRADE_6_UNITS: Unit[] = [
           },
         ],
         video: { videoId: "dAgfnK528RA", title: "Order of Operations", source: "Math Antics", description: "PEMDAS step by step so you always know what to do first." },
-        extraVideo: { videoId: "LkhPRz7Hocg", title: "Exponents", source: "Math Antics", description: "A clear walk-through of repeated multiplication with exponents." },
+        extraVideo: { videoId: "LkhPRz7Hocg", title: "Exponents", source: "Math Antics", description: "A clear walkthrough of repeated multiplication with exponents." },
         practiceLinks: [
           { href: "https://www.mathworksheets4kids.com/order-of-operations.php", title: "Order of operations", source: "Math Worksheets 4 Kids" },
         ],

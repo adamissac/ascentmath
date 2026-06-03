@@ -49,7 +49,7 @@ export default function HomeStudyPathsSection() {
                   Free
                 </span>
                 <span className="text-[0.6875rem] font-semibold uppercase tracking-[0.12em] text-[#6b6b80]">
-                  Grades 6–8 · no account
+                  Grades 6-8 · no account
                 </span>
               </div>
 

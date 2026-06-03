@@ -239,7 +239,7 @@ function StudyPlanCard({ block }: { block: WalkthroughBlock }) {
             Your game plan on this site
           </p>
           <p className="mt-1 text-[0.9375rem] leading-relaxed text-[#2d5c42]">
-            Do these four things in order — same steps on every topic.
+            Do these four things in order. Same steps on every topic.
           </p>
           {block.steps && (
             <ol className="mt-4 grid gap-2">

@@ -211,7 +211,7 @@ export default function BookingForm({ layout = "default" }: BookingFormProps) {
       setStatus("success");
     } catch {
       setErrorMsg(
-        "Network error — please check your connection and try again, or email Adam directly.",
+        "Network error. Please check your connection and try again, or email Adam directly.",
       );
       setStatus("error");
     } finally {
@@ -248,7 +248,7 @@ export default function BookingForm({ layout = "default" }: BookingFormProps) {
             Send through your email app
           </p>
           <p className="caption text-[var(--color-ink-muted)] mt-1 leading-relaxed">
-            Fill this out, then click the button — your email app opens with everything ready.
+            Fill this out, then click the button. Your email app opens with everything ready.
           </p>
         </div>
       )}

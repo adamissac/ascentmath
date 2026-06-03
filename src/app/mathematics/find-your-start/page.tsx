@@ -12,7 +12,7 @@ import StudyPathsLink from "../../../components/StudyPathsLink";
 export const metadata: Metadata = {
   title: "Find your start",
   description:
-    "Answer three quick questions to find the right grade, unit, and topic in the free Grades 6–8 study paths.",
+    "Answer three quick questions to find the right grade, unit, and topic in the free Grades 6-8 study paths.",
 };
 
 export default function FindYourStartPage() {

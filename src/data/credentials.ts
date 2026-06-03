@@ -8,7 +8,7 @@ export const TUTOR_INTRO = {
   title: "I'm Adam.",
   titleMuted: "I built this for kids like me.",
   meta: "Adam Issac · Denmark High · Class of 2026 · Taking new students",
-  bio: "Senior at Denmark High. I tutor the high school AP and college math I earned top marks in, plus K-6 and middle school, and built free Grades 6–8 study paths on this site.",
+  bio: "Senior at Denmark High. I tutor the high school AP and college math I earned top marks in, plus K-6 and middle school, and built free Grades 6-8 study paths on this site.",
   email: "adamissac08@gmail.com",
 } as const;
 

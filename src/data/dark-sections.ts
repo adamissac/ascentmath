@@ -8,7 +8,7 @@ export type AccordionItem = { q: string; a: string };
 
 export const HOME_ACCORDION: AccordionItem[] = [
   {
-    q: "Are the Grades 6–8 study paths really free?",
+    q: "Are the Grades 6-8 study paths really free?",
     a: SELF_STUDY_FREE_NOTE,
   },
   {
@@ -36,11 +36,11 @@ export const MATHEMATICS_HUB_ACCORDION: AccordionItem[] = [
   },
   {
     q: "Are these aligned with Georgia standards?",
-    a: "Yes. Paths follow Georgia DOE (GADOE) expectations for Grades 6–8. Official unit frameworks are linked from each unit when available.",
+    a: "Yes. Paths follow Georgia DOE (GADOE) expectations for Grades 6-8. Official unit frameworks are linked from each unit when available.",
   },
   {
     q: "Not sure where to start?",
-    a: "Use Find your start on this site — answer a few questions and we'll suggest a unit and topic.",
+    a: "Use Find your start on this site. Answer a few questions and we'll suggest a unit and topic.",
   },
 ];
 
@@ -48,11 +48,11 @@ export function gradeAccordion(gradeTitle: string): AccordionItem[] {
   return [
     {
       q: `How long does ${gradeTitle} take to finish?`,
-      a: "It depends how deep you go. Each topic lists an estimated time. Doing every video, practice set, and quiz for every unit is a full-year workload — most students use this alongside class, one unit at a time.",
+      a: "It depends how deep you go. Each topic lists an estimated time. Doing every video, practice set, and quiz for every unit is a full-year workload. Most students use this alongside class, one unit at a time.",
     },
     {
       q: "Should I do the units in order?",
-      a: "Following unit order helps ideas stack cleanly. If your teacher is on Unit 4, start there — you can always backfill earlier units later.",
+      a: "Following unit order helps ideas stack cleanly. If your teacher is on Unit 4, start there. You can always backfill earlier units later.",
     },
     {
       q: "What counts as \"done\" on a topic?",
@@ -69,11 +69,11 @@ export function unitAccordion(unitTitle: string, gradeTitle: string): AccordionI
   return [
     {
       q: `What is this unit about?`,
-      a: `${unitTitle} is part of ${gradeTitle} on Adam's Alphabet. Work through topics in order or jump to what your class is covering — each topic has a lesson, video, practice, and quiz.`,
+      a: `${unitTitle} is part of ${gradeTitle} on Adam's Alphabet. Work through topics in order or jump to what your class is covering. Each topic has a lesson, video, practice, and quiz.`,
     },
     {
       q: "How should I use the study guide?",
-      a: "Read the study guide on this page before topic 1. It lists habits that help — notebook work, pausing the video, checking solutions only after you try.",
+      a: "Read the study guide on this page before topic 1. It lists habits that help: notebook work, pausing the video, and checking solutions only after you try.",
     },
     {
       q: "What are the learning objectives for?",
@@ -94,10 +94,10 @@ export function topicAccordion(topicTitle: string): AccordionItem[] {
     },
     {
       q: "Can I retake the quiz?",
-      a: "Yes — as many times as you want. Read the explanations after each attempt; they tell you what to fix before moving on.",
+      a: "Yes, as many times as you want. Read the explanations after each attempt; they tell you what to fix before moving on.",
     },
     {
-      q: "The video still confuses me — what now?",
+      q: "The video still confuses me. What now?",
       a: "Re-read the lesson's \"Let's solve one together\" section, try one practice problem slowly, or ask a tutor. A second video is included on some topics if you want another explanation.",
     },
     {
@@ -110,7 +110,7 @@ export function topicAccordion(topicTitle: string): AccordionItem[] {
 export const ABOUT_ACCORDION: AccordionItem[] = [
   {
     q: "Who is Adam's Alphabet for?",
-    a: "Students who want clear math help — free self-paced paths for Grades 6–8, and paid tutoring from K-6 through high school, AP, and college courses.",
+    a: "Students who want clear math help: free self-paced paths for Grades 6-8, and paid tutoring from K-6 through high school, AP, and college courses.",
   },
   {
     q: "Why build free study paths?",
@@ -122,18 +122,18 @@ export const ABOUT_ACCORDION: AccordionItem[] = [
   },
   {
     q: "What's coming next on the site?",
-    a: "More original walkthroughs, worksheets, and practice — based on what real students keep asking about across all three middle-school grades.",
+    a: "More original walkthroughs, worksheets, and practice, based on what real students keep asking about across all three middle-school grades.",
   },
 ];
 
 export const FIND_START_ACCORDION: AccordionItem[] = [
   {
     q: "How accurate is the suggestion?",
-    a: "It's a starting point based on your grade and what you're studying — not a perfect match to every school. Adjust up or down a unit if it feels too easy or hard.",
+    a: "It's a starting point based on your grade and what you're studying, not a perfect match to every school. Adjust up or down a unit if it feels too easy or hard.",
   },
   {
     q: "I already know the exact topic name",
-    a: "Skip the finder and browse study paths — every unit lists its topics with summaries.",
+    a: "Skip the finder and browse study paths. Every unit lists its topics with summaries.",
   },
   {
     q: "Can parents use this for their student?",
@@ -152,14 +152,14 @@ export const FRAMEWORKS_ACCORDION: AccordionItem[] = [
   },
   {
     q: "Do I have to read the whole PDF?",
-    a: "No — skim unit objectives and vocabulary before you start lessons on this site. Use sample tasks when you want to see exam-style questions.",
+    a: "No. Skim unit objectives and vocabulary before you start lessons on this site. Use sample tasks when you want to see exam-style questions.",
   },
   {
     q: "How does this connect to Adam's Alphabet units?",
     a: "Each unit on the site maps to the same big ideas as the frameworks. Links open the official PDF for your grade when one is available.",
   },
   {
-    q: "I'm a student — is this for me?",
+    q: "I'm a student. Is this for me?",
     a: "It can help before a test or when you're confused about what your teacher expects. The lessons on this site are usually easier to follow than raw framework text.",
   },
 ];
@@ -167,19 +167,19 @@ export const FRAMEWORKS_ACCORDION: AccordionItem[] = [
 export const DASHBOARD_ACCORDION: AccordionItem[] = [
   {
     q: "Does my progress save automatically?",
-    a: "Yes — while you're signed in, completed topics on study paths are stored on your dashboard. Sign out and back in on the same account to see them again.",
+    a: "Yes. While you're signed in, completed topics on study paths are stored on your dashboard. Sign out and back in on the same account to see them again.",
   },
   {
     q: "Can I use the site without signing in?",
-    a: "Yes. All Grades 6–8 lessons stay free without an account. Sign in only if you want a saved checklist of finished topics.",
+    a: "Yes. All Grades 6-8 lessons stay free without an account. Sign in only if you want a saved checklist of finished topics.",
   },
   {
     q: "How do I book tutoring from here?",
-    a: "Use Book a session — pick your tier on the form. Adam follows up by call or email with times and pricing for your level.",
+    a: "Use Book a session and pick your tier on the form. Adam follows up by call or email with times and pricing for your level.",
   },
   {
     q: "Something looks wrong on my progress",
-    a: "Try refreshing the page while signed in. Progress is per topic on each unit page — use the mark-complete control at the top of a lesson.",
+    a: "Try refreshing the page while signed in. Progress is per topic on each unit page. Use the mark-complete control at the top of a lesson.",
   },
 ];
 
@@ -198,7 +198,7 @@ export const BOOK_PAGE_ACCORDION: AccordionItem[] = [
   },
   {
     q: "How long is a session?",
-    a: "Most sessions run 45–60 minutes. Shorter sessions work for a quick question.",
+    a: "Most sessions run 45-60 minutes. Shorter sessions work for a quick question.",
   },
   {
     q: "How quickly will Adam reply?",

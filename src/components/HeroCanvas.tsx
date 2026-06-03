@@ -1,4 +1,4 @@
-﻿"use client";
+﻿﻿"use client";
 
 import FloatingMathCanvas from "./FloatingMathCanvas";
 

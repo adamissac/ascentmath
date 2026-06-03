@@ -29,7 +29,7 @@ export default function AboutPage() {
           <p className="font-display mt-4 text-2xl font-medium leading-[1.3] tracking-[-0.01em] text-white sm:text-3xl lg:text-4xl">
             Help students get unstuck with{" "}
             <span className="text-[var(--color-accent-300)]">paid 1-on-1 tutoring</span> first, and
-            free self-paced Grades 6–8 paths when they want to practice on their own.
+            free self-paced Grades 6-8 paths when they want to practice on their own.
           </p>
         </Reveal>
       </ColorBand>
@@ -49,7 +49,7 @@ export default function AboutPage() {
                 <Milestone
                   tag="Sophomore year"
                   title="The first nickname"
-                  body="Friends start calling me “math tutor” after I help out before exams. The phrase becomes the seed for what I’d build next."
+                  body={'Friends start calling me "math tutor" after I help out before exams. The phrase becomes the seed for what I\'d build next.'}
                 />
                 <Milestone
                   tag="Summer between"
@@ -59,7 +59,7 @@ export default function AboutPage() {
                 <Milestone
                   tag="Junior year"
                   title="The site goes live"
-                  body="Adam’s Alphabet launches with the first three units of Grade 6 math - written for the students who can’t afford private tutoring."
+                  body="Adam's Alphabet launches with the first three units of Grade 6 math - written for the students who can't afford private tutoring."
                 />
                 <Milestone
                   tag="Now"
@@ -69,7 +69,7 @@ export default function AboutPage() {
                 <Milestone
                   tag="Next"
                   title="Recording, refining, expanding"
-                  body="I’m recording original walk-throughs, writing new worksheets, and deepening practice across all three grades - based on what real students keep asking about."
+                  body="I'm recording original walkthroughs, writing new worksheets, and deepening practice across all three grades - based on what real students keep asking about."
                   last
                 />
               </ol>

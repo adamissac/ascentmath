@@ -112,7 +112,7 @@ function SignupForm() {
       eyebrow="Create your account"
       title="Start learning, save your progress."
       subtitle="Accounts are free. Use them to track units, book paid sessions, and pick up across devices."
-      panelSubtitle="Create a free account to book tutoring and save progress on Grades 6–8 self-paced paths."
+      panelSubtitle="Create a free account to book tutoring and save progress on Grades 6-8 self-paced paths."
       footer={
         <p>
           Already have one?{" "}

@@ -40,7 +40,7 @@ export default function Footer() {
             <div>
               <h3 className="caption font-semibold text-[var(--color-ink)] uppercase tracking-wider">Study paths</h3>
               <ul className="mt-3 space-y-2 small">
-                <li><HashLink href={STUDY_PATHS_HREF} className="link">Grades 6–8 paths (free)</HashLink></li>
+                <li><HashLink href={STUDY_PATHS_HREF} className="link">Grades 6-8 paths (free)</HashLink></li>
                 <li><Link href="/mathematics/find-your-start" className="link">Find your start</Link></li>
                 <li><Link href="/mathematics/curriculum-frameworks" className="link">GADOE frameworks</Link></li>
               </ul>
@@ -57,11 +57,6 @@ export default function Footer() {
                 <li>
                   <a href="mailto:adamissac08@gmail.com" className="link">Email Adam</a>
                 </li>
-                <li>
-                  <a href="https://www.youtube.com" target="_blank" rel="noopener noreferrer" className="link">
-                    YouTube
-                  </a>
-                </li>
               </ul>
             </div>
           </div>
@@ -71,7 +66,7 @@ export default function Footer() {
 
         <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
           <p className="caption text-[var(--color-ink-soft)]">
-            © {YEAR} Adam&apos;s Alphabet · Paid tutoring · Free study tracks
+            © {YEAR} Adam&apos;s Alphabet · Paid tutoring · Free study paths
           </p>
           <p className="caption text-[var(--color-ink-soft)]">
             Designed for extra help - not limited to students in Georgia.
