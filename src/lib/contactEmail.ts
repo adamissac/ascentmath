@@ -1,5 +1,5 @@
 /**
- * Booking-email composition.
+ * Contact-email composition for the "Book a Session" form.
  *
  * Two outputs:
  *   • `text`  - plain-text body (used as fallback + as preview content)
@@ -9,18 +9,22 @@
  * the edge runtime without pulling in React.
  */
 
-export type BookingPayload = {
+export type SessionType = "tutoring" | "demo" | "partnership" | "general";
+
+export const SESSION_TYPE_LABELS: Record<SessionType, string> = {
+  tutoring: "Student Tutoring",
+  demo: "Class Demo",
+  partnership: "School Partnership",
+  general: "General Inquiry",
+};
+
+export type ContactPayload = {
   name: string;
   email: string;
-  phone?: string;
-  tier: "tier1" | "tier2" | "tier3";
-  pricingSummary?: string;
-  mode: "zoom" | "in_person";
+  school?: string;
   grade?: string;
-  topic?: string;
-  preferredDate?: string;
-  preferredTime?: string;
-  notes?: string;
+  sessionType: SessionType;
+  message: string;
 };
 
 const escapeHtml = (raw: string) =>
@@ -31,40 +35,22 @@ const escapeHtml = (raw: string) =>
     .replace(/"/g, "&quot;")
     .replace(/'/g, "&#39;");
 
-const labelMode = (mode: BookingPayload["mode"]) =>
-  mode === "zoom" ? "Zoom (online)" : "In-person";
-
-const fmtDate = (iso?: string) => {
-  if (!iso) return "-";
-  const d = new Date(iso + "T00:00:00");
-  if (Number.isNaN(d.getTime())) return iso;
-  return d.toLocaleDateString("en-US", {
-    weekday: "long",
-    month: "long",
-    day: "numeric",
-    year: "numeric",
-  });
-};
-
-export function renderBookingEmail(p: BookingPayload) {
-  const subject = `New booking request - ${p.name}`;
+export function renderContactEmail(p: ContactPayload) {
+  const typeLabel = SESSION_TYPE_LABELS[p.sessionType];
+  const subject = `New ${typeLabel} inquiry — ${p.name}`;
 
   const text = [
     "New booking request from adamsalphabet.com",
     "",
     `Name:       ${p.name}`,
     `Email:      ${p.email}`,
-    `Phone:      ${p.phone || "-"}`,
-    `Pricing:    ${p.pricingSummary || "-"}`,
-    `Mode:       ${labelMode(p.mode)}`,
+    `School:     ${p.school || "-"}`,
     `Grade:      ${p.grade || "-"}`,
-    `Topic:      ${p.topic || "-"}`,
-    `Date:       ${fmtDate(p.preferredDate)}`,
-    `Time:       ${p.preferredTime || "-"}`,
+    `Type:       ${typeLabel}`,
     "",
-    "Notes",
-    "─────",
-    p.notes?.trim() || "(none)",
+    "Message",
+    "───────",
+    p.message.trim(),
     "",
     "-",
     "Adam's Alphabet · adamsalphabet.com",
@@ -90,32 +76,25 @@ export function renderBookingEmail(p: BookingPayload) {
           <tr>
             <td style="padding:28px;">
               <p style="margin:0 0 18px;font-size:15px;line-height:1.55;color:#5B6068;">
-                You have a new tutoring request from <strong style="color:#1B1D21;">${escapeHtml(
+                You have a new <strong style="color:#1B1D21;">${escapeHtml(
+                  typeLabel
+                )}</strong> inquiry from <strong style="color:#1B1D21;">${escapeHtml(
                   p.name
-                )}</strong>. Reply to this email to confirm a time.
+                )}</strong>. Reply to this email to respond directly.
               </p>
 
               <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%" style="border-collapse:collapse;font-size:14px;line-height:1.5;">
                 ${row("Name", escapeHtml(p.name))}
-                ${row(
-                  "Email",
-                  `<a href="mailto:${escapeHtml(p.email)}" style="color:#1F3CB1;text-decoration:none;">${escapeHtml(
-                    p.email
-                  )}</a>`
-                )}
-                ${row("Phone", p.phone ? escapeHtml(p.phone) : "-")}
-                ${row("Pricing", p.pricingSummary ? escapeHtml(p.pricingSummary) : "-")}
-                ${row("Mode", labelMode(p.mode))}
+                ${row("Email", escapeHtml(p.email))}
+                ${row("School", p.school ? escapeHtml(p.school) : "-")}
                 ${row("Grade", p.grade ? escapeHtml(p.grade) : "-")}
-                ${row("Topic", p.topic ? escapeHtml(p.topic) : "-")}
-                ${row("Date", escapeHtml(fmtDate(p.preferredDate)))}
-                ${row("Time", p.preferredTime ? escapeHtml(p.preferredTime) : "-")}
+                ${row("Type", escapeHtml(typeLabel))}
               </table>
 
-              <h2 style="margin:24px 0 8px;font-size:13px;letter-spacing:0.12em;text-transform:uppercase;color:#1F3CB1;font-weight:700;">Notes</h2>
-              <div style="background:#F5F3EE;border:1px solid #E6E2DA;border-radius:10px;padding:14px 16px;font-size:14px;line-height:1.6;white-space:pre-wrap;color:#1B1D21;">${
-                p.notes?.trim() ? escapeHtml(p.notes) : '<span style="color:#8A8F98;">(none)</span>'
-              }</div>
+              <h2 style="margin:24px 0 8px;font-size:13px;letter-spacing:0.12em;text-transform:uppercase;color:#1F3CB1;font-weight:700;">Message</h2>
+              <div style="background:#F5F3EE;border:1px solid #E6E2DA;border-radius:10px;padding:14px 16px;font-size:14px;line-height:1.6;white-space:pre-wrap;color:#1B1D21;">${escapeHtml(
+                p.message
+              )}</div>
 
               <p style="margin:24px 0 0;font-size:12px;color:#8A8F98;">
                 Submitted ${new Date().toLocaleString("en-US", {

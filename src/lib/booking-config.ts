@@ -29,7 +29,7 @@ export function isResendConfigured(): boolean {
 
 export function bookingSetupHint(): string {
   return (
-    "Booking email is not configured. Add RESEND_API_KEY to .env.local " +
+    "Contact email is not configured. Add RESEND_API_KEY to .env.local " +
     "(run npm run book:setup), verify adamissac08@gmail.com in Resend, " +
     "then restart the dev server."
   );

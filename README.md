@@ -14,7 +14,7 @@ Open <http://localhost:3000>.
 
 ## Booking system (Resend)
 
-The `/book` page sends real emails to `adamissac08@gmail.com` via [Resend](https://resend.com). The form posts to the in-app API route `src/app/api/book/route.ts` - no `mailto:` redirects, no third-party widgets.
+The booking form (homepage `#book-session`, also reachable via `/book`) sends real emails to `adamissac08@gmail.com` via [Resend](https://resend.com). The form posts to the in-app API route `src/app/api/contact/route.ts` - no `mailto:` links anywhere, no third-party widgets.
 
 ### One-time setup
 
@@ -41,10 +41,10 @@ Once `adamsalphabet.com` is verified in Resend (Settings → Domains), switch `B
 
 ### What the API does
 
-- **Validates** every field server-side with Zod (`src/app/api/book/route.ts`).
+- **Validates** every field server-side with Zod (`src/app/api/contact/route.ts`).
 - **Rate-limits** to 5 submissions per minute per IP.
 - **Honeypot** field hidden in the form catches bots.
-- **Templates** the email (HTML + plain text) in `src/lib/bookingEmail.ts`.
+- **Templates** the email (HTML + plain text) in `src/lib/contactEmail.ts`.
 - Returns structured JSON: `{ ok: true }` on success, or `{ ok: false, error, fieldErrors? }` on failure - the form surfaces these inline.
 
 ## Authentication (Firebase)

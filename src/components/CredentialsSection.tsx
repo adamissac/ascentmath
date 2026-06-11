@@ -131,13 +131,9 @@ export default function CredentialsSection() {
           className="mt-8 flex flex-col gap-1 border-t border-[rgba(26,26,46,0.1)] pt-6 text-center text-[0.8125rem] sm:flex-row sm:flex-wrap sm:items-center sm:justify-center sm:gap-x-3 lg:justify-start lg:text-left"
           style={{ color: MUTED }}
         >
-          <a
-            href={`mailto:${TUTOR_INTRO.email}`}
-            className="font-semibold transition-colors hover:underline"
-            style={{ color: BLUE }}
-          >
+          <span className="select-all font-semibold" style={{ color: BLUE }}>
             {TUTOR_INTRO.email}
-          </a>
+          </span>
           <span className="hidden sm:inline text-[var(--color-ink-soft)]" aria-hidden>
             ·
           </span>

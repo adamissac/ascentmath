@@ -167,8 +167,3 @@ export function getTutoringTier(id: TutoringTierId) {
 export function getSubjectLevel(id: TutoringTierId) {
   return getTutoringTier(id);
 }
-
-export function describeBookingSelection(tierId: TutoringTierId) {
-  const tier = getTutoringTier(tierId);
-  return `${tier.tierLabel} · ${tier.label} (${tier.range}) · rate for this tier confirmed on call/email`;
-}

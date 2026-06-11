@@ -7,8 +7,7 @@ import {
   getBookingRecipient,
   isResendConfigured,
 } from "../../../lib/booking-config";
-import { renderBookingEmail } from "../../../lib/bookingEmail";
-import { describeBookingSelection } from "../../../data/pricing";
+import { renderContactEmail } from "../../../lib/contactEmail";
 
 /* ----------------------------------------------------------------
    Runtime
@@ -18,29 +17,22 @@ export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 
 /* ----------------------------------------------------------------
-   Configuration
-   ---------------------------------------------------------------- */
-
-const RECIPIENT = getBookingRecipient();
-const FROM = getBookingFromEmail();
-
-/* ----------------------------------------------------------------
-   Validation schema - matches the form on /book
+   Validation schema - matches the booking form on the homepage
    ---------------------------------------------------------------- */
 
 const schema = z.object({
   name: z.string().trim().min(2, "Please enter your full name.").max(120),
   email: z.string().trim().toLowerCase().email("Please enter a valid email address.").max(200),
-  phone: z.string().trim().max(40).optional().or(z.literal("")),
-  tier: z.enum(["tier1", "tier2", "tier3"]),
-  mode: z.enum(["zoom", "in_person"]),
+  school: z.string().trim().max(160).optional().or(z.literal("")),
   grade: z.string().trim().max(60).optional().or(z.literal("")),
-  topic: z.string().trim().max(160).optional().or(z.literal("")),
-  preferredDate: z.string().trim().max(40).optional().or(z.literal("")),
-  preferredTime: z.string().trim().max(40).optional().or(z.literal("")),
-  notes: z.string().trim().max(2000).optional().or(z.literal("")),
-  // Spam honeypot - must be empty.
-  website: z.string().max(0).optional().or(z.literal("")),
+  sessionType: z.enum(["tutoring", "demo", "partnership", "general"]),
+  message: z
+    .string()
+    .trim()
+    .min(10, "Please tell me a bit more (at least 10 characters).")
+    .max(2000),
+  // Spam honeypot - any non-empty value triggers a fake success below.
+  website: z.string().optional(),
 });
 
 /* ----------------------------------------------------------------
@@ -74,12 +66,12 @@ function clientIp(req: Request) {
 }
 
 /* ----------------------------------------------------------------
-   POST /api/book
+   POST /api/contact
    ---------------------------------------------------------------- */
 
 export async function POST(req: Request) {
   if (!isResendConfigured()) {
-    console.error("[/api/book] RESEND_API_KEY is missing or still a placeholder.");
+    console.error("[/api/contact] RESEND_API_KEY is missing or still a placeholder.");
     return NextResponse.json(
       {
         ok: false,
@@ -132,47 +124,42 @@ export async function POST(req: Request) {
   const payload = {
     name: parsed.data.name,
     email: parsed.data.email,
-    phone: parsed.data.phone || undefined,
-    tier: parsed.data.tier,
-    pricingSummary: describeBookingSelection(parsed.data.tier),
-    mode: parsed.data.mode,
+    school: parsed.data.school || undefined,
     grade: parsed.data.grade || undefined,
-    topic: parsed.data.topic || undefined,
-    preferredDate: parsed.data.preferredDate || undefined,
-    preferredTime: parsed.data.preferredTime || undefined,
-    notes: parsed.data.notes || undefined,
+    sessionType: parsed.data.sessionType,
+    message: parsed.data.message,
   };
 
-  const { subject, text, html } = renderBookingEmail(payload);
+  const { subject, text, html } = renderContactEmail(payload);
 
   // Send
   const resend = new Resend(apiKey);
   try {
     const { data, error } = await resend.emails.send({
-      from: FROM,
-      to: [RECIPIENT],
+      from: getBookingFromEmail(),
+      to: [getBookingRecipient()],
       replyTo: payload.email,
       subject,
       html,
       text,
       headers: {
-        "X-Entity-Ref-ID": `booking-${Date.now()}`,
+        "X-Entity-Ref-ID": `contact-${Date.now()}`,
       },
       tags: [{ name: "category", value: "booking-request" }],
     });
 
     if (error) {
-      console.error("[/api/book] Resend error:", error);
+      console.error("[/api/contact] Resend error:", error);
       const message =
         error.name === "validation_error"
-          ? "Email could not be sent. Make sure adamissac08@gmail.com is verified in Resend (Settings → Verified Emails)."
+          ? "Email could not be sent. Make sure the recipient address is verified in Resend (Settings → Verified Emails)."
           : "Email service rejected the message. Please try again shortly.";
       return NextResponse.json({ ok: false, error: message, code: "resend_error" }, { status: 502 });
     }
 
     return NextResponse.json({ ok: true, id: data?.id ?? null });
   } catch (err) {
-    console.error("[/api/book] Unexpected error:", err);
+    console.error("[/api/contact] Unexpected error:", err);
     return NextResponse.json(
       { ok: false, error: "Something went wrong on our end. Please try again." },
       { status: 500 }
@@ -180,13 +167,15 @@ export async function POST(req: Request) {
   }
 }
 
-/* Health check - lets the /book page know if submissions will work */
+/* Health check - lets the booking form know if submissions will work.
+   The recipient address is included even when unconfigured so the form
+   can show it as copyable text (it's already public in the footer). */
 export async function GET() {
   const configured = isResendConfigured();
   return NextResponse.json({
     ok: true,
     configured,
-    recipient: configured ? RECIPIENT : undefined,
+    recipient: getBookingRecipient(),
     hint: configured ? undefined : bookingSetupHint(),
   });
 }

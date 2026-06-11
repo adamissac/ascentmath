@@ -507,6 +507,15 @@ body {
 }
 .animate-fade-up { animation: fadeUp 0.6s var(--ease-smooth) both; }
 
+@keyframes checkDraw {
+  from { stroke-dashoffset: 24; }
+  to   { stroke-dashoffset: 0; }
+}
+.animate-check-draw {
+  stroke-dasharray: 24;
+  animation: checkDraw 0.5s var(--ease-smooth) 0.15s both;
+}
+
 /* ---- Scroll reveals: hidden until in view, then animate in ---- */
 .reveal-await-up,
 .reveal-stagger.reveal-await-up > * {

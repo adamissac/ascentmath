@@ -55,7 +55,12 @@ export default function Footer() {
               <h3 className="caption font-semibold text-[var(--color-ink)] uppercase tracking-wider">Connect</h3>
               <ul className="mt-3 space-y-2 small">
                 <li>
-                  <a href="mailto:adamissac08@gmail.com" className="link">Email Adam</a>
+                  <HashLink href={BOOK_SESSION_HREF} className="link">Contact Adam</HashLink>
+                </li>
+                <li>
+                  <span className="select-all text-[var(--color-ink-muted)]">
+                    adamissac08@gmail.com
+                  </span>
                 </li>
               </ul>
             </div>
