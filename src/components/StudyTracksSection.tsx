@@ -60,7 +60,7 @@ export default function StudyTracksSection({
     <section
       id={id}
       className={[
-        "relative scroll-mt-[5.5rem] overflow-hidden bg-[#FBFAF7]",
+        "relative scroll-mt-[5.5rem] overflow-hidden bg-[var(--color-bg)]",
         topBorder ? "border-t border-[var(--color-border)]" : "",
       ].join(" ")}
     >
@@ -80,20 +80,20 @@ export default function StudyTracksSection({
       <Container size="xl" className="relative z-[1] py-12 sm:py-16 lg:py-20">
         <div className="grid items-start gap-10 lg:grid-cols-12 lg:gap-14">
           <Reveal variant="up" className="lg:col-span-5 lg:sticky lg:top-24">
-            <span className="inline-flex items-center gap-2 rounded-full border border-[#1a1a2e]/10 bg-white/80 px-3.5 py-1.5 text-[0.6875rem] font-semibold uppercase tracking-[0.14em] text-[#4a4a6a] shadow-sm backdrop-blur-sm">
+            <span className="inline-flex items-center gap-2 rounded-full border border-[#1a1a2e]/10 bg-white/80 px-3.5 py-1.5 text-[0.6875rem] font-semibold uppercase tracking-[0.14em] text-[var(--color-ink-cool-muted)] shadow-sm backdrop-blur-sm">
               <span className="h-1.5 w-1.5 rounded-full bg-[var(--color-accent-500)]" />
               Free self-paced paths
             </span>
 
-            <h2 className="font-display mt-5 text-[1.75rem] font-bold leading-[1.12] tracking-[-0.02em] text-[#1a1a2e] sm:text-4xl">
+            <h2 className="font-display mt-5 text-[1.75rem] font-bold leading-[1.12] tracking-[-0.02em] text-[var(--color-ink-cool)] sm:text-4xl">
               Grades{" "}
-              <span className="text-[#2A4BCB] underline decoration-[#FFDEC0] decoration-[0.18em] underline-offset-[0.12em]">
+              <span className="text-[var(--color-brand-500)] underline decoration-[var(--color-accent-100)] decoration-[0.18em] underline-offset-[0.12em]">
                 6, 7, and 8
               </span>
               , ready when you are.
             </h2>
 
-            <p className="mt-4 text-[1.0625rem] leading-relaxed text-[#4a4a6a]">
+            <p className="mt-4 text-[1.0625rem] leading-relaxed text-[var(--color-ink-cool-muted)]">
               {SELF_STUDY_FREE_NOTE} Same four steps on every topic: read, watch, practice, check.
             </p>
 
@@ -107,13 +107,13 @@ export default function StudyTracksSection({
               <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
                 <HashLink
                   href={STUDY_PATHS_HREF}
-                  className="inline-flex min-h-[3rem] items-center justify-center rounded-full bg-[#1a1a2e] px-6 py-3 text-center text-[0.9375rem] font-semibold text-white shadow-[0_10px_28px_-12px_rgba(26,26,46,0.45)] transition-[transform,box-shadow] duration-200 hover:-translate-y-0.5 hover:shadow-[0_14px_32px_-12px_rgba(26,26,46,0.4)]"
+                  className="inline-flex min-h-[3rem] items-center justify-center rounded-full bg-[var(--color-ink-cool)] px-6 py-3 text-center text-[0.9375rem] font-semibold text-white shadow-[0_10px_28px_-12px_rgba(26,26,46,0.45)] transition-[transform,box-shadow] duration-200 hover:-translate-y-0.5 hover:shadow-[0_14px_32px_-12px_rgba(26,26,46,0.4)]"
                 >
                   Explore all paths
                 </HashLink>
                 <Link
                   href="/mathematics/find-your-start"
-                  className="inline-flex min-h-[3rem] items-center justify-center rounded-full border-2 border-[#1a1a2e]/15 bg-white/60 px-6 py-3 text-[0.9375rem] font-semibold text-[#1a1a2e] backdrop-blur-sm transition-[border-color,background-color,transform] duration-200 hover:-translate-y-0.5 hover:border-[#2A4BCB]/30 hover:bg-white"
+                  className="inline-flex min-h-[3rem] items-center justify-center rounded-full border-2 border-[#1a1a2e]/15 bg-white/60 px-6 py-3 text-[0.9375rem] font-semibold text-[var(--color-ink-cool)] backdrop-blur-sm transition-[border-color,background-color,transform] duration-200 hover:-translate-y-0.5 hover:border-[#2A4BCB]/30 hover:bg-white"
                 >
                   Find your start
                 </Link>
@@ -157,7 +157,7 @@ export default function StudyTracksSection({
                     />
 
                     <div className="relative z-[1] min-w-0 flex-1">
-                      <p className="font-display text-lg font-bold text-[#1a1a2e] transition-colors group-hover:text-[#2A4BCB] sm:text-xl">
+                      <p className="font-display text-lg font-bold text-[var(--color-ink-cool)] transition-colors group-hover:text-[var(--color-brand-500)] sm:text-xl">
                         {grade.title} Mathematics
                       </p>
                       <p className="mt-1 line-clamp-2 text-sm leading-relaxed text-[var(--color-ink-muted)]">
@@ -170,7 +170,7 @@ export default function StudyTracksSection({
 
                     <span
                       aria-hidden
-                      className="relative z-[1] flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-[#1a1a2e] text-white shadow-md transition-[transform,background-color] duration-300 group-hover:translate-x-1 group-hover:bg-[#2A4BCB]"
+                      className="relative z-[1] flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-[var(--color-ink-cool)] text-white shadow-md transition-[transform,background-color] duration-300 group-hover:translate-x-1 group-hover:bg-[var(--color-brand-500)]"
                     >
                       →
                     </span>
@@ -198,7 +198,7 @@ function StatChip({
     <div className="rounded-xl border border-[var(--color-border)] bg-white/90 px-4 py-3 shadow-sm backdrop-blur-sm">
       <dd
         className={`font-display text-xl font-bold tabular-nums ${
-          accent ? "text-[var(--color-accent-600)]" : "text-[#2A4BCB]"
+          accent ? "text-[var(--color-accent-600)]" : "text-[var(--color-brand-500)]"
         }`}
       >
         {value}

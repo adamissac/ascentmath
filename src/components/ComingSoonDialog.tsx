@@ -1,6 +1,5 @@
 "use client";
 
-import Link from "next/link";
 import HashLink from "./HashLink";
 import { useEffect, useId, useRef, useState } from "react";
 import { createPortal } from "react-dom";

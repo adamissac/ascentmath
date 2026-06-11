@@ -16,7 +16,7 @@ const CARD =
   "rounded-2xl border border-[rgba(26,26,46,0.08)] bg-white/80 p-5 shadow-[0_2px_12px_rgba(26,26,46,0.04)] sm:p-7 lg:p-8";
 
 const HEADLINE_ACCENT =
-  "text-[#2A4BCB] underline decoration-[#FFDEC0] decoration-[0.18em] underline-offset-[0.12em]";
+  "text-[var(--color-brand-500)] underline decoration-[var(--color-accent-100)] decoration-[0.18em] underline-offset-[0.12em]";
 
 type GradeHeroProps = {
   variant: "grade";
@@ -48,7 +48,7 @@ export default function CurriculumHero(props: Props) {
   const isGrade = props.variant === "grade";
 
   return (
-    <section className="hero-surface relative overflow-hidden bg-[#FBFAF7]">
+    <section className="hero-surface relative overflow-hidden bg-[var(--color-bg)]">
       {isGrade ? (
         <FloatingMathCanvas variant="grade" />
       ) : (
@@ -86,20 +86,20 @@ function GradeHeroBody({
     <div className="grid gap-8 lg:grid-cols-[minmax(0,1fr)_auto] lg:items-center lg:gap-10 xl:gap-14">
       <div className="min-w-0">
         <div className="flex flex-wrap items-center gap-2">
-          <span className="inline-flex rounded-full bg-[#FFF4EB] px-2.5 py-0.5 font-display text-sm font-bold tracking-tight text-[#F47B16]">
+          <span className="inline-flex rounded-full bg-[var(--color-accent-50)] px-2.5 py-0.5 font-display text-sm font-bold tracking-tight text-[var(--color-accent-500)]">
             Free
           </span>
-          <span className="inline-flex rounded-full border border-[#2A4BCB]/20 bg-[#F7F9FF] px-2.5 py-0.5 text-[0.6875rem] font-semibold uppercase tracking-[0.1em] text-[#2A4BCB]">
+          <span className="inline-flex rounded-full border border-[#2A4BCB]/20 bg-[#F7F9FF] px-2.5 py-0.5 text-[0.6875rem] font-semibold uppercase tracking-[0.1em] text-[var(--color-brand-500)]">
             {gradeTitle} · GADOE aligned
           </span>
         </div>
 
-        <h1 className="h-display mt-5 min-w-0 break-words text-[#1a1a2e]">
+        <h1 className="h-display mt-5 min-w-0 break-words text-[var(--color-ink-cool)]">
           Self-paced{" "}
           <span className={HEADLINE_ACCENT}>{gradeTitle}</span> math paths.
         </h1>
 
-        <p className="mt-5 max-w-[52ch] text-[clamp(1rem,0.4vw+0.9rem,1.125rem)] leading-[1.7] text-[#4a4a6a]">
+        <p className="mt-5 max-w-[52ch] text-[clamp(1rem,0.4vw+0.9rem,1.125rem)] leading-[1.7] text-[var(--color-ink-cool-muted)]">
           {description}
         </p>
 
@@ -135,7 +135,7 @@ function GradeHeroBody({
           className="flex flex-col items-center justify-center rounded-xl border border-[rgba(26,26,46,0.08)] bg-[#FBFAF7]/80 p-5 sm:p-6 lg:min-w-[12rem]"
           aria-hidden
         >
-          <p className="mb-4 text-center text-[0.6875rem] font-semibold uppercase tracking-[0.14em] text-[#6b6b80]">
+          <p className="mb-4 text-center text-[0.6875rem] font-semibold uppercase tracking-[0.14em] text-[var(--color-ink-cool-soft)]">
             Units in this grade
           </p>
           <div className="grid grid-cols-3 gap-2.5 sm:gap-3">
@@ -163,10 +163,10 @@ function UnitHeroBody({
     <div className="grid gap-8 lg:grid-cols-[minmax(0,1fr)_auto] lg:items-center lg:gap-10 xl:gap-14">
       <div className="min-w-0">
         <div className="flex flex-wrap items-center gap-2">
-          <span className="inline-flex rounded-full bg-[#FFF4EB] px-2.5 py-0.5 font-display text-sm font-bold tracking-tight text-[#F47B16]">
+          <span className="inline-flex rounded-full bg-[var(--color-accent-50)] px-2.5 py-0.5 font-display text-sm font-bold tracking-tight text-[var(--color-accent-500)]">
             Free
           </span>
-          <span className="inline-flex rounded-full border border-[#2A4BCB]/20 bg-[#F7F9FF] px-2.5 py-0.5 text-[0.6875rem] font-semibold uppercase tracking-[0.1em] text-[#2A4BCB]">
+          <span className="inline-flex rounded-full border border-[#2A4BCB]/20 bg-[#F7F9FF] px-2.5 py-0.5 text-[0.6875rem] font-semibold uppercase tracking-[0.1em] text-[var(--color-brand-500)]">
             {gradeTitle} · Unit {unitNumber}
           </span>
           {frameworkUrl && (
@@ -174,7 +174,7 @@ function UnitHeroBody({
               href={frameworkUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-1 rounded-full border border-[rgba(26,26,46,0.12)] bg-[#FBFAF7] px-2.5 py-0.5 text-[0.6875rem] font-semibold text-[#2A4BCB] no-underline transition-[border-color,background-color] hover:border-[#2A4BCB]/30 hover:bg-white"
+              className="inline-flex items-center gap-1 rounded-full border border-[rgba(26,26,46,0.12)] bg-[var(--color-bg)] px-2.5 py-0.5 text-[0.6875rem] font-semibold text-[var(--color-brand-500)] no-underline transition-[border-color,background-color] hover:border-[#2A4BCB]/30 hover:bg-white"
             >
               GADOE framework
               <span aria-hidden>↗</span>
@@ -182,9 +182,9 @@ function UnitHeroBody({
           )}
         </div>
 
-        <h1 className="h-display mt-5 min-w-0 break-words text-[#1a1a2e]">{unitTitle}</h1>
+        <h1 className="h-display mt-5 min-w-0 break-words text-[var(--color-ink-cool)]">{unitTitle}</h1>
 
-        <p className="mt-5 max-w-[52ch] text-[clamp(1rem,0.4vw+0.9rem,1.125rem)] leading-[1.7] text-[#4a4a6a]">
+        <p className="mt-5 max-w-[52ch] text-[clamp(1rem,0.4vw+0.9rem,1.125rem)] leading-[1.7] text-[var(--color-ink-cool-muted)]">
           {description}
         </p>
 
@@ -204,7 +204,7 @@ function UnitHeroBody({
 
       <div className="flex flex-col items-center justify-center rounded-xl border border-[rgba(26,26,46,0.08)] bg-[#FBFAF7]/80 px-6 py-8 sm:px-8">
         <UnitSymbol symbol={unitIcon} size="lg" className="shadow-[0_4px_20px_rgba(42,75,203,0.12)]" />
-        <p className="mt-4 text-center font-display text-sm font-bold text-[#2A4BCB]">
+        <p className="mt-4 text-center font-display text-sm font-bold text-[var(--color-brand-500)]">
           Unit {unitNumber}
         </p>
       </div>

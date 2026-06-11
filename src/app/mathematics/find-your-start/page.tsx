@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import Container from "../../../components/Container";
 import Breadcrumbs from "../../../components/Breadcrumbs";
 import FloatingMathCanvas from "../../../components/FloatingMathCanvas";

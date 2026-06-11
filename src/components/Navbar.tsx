@@ -163,6 +163,7 @@ export default function Navbar() {
                 href={l.href}
                 className={[
                   "relative px-4 py-2 rounded-full text-sm font-semibold transition-all duration-300 ease-[cubic-bezier(0.16,1,0.3,1)]",
+                  "focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--color-brand-500)]",
                   isActive(l.href, l.sectionId)
                     ? "text-[var(--color-brand-700)] bg-white shadow-sm ring-1 ring-[var(--color-brand-100)]"
                     : "text-[var(--color-ink)] hover:text-[var(--color-brand-700)] hover:bg-white/70",

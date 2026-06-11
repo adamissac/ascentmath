@@ -45,6 +45,9 @@ export default function GlobalError({
             >
               Try again
             </button>
+            {/* Plain <a> on purpose: global-error renders outside the app
+                router, so a full reload is the reliable way home. */}
+            {/* eslint-disable-next-line @next/next/no-html-link-for-pages */}
             <a
               href="/"
               style={{

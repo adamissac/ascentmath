@@ -37,7 +37,7 @@ export default function TopicFinder({ variant = "default", suggestions = [], den
                 key={term}
                 type="button"
                 onClick={() => setQuery(term)}
-                className="rounded-sm border border-[rgba(26,26,46,0.12)] bg-[#FBFAF7] px-2.5 py-1 text-[0.75rem] font-medium text-[#4a4a6a] transition-colors hover:border-[#2A4BCB]/30 hover:text-[#2A4BCB]"
+                className="rounded-sm border border-[rgba(26,26,46,0.12)] bg-[var(--color-bg)] px-2.5 py-1 text-[0.75rem] font-medium text-[var(--color-ink-cool-muted)] transition-colors hover:border-[#2A4BCB]/30 hover:text-[var(--color-brand-500)]"
               >
                 {term}
               </button>

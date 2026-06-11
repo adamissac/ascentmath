@@ -24,7 +24,7 @@ export default function HomeStudyPathsSection() {
   return (
     <section
       id="study-paths"
-      className="relative scroll-mt-[5.5rem] overflow-hidden border-t border-[var(--color-border)] bg-[#FBFAF7]"
+      className="relative scroll-mt-[5.5rem] overflow-hidden border-t border-[var(--color-border)] bg-[var(--color-bg)]"
       style={{ contentVisibility: "auto", containIntrinsicSize: "auto 520px" }}
     >
       <div
@@ -41,25 +41,25 @@ export default function HomeStudyPathsSection() {
       />
 
       <Container size="xl" className="relative z-[1] py-10 sm:py-12 lg:py-14">
-        <div className="rounded-2xl border border-[rgba(26,26,46,0.08)] bg-white/95 p-5 shadow-[0_2px_12px_rgba(26,26,46,0.04)] sm:p-7 lg:p-8">
+        <div className="rounded-lg border border-[rgba(26,26,46,0.08)] bg-white/95 p-5 shadow-[0_2px_12px_rgba(26,26,46,0.04)] sm:p-7 lg:p-8">
           <div className="grid gap-8 lg:grid-cols-[minmax(0,1fr)_1px_minmax(0,1fr)] lg:items-stretch lg:gap-0">
             <div className="flex min-h-0 min-w-0 flex-col justify-center lg:py-1 lg:pr-8 xl:pr-10">
               <div className="flex flex-wrap items-center gap-2">
-                <span className="inline-flex rounded-full bg-[#FFF4EB] px-2.5 py-0.5 font-display text-sm font-bold tracking-tight text-[#F47B16]">
+                <span className="inline-flex rounded-full bg-[var(--color-accent-50)] px-2.5 py-0.5 font-display text-sm font-bold tracking-tight text-[var(--color-accent-500)]">
                   Free
                 </span>
-                <span className="text-[0.6875rem] font-semibold uppercase tracking-[0.12em] text-[#6b6b80]">
+                <span className="text-[0.6875rem] font-semibold uppercase tracking-[0.12em] text-[var(--color-ink-cool-soft)]">
                   Grades 6-8 · no account
                 </span>
               </div>
 
-              <h2 className="font-display mt-3 text-xl font-bold tracking-[-0.02em] text-[#1a1a2e] sm:text-[1.625rem]">
+              <h2 className="font-display mt-3 text-xl font-bold tracking-[-0.02em] text-[var(--color-ink-cool)] sm:text-[1.625rem]">
                 Study paths on your own
               </h2>
-              <p className="mt-2.5 max-w-[28rem] text-[0.9375rem] leading-relaxed text-[#4a4a6a]">
+              <p className="mt-2.5 max-w-[28rem] text-[0.9375rem] leading-relaxed text-[var(--color-ink-cool-muted)]">
                 {SELF_STUDY_FREE_NOTE}
               </p>
-              <p className="mt-1.5 text-sm text-[#6b6b80]">
+              <p className="mt-1.5 text-sm text-[var(--color-ink-cool-soft)]">
                 Read, watch, practice, check on every topic.
               </p>
 
@@ -88,7 +88,7 @@ export default function HomeStudyPathsSection() {
             />
 
             <div className="flex min-h-0 min-w-0 flex-col justify-center gap-2.5 border-t border-[rgba(26,26,46,0.1)] pt-8 lg:border-t-0 lg:pl-8 lg:pt-0 xl:pl-10">
-              <p className="mb-1 text-[0.6875rem] font-semibold uppercase tracking-[0.14em] text-[#6b6b80] lg:sr-only">
+              <p className="mb-1 text-[0.6875rem] font-semibold uppercase tracking-[0.14em] text-[var(--color-ink-cool-soft)] lg:sr-only">
                 Pick a grade
               </p>
               <div className="flex flex-col gap-2.5">
@@ -114,7 +114,7 @@ function SecondaryPathLink({
   return (
     <Link
       href={href}
-      className="inline-flex min-h-[2.75rem] w-full items-center justify-center gap-1.5 rounded-md border border-[rgba(26,26,46,0.12)] bg-[#FBFAF7] px-4 text-center text-sm font-semibold text-[#2A4BCB] no-underline transition-[border-color,background-color] hover:border-[#2A4BCB]/30 hover:bg-white sm:w-auto sm:whitespace-nowrap"
+      className="inline-flex min-h-[2.75rem] w-full items-center justify-center gap-1.5 rounded-md border border-[rgba(26,26,46,0.12)] bg-[var(--color-bg)] px-4 text-center text-sm font-semibold text-[var(--color-brand-500)] no-underline transition-[border-color,background-color] hover:border-[#2A4BCB]/30 hover:bg-white sm:w-auto sm:whitespace-nowrap"
     >
       <span>{children}</span>
       <span aria-hidden className="text-[0.8125rem] leading-none opacity-80">
@@ -125,7 +125,7 @@ function SecondaryPathLink({
 }
 
 const HOME_GRADE_ROW_ICON =
-  "grid size-10 shrink-0 place-items-center rounded-lg border border-[rgba(26,26,46,0.1)] bg-[#FBFAF7] font-display text-base font-bold text-[#2A4BCB]";
+  "grid size-10 shrink-0 place-items-center rounded-lg border border-[rgba(26,26,46,0.1)] bg-[var(--color-bg)] font-display text-base font-bold text-[var(--color-brand-500)]";
 
 function HomeGradeRow({ grade: g }: { grade: Grade }) {
   const unitCount = g.units.length;
@@ -141,16 +141,16 @@ function HomeGradeRow({ grade: g }: { grade: Grade }) {
         {g.icon}
       </span>
       <span className="min-w-0">
-        <span className="block font-display text-[0.9375rem] font-bold leading-tight text-[#1a1a2e] group-hover:text-[#2A4BCB]">
+        <span className="block font-display text-[0.9375rem] font-bold leading-tight text-[var(--color-ink-cool)] group-hover:text-[var(--color-brand-500)]">
           {g.title} Mathematics
         </span>
-        <span className="mt-0.5 block text-xs font-medium text-[#6b6b80]">
+        <span className="mt-0.5 block text-xs font-medium text-[var(--color-ink-cool-soft)]">
           {unitCount} units · {topicCount} topics
         </span>
       </span>
       <span
         aria-hidden
-        className="grid size-9 place-items-center rounded-full border border-[rgba(26,26,46,0.1)] bg-[#FBFAF7] text-[#2A4BCB] transition-[border-color,background-color] group-hover:border-[#2A4BCB] group-hover:bg-[#2A4BCB] group-hover:text-white"
+        className="grid size-9 place-items-center rounded-full border border-[rgba(26,26,46,0.1)] bg-[var(--color-bg)] text-[var(--color-brand-500)] transition-[border-color,background-color] group-hover:border-[var(--color-brand-500)] group-hover:bg-[var(--color-brand-500)] group-hover:text-white"
       >
         <svg
           width="14"

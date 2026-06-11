@@ -3,8 +3,8 @@
 import type { WalkthroughBlock } from "../data/units";
 
 const PART_COLORS = [
-  { badge: "bg-[#E8EEFF] text-[#2A4BCB]", stripe: "border-[#2A4BCB]" },
-  { badge: "bg-[#FFF4EB] text-[#C45A10]", stripe: "border-[#F47B16]" },
+  { badge: "bg-[#E8EEFF] text-[var(--color-brand-500)]", stripe: "border-[var(--color-brand-500)]" },
+  { badge: "bg-[var(--color-accent-50)] text-[#C45A10]", stripe: "border-[var(--color-accent-500)]" },
   { badge: "bg-[#E8F5EE] text-[#1B7A4A]", stripe: "border-[#3D9B6A]" },
   { badge: "bg-[#F3E8FF] text-[#6B3FA0]", stripe: "border-[#9B6FD4]" },
 ] as const;
@@ -62,7 +62,7 @@ export default function Walkthrough({ blocks, topicTitle }: Props) {
   return (
     <div className="grid gap-5 sm:gap-6">
       <div className="rounded-2xl border-2 border-dashed border-[#2A4BCB]/25 bg-[#F7F9FF] px-5 py-4 sm:px-6 sm:py-5">
-        <p className="font-display text-lg font-bold leading-snug text-[#1a1a2e] sm:text-xl">
+        <p className="font-display text-lg font-bold leading-snug text-[var(--color-ink-cool)] sm:text-xl">
           {topicTitle ? (
             <>
               What you&apos;re learning: {topicTitle}
@@ -71,9 +71,9 @@ export default function Walkthrough({ blocks, topicTitle }: Props) {
             "Start here"
           )}
         </p>
-        <p className="mt-2 text-base leading-relaxed text-[#4a4a6a]">
-          Read each <strong className="font-semibold text-[#1a1a2e]">Part</strong> in order. When you
-          see <strong className="font-semibold text-[#1a1a2e]">Let&apos;s solve one</strong>, follow
+        <p className="mt-2 text-base leading-relaxed text-[var(--color-ink-cool-muted)]">
+          Read each <strong className="font-semibold text-[var(--color-ink-cool)]">Part</strong> in order. When you
+          see <strong className="font-semibold text-[var(--color-ink-cool)]">Let&apos;s solve one</strong>, follow
           every step before moving on.
         </p>
       </div>
@@ -114,7 +114,7 @@ function LessonPart({ block, index }: { block: WalkthroughBlock; index: number }
           Part {index + 1}
         </span>
         {block.heading && (
-          <h3 className="min-w-0 flex-1 font-display text-xl font-bold leading-snug text-[#1a1a2e] sm:text-[1.35rem]">
+          <h3 className="min-w-0 flex-1 font-display text-xl font-bold leading-snug text-[var(--color-ink-cool)] sm:text-[1.35rem]">
             {block.heading}
           </h3>
         )}
@@ -125,7 +125,7 @@ function LessonPart({ block, index }: { block: WalkthroughBlock; index: number }
           {block.paragraphs.map((para, j) => (
             <p
               key={j}
-              className="text-[1.0625rem] leading-[1.8] text-[#1a1a2e] [&:not(:first-child)]:rounded-xl [&:not(:first-child)]:bg-[#FBFAF7] [&:not(:first-child)]:px-4 [&:not(:first-child)]:py-3"
+              className="text-[1.0625rem] leading-[1.8] text-[var(--color-ink-cool)] [&:not(:first-child)]:rounded-xl [&:not(:first-child)]:bg-[var(--color-bg)] [&:not(:first-child)]:px-4 [&:not(:first-child)]:py-3"
             >
               {para}
             </p>
@@ -135,20 +135,20 @@ function LessonPart({ block, index }: { block: WalkthroughBlock; index: number }
 
       {block.steps && block.steps.length > 0 && (
         <div className="mt-5">
-          <p className="mb-3 font-display text-base font-bold text-[#2A4BCB]">Do this:</p>
+          <p className="mb-3 font-display text-base font-bold text-[var(--color-brand-500)]">Do this:</p>
           <ol className="grid gap-2.5">
             {block.steps.map((step, k) => (
               <li
                 key={k}
-                className="flex items-start gap-3 rounded-xl bg-[#FBFAF7] px-4 py-3.5 border border-[rgba(26,26,46,0.06)]"
+                className="flex items-start gap-3 rounded-xl bg-[var(--color-bg)] px-4 py-3.5 border border-[rgba(26,26,46,0.06)]"
               >
                 <span
                   aria-hidden
-                  className="grid h-7 w-7 shrink-0 place-items-center rounded-full bg-[#2A4BCB] font-display text-sm font-bold text-white"
+                  className="grid h-7 w-7 shrink-0 place-items-center rounded-full bg-[var(--color-brand-500)] font-display text-sm font-bold text-white"
                 >
                   {k + 1}
                 </span>
-                <span className="pt-0.5 text-[1.0625rem] leading-relaxed text-[#1a1a2e]">{step}</span>
+                <span className="pt-0.5 text-[1.0625rem] leading-relaxed text-[var(--color-ink-cool)]">{step}</span>
               </li>
             ))}
           </ol>
@@ -168,7 +168,7 @@ function WorkedExample({
 }) {
   return (
     <figure className="mt-5 overflow-hidden rounded-2xl border-2 border-[#2A4BCB]/20 bg-[#F7F9FF]">
-      <figcaption className="flex items-center gap-2 bg-[#2A4BCB] px-4 py-2.5 text-white">
+      <figcaption className="flex items-center gap-2 bg-[var(--color-brand-500)] px-4 py-2.5 text-white">
         <span aria-hidden className="grid h-7 w-7 place-items-center rounded-full bg-white/20">
           <LightbulbIcon />
         </span>
@@ -176,24 +176,24 @@ function WorkedExample({
       </figcaption>
       <div className="grid gap-4 p-4 sm:p-5">
         <div className="rounded-xl bg-white px-4 py-3.5 shadow-sm border border-[rgba(26,26,46,0.08)]">
-          <p className="text-xs font-bold uppercase tracking-wide text-[#6b6b80]">The problem</p>
-          <p className="mt-1.5 font-display text-lg font-bold leading-snug text-[#1a1a2e]">
+          <p className="text-xs font-bold uppercase tracking-wide text-[var(--color-ink-cool-soft)]">The problem</p>
+          <p className="mt-1.5 font-display text-lg font-bold leading-snug text-[var(--color-ink-cool)]">
             {example.problem}
           </p>
         </div>
         <div>
-          <p className="mb-2.5 text-xs font-bold uppercase tracking-wide text-[#2A4BCB]">
+          <p className="mb-2.5 text-xs font-bold uppercase tracking-wide text-[var(--color-brand-500)]">
             How to solve it
           </p>
           <ol className="grid gap-2">
             {example.solution.map((line, m) => (
               <li
                 key={m}
-                className="flex items-start gap-3 rounded-lg bg-white/80 px-3 py-2.5 text-[1rem] leading-relaxed text-[#1a1a2e]"
+                className="flex items-start gap-3 rounded-lg bg-white/80 px-3 py-2.5 text-[1rem] leading-relaxed text-[var(--color-ink-cool)]"
               >
                 <span
                   aria-hidden
-                  className="grid h-6 w-6 shrink-0 place-items-center rounded-md bg-[#2A4BCB] font-display text-xs font-bold text-white"
+                  className="grid h-6 w-6 shrink-0 place-items-center rounded-md bg-[var(--color-brand-500)] font-display text-xs font-bold text-white"
                 >
                   {m + 1}
                 </span>
@@ -212,13 +212,13 @@ function FriendlyCallout({ label, text }: { label: string; text: string }) {
     <div className="mt-5 flex gap-3 rounded-2xl bg-[#FFF8F0] px-4 py-4 ring-2 ring-[#F47B16]/20 sm:px-5">
       <span
         aria-hidden
-        className="grid h-10 w-10 shrink-0 place-items-center rounded-full bg-[#F47B16] text-white"
+        className="grid h-10 w-10 shrink-0 place-items-center rounded-full bg-[var(--color-accent-500)] text-white"
       >
         <TipIcon />
       </span>
       <div className="min-w-0">
         <p className="font-display text-base font-bold text-[#C45A10]">{friendlyCalloutLabel(label)}</p>
-        <p className="mt-1.5 text-[1.0625rem] leading-relaxed text-[#1a1a2e]">{text}</p>
+        <p className="mt-1.5 text-[1.0625rem] leading-relaxed text-[var(--color-ink-cool)]">{text}</p>
       </div>
     </div>
   );
@@ -246,7 +246,7 @@ function StudyPlanCard({ block }: { block: WalkthroughBlock }) {
               {block.steps.map((step, k) => (
                 <li
                   key={k}
-                  className="flex items-start gap-2.5 rounded-xl bg-white/70 px-3.5 py-3 text-[1rem] leading-relaxed text-[#1a1a2e]"
+                  className="flex items-start gap-2.5 rounded-xl bg-white/70 px-3.5 py-3 text-[1rem] leading-relaxed text-[var(--color-ink-cool)]"
                 >
                   <span className="font-display font-bold text-[#3D9B6A]">{k + 1}.</span>
                   <span>{step}</span>
@@ -262,12 +262,12 @@ function StudyPlanCard({ block }: { block: WalkthroughBlock }) {
 
 function ChallengeCard({ block }: { block: WalkthroughBlock }) {
   return (
-    <article className="rounded-2xl border-2 border-[#F47B16]/35 bg-[#FFF4EB] p-5 sm:p-6">
+    <article className="rounded-2xl border-2 border-[#F47B16]/35 bg-[var(--color-accent-50)] p-5 sm:p-6">
       <p className="font-display text-lg font-bold text-[#C45A10] sm:text-xl">
         Challenge yourself
       </p>
       {block.paragraphs?.map((para, j) => (
-        <p key={j} className="mt-3 text-[1.0625rem] leading-[1.75] text-[#1a1a2e]">
+        <p key={j} className="mt-3 text-[1.0625rem] leading-[1.75] text-[var(--color-ink-cool)]">
           {para}
         </p>
       ))}

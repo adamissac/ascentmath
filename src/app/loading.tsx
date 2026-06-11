@@ -2,7 +2,7 @@
 export default function Loading() {
   return (
     <section
-      className="flex min-h-[min(100dvh,920px)] items-center justify-center bg-[#FBFAF7] page-x"
+      className="flex min-h-[min(100dvh,920px)] items-center justify-center bg-[var(--color-bg)] page-x"
       aria-busy="true"
       aria-label="Loading"
     >

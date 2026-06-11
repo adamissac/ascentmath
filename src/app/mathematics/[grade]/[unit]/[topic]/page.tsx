@@ -103,9 +103,9 @@ export default async function TopicPage({ params }: { params: Promise<Params> })
           <Reveal>
             <span className="eyebrow">Step 1 · Learn</span>
             <h2 id="learn-h" className="h2 mt-2">The lesson</h2>
-            <p className="mt-3 max-w-2xl text-[1.0625rem] leading-relaxed text-[#4a4a6a]">
+            <p className="mt-3 max-w-2xl text-[1.0625rem] leading-relaxed text-[var(--color-ink-cool-muted)]">
               Read each part below, then watch the video, practice, and take the quick quiz. About{" "}
-              <strong className="font-semibold text-[#1a1a2e]">{t.estimatedMinutes} minutes</strong>{" "}
+              <strong className="font-semibold text-[var(--color-ink-cool)]">{t.estimatedMinutes} minutes</strong>{" "}
               if you do everything.
             </p>
           </Reveal>

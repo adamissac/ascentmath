@@ -33,7 +33,7 @@ export default function MathematicsHubSection() {
   }, []);
 
   return (
-    <section className="bg-[#FBFAF7]">
+    <section className="bg-[var(--color-bg)]">
       <Container size="lg" className="py-10 sm:py-12 lg:py-14">
         <Reveal variant="up">
           <header className="max-w-3xl">

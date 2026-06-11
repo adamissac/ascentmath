@@ -15,7 +15,7 @@ import {
 
 type Variant = "brand" | "light";
 
-const TIER_STRIPE = "bg-[#7E97F0]";
+const TIER_STRIPE = "bg-[var(--color-brand-300)]";
 
 export function SubjectLevelCards({ variant = "brand" }: { variant?: Variant }) {
   const isBrand = variant === "brand";
@@ -35,7 +35,8 @@ function SubjectLevelCard({ tier, isBrand }: { tier: TutoringTier; isBrand: bool
       <article
         className={[
           "relative flex h-full flex-col overflow-hidden rounded-lg border border-white/18",
-          "bg-white/[0.14] p-6",
+          "bg-white/[0.14] p-6 transition-colors duration-300",
+          "hover:border-white/30 hover:bg-white/[0.18]",
         ].join(" ")}
       >
         <span aria-hidden className={`absolute left-0 top-0 h-full w-1 ${TIER_STRIPE}`} />
@@ -216,7 +217,7 @@ function PricingCheck({ light }: { light?: boolean }) {
       height="14"
       viewBox="0 0 24 24"
       fill="none"
-      stroke={light ? "#7E97F0" : "currentColor"}
+      stroke={light ? "var(--color-brand-300)" : "currentColor"}
       strokeWidth="3"
       strokeLinecap="round"
       strokeLinejoin="round"

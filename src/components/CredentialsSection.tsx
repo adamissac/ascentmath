@@ -8,19 +8,19 @@ import Reveal from "./Reveal";
 import BookSessionLink from "./BookSessionLink";
 import { MATH_CREDENTIALS, TUTOR_INTRO } from "../data/credentials";
 
-const BLUE = "#2A4BCB";
-const INK = "#1a1a2e";
-const BODY = "#4a4a6a";
-const MUTED = "#6b6b80";
+const BLUE = "var(--color-brand-500)";
+const INK = "var(--color-ink-cool)";
+const BODY = "var(--color-ink-cool-muted)";
+const MUTED = "var(--color-ink-cool-soft)";
 const BTN_RADIUS = "6px";
 
 const btnBase =
-  "inline-flex min-h-[44px] items-center justify-center gap-2 px-5 text-sm font-semibold tracking-[0.01em] transition-colors duration-150 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#2A4BCB]";
+  "inline-flex min-h-[44px] items-center justify-center gap-2 px-5 text-sm font-semibold tracking-[0.01em] transition-colors duration-150 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--color-brand-500)]";
 
 export default function CredentialsSection() {
   return (
     <section
-      className="hero-surface relative overflow-hidden border-b border-[var(--color-border)] bg-[#FBFAF7]"
+      className="hero-surface relative overflow-hidden border-b border-[var(--color-border)] bg-[var(--color-bg)]"
       aria-labelledby="credentials"
     >
       <HeroCanvas />
@@ -31,7 +31,7 @@ export default function CredentialsSection() {
             <div
               className="relative size-44 shrink-0 overflow-hidden rounded-full sm:size-48"
               style={{
-                boxShadow: "0 0 0 3px #2A4BCB, 0 6px 24px rgba(42, 75, 203, 0.2)",
+                boxShadow: "0 0 0 3px var(--color-brand-500), 0 6px 24px rgba(42, 75, 203, 0.2)",
               }}
             >
               <Image
@@ -105,7 +105,7 @@ export default function CredentialsSection() {
             className="flex flex-col items-stretch gap-3 sm:flex-row sm:items-center sm:justify-center lg:col-start-2 lg:row-start-2 lg:justify-start"
           >
             <BookSessionLink
-              className={`${btnBase} hover:bg-[#1F3CB1]`}
+              className={`${btnBase} hover:bg-[var(--color-brand-600)]`}
               style={{
                 borderRadius: BTN_RADIUS,
                 backgroundColor: BLUE,

@@ -162,8 +162,3 @@ export function getTutoringTier(id: TutoringTierId) {
   if (!tier) throw new Error(`Unknown tutoring tier: ${id}`);
   return tier;
 }
-
-/** @deprecated Use getTutoringTier */
-export function getSubjectLevel(id: TutoringTierId) {
-  return getTutoringTier(id);
-}

@@ -1,6 +1,5 @@
 "use client";
 
-import Link from "next/link";
 import { useEffect, useState } from "react";
 import HashLink from "./HashLink";
 import HeroCanvas from "./HeroCanvas";
@@ -36,7 +35,7 @@ export default function HeroSection({ totalUnits }: HeroSectionProps) {
 
   return (
     <section
-      className="hero-surface relative min-h-[min(100dvh,920px)] overflow-hidden bg-[#FBFAF7]"
+      className="hero-surface relative min-h-[min(100dvh,920px)] overflow-hidden bg-[var(--color-bg)]"
       style={{ contain: "layout paint" }}
     >
       <HeroCanvas />
@@ -44,16 +43,16 @@ export default function HeroSection({ totalUnits }: HeroSectionProps) {
       <div className="relative z-[1] flex min-h-[min(100dvh,920px)] items-center justify-center page-x py-12 sm:py-16">
         <div className="mx-auto flex w-full min-w-0 max-w-4xl flex-col items-center text-center">
           <span
-            className={`${rise} ${STAGGER[0]} inline-flex max-w-full items-center rounded-full border border-[#1a1a2e]/12 bg-[#1a1a2e]/[0.04] px-3.5 py-1.5 text-center text-[0.6875rem] font-semibold uppercase tracking-[0.14em] text-[#4a4a6a]`}
+            className={`${rise} ${STAGGER[0]} inline-flex max-w-full items-center rounded-full border border-[#1a1a2e]/12 bg-[#1a1a2e]/[0.04] px-3.5 py-1.5 text-center text-[0.6875rem] font-semibold uppercase tracking-[0.14em] text-[var(--color-ink-cool-muted)]`}
           >
             Math tutor · K through college · Paid sessions
           </span>
 
           <h1
-            className={`${rise} ${STAGGER[1]} h-display mt-6 w-full min-w-0 max-w-3xl px-1 text-[#1a1a2e] [text-shadow:0_1px_32px_rgba(26,26,46,0.08)] sm:px-0`}
+            className={`${rise} ${STAGGER[1]} h-display mt-6 w-full min-w-0 max-w-3xl px-1 text-[var(--color-ink-cool)] [text-shadow:0_1px_32px_rgba(26,26,46,0.08)] sm:px-0`}
           >
             A{" "}
-            <span className="text-[#2A4BCB] underline decoration-[#FFDEC0] decoration-[0.18em] underline-offset-[0.12em]">
+            <span className="text-[var(--color-brand-500)] underline decoration-[var(--color-accent-100)] decoration-[0.18em] underline-offset-[0.12em]">
               friendlier
             </span>{" "}
             way to learn{" "}
@@ -61,7 +60,7 @@ export default function HeroSection({ totalUnits }: HeroSectionProps) {
           </h1>
 
           <p
-            className={`${rise} ${STAGGER[2]} mt-6 w-full min-w-0 max-w-[32.5rem] text-[1.0625rem] leading-relaxed text-[#4a4a6a] sm:text-lg`}
+            className={`${rise} ${STAGGER[2]} mt-6 w-full min-w-0 max-w-[32.5rem] text-[1.0625rem] leading-relaxed text-[var(--color-ink-cool-muted)] sm:text-lg`}
           >
             I&apos;m Adam. I tutor pre-algebra through AP Pre-Calc, AP Calc, SAT Math, linear
             algebra, and multivariable calc, plus K-6 basics. Book a paid 1-on-1 session, or use
@@ -73,7 +72,7 @@ export default function HeroSection({ totalUnits }: HeroSectionProps) {
           >
             <HashLink
               href={BOOK_SESSION_HREF}
-              className="group relative inline-flex min-h-[3rem] w-full items-center justify-center overflow-hidden rounded-full bg-[#1a1a2e] px-5 py-3 text-center text-[0.9375rem] font-semibold text-white shadow-[0_10px_28px_-12px_rgba(26,26,46,0.55)] transition-[transform,box-shadow] duration-200 hover:-translate-y-0.5 hover:shadow-[0_16px_36px_-14px_rgba(26,26,46,0.5)] sm:w-auto sm:px-7"
+              className="group relative inline-flex min-h-[3rem] w-full items-center justify-center overflow-hidden rounded-full bg-[var(--color-ink-cool)] px-5 py-3 text-center text-[0.9375rem] font-semibold text-white shadow-[0_10px_28px_-12px_rgba(26,26,46,0.55)] transition-[transform,box-shadow] duration-200 hover:-translate-y-0.5 hover:shadow-[0_16px_36px_-14px_rgba(26,26,46,0.5)] sm:w-auto sm:px-7"
             >
               <span
                 aria-hidden
@@ -84,15 +83,15 @@ export default function HeroSection({ totalUnits }: HeroSectionProps) {
             <div className="flex w-full items-center gap-0.5 sm:w-auto sm:gap-0">
               <HashLink
                 href={STUDY_PATHS_HREF}
-                className="relative inline-flex min-h-[3rem] flex-1 items-center justify-center rounded-full border-2 border-[#1a1a2e]/25 bg-transparent px-5 py-3 text-center text-[0.9375rem] font-semibold text-[#1a1a2e] transition-[background-color,border-color,transform] duration-200 hover:-translate-y-0.5 hover:border-[#F47B16]/45 hover:bg-[#FFF4EB] sm:flex-initial sm:px-7"
+                className="relative inline-flex min-h-[3rem] flex-1 items-center justify-center rounded-full border-2 border-[#1a1a2e]/25 bg-transparent px-5 py-3 text-center text-[0.9375rem] font-semibold text-[var(--color-ink-cool)] transition-[background-color,border-color,transform] duration-200 hover:-translate-y-0.5 hover:border-[#F47B16]/45 hover:bg-[var(--color-accent-50)] sm:flex-initial sm:px-7"
               >
                 Browse study paths
-                <span className="absolute -right-1 -top-2 rounded-full bg-[#F47B16] px-2 py-0.5 text-[0.6875rem] font-bold leading-none text-white shadow-sm sm:hidden">
+                <span className="absolute -right-1 -top-2 rounded-full bg-[var(--color-accent-500)] px-2 py-0.5 text-[0.6875rem] font-bold leading-none text-white shadow-sm sm:hidden">
                   Free!
                 </span>
               </HashLink>
               <span
-                className="hidden shrink-0 items-center gap-0.5 text-[#F47B16] sm:flex"
+                className="hidden shrink-0 items-center gap-0.5 text-[var(--color-accent-500)] sm:flex"
                 aria-label="Free Grades 6-8 study paths"
               >
                 <svg width="36" height="20" viewBox="0 0 36 20" fill="none" aria-hidden className="-mr-0.5">
@@ -136,10 +135,10 @@ export default function HeroSection({ totalUnits }: HeroSectionProps) {
           <div
             className={`${rise} ${STAGGER[5]} mt-10 grid w-full min-w-0 max-w-3xl grid-cols-2 gap-4 sm:grid-cols-4 sm:gap-0`}
           >
-            <HeroStat value="30+" label="Students tutored" showDivider />
-            <HeroStat value="2+" label="Years tutoring" showDivider />
-            <HeroStat value={String(totalUnits)} label="Study units" showDivider />
-            <HeroStat value="3" label="Tutoring tiers" />
+            <HeroStat value="30+" label="Students tutored" animate={ready} showDivider />
+            <HeroStat value="2+" label="Years tutoring" animate={ready} showDivider />
+            <HeroStat value={String(totalUnits)} label="Study units" animate={ready} showDivider />
+            <HeroStat value="3" label="Tutoring tiers" animate={ready} />
           </div>
         </div>
       </div>
@@ -147,15 +146,54 @@ export default function HeroSection({ totalUnits }: HeroSectionProps) {
   );
 }
 
+/* Signature motion moment: the hero stats count up as the stat row fades
+   in. The numbers are the hero's proof (students, years, units), so they're
+   the one element given a distinctive treatment - everything else on the
+   page keeps the quieter shared reveal system. Static under
+   prefers-reduced-motion. */
 function HeroStat({
   value,
   label,
+  animate = false,
   showDivider = false,
 }: {
   value: string;
   label: string;
+  animate?: boolean;
   showDivider?: boolean;
 }) {
+  const match = /^(\d+)(.*)$/.exec(value);
+  const target = match ? parseInt(match[1], 10) : null;
+  const suffix = match ? match[2] : "";
+  const [display, setDisplay] = useState(value);
+
+  useEffect(() => {
+    if (!animate || target === null) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+    const DELAY = 420; // matches the stat row's entrance stagger slot
+    const DURATION = 700;
+    let raf = 0;
+    let start: number | null = null;
+
+    const tick = (t: number) => {
+      if (start === null) start = t;
+      const elapsed = t - start - DELAY;
+      if (elapsed < 0) {
+        raf = requestAnimationFrame(tick);
+        return;
+      }
+      const p = Math.min(elapsed / DURATION, 1);
+      const eased = 1 - Math.pow(1 - p, 3);
+      setDisplay(`${Math.round(eased * target)}${suffix}`);
+      if (p < 1) raf = requestAnimationFrame(tick);
+    };
+
+    setDisplay(`0${suffix}`);
+    raf = requestAnimationFrame(tick);
+    return () => cancelAnimationFrame(raf);
+  }, [animate, target, suffix]);
+
   return (
     <div
       className={[
@@ -163,10 +201,10 @@ function HeroStat({
         showDivider ? "sm:border-r sm:border-[#1a1a2e]/10" : "",
       ].join(" ")}
     >
-      <span className="font-display text-xl font-bold tracking-tight text-[#1a1a2e] sm:text-[1.75rem]">
-        {value}
+      <span className="font-display text-xl font-bold tracking-tight tabular-nums text-[var(--color-ink-cool)] sm:text-[1.75rem]">
+        {display}
       </span>
-      <span className="mt-1 text-[0.6875rem] font-semibold uppercase tracking-[0.12em] text-[#4a4a6a]">
+      <span className="mt-1 text-[0.6875rem] font-semibold uppercase tracking-[0.12em] text-[var(--color-ink-cool-muted)]">
         {label}
       </span>
     </div>
