@@ -1,9 +1,8 @@
 "use client";
 
 import Link from "next/link";
-import { useMemo, type ReactNode } from "react";
+import { useMemo } from "react";
 import Container from "./Container";
-import HeroStatBadge from "./HeroStatBadge";
 import MathBackdrop from "./MathBackdrop";
 import { SELF_STUDY_FREE_NOTE } from "../data/pricing";
 import { GRADES, type Grade } from "../data/units";
@@ -45,7 +44,7 @@ export default function HomeStudyPathsSection() {
           <div className="grid gap-8 lg:grid-cols-[minmax(0,1fr)_1px_minmax(0,1fr)] lg:items-stretch lg:gap-0">
             <div className="flex min-h-0 min-w-0 flex-col justify-center lg:py-1 lg:pr-8 xl:pr-10">
               <div className="flex flex-wrap items-center gap-2">
-                <span className="inline-flex rounded-full bg-[var(--color-accent-50)] px-2.5 py-0.5 font-display text-sm font-bold tracking-tight text-[var(--color-accent-500)]">
+                <span className="inline-flex rounded-full bg-[var(--color-accent-50)] px-2.5 py-0.5 font-display text-sm font-bold tracking-tight text-[var(--color-accent-700)]">
                   Free
                 </span>
                 <span className="text-[0.6875rem] font-semibold uppercase tracking-[0.12em] text-[var(--color-ink-cool-soft)]">
@@ -53,32 +52,33 @@ export default function HomeStudyPathsSection() {
                 </span>
               </div>
 
-              <h2 className="font-display mt-3 text-xl font-bold tracking-[-0.02em] text-[var(--color-ink-cool)] sm:text-[1.625rem]">
+              <h2 className="font-display mt-3 text-2xl font-bold tracking-[-0.02em] text-[var(--color-ink-cool)] sm:text-3xl">
                 Study paths on your own
               </h2>
-              <p className="mt-2.5 max-w-[28rem] text-[0.9375rem] leading-relaxed text-[var(--color-ink-cool-muted)]">
-                {SELF_STUDY_FREE_NOTE}
-              </p>
-              <p className="mt-1.5 text-sm text-[var(--color-ink-cool-soft)]">
-                Read, watch, practice, check on every topic.
+              <p className="mt-3 max-w-[30rem] text-[0.9375rem] leading-relaxed text-[var(--color-ink-cool-muted)]">
+                {SELF_STUDY_FREE_NOTE} Read, watch, practice, and check your work on every
+                topic.
               </p>
 
-              <ul className="mt-5 grid max-w-md grid-cols-3 gap-2" aria-label="Study path totals">
-                <li className="list-none">
-                  <HeroStatBadge value={GRADES.length} label="grades" />
-                </li>
-                <li className="list-none">
-                  <HeroStatBadge value={stats.units} label="units" />
-                </li>
-                <li className="list-none">
-                  <HeroStatBadge value={stats.topics} label="topics" />
-                </li>
+              <ul
+                className="mt-7 grid max-w-sm grid-cols-3 border-y border-[rgba(26,26,46,0.08)] py-4"
+                aria-label="Study path totals"
+              >
+                <PathStat value={GRADES.length} label="Grades" showDivider />
+                <PathStat value={stats.units} label="Units" showDivider />
+                <PathStat value={stats.topics} label="Topics" />
               </ul>
 
-              <div className="mt-6">
-                <SecondaryPathLink href="/mathematics/find-your-start">
+              <div className="mt-7">
+                <Link
+                  href="/mathematics/find-your-start"
+                  className="btn btn-outline w-full no-underline sm:w-auto"
+                >
                   Find your start
-                </SecondaryPathLink>
+                  <span aria-hidden className="text-[0.8125rem] leading-none opacity-80">
+                    →
+                  </span>
+                </Link>
               </div>
             </div>
 
@@ -104,23 +104,31 @@ export default function HomeStudyPathsSection() {
   );
 }
 
-function SecondaryPathLink({
-  href,
-  children,
+/* Same treatment as the hero's stat row, so the two stat moments on the
+   homepage read as one system. */
+function PathStat({
+  value,
+  label,
+  showDivider = false,
 }: {
-  href: string;
-  children: ReactNode;
+  value: number;
+  label: string;
+  showDivider?: boolean;
 }) {
   return (
-    <Link
-      href={href}
-      className="inline-flex min-h-[2.75rem] w-full items-center justify-center gap-1.5 rounded-md border border-[rgba(26,26,46,0.12)] bg-[var(--color-bg)] px-4 text-center text-sm font-semibold text-[var(--color-brand-500)] no-underline transition-[border-color,background-color] hover:border-[#2A4BCB]/30 hover:bg-white sm:w-auto sm:whitespace-nowrap"
+    <li
+      className={[
+        "flex list-none flex-col items-center px-2",
+        showDivider ? "border-r border-[rgba(26,26,46,0.1)]" : "",
+      ].join(" ")}
     >
-      <span>{children}</span>
-      <span aria-hidden className="text-[0.8125rem] leading-none opacity-80">
-        →
+      <span className="font-display text-xl font-bold tracking-tight tabular-nums text-[var(--color-ink-cool)] sm:text-2xl">
+        {value}
       </span>
-    </Link>
+      <span className="mt-1 text-[0.6875rem] font-semibold uppercase tracking-[0.12em] text-[var(--color-ink-cool-muted)]">
+        {label}
+      </span>
+    </li>
   );
 }
 
@@ -134,7 +142,7 @@ function HomeGradeRow({ grade: g }: { grade: Grade }) {
   return (
     <Link
       href={`/mathematics/${g.slug}`}
-      className="group grid min-h-[3.5rem] grid-cols-[2.5rem_minmax(0,1fr)_2.25rem] items-center gap-3 rounded-xl border border-[rgba(26,26,46,0.1)] bg-white px-3.5 py-3 no-underline shadow-[0_1px_3px_rgba(26,26,46,0.05)] transition-[border-color,box-shadow] hover:border-[rgba(26,26,46,0.18)] hover:shadow-[0_4px_14px_rgba(26,26,46,0.08)] sm:px-4"
+      className="group grid min-h-[3.5rem] grid-cols-[2.5rem_minmax(0,1fr)_2.25rem] items-center gap-3 rounded-lg border border-[rgba(26,26,46,0.1)] bg-white px-3.5 py-3 no-underline shadow-[0_1px_3px_rgba(26,26,46,0.05)] transition-[border-color,box-shadow] hover:border-[rgba(26,26,46,0.18)] hover:shadow-[0_4px_14px_rgba(26,26,46,0.08)] sm:px-4"
       aria-label={`Open ${g.title} Mathematics`}
     >
       <span aria-hidden className={HOME_GRADE_ROW_ICON}>
