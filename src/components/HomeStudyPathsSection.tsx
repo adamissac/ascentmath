@@ -1,4 +1,5 @@
 import Link from "next/link";
+import AmbientBackdrop from "./AmbientBackdrop";
 import Container from "./Container";
 import MathBackdrop from "./MathBackdrop";
 import Reveal from "./Reveal";
@@ -22,8 +23,9 @@ export default function HomeStudyPathsSection() {
     >
       <div
         aria-hidden
-        className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_70%_55%_at_50%_0%,rgba(42,75,203,0.06),transparent_55%)]"
+        className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_70%_55%_at_50%_0%,rgba(42,75,203,0.08),transparent_55%),radial-gradient(ellipse_45%_40%_at_85%_100%,rgba(244,123,22,0.05),transparent_60%)]"
       />
+      <AmbientBackdrop tone="cream" />
       <MathBackdrop
         variant="tracks"
         density="light"
@@ -83,7 +85,7 @@ function HomeGradeCard({ grade: g }: { grade: Grade }) {
     >
       <span
         aria-hidden
-        className="grid size-12 place-items-center rounded-[var(--radius-sm)] bg-[var(--color-brand-50)] font-display text-xl font-bold text-[var(--color-brand-600)]"
+        className="grid size-12 place-items-center rounded-[var(--radius-sm)] bg-[var(--color-brand-50)] font-display text-xl font-bold text-[var(--color-brand-600)] transition-colors duration-200 group-hover:bg-[var(--color-brand-600)] group-hover:text-white"
       >
         {g.icon}
       </span>
