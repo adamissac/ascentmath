@@ -4,9 +4,9 @@ type Tone = "cream" | "white" | "warm";
 
 const BLOBS: Record<Tone, { a: string; b: string; c: string }> = {
   cream: {
-    a: "bg-[#2A4BCB]/[0.07]",
-    b: "bg-[#F47B16]/[0.08]",
-    c: "bg-[#7E97F0]/[0.06]",
+    a: "bg-[#2A4BCB]/[0.1]",
+    b: "bg-[#F47B16]/[0.11]",
+    c: "bg-[#7E97F0]/[0.09]",
   },
   white: {
     a: "bg-[#2A4BCB]/[0.06]",

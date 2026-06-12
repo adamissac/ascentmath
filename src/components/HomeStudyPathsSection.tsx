@@ -26,14 +26,10 @@ export default function HomeStudyPathsSection() {
         className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_70%_55%_at_50%_0%,rgba(42,75,203,0.08),transparent_55%),radial-gradient(ellipse_45%_40%_at_85%_100%,rgba(244,123,22,0.05),transparent_60%)]"
       />
       <AmbientBackdrop tone="cream" />
-      <MathBackdrop
-        variant="tracks"
-        density="light"
-        contentSafe
-        clipart={false}
-        watermark={false}
-        fadeEdges
-      />
+      {/* Full-strength backdrop: dense tinted symbols, clipart, watermark
+          glyphs, and the dot grid. The header/cards sit on max-w containers
+          so the artwork lives in the margins. */}
+      <MathBackdrop variant="tracks" density="dense" />
 
       <Container size="lg" className="relative z-[1] py-12 sm:py-16 lg:py-20">
         <Reveal variant="fade" className="mx-auto max-w-2xl text-center">
