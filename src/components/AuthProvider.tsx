@@ -87,6 +87,13 @@ export function useAuth(): AuthContextValue {
 
 /* -------------------------------------------------------------------- */
 
+function withTimeout<T>(promise: Promise<T>, ms: number): Promise<T | null> {
+  return Promise.race([
+    promise,
+    new Promise<null>((resolve) => setTimeout(() => resolve(null), ms)),
+  ]);
+}
+
 export default function AuthProvider({ children }: { children: ReactNode }) {
   const [user, setUser] = useState<User | null>(null);
   const [profile, setProfile] = useState<UserProfile | null>(null);
@@ -111,7 +118,7 @@ export default function AuthProvider({ children }: { children: ReactNode }) {
      * nothing" on return from accounts.google.com. */
     (async () => {
       try {
-        const cred = await getRedirectResult(auth);
+        const cred = await withTimeout(getRedirectResult(auth), 4000);
         if (cred?.user && !cancelled) {
           setUser(cred.user);
           try {
