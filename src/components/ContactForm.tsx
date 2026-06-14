@@ -220,22 +220,26 @@ export default function ContactForm() {
         </div>
       )}
 
-      <form onSubmit={onSubmit} noValidate className="grid gap-4">
+      <form onSubmit={onSubmit} noValidate className="grid gap-5">
         {/* Session type pills */}
         <fieldset className="m-0 border-0 p-0">
           <legend className="label">What can {TUTOR_NAMES_SHORT} help with?</legend>
-          <div className="flex flex-wrap gap-2" role="radiogroup" aria-label="Session type">
+          <div
+            className="grid grid-cols-2 gap-2 sm:grid-cols-4"
+            role="radiogroup"
+            aria-label="Session type"
+          >
             {SESSION_TYPES.map((t) => {
               const active = form.sessionType === t;
               return (
                 <label
                   key={t}
                   className={[
-                    "cursor-pointer select-none rounded-full border px-4 py-1.5 text-[0.8125rem] font-semibold transition-colors duration-150",
+                    "cursor-pointer select-none rounded-lg border px-3 py-2.5 text-center text-[0.8125rem] font-semibold leading-snug transition-colors duration-150",
                     "has-[:focus-visible]:[box-shadow:var(--shadow-focus)]",
                     active
-                      ? "border-transparent bg-[var(--color-brand-600)] text-white"
-                      : "border-[var(--color-border)] bg-white text-[var(--color-ink-muted)] hover:border-[var(--color-brand-300)] hover:text-[var(--color-brand-600)]",
+                      ? "border-transparent bg-[var(--color-brand-600)] text-white shadow-[0_4px_14px_-4px_rgba(31,60,177,0.45)]"
+                      : "border-[var(--color-border)] bg-[var(--color-surface-2)]/50 text-[var(--color-ink-muted)] hover:border-[var(--color-brand-300)] hover:bg-white hover:text-[var(--color-brand-600)]",
                   ].join(" ")}
                 >
                   <input
@@ -253,7 +257,7 @@ export default function ContactForm() {
           </div>
         </fieldset>
 
-        <div className="grid gap-4 sm:grid-cols-2 sm:gap-x-6">
+        <div className="grid gap-4 border-t border-[var(--color-border)] pt-5 sm:grid-cols-2 sm:gap-x-5">
           <Field
             id={FIELD_IDS.name}
             label="Your name"
@@ -307,7 +311,7 @@ export default function ContactForm() {
           </div>
         </div>
 
-        <div>
+        <div className="border-t border-[var(--color-border)] pt-5">
           <label className="label" htmlFor={FIELD_IDS.message}>
             Message<span className="ml-1 text-[var(--color-danger)]">*</span>
           </label>
@@ -346,6 +350,7 @@ export default function ContactForm() {
           />
         </div>
 
+        <div className="grid gap-4 border-t border-[var(--color-border)] pt-5">
         {errorMsg && (
           <div
             role="alert"
@@ -376,6 +381,7 @@ export default function ContactForm() {
           Sent to <span className="font-medium text-[var(--color-ink)]">{recipientsDisplay}</span>.{" "}
           {REPLY_TIME_LINE}
         </p>
+        </div>
       </form>
     </>
   );
