@@ -118,15 +118,16 @@ export const TUTORING_TIERS: readonly TutoringTier[] = [
     range: "Grades 9-12 · SAT/ACT",
     accent: "bg-[var(--color-brand-300)]",
     hourlyRate: "$40/hr",
-    blurb: "Algebra II through AP Calculus, plus SAT & ACT Math prep.",
-    rigorNote: "Higher rigor: AP Pre-Calc, AP Calc, and standardized test math.",
+    blurb: "Algebra 1 through AP Calculus and AP CS, plus SAT & ACT Math prep.",
+    rigorNote: "Higher rigor: AP courses and standardized test math.",
     topicGroups: [
       {
         label: "Core courses",
         items: [
-          "Algebra II & geometry",
-          "Pre-calculus",
-          "AP Calculus AB & BC",
+          "Algebra 1",
+          "Geometry",
+          "Algebra 2",
+          "Pre-Calculus",
         ],
       },
       {
@@ -134,7 +135,8 @@ export const TUTORING_TIERS: readonly TutoringTier[] = [
         items: [
           "AP Pre-Calculus",
           "AP Calculus AB & BC",
-          "AP Statistics (on request)",
+          "AP Statistics",
+          "AP Computer Science A",
         ],
       },
       {
