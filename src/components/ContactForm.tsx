@@ -220,25 +220,21 @@ export default function ContactForm() {
         </div>
       )}
 
-      <form onSubmit={onSubmit} noValidate className="grid gap-5">
+      <form onSubmit={onSubmit} noValidate className="grid gap-5 rounded-lg border border-[var(--color-border)] bg-white p-6 sm:p-8">
         <fieldset className="m-0 border-0 p-0">
           <legend className="label">What can {TUTOR_NAMES_SHORT} help with?</legend>
-          <div
-            className="grid grid-cols-2 gap-1 rounded-[var(--radius-md)] border border-[var(--color-border)] bg-[var(--color-surface-2)] p-1 sm:grid-cols-4"
-            role="radiogroup"
-            aria-label="Session type"
-          >
+          <div className="flex flex-wrap gap-2" role="radiogroup" aria-label="Session type">
             {SESSION_TYPES.map((t) => {
               const active = form.sessionType === t;
               return (
                 <label
                   key={t}
                   className={[
-                    "cursor-pointer select-none rounded-[var(--radius-sm)] px-2 py-2.5 text-center text-[0.8125rem] font-medium leading-snug transition-colors duration-150",
+                    "cursor-pointer select-none rounded-full border px-3.5 py-2 text-[0.8125rem] font-medium transition-colors duration-150",
                     "has-[:focus-visible]:[box-shadow:var(--shadow-focus)]",
                     active
-                      ? "bg-[var(--color-brand-600)] text-white"
-                      : "text-[var(--color-ink-muted)] hover:bg-white/60 hover:text-[var(--color-ink)]",
+                      ? "border-[var(--color-brand-600)] bg-[var(--color-brand-600)] text-white"
+                      : "border-[var(--color-border)] bg-white text-[var(--color-ink-muted)] hover:border-[var(--color-border-strong)] hover:text-[var(--color-ink)]",
                   ].join(" ")}
                 >
                   <input
