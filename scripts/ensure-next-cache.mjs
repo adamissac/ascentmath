@@ -23,6 +23,16 @@ if (!fs.existsSync(nextDir)) {
   process.exit(0);
 }
 
+/** Production `next build` output is incompatible with `next dev` — wipe it. */
+const isProductionBuild =
+  fs.existsSync(path.join(nextDir, "BUILD_ID")) ||
+  fs.existsSync(path.join(nextDir, "export-marker.json"));
+
+if (isProductionBuild) {
+  removeNext("Production .next detected — dev needs a fresh cache.");
+  process.exit(0);
+}
+
 const manifestOk =
   fs.existsSync(path.join(nextDir, "routes-manifest.json")) &&
   fs.existsSync(path.join(nextDir, "prerender-manifest.json"));
