@@ -223,18 +223,22 @@ export default function ContactForm() {
       <form onSubmit={onSubmit} noValidate className="grid gap-5">
         <fieldset className="m-0 border-0 p-0">
           <legend className="label">What can {TUTOR_NAMES_SHORT} help with?</legend>
-          <div className="flex flex-wrap gap-2" role="radiogroup" aria-label="Session type">
+          <div
+            className="grid grid-cols-2 gap-1 rounded-[var(--radius-md)] border border-[var(--color-border)] bg-[var(--color-surface-2)] p-1 sm:grid-cols-4"
+            role="radiogroup"
+            aria-label="Session type"
+          >
             {SESSION_TYPES.map((t) => {
               const active = form.sessionType === t;
               return (
                 <label
                   key={t}
                   className={[
-                    "cursor-pointer select-none rounded-md border px-3.5 py-2 text-[0.8125rem] font-medium transition-colors duration-150",
+                    "cursor-pointer select-none rounded-[var(--radius-sm)] px-2 py-2.5 text-center text-[0.8125rem] font-medium leading-snug transition-colors duration-150",
                     "has-[:focus-visible]:[box-shadow:var(--shadow-focus)]",
                     active
-                      ? "border-[var(--color-brand-600)] bg-[var(--color-brand-600)] text-white"
-                      : "border-[var(--color-border)] bg-white text-[var(--color-ink-muted)] hover:border-[var(--color-border-strong)] hover:text-[var(--color-ink)]",
+                      ? "bg-white text-[var(--color-ink)] shadow-[var(--shadow-card)]"
+                      : "text-[var(--color-ink-muted)] hover:text-[var(--color-ink)]",
                   ].join(" ")}
                 >
                   <input
@@ -317,7 +321,7 @@ export default function ContactForm() {
             value={form.message}
             onChange={(e) => set("message", e.target.value)}
             onBlur={() => handleBlur("message")}
-            placeholder="Tell me a bit about what you're looking for — class size, curriculum context, or what your student is struggling with."
+            placeholder="Tell us what you're looking for — grade level, subject, goals, or availability."
             maxLength={2000}
             aria-invalid={!!fieldErrors.message}
             aria-describedby={fieldErrors.message ? "contact-message-error" : undefined}
@@ -371,8 +375,7 @@ export default function ContactForm() {
           {status === "submitting" ? "Sending…" : "Send request"}
         </Button>
 
-        <p className="caption text-center text-[var(--color-ink-muted)] leading-relaxed">
-          Sent to <span className="font-medium text-[var(--color-ink)]">{recipientsDisplay}</span>.{" "}
+        <p className="caption text-[var(--color-ink-soft)] leading-relaxed">
           {REPLY_TIME_LINE}
         </p>
       </form>
