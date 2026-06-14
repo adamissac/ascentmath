@@ -17,7 +17,7 @@ export const HOME_ACCORDION: AccordionItem[] = [
   },
   {
     q: "What if I need a real tutor, not just videos?",
-    a: "Book a paid 1-on-1 session with Adam for K-6 through college math. Tiers are grouped by grade band; rates are confirmed when you book.",
+    a: "Book a paid 1-on-1 session with Adam or Alan for K-5 through college math. Four tiers grouped by grade band; your first session is free for new clients.",
   },
   {
     q: "How is each topic organized?",
@@ -110,7 +110,7 @@ export function topicAccordion(topicTitle: string): AccordionItem[] {
 export const ABOUT_ACCORDION: AccordionItem[] = [
   {
     q: "Who is Adam's Alphabet for?",
-    a: "Students who want clear math help: free self-paced paths for Grades 6-8, and paid tutoring from K-6 through high school, AP, and college courses.",
+    a: "Students who want clear math help: free self-paced paths for Grades 6-8, and paid tutoring from K-5 through high school, AP, SAT/ACT, and college courses with Adam & Alan.",
   },
   {
     q: "Why build free study paths?",
@@ -122,7 +122,7 @@ export const ABOUT_ACCORDION: AccordionItem[] = [
   },
   {
     q: "What's coming next on the site?",
-    a: "More original walkthroughs, worksheets, and practice, based on what real students keep asking about across all three middle-school grades.",
+    a: "More original walkthroughs, worksheets, and practice, based on what real students keep asking about across all three middle-school grades. Alan's full bio and credentials are coming soon.",
   },
 ];
 
@@ -175,7 +175,7 @@ export const DASHBOARD_ACCORDION: AccordionItem[] = [
   },
   {
     q: "How do I book tutoring from here?",
-    a: "Use Book a session and pick your tier on the form. Adam follows up by call or email with times and pricing for your level.",
+    a: "Use Book a session on the homepage. Adam or Alan follows up by call or email with times. Your first session is free for new clients.",
   },
   {
     q: "Something looks wrong on my progress",
@@ -189,19 +189,19 @@ export const BOOK_PAGE_ACCORDION: AccordionItem[] = [
     a: PRICING_FAQ_HOW_MUCH,
   },
   {
-    q: "What are the three tiers?",
+    q: "What are the four tiers?",
     a: PRICING_FAQ_TIERS,
   },
   {
     q: "What subjects do you tutor?",
-    a: "K-6 foundations, pre-algebra through algebra II, geometry, SAT Math, AP Pre-Calc, AP Calc AB & BC, linear algebra, and multivariable calculus.",
+    a: "K-5 foundations, pre-algebra through algebra II, geometry, SAT & ACT Math, AP Pre-Calc, AP Calc AB & BC, linear algebra, and multivariable calculus across four tiers.",
   },
   {
     q: "How long is a session?",
     a: "Most sessions run 45-60 minutes. Shorter sessions work for a quick question.",
   },
   {
-    q: "How quickly will Adam reply?",
+    q: "How quickly will Adam or Alan reply?",
     a: "Usually within a day. On busy school days, allow up to 48 hours.",
   },
 ];

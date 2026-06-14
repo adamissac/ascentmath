@@ -8,7 +8,7 @@ import Reveal from "../../components/Reveal";
 export const metadata: Metadata = {
   title: "About",
   description:
-    "Adam Issac is a math tutor and creator of Adam's Alphabet: paid 1-on-1 tutoring in three tiers (K-6, middle school, high school & college) with rates confirmed on call or email, plus free Grades 6-8 study paths.",
+    "Adam Issac and Alan Mozhoor co-founded Adam's Alphabet: paid 1-on-1 tutoring in four tiers (K-5, middle school, high school & SAT/ACT, college) with a free first session for new clients, plus free Grades 6-8 study paths.",
 };
 
 export default function AboutPage() {

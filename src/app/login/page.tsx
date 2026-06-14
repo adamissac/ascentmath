@@ -106,9 +106,9 @@ function LoginForm() {
     <AuthShell
       eyebrow="Welcome back"
       title="Log in to your account."
-      subtitle="Pick up where you left off and book paid 1-on-1 sessions with Adam."
+      subtitle="Pick up where you left off and book paid 1-on-1 sessions with Adam & Alan."
       panelTitle="Pick up right where you left off."
-      panelSubtitle="Accounts are free. Book paid tutoring anytime; sign in to save progress on self-paced study paths."
+      panelSubtitle="Accounts are free. Book paid tutoring with Adam & Alan anytime; sign in to save progress on self-paced study paths."
       footer={
         <p>
           New here?{" "}

@@ -4,6 +4,12 @@ import { useEffect, useRef, useState } from "react";
 import Button from "./Button";
 import StudyPathsLink from "./StudyPathsLink";
 import {
+  buildBookingMailtoLink,
+  REPLY_TIME_LINE,
+  TUTOR_EMAILS_DISPLAY,
+  TUTOR_NAMES_SHORT,
+} from "../data/site-team";
+import {
   SESSION_TYPE_LABELS,
   type SessionType,
 } from "../lib/contactEmail";
@@ -30,7 +36,7 @@ const INITIAL: FormState = {
   website: "",
 };
 
-const FALLBACK_RECIPIENT = "adamissac08@gmail.com";
+const FALLBACK_RECIPIENTS = TUTOR_EMAILS_DISPLAY;
 
 const SESSION_TYPES = Object.keys(SESSION_TYPE_LABELS) as SessionType[];
 
@@ -77,7 +83,7 @@ export default function ContactForm() {
   const [status, setStatus] = useState<Status>("idle");
   const [errorMsg, setErrorMsg] = useState<string | null>(null);
   const [configured, setConfigured] = useState<boolean | null>(null);
-  const [recipient, setRecipient] = useState(FALLBACK_RECIPIENT);
+  const [recipientsDisplay, setRecipientsDisplay] = useState(FALLBACK_RECIPIENTS);
   const submittingRef = useRef(false);
 
   useEffect(() => {
@@ -91,8 +97,10 @@ export default function ContactForm() {
       .then((data) => {
         if (cancelled) return;
         setConfigured(Boolean(data?.configured));
-        if (typeof data?.recipient === "string" && data.recipient) {
-          setRecipient(data.recipient);
+        if (Array.isArray(data?.recipients) && data.recipients.length > 0) {
+          setRecipientsDisplay(data.recipients.join(" · "));
+        } else if (typeof data?.recipient === "string" && data.recipient) {
+          setRecipientsDisplay(data.recipient);
         }
       })
       .catch(() => {
@@ -199,16 +207,23 @@ export default function ContactForm() {
             Direct sending is temporarily unavailable
           </p>
           <p className="caption text-[var(--color-ink-muted)] mt-1 leading-relaxed">
-            You can still reach Adam directly at the address below.
+            You can still reach {TUTOR_NAMES_SHORT} directly at the addresses below, or{" "}
+            <a
+              href={buildBookingMailtoLink("I'd like to book a tutoring session.\n\n")}
+              className="link font-semibold"
+            >
+              email us instead
+            </a>
+            .
           </p>
-          <CopyableEmail email={recipient} className="mt-2" />
+          <CopyableEmail email={recipientsDisplay} className="mt-2" />
         </div>
       )}
 
       <form onSubmit={onSubmit} noValidate className="grid gap-4">
         {/* Session type pills */}
         <fieldset className="m-0 border-0 p-0">
-          <legend className="label">What can Adam help with?</legend>
+          <legend className="label">What can {TUTOR_NAMES_SHORT} help with?</legend>
           <div className="flex flex-wrap gap-2" role="radiogroup" aria-label="Session type">
             {SESSION_TYPES.map((t) => {
               const active = form.sessionType === t;
@@ -341,9 +356,9 @@ export default function ContactForm() {
             </p>
             <p className="caption text-[var(--color-ink-muted)] mt-1">{errorMsg}</p>
             <p className="caption text-[var(--color-ink-muted)] mt-2">
-              Or reach Adam directly:
+              Or reach {TUTOR_NAMES_SHORT} directly:
             </p>
-            <CopyableEmail email={recipient} className="mt-1" />
+            <CopyableEmail email={recipientsDisplay} className="mt-1" />
           </div>
         )}
 
@@ -358,8 +373,8 @@ export default function ContactForm() {
         </Button>
 
         <p className="caption text-center text-[var(--color-ink-muted)] leading-relaxed">
-          Sent to <span className="font-medium text-[var(--color-ink)]">{recipient}</span>.
-          Adam replies within 1–2 days.
+          Sent to <span className="font-medium text-[var(--color-ink)]">{recipientsDisplay}</span>.{" "}
+          {REPLY_TIME_LINE}
         </p>
       </form>
     </>
@@ -430,12 +445,13 @@ function SuccessPanel({
         Request sent{name ? `, ${name.split(" ")[0]}` : ""}
       </h3>
       <p className="small text-[var(--color-ink-muted)] mt-3 max-w-sm mx-auto leading-relaxed">
-        Adam will reply to <strong className="text-[var(--color-ink)]">{email}</strong> within
-        1–2 days.
+        {TUTOR_NAMES_SHORT} will reply to <strong className="text-[var(--color-ink)]">{email}</strong>.{" "}
+        {REPLY_TIME_LINE}
       </p>
 
       <ul className="mt-7 grid gap-3 text-left max-w-sm mx-auto">
         <SuccessRow label="Request type" value={sessionType} />
+        <SuccessRow label="Sent to" value={TUTOR_EMAILS_DISPLAY} />
         <SuccessRow label="Reply time" value="Within 1–2 days" />
       </ul>
 

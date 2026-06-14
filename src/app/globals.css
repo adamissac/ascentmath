@@ -191,6 +191,9 @@ body {
 
 :root {
   --ease-smooth: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-reveal: cubic-bezier(0.22, 1, 0.36, 1);
+  --reveal-duration: 0.55s;
+  --reveal-duration-fast: 0.45s;
 }
 
 /* Hero copy. always readable; motion is transform-only */
@@ -524,15 +527,20 @@ body {
 }
 
 /* ---- Scroll reveals: hidden until in view, then animate in ---- */
+.reveal-await-rise,
+.reveal-stagger.reveal-await-rise > * {
+  opacity: 0;
+  transform: translate3d(0, 14px, 0);
+}
 .reveal-await-up,
 .reveal-stagger.reveal-await-up > * {
   opacity: 0;
-  transform: translate3d(0, 28px, 0);
+  transform: translate3d(0, 16px, 0);
 }
 .reveal-await-up-lg,
 .reveal-stagger.reveal-await-up-lg > * {
   opacity: 0;
-  transform: translate3d(0, 36px, 0);
+  transform: translate3d(0, 22px, 0);
 }
 .reveal-await-fade,
 .reveal-stagger.reveal-await-fade > * {
@@ -541,34 +549,44 @@ body {
 .reveal-await-left,
 .reveal-stagger.reveal-await-left > * {
   opacity: 0;
-  transform: translate3d(-24px, 0, 0);
+  transform: translate3d(-14px, 0, 0);
 }
 .reveal-await-right,
 .reveal-stagger.reveal-await-right > * {
   opacity: 0;
-  transform: translate3d(24px, 0, 0);
+  transform: translate3d(14px, 0, 0);
 }
 .reveal-await-scale,
 .reveal-stagger.reveal-await-scale > * {
   opacity: 0;
-  transform: translate3d(0, 20px, 0) scale(0.96);
+  transform: translate3d(0, 12px, 0) scale(0.98);
 }
 .reveal-await-blur,
 .reveal-stagger.reveal-await-blur > * {
   opacity: 0;
-  filter: blur(8px);
-  transform: translate3d(0, 24px, 0);
+  filter: blur(4px);
+  transform: translate3d(0, 14px, 0);
 }
 .reveal-await-pop,
 .reveal-stagger.reveal-await-pop > * {
   opacity: 0;
-  transform: translate3d(0, 32px, 0) scale(0.94);
+  transform: translate3d(0, 18px, 0) scale(0.97);
 }
 
+@keyframes reveal-rise {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 14px, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
 @keyframes reveal-up {
   from {
     opacity: 0;
-    transform: translate3d(0, 28px, 0);
+    transform: translate3d(0, 16px, 0);
   }
   to {
     opacity: 1;
@@ -578,7 +596,7 @@ body {
 @keyframes reveal-up-lg {
   from {
     opacity: 0;
-    transform: translate3d(0, 36px, 0);
+    transform: translate3d(0, 22px, 0);
   }
   to {
     opacity: 1;
@@ -596,7 +614,7 @@ body {
 @keyframes reveal-left {
   from {
     opacity: 0;
-    transform: translate3d(-24px, 0, 0);
+    transform: translate3d(-14px, 0, 0);
   }
   to {
     opacity: 1;
@@ -606,7 +624,7 @@ body {
 @keyframes reveal-right {
   from {
     opacity: 0;
-    transform: translate3d(24px, 0, 0);
+    transform: translate3d(14px, 0, 0);
   }
   to {
     opacity: 1;
@@ -616,7 +634,7 @@ body {
 @keyframes reveal-scale {
   from {
     opacity: 0;
-    transform: translate3d(0, 20px, 0) scale(0.96);
+    transform: translate3d(0, 12px, 0) scale(0.98);
   }
   to {
     opacity: 1;
@@ -626,8 +644,8 @@ body {
 @keyframes reveal-blur {
   from {
     opacity: 0;
-    filter: blur(8px);
-    transform: translate3d(0, 24px, 0);
+    filter: blur(4px);
+    transform: translate3d(0, 14px, 0);
   }
   to {
     opacity: 1;
@@ -638,7 +656,7 @@ body {
 @keyframes reveal-pop {
   from {
     opacity: 0;
-    transform: translate3d(0, 32px, 0) scale(0.94);
+    transform: translate3d(0, 18px, 0) scale(0.97);
   }
   to {
     opacity: 1;
@@ -669,31 +687,35 @@ body {
 .ambient-glyph--delay { animation-delay: -4s; }
 .ambient-glyph--delay-2 { animation-delay: -9s; }
 
+.reveal-animate-rise {
+  animation: reveal-rise var(--reveal-duration) var(--ease-reveal) forwards;
+}
 .reveal-animate-up {
-  animation: reveal-up 0.65s var(--ease-smooth) forwards;
+  animation: reveal-up var(--reveal-duration) var(--ease-reveal) forwards;
 }
 .reveal-animate-up-lg {
-  animation: reveal-up-lg 0.7s var(--ease-smooth) forwards;
+  animation: reveal-up-lg var(--reveal-duration) var(--ease-reveal) forwards;
 }
 .reveal-animate-fade {
-  animation: reveal-fade 0.6s var(--ease-smooth) forwards;
+  animation: reveal-fade var(--reveal-duration-fast) var(--ease-reveal) forwards;
 }
 .reveal-animate-left {
-  animation: reveal-left 0.65s var(--ease-smooth) forwards;
+  animation: reveal-left var(--reveal-duration) var(--ease-reveal) forwards;
 }
 .reveal-animate-right {
-  animation: reveal-right 0.65s var(--ease-smooth) forwards;
+  animation: reveal-right var(--reveal-duration) var(--ease-reveal) forwards;
 }
 .reveal-animate-scale {
-  animation: reveal-scale 0.65s var(--ease-smooth) forwards;
+  animation: reveal-scale var(--reveal-duration) var(--ease-reveal) forwards;
 }
 .reveal-animate-blur {
-  animation: reveal-blur 0.75s var(--ease-smooth) forwards;
+  animation: reveal-blur var(--reveal-duration) var(--ease-reveal) forwards;
 }
 .reveal-animate-pop {
-  animation: reveal-pop 0.7s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  animation: reveal-pop var(--reveal-duration) var(--ease-reveal) forwards;
 }
 
+.reveal-stagger-animate-rise > *,
 .reveal-stagger-animate-up > *,
 .reveal-stagger-animate-scale > *,
 .reveal-stagger-animate-left > *,
@@ -702,24 +724,28 @@ body {
 .reveal-stagger-animate-pop > * {
   animation-fill-mode: forwards;
 }
+.reveal-stagger-animate-rise > * {
+  animation: reveal-rise var(--reveal-duration-fast) var(--ease-reveal) forwards;
+}
 .reveal-stagger-animate-up > * {
-  animation: reveal-up 0.6s var(--ease-smooth) forwards;
+  animation: reveal-up var(--reveal-duration-fast) var(--ease-reveal) forwards;
 }
 .reveal-stagger-animate-scale > * {
-  animation: reveal-scale 0.6s var(--ease-smooth) forwards;
+  animation: reveal-scale var(--reveal-duration-fast) var(--ease-reveal) forwards;
 }
 .reveal-stagger-animate-left > * {
-  animation: reveal-left 0.65s var(--ease-smooth) forwards;
+  animation: reveal-left var(--reveal-duration) var(--ease-reveal) forwards;
 }
 .reveal-stagger-animate-right > * {
-  animation: reveal-right 0.65s var(--ease-smooth) forwards;
+  animation: reveal-right var(--reveal-duration) var(--ease-reveal) forwards;
 }
 .reveal-stagger-animate-blur > * {
-  animation: reveal-blur 0.7s var(--ease-smooth) forwards;
+  animation: reveal-blur var(--reveal-duration) var(--ease-reveal) forwards;
 }
 .reveal-stagger-animate-pop > * {
-  animation: reveal-pop 0.7s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  animation: reveal-pop var(--reveal-duration) var(--ease-reveal) forwards;
 }
+.reveal-stagger-animate-rise > *:nth-child(1),
 .reveal-stagger-animate-up > *:nth-child(1),
 .reveal-stagger-animate-scale > *:nth-child(1),
 .reveal-stagger-animate-left > *:nth-child(1),
@@ -728,53 +754,70 @@ body {
 .reveal-stagger-animate-pop > *:nth-child(1) {
   animation-delay: 0ms;
 }
+.reveal-stagger-animate-rise > *:nth-child(2),
 .reveal-stagger-animate-up > *:nth-child(2),
 .reveal-stagger-animate-scale > *:nth-child(2),
 .reveal-stagger-animate-left > *:nth-child(2),
 .reveal-stagger-animate-right > *:nth-child(2),
 .reveal-stagger-animate-blur > *:nth-child(2),
 .reveal-stagger-animate-pop > *:nth-child(2) {
-  animation-delay: 70ms;
+  animation-delay: 45ms;
 }
+.reveal-stagger-animate-rise > *:nth-child(3),
 .reveal-stagger-animate-up > *:nth-child(3),
 .reveal-stagger-animate-scale > *:nth-child(3),
 .reveal-stagger-animate-left > *:nth-child(3),
 .reveal-stagger-animate-right > *:nth-child(3),
 .reveal-stagger-animate-blur > *:nth-child(3),
 .reveal-stagger-animate-pop > *:nth-child(3) {
-  animation-delay: 140ms;
+  animation-delay: 90ms;
 }
+.reveal-stagger-animate-rise > *:nth-child(4),
 .reveal-stagger-animate-up > *:nth-child(4),
 .reveal-stagger-animate-scale > *:nth-child(4),
 .reveal-stagger-animate-left > *:nth-child(4),
 .reveal-stagger-animate-right > *:nth-child(4),
 .reveal-stagger-animate-blur > *:nth-child(4),
 .reveal-stagger-animate-pop > *:nth-child(4) {
-  animation-delay: 210ms;
+  animation-delay: 135ms;
 }
+.reveal-stagger-animate-rise > *:nth-child(5),
 .reveal-stagger-animate-up > *:nth-child(5),
 .reveal-stagger-animate-scale > *:nth-child(5),
 .reveal-stagger-animate-left > *:nth-child(5),
 .reveal-stagger-animate-right > *:nth-child(5),
 .reveal-stagger-animate-blur > *:nth-child(5),
 .reveal-stagger-animate-pop > *:nth-child(5) {
-  animation-delay: 280ms;
+  animation-delay: 180ms;
 }
+.reveal-stagger-animate-rise > *:nth-child(6),
 .reveal-stagger-animate-up > *:nth-child(6),
 .reveal-stagger-animate-scale > *:nth-child(6),
 .reveal-stagger-animate-left > *:nth-child(6),
 .reveal-stagger-animate-right > *:nth-child(6),
 .reveal-stagger-animate-blur > *:nth-child(6),
 .reveal-stagger-animate-pop > *:nth-child(6) {
-  animation-delay: 350ms;
+  animation-delay: 225ms;
 }
+.reveal-stagger-animate-rise > *:nth-child(n + 7),
 .reveal-stagger-animate-up > *:nth-child(n + 7),
 .reveal-stagger-animate-scale > *:nth-child(n + 7),
 .reveal-stagger-animate-left > *:nth-child(n + 7),
 .reveal-stagger-animate-right > *:nth-child(n + 7),
 .reveal-stagger-animate-blur > *:nth-child(n + 7),
 .reveal-stagger-animate-pop > *:nth-child(n + 7) {
-  animation-delay: 420ms;
+  animation-delay: 270ms;
+}
+
+.tutor-photo-frame {
+  width: 11rem;
+  height: 11rem;
+}
+@media (min-width: 640px) {
+  .tutor-photo-frame {
+    width: 12rem;
+    height: 12rem;
+  }
 }
 
 /* ---- Hero canvas wrap ---- */

@@ -9,7 +9,7 @@ const MAX: Record<Size, string> = {
   md: "max-w-5xl",
   lg: "max-w-6xl",
   xl: "max-w-7xl",
-  "2xl": "max-w-[90rem]",
+  "2xl": "max-w-[100rem]",
 };
 
 export default function Container({

@@ -3,6 +3,8 @@
  * Shared by the API route and health checks.
  */
 
+import { ADAM_EMAIL, ALAN_EMAIL, TUTOR_EMAILS } from "../data/site-team";
+
 const PLACEHOLDER_KEYS = new Set([
   "",
   "re_yourApiKeyHere",
@@ -10,8 +12,21 @@ const PLACEHOLDER_KEYS = new Set([
   "re_xxxxxxxx",
 ]);
 
+/** All booking inboxes — comma-separated env or both tutor emails. */
+export function getBookingRecipients(): string[] {
+  const raw = process.env.BOOKING_RECIPIENT_EMAIL?.trim();
+  if (raw) {
+    return raw
+      .split(",")
+      .map((e) => e.trim())
+      .filter(Boolean);
+  }
+  return [...TUTOR_EMAILS];
+}
+
+/** @deprecated Use getBookingRecipients(). Returns the primary inbox. */
 export function getBookingRecipient(): string {
-  return process.env.BOOKING_RECIPIENT_EMAIL?.trim() || "adamissac08@gmail.com";
+  return getBookingRecipients()[0] ?? ADAM_EMAIL;
 }
 
 export function getBookingFromEmail(): string {
@@ -30,7 +45,7 @@ export function isResendConfigured(): boolean {
 export function bookingSetupHint(): string {
   return (
     "Contact email is not configured. Add RESEND_API_KEY to .env.local " +
-    "(run npm run book:setup), verify adamissac08@gmail.com in Resend, " +
+    `(run npm run book:setup), verify ${ADAM_EMAIL} and ${ALAN_EMAIL} in Resend, ` +
     "then restart the dev server."
   );
 }

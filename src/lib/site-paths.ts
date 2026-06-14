@@ -1,4 +1,4 @@
-/** Homepage Adam credentials block (below hero). */
+/** Homepage Adam & Alan credentials block (below hero). */
 export const CREDENTIALS_HREF = "/#credentials";
 
 /** Homepage section for free Grades 6–8 self-paced paths (former /mathematics hub). */

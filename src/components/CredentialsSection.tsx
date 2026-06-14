@@ -6,7 +6,15 @@ import Container from "./Container";
 import HeroCanvas from "./HeroCanvas";
 import Reveal from "./Reveal";
 import BookSessionLink from "./BookSessionLink";
-import { MATH_CREDENTIALS, TUTOR_INTRO } from "../data/credentials";
+import {
+  ALAN_CREDENTIALS,
+  ALAN_INTRO,
+  MATH_CREDENTIALS,
+  TUTOR_INTRO,
+  type MathCredential,
+  type TutorIntro,
+} from "../data/credentials";
+import { TUTOR_EMAILS_DISPLAY } from "../data/site-team";
 
 const BLUE = "var(--color-brand-500)";
 const INK = "var(--color-ink-cool)";
@@ -26,84 +34,115 @@ export default function CredentialsSection() {
       <HeroCanvas />
 
       <Container size="lg" className="relative z-[1] py-10 sm:py-12 lg:py-14">
-        <div className="grid items-start gap-8 sm:gap-10 lg:grid-cols-[auto_minmax(0,1fr)] lg:grid-rows-[auto_auto] lg:gap-x-12 lg:gap-y-7 xl:gap-x-14">
-          <Reveal variant="left" className="flex justify-center lg:row-start-1 lg:justify-start">
-            <div
-              className="relative size-44 shrink-0 overflow-hidden rounded-full sm:size-48"
-              style={{
-                boxShadow: "0 0 0 3px var(--color-brand-500), 0 6px 24px rgba(42, 75, 203, 0.2)",
-              }}
-            >
-              <Image
-                src="/adampic.jpg"
-                alt="Adam Issac, math tutor"
-                fill
-                sizes="(max-width: 1023px) 192px, 192px"
-                className="object-cover"
-                style={{ objectPosition: "50% 22%" }}
-                priority
-              />
-            </div>
-          </Reveal>
+        <div className="grid gap-12 lg:gap-14">
+          <TutorProfileRow
+            intro={TUTOR_INTRO}
+            credentials={MATH_CREDENTIALS}
+            photoSrc="/adampic.jpg"
+            photoAlt="Adam Issac, math tutor"
+            photoPosition="50% 22%"
+          />
 
-          <Reveal
-            variant="right"
-            className="flex min-w-0 flex-col text-center lg:col-start-2 lg:row-start-1 lg:text-left"
+          <div className="border-t border-[rgba(26,26,46,0.1)]" aria-hidden />
+
+          <TutorProfileRow
+            intro={ALAN_INTRO}
+            credentials={ALAN_CREDENTIALS}
+            initials="AM"
+          />
+        </div>
+
+        <Reveal variant="fade" delay={80} as="footer"
+          className="mt-10 flex flex-col gap-1 border-t border-[rgba(26,26,46,0.1)] pt-6 text-center text-[0.8125rem] sm:flex-row sm:flex-wrap sm:items-center sm:justify-center sm:gap-x-3 lg:justify-start lg:text-left"
+          style={{ color: MUTED }}
+        >
+          <span className="select-all font-semibold" style={{ color: BLUE }}>
+            {TUTOR_EMAILS_DISPLAY}
+          </span>
+          <span className="hidden sm:inline text-[var(--color-ink-soft)]" aria-hidden>
+            ·
+          </span>
+          <span>Zoom or in-person in the Atlanta area</span>
+        </Reveal>
+      </Container>
+    </section>
+  );
+}
+
+function TutorProfileRow({
+  intro,
+  credentials,
+  photoSrc,
+  photoAlt,
+  photoPosition,
+  initials,
+}: {
+  intro: TutorIntro;
+  credentials: readonly MathCredential[];
+  photoSrc?: string;
+  photoAlt?: string;
+  photoPosition?: string;
+  initials?: string;
+}) {
+  return (
+    <Reveal variant="rise">
+      <div className="grid items-start gap-8 sm:gap-10 lg:grid-cols-[auto_minmax(0,1fr)] lg:gap-x-12 xl:gap-x-14">
+        <div className="flex justify-center lg:justify-start">
+          <TutorPhotoCircle
+            photoSrc={photoSrc}
+            photoAlt={photoAlt}
+            photoPosition={photoPosition}
+            initials={initials}
+          />
+        </div>
+
+        <div className="flex min-w-0 flex-col text-center lg:text-left">
+          <h2
+            id={intro.name === "Adam" ? "credentials" : undefined}
+            tabIndex={intro.name === "Adam" ? -1 : undefined}
+            className="font-display font-bold tracking-[-0.03em] focus:outline-none"
+            style={{
+              color: INK,
+              fontSize: "clamp(1.75rem, 4vw, 2.25rem)",
+              lineHeight: 1.12,
+            }}
           >
-            <h2
-              id="credentials"
-              tabIndex={-1}
-              className="font-display font-bold tracking-[-0.03em] focus:outline-none"
-              style={{
-                color: INK,
-                fontSize: "clamp(1.75rem, 4vw, 2.25rem)",
-                lineHeight: 1.12,
-              }}
-            >
-              <span className="block">{TUTOR_INTRO.title}</span>
-              <span className="block">{TUTOR_INTRO.titleMuted}</span>
-            </h2>
-            <p className="mt-4 text-sm font-medium tracking-[0.02em]" style={{ color: BLUE }}>
-              {TUTOR_INTRO.meta}
-            </p>
-            <p
-              className="mx-auto mt-5 max-w-[40rem] text-[1.0625rem] lg:mx-0"
-              style={{ color: BODY, lineHeight: 1.8 }}
-            >
-              {TUTOR_INTRO.bio}
-            </p>
-
-            <Reveal
-              as="ul"
-              stagger
-              variant="fade"
-              className="mx-auto mt-5 max-w-[40rem] list-none space-y-1 text-left lg:mx-0"
-              aria-label="Math credentials"
-            >
-              {MATH_CREDENTIALS.map((item) => (
-                <li
-                  key={item.label}
-                  className="text-[0.9375rem] leading-snug"
-                  style={{ color: INK }}
-                >
-                  <span className="text-[var(--color-ink-soft)]" aria-hidden>
-                    ·
-                  </span>{" "}
-                  <span className="font-semibold tabular-nums" style={{ color: BLUE }}>
-                    {item.value}
-                  </span>{" "}
-                  <span className="font-medium">{item.label}</span>
-                  <span style={{ color: MUTED }}> · {item.detail}</span>
-                </li>
-              ))}
-            </Reveal>
-          </Reveal>
-
-          <Reveal
-            variant="up"
-            delay={80}
-            className="flex flex-col items-stretch gap-3 sm:flex-row sm:items-center sm:justify-center lg:col-start-2 lg:row-start-2 lg:justify-start"
+            <span className="block">{intro.title}</span>
+            <span className="block">{intro.titleMuted}</span>
+          </h2>
+          <p className="mt-4 text-sm font-medium tracking-[0.02em]" style={{ color: BLUE }}>
+            {intro.meta}
+          </p>
+          <p
+            className="mx-auto mt-5 max-w-[40rem] text-[1.0625rem] lg:mx-0"
+            style={{ color: BODY, lineHeight: 1.8 }}
           >
+            {intro.bio}
+          </p>
+
+          <ul
+            className="mx-auto mt-5 max-w-[40rem] list-none space-y-1 text-left lg:mx-0"
+            aria-label={`${intro.name} credentials`}
+          >
+            {credentials.map((item) => (
+              <li
+                key={item.label}
+                className="text-[0.9375rem] leading-snug"
+                style={{ color: INK }}
+              >
+                <span className="text-[var(--color-ink-soft)]" aria-hidden>
+                  ·
+                </span>{" "}
+                <span className="font-semibold tabular-nums" style={{ color: BLUE }}>
+                  {item.value}
+                </span>{" "}
+                <span className="font-medium">{item.label}</span>
+                <span style={{ color: MUTED }}> · {item.detail}</span>
+              </li>
+            ))}
+          </ul>
+
+          <div className="mt-7 flex flex-col items-stretch gap-3 sm:flex-row sm:items-center sm:justify-center lg:justify-start">
             <BookSessionLink
               className={`${btnBase} hover:bg-[var(--color-brand-600)]`}
               style={{
@@ -116,31 +155,60 @@ export default function CredentialsSection() {
               Book a session
               <Arrow />
             </BookSessionLink>
-            <Link
-              href="/about"
-              className={`${btnBase} border border-[rgba(26,26,46,0.12)] bg-white hover:border-[rgba(26,26,46,0.22)] hover:bg-[#F7F7F5]`}
-              style={{ borderRadius: BTN_RADIUS, color: INK }}
-            >
-              My story
-              <Arrow />
-            </Link>
-          </Reveal>
+            {intro.storyHref && (
+              <Link
+                href={intro.storyHref}
+                className={`${btnBase} border border-[rgba(26,26,46,0.12)] bg-white hover:border-[rgba(26,26,46,0.22)] hover:bg-[#F7F7F5]`}
+                style={{ borderRadius: BTN_RADIUS, color: INK }}
+              >
+                My story
+                <Arrow />
+              </Link>
+            )}
+          </div>
         </div>
+      </div>
+    </Reveal>
+  );
+}
 
-        <Reveal variant="fade" delay={120} as="footer"
-          className="mt-8 flex flex-col gap-1 border-t border-[rgba(26,26,46,0.1)] pt-6 text-center text-[0.8125rem] sm:flex-row sm:flex-wrap sm:items-center sm:justify-center sm:gap-x-3 lg:justify-start lg:text-left"
-          style={{ color: MUTED }}
+function TutorPhotoCircle({
+  photoSrc,
+  photoAlt,
+  photoPosition,
+  initials,
+}: {
+  photoSrc?: string;
+  photoAlt?: string;
+  photoPosition?: string;
+  initials?: string;
+}) {
+  return (
+    <div
+      className="tutor-photo-frame relative shrink-0 overflow-hidden rounded-full"
+      style={{
+        boxShadow: "0 0 0 3px var(--color-brand-500), 0 6px 24px rgba(42, 75, 203, 0.2)",
+      }}
+    >
+      {photoSrc ? (
+        <Image
+          src={photoSrc}
+          alt={photoAlt ?? "Tutor photo"}
+          fill
+          sizes="(max-width: 1023px) 176px, 192px"
+          className="object-cover"
+          style={{ objectPosition: photoPosition ?? "50% 50%" }}
+          priority={photoSrc === "/adampic.jpg"}
+        />
+      ) : (
+        <div
+          className="flex h-full w-full items-center justify-center bg-[var(--color-brand-50)] font-display text-2xl font-bold text-[var(--color-brand-600)]"
+          aria-hidden
         >
-          <span className="select-all font-semibold" style={{ color: BLUE }}>
-            {TUTOR_INTRO.email}
-          </span>
-          <span className="hidden sm:inline text-[var(--color-ink-soft)]" aria-hidden>
-            ·
-          </span>
-          <span>Zoom or in-person in the Atlanta area</span>
-        </Reveal>
-      </Container>
-    </section>
+          {initials}
+        </div>
+      )}
+    </div>
   );
 }
 

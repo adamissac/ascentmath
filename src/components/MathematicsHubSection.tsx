@@ -193,7 +193,7 @@ export default function MathematicsHubSection() {
             <HashLink href={BOOK_SESSION_HREF} className="font-semibold hover:underline" style={{ color: BLUE }}>
               Book a tutoring session
             </HashLink>{" "}
-            for K-6, middle school, or high school, AP, and college math.
+            for K-5, middle school, high school & SAT/ACT, or college math.
           </p>
         </Reveal>
       </Container>

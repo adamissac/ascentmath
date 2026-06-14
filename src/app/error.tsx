@@ -21,7 +21,7 @@ export default function Error({
         <p className="eyebrow">Something went wrong</p>
         <h1 className="h-display mt-3">Oops - that didn&apos;t load.</h1>
         <p className="lede mt-4">
-          Try again, or head back home. If this keeps happening, let Adam know.
+          Try again, or head back home. If this keeps happening, let Adam or Alan know.
         </p>
         <div className="mt-7 btn-stack-mobile justify-center">
           <Button onClick={reset}>Try again</Button>

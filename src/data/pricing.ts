@@ -1,10 +1,10 @@
 /**
- * Tutoring tiers by grade band (no public dollar amounts).
- * Final rates are discussed by call or email based on course rigor.
+ * Tutoring tiers by grade band (no public dollar amounts on cards).
+ * hourlyRate is stored for internal reference and follow-up emails only.
  * Self-paced study paths on /mathematics stay free.
  */
 
-export type TutoringTierId = "tier1" | "tier2" | "tier3";
+export type TutoringTierId = "tier1" | "tier2" | "tier3" | "tier4";
 
 /** @deprecated Use TutoringTierId, kept for gradual migration in types only */
 export type SubjectLevelId = TutoringTierId;
@@ -12,6 +12,7 @@ export type SubjectLevelId = TutoringTierId;
 export type SubjectTopicGroup = {
   label: string;
   items: readonly string[];
+  highlightLabel?: boolean;
 };
 
 export type TutoringTier = {
@@ -22,15 +23,18 @@ export type TutoringTier = {
   accent: string;
   blurb: string;
   rigorNote: string;
+  hourlyRate: string;
   topicGroups: readonly SubjectTopicGroup[];
 };
+
+export const FIRST_SESSION_FREE = "Your first session is always free for new clients.";
 
 export const SELF_STUDY_FREE_NOTE =
   "Grades 6-8 self-paced study paths on this site are free, no account required.";
 
 /** Shown under the tier cards (homepage and anywhere tiers are listed). */
 export const TIER_PRICING_EXPLAINER =
-  "Book a session on this site. I'll reach out by call or email to confirm the rate for your tier, prices aren't listed here.";
+  "Book a session on this site. We'll reach out by call or email to confirm times and your tier — prices aren't listed here.";
 
 /** One-line version for hero footers, nav-adjacent UI, etc. */
 export const TIER_PRICING_SHORT =
@@ -38,29 +42,27 @@ export const TIER_PRICING_SHORT =
 
 /** Booking form, follow-up emails, and short footnotes. */
 export const PRICING_DISCUSSION_NOTE =
-  "After you book, I'll contact you by call or email with times and your tier's rate.";
+  "After you book, we'll contact you by call or email with times and your tier's rate.";
 
-export const PRICING_FAQ_HOW_MUCH = `${TIER_PRICING_EXPLAINER} ${SELF_STUDY_FREE_NOTE}`;
-
-/** Tier 3 card title (high school AP through college math). */
-export const TIER3_LABEL = "High school & college";
+export const PRICING_FAQ_HOW_MUCH = `${FIRST_SESSION_FREE} ${TIER_PRICING_EXPLAINER} ${SELF_STUDY_FREE_NOTE}`;
 
 /** Short phrase for tier lists in prose (booking copy, FAQs, etc.). */
-export const TIER3_PHRASE = "high school, AP, and college";
+export const TIER3_PHRASE = "high school, AP, SAT/ACT, and college";
 
 export const PRICING_FAQ_TIERS =
-  `Tier 1 is K-6, Tier 2 is middle school, Tier 3 is ${TIER3_PHRASE} math. Pick the tier that fits your class.`;
+  "Tier 1 is K-5 elementary math, Tier 2 is middle school, Tier 3 is high school & SAT/ACT, and Tier 4 is college / dual enrollment. Pick the tier that fits your class.";
 
 /** e.g. homepage tier explainer lines */
-export const TUTORING_TIERS_SUMMARY = `K-6, middle school, and ${TIER3_LABEL.toLowerCase()}`;
+export const TUTORING_TIERS_SUMMARY = "K-5, middle school, high school & SAT/ACT, and college";
 
 export const TUTORING_TIERS: readonly TutoringTier[] = [
   {
     id: "tier1",
     tierLabel: "Tier 1",
-    label: "K-6",
-    range: "K-6",
+    label: "Elementary math",
+    range: "K-5",
     accent: "bg-[var(--color-brand-400)]",
+    hourlyRate: "$30/hr",
     blurb: "Arithmetic, fractions, early geometry, and everything before pre-algebra.",
     rigorNote: "Foundational skills and homework support for elementary learners.",
     topicGroups: [
@@ -83,11 +85,12 @@ export const TUTORING_TIERS: readonly TutoringTier[] = [
   {
     id: "tier2",
     tierLabel: "Tier 2",
-    label: "Middle school",
+    label: "Middle school math",
     range: "Grades 6-8",
     accent: "bg-white/70",
+    hourlyRate: "$35/hr",
     blurb: "Pre-algebra through early algebra, ratios, and the geometry that shows up in middle school.",
-    rigorNote: "Where most students first hit abstract math, steady 1-on-1 help on school pacing.",
+    rigorNote: "Where most students first hit abstract math — steady 1-on-1 help on school pacing.",
     topicGroups: [
       {
         label: "Number & algebra",
@@ -111,37 +114,53 @@ export const TUTORING_TIERS: readonly TutoringTier[] = [
   {
     id: "tier3",
     tierLabel: "Tier 3",
-    label: TIER3_LABEL,
-    range: "Grades 9+ · college",
+    label: "High school courses",
+    range: "Grades 9-12 · SAT/ACT",
     accent: "bg-[var(--color-brand-300)]",
-    blurb:
-      "High school AP math through linear algebra and multivariable calc, courses I've taken myself.",
-    rigorNote: "Higher rigor: AP Pre-Calc, AP Calc, SAT Math, and Georgia Tech-level coursework.",
+    hourlyRate: "$40/hr",
+    blurb: "Algebra II through AP Calculus, plus SAT & ACT Math prep.",
+    rigorNote: "Higher rigor: AP Pre-Calc, AP Calc, and standardized test math.",
     topicGroups: [
       {
-        label: "AP Pre-Calculus",
+        label: "Core courses",
         items: [
-          "Functions & transformations",
-          "Trigonometry",
-          "Analytic geometry & conics",
+          "Algebra II & geometry",
+          "Pre-calculus",
+          "AP Calculus AB & BC",
         ],
       },
       {
-        label: "AP Calculus AB & BC",
+        label: "AP courses",
         items: [
-          "Limits, derivatives, and integrals",
-          "Series & sequences (BC)",
-          "Parametric & polar (BC)",
+          "AP Pre-Calculus",
+          "AP Calculus AB & BC",
+          "AP Statistics (on request)",
         ],
       },
       {
-        label: "Test prep & college",
+        label: "SAT & ACT Math",
+        highlightLabel: true,
         items: [
-          "SAT Math",
-          "Linear algebra",
-          "Multivariable calculus",
-          "Vector calculus topics",
+          "SAT Math strategies & practice",
+          "ACT Math prep",
+          "Timed practice and score review",
         ],
+      },
+    ],
+  },
+  {
+    id: "tier4",
+    tierLabel: "Tier 4",
+    label: "College / Dual Enrollment",
+    range: "College",
+    accent: "bg-[var(--color-accent-300)]",
+    hourlyRate: "$50/hr",
+    blurb: "Georgia Tech-level coursework and dual-enrollment math we've taken ourselves.",
+    rigorNote: "Linear algebra, multivariable calc, and intro CS math.",
+    topicGroups: [
+      {
+        label: "Courses",
+        items: ["MATH 1554", "MATH 2551", "CS 1301", "CS 1331"],
       },
     ],
   },

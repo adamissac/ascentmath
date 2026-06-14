@@ -9,6 +9,7 @@ import {
   PricingTierExplainer,
   SubjectLevelCards,
 } from "../components/PricingOverview";
+import { FIRST_SESSION_FREE, TUTORING_TIERS_SUMMARY } from "../data/pricing";
 import { GRADES } from "../data/units";
 
 const ALL_UNITS = GRADES.flatMap((g) => g.units);
@@ -26,20 +27,24 @@ export default function Home() {
         id="what-i-teach"
         variant="brand"
         size="md"
-        containerSize="xl"
+        containerSize="2xl"
         className="scroll-mt-[5.5rem]"
         reveal={false}
         faintSymbols
       >
-        <Reveal variant="blur" className="mx-auto max-w-3xl text-center">
+        <Reveal variant="fade" className="mx-auto max-w-3xl text-center">
           <p className="caption font-semibold tracking-[0.16em] uppercase text-[var(--color-accent-300)]">
-            What I teach
+            What we teach
           </p>
           <h2 className="font-display mt-3 text-2xl font-bold leading-[1.12] tracking-[-0.02em] text-white sm:text-4xl">
-            Three tiers by grade band.
+            Four tiers by grade band.
           </h2>
           <p className="mt-4 text-base leading-relaxed text-white/75 sm:text-lg">
-            Tier 1 is K-6, Tier 2 is middle school, and Tier 3 is high school, AP, and college math.
+            {TUTORING_TIERS_SUMMARY}. Pick the tier that matches your class — rates are confirmed when
+            you book.
+          </p>
+          <p className="mt-4 inline-flex rounded-full border border-white/25 bg-white/10 px-4 py-1.5 text-sm font-semibold text-[var(--color-accent-300)]">
+            {FIRST_SESSION_FREE}
           </p>
         </Reveal>
 
@@ -47,11 +52,11 @@ export default function Home() {
           <SubjectLevelCards variant="brand" />
         </div>
 
-        <Reveal variant="fade" delay={50} className="mt-10 lg:mt-12">
+        <Reveal variant="fade" delay={40} className="mt-10 lg:mt-12">
           <PricingTierExplainer variant="brand" />
         </Reveal>
 
-        <Reveal variant="pop" delay={90} className="mt-8">
+        <Reveal variant="rise" delay={70} className="mt-8">
           <PricingCtaRow variant="brand" />
         </Reveal>
       </ColorBand>

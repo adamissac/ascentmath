@@ -191,7 +191,7 @@ export default async function GradeLibrary({ params }: { params: Promise<Params>
             <h2 className="font-display font-bold text-2xl sm:text-3xl leading-[1.2]">
               Need help on something specific?
             </h2>
-            <p className="mt-2 text-white/75">Need help beyond these tracks? Book a paid tutoring session with Adam.</p>
+            <p className="mt-2 text-white/75">Need help beyond these tracks? Book a paid tutoring session with Adam & Alan — first session free.</p>
           </div>
           <div className="md:col-span-4 md:justify-self-end btn-stack-mobile md:flex-row md:justify-end">
             <Button href="/#book-session" rightIcon={<Arrow />}>Book a class</Button>
@@ -205,7 +205,7 @@ export default async function GradeLibrary({ params }: { params: Promise<Params>
 const STEPS: { title: string; body: string }[] = [
   { title: "Walkthrough", body: "A short, plain-language explainer with a worked example. Read it first to get the idea." },
   { title: "Video walkthrough", body: "One hand-picked video per topic - sometimes a second take - from teachers students actually like." },
-  { title: "Practice", body: "A printable worksheet from Adam or curated links to trusted external worksheet libraries." },
+  { title: "Practice", body: "A printable worksheet from Adam & Alan or curated links to trusted external worksheet libraries." },
   { title: "Quick quiz", body: "Two or three questions at the end of each topic, with explanations. Retake it as many times as you want." },
 ];
 

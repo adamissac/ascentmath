@@ -3,6 +3,8 @@
 import { useEffect, useState } from "react";
 import HashLink from "./HashLink";
 import HeroCanvas from "./HeroCanvas";
+import { FIRST_SESSION_FREE } from "../data/pricing";
+import { TUTOR_NAMES_SHORT } from "../data/site-team";
 import { BOOK_SESSION_HREF, STUDY_PATHS_HREF } from "../lib/site-paths";
 
 type HeroSectionProps = {
@@ -45,7 +47,7 @@ export default function HeroSection({ totalUnits }: HeroSectionProps) {
           <span
             className={`${rise} ${STAGGER[0]} inline-flex max-w-full items-center rounded-full border border-[#1a1a2e]/12 bg-[#1a1a2e]/[0.04] px-3.5 py-1.5 text-center text-[0.6875rem] font-semibold uppercase tracking-[0.14em] text-[var(--color-ink-cool-muted)]`}
           >
-            Math tutor · K through college · Paid sessions
+            Math tutors · {TUTOR_NAMES_SHORT} · K through college
           </span>
 
           <h1
@@ -62,9 +64,10 @@ export default function HeroSection({ totalUnits }: HeroSectionProps) {
           <p
             className={`${rise} ${STAGGER[2]} mt-6 w-full min-w-0 max-w-[32.5rem] text-[1.0625rem] leading-relaxed text-[var(--color-ink-cool-muted)] sm:text-lg`}
           >
-            I&apos;m Adam. I tutor pre-algebra through AP Pre-Calc, AP Calc, SAT Math, linear
-            algebra, and multivariable calc, plus K-6 basics. Book a paid 1-on-1 session, or use
-            my free Grades 6-8 study paths on your own.
+            We&apos;re Adam and Alan. We tutor pre-algebra through AP Pre-Calc, AP Calc, SAT Math,
+            linear algebra, and multivariable calc, plus K-5 and middle school basics. Book a paid
+            1-on-1 session — your first session is free — or use our free Grades 6-8 study paths on
+            your own.
           </p>
 
           <div
@@ -121,15 +124,15 @@ export default function HeroSection({ totalUnits }: HeroSectionProps) {
             <span className="text-[#1a1a2e]/25" aria-hidden>
               ·
             </span>
-            <span>Rates vary by tier</span>
+            <span>Four tutoring tiers</span>
             <span className="text-[#1a1a2e]/25" aria-hidden>
               ·
             </span>
-            <span>Confirmed on call or email</span>
+            <span>{FIRST_SESSION_FREE.split(".")[0]}</span>
             <span className="text-[#1a1a2e]/25" aria-hidden>
               ·
             </span>
-            <span>K-6 through multivariable calc</span>
+            <span>K-5 through multivariable calc</span>
           </p>
 
           <div
@@ -138,7 +141,7 @@ export default function HeroSection({ totalUnits }: HeroSectionProps) {
             <HeroStat value="30+" label="Students tutored" animate={ready} showDivider />
             <HeroStat value="2+" label="Years tutoring" animate={ready} showDivider />
             <HeroStat value={String(totalUnits)} label="Study units" animate={ready} showDivider />
-            <HeroStat value="3" label="Tutoring tiers" animate={ready} />
+            <HeroStat value="4" label="Tutoring tiers" animate={ready} />
           </div>
         </div>
       </div>

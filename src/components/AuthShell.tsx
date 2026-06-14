@@ -15,7 +15,7 @@ export default function AuthShell({
   subtitle,
   footer,
   children,
-  panelTitle = "Math tutoring with Adam.",
+  panelTitle = "Math tutoring with Adam & Alan.",
   panelSubtitle = "Sign in to book paid 1-on-1 sessions and track progress on free Grades 6-8 self-paced paths.",
 }: {
   eyebrow: string;
@@ -115,12 +115,12 @@ export default function AuthShell({
 
           <ul className="mt-10 grid gap-4">
             <Bullet>Save where you stop in every unit</Bullet>
-            <Bullet>Book paid 1-on-1 sessions with Adam</Bullet>
+            <Bullet>Book paid 1-on-1 sessions with Adam & Alan</Bullet>
             <Bullet>Never see an ad, ever</Bullet>
           </ul>
 
           <p className="mt-12 caption text-white/55">
-            Built by a student tutor in Atlanta, GA · Open to learners everywhere.
+            Built by student tutors in Atlanta, GA · Open to learners everywhere.
           </p>
         </div>
       </aside>

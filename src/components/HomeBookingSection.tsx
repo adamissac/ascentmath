@@ -1,6 +1,8 @@
 import Container from "./Container";
 import ContactForm from "./ContactForm";
 import Reveal from "./Reveal";
+import { FIRST_SESSION_FREE } from "../data/pricing";
+import { REPLY_TIME_LINE, TUTOR_NAMES_SHORT } from "../data/site-team";
 
 export default function HomeBookingSection() {
   return (
@@ -19,15 +21,16 @@ export default function HomeBookingSection() {
             Book a session
           </h2>
           <p className="mt-4 text-[0.9375rem] leading-relaxed text-[var(--color-ink-muted)] sm:text-base">
-            Tell me a bit about the student or your school and what you&apos;re looking for —
-            I&apos;ll reply within 1–2 days to set up tutoring, a class demo, or a partnership.
+            Tell us a bit about the student or your school and what you&apos;re looking for —{" "}
+            {TUTOR_NAMES_SHORT} {REPLY_TIME_LINE.toLowerCase()} to set up tutoring, a class demo, or
+            a partnership.
           </p>
-          <p className="mt-2 text-sm text-[var(--color-ink-soft)]">
-            Tutoring tiers and rates are covered above; pricing is confirmed by email.
+          <p className="mt-2 text-sm font-semibold text-[var(--color-brand-600)]">
+            {FIRST_SESSION_FREE}
           </p>
         </Reveal>
 
-        <Reveal variant="up" delay={60} className="mx-auto mt-10 w-full max-w-2xl min-w-0">
+        <Reveal variant="rise" delay={60} className="mx-auto mt-10 w-full max-w-2xl min-w-0">
           <div className="rounded-lg border border-[rgba(26,26,46,0.08)] bg-white p-5 shadow-[0_4px_24px_-8px_rgba(26,26,46,0.12)] sm:p-7 sm:px-8">
             <ContactForm />
           </div>

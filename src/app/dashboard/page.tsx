@@ -131,7 +131,7 @@ function Dashboard() {
 
             <p className="caption text-[var(--color-ink-muted)] leading-relaxed">
               Need to change your name, email, or password? Use the &ldquo;Forgot
-              password&rdquo; flow to reset, or contact Adam directly - full
+              password&rdquo; flow to reset, or contact Adam or Alan directly — full
               account-management UI is on the roadmap.
             </p>
           </Card>
@@ -147,7 +147,7 @@ function Dashboard() {
                   Study paths <span aria-hidden>→</span>
                 </StudyPathsLink>
                 <Link href="/about" className="btn btn-ghost btn-sm justify-between">
-                  About Adam <span aria-hidden>→</span>
+                  About us <span aria-hidden>→</span>
                 </Link>
               </div>
             </Card>
@@ -169,7 +169,7 @@ function Dashboard() {
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
         <div>
           <p className="caption font-semibold tracking-wider uppercase text-[var(--color-brand-300)]">Your sessions</p>
-          <h2 className="font-display font-bold text-xl sm:text-2xl mt-1 text-white">Book a session with Adam</h2>
+          <h2 className="font-display font-bold text-xl sm:text-2xl mt-1 text-white">Book a session with Adam & Alan</h2>
           <p className="small text-[#C8C9CC] mt-2 max-w-lg">Bring a topic from any unit - Zoom or in-person in the Atlanta area.</p>
         </div>
         <BookSessionLink className="btn btn-lg bg-white text-[var(--color-brand-700)] hover:bg-white/90 shrink-0 w-full sm:w-auto">

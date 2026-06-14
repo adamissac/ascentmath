@@ -3,6 +3,11 @@
 import Link from "next/link";
 import HashLink from "./HashLink";
 import { SITE_POSITIONING } from "../data/site-copy";
+import {
+  ADAM_EMAIL,
+  ALAN_EMAIL,
+  TUTOR_NAMES_SHORT,
+} from "../data/site-team";
 import { BOOK_SESSION_HREF, STUDY_PATHS_HREF } from "../lib/site-paths";
 
 const YEAR = new Date().getFullYear();
@@ -17,6 +22,9 @@ export default function Footer() {
             <Link href="/" className="font-display font-bold text-xl tracking-tight text-[var(--color-ink)]">
               Adam&apos;s Alphabet
             </Link>
+            <p className="mt-1 caption font-semibold text-[var(--color-brand-600)]">
+              {TUTOR_NAMES_SHORT}
+            </p>
             <p className="mt-3 small text-[var(--color-ink-muted)] max-w-md leading-relaxed">
               {SITE_POSITIONING}
             </p>
@@ -55,12 +63,13 @@ export default function Footer() {
               <h3 className="caption font-semibold text-[var(--color-ink)] uppercase tracking-wider">Connect</h3>
               <ul className="mt-3 space-y-2 small">
                 <li>
-                  <HashLink href={BOOK_SESSION_HREF} className="link">Contact Adam</HashLink>
+                  <HashLink href={BOOK_SESSION_HREF} className="link">Contact us</HashLink>
                 </li>
                 <li>
-                  <span className="select-all text-[var(--color-ink-muted)]">
-                    adamissac08@gmail.com
-                  </span>
+                  <a href={`mailto:${ADAM_EMAIL}`} className="link">Email Adam</a>
+                </li>
+                <li>
+                  <a href={`mailto:${ALAN_EMAIL}`} className="link">Email Alan</a>
                 </li>
               </ul>
             </div>
@@ -71,7 +80,7 @@ export default function Footer() {
 
         <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
           <p className="caption text-[var(--color-ink-soft)]">
-            © {YEAR} Adam&apos;s Alphabet · Paid tutoring · Free study paths
+            © {YEAR} Adam&apos;s Alphabet · {TUTOR_NAMES_SHORT} · Paid tutoring · Free study paths
           </p>
           <p className="caption text-[var(--color-ink-soft)]">
             Designed for extra help - not limited to students in Georgia.

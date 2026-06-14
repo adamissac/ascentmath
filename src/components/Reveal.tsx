@@ -9,7 +9,7 @@ import {
   type ReactNode,
 } from "react";
 
-type RevealVariant = "up" | "up-lg" | "fade" | "left" | "right" | "scale" | "blur" | "pop";
+type RevealVariant = "rise" | "up" | "up-lg" | "fade" | "left" | "right" | "scale" | "blur" | "pop";
 
 function isInViewport(el: HTMLElement, marginRatio = 0.12) {
   const rect = el.getBoundingClientRect();
@@ -23,7 +23,7 @@ export default function Reveal({
   as: Tag = "div",
   className = "",
   delay = 0,
-  variant = "up",
+  variant = "rise",
   stagger = false,
   threshold = 0.12,
   rootMargin = "0px 0px -10% 0px",

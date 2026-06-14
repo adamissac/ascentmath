@@ -50,7 +50,7 @@ export default function ColorBand({
 }: {
   variant?: BandVariant;
   size?: BandSize;
-  containerSize?: "sm" | "md" | "lg" | "xl";
+  containerSize?: "sm" | "md" | "lg" | "xl" | "2xl";
   reveal?: boolean;
   minimalBackdrop?: boolean;
   faintSymbols?: boolean;

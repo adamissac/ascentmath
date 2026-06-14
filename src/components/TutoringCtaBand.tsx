@@ -4,7 +4,8 @@ import Link from "next/link";
 import Button from "./Button";
 import ColorBand from "./ColorBand";
 import Reveal from "./Reveal";
-import { TIER3_PHRASE, TIER_PRICING_SHORT, TUTORING_TIERS_SUMMARY } from "../data/pricing";
+import { FIRST_SESSION_FREE, TUTORING_TIERS_SUMMARY } from "../data/pricing";
+import { TUTOR_NAMES_SHORT } from "../data/site-team";
 
 type TutoringCtaBandProps = {
   tiersHref?: string;
@@ -19,15 +20,18 @@ export default function TutoringCtaBand({ tiersHref = "/#what-i-teach" }: Tutori
             Ready to get unstuck?
           </p>
           <h2 className="font-display mt-3 max-w-2xl min-w-0 break-words text-2xl font-bold leading-[1.2] tracking-[-0.02em] text-white sm:text-4xl">
-            Book a tutoring session with me.
+            Book a tutoring session with us.
           </h2>
           <p className="mt-4 max-w-xl text-[#C8C9CC]">
-            From K-6 through {TIER3_PHRASE} math. Pick your tier on the booking form.{" "}
-            {TUTORING_TIERS_SUMMARY}. {TIER_PRICING_SHORT}
+            From K-5 through college math. Pick your tier on the booking form. {TUTORING_TIERS_SUMMARY}.{" "}
+            {FIRST_SESSION_FREE}
           </p>
           <div className="mt-6 flex flex-wrap gap-x-6 gap-y-2 text-sm text-[#9AA0A8]">
             <span className="inline-flex items-center gap-2">
-              <Check tone="light" /> 3 tutoring tiers
+              <Check tone="light" /> 4 tutoring tiers
+            </span>
+            <span className="inline-flex items-center gap-2">
+              <Check tone="light" /> First session free
             </span>
             <span className="inline-flex items-center gap-2">
               <Check tone="light" /> Zoom or in-person
@@ -39,11 +43,11 @@ export default function TutoringCtaBand({ tiersHref = "/#what-i-teach" }: Tutori
         </Reveal>
         <Reveal
           variant="right"
-          delay={150}
+          delay={120}
           className="btn-stack-mobile col-span-12 md:col-span-5 md:justify-end"
         >
           <Button href="/#book-session" size="lg" rightIcon={<ArrowRight />}>
-            Book a session
+            Book with {TUTOR_NAMES_SHORT}
           </Button>
           <Link href={tiersHref} className="btn btn-lg border border-white/30 text-white hover:bg-white/10">
             See tutoring tiers

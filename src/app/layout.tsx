@@ -5,6 +5,7 @@ import HashScrollHandler from "../components/HashScrollHandler";
 import Navbar from "../components/Navbar";
 import ConditionalFooter from "../components/ConditionalFooter";
 import { SITE_POSITIONING } from "../data/site-copy";
+import { TUTOR_NAMES_SHORT } from "../data/site-team";
 import "./globals.css";
 
 const inter = Inter({
@@ -23,13 +24,14 @@ const lexend = Lexend({
 export const metadata: Metadata = {
   metadataBase: new URL("https://adamsalphabet.com"),
   title: {
-    default: "Adam's Alphabet - Math Tutor (K-6 through College)",
+    default: "Adam's Alphabet - Math Tutors (K-5 through College)",
     template: "%s · Adam's Alphabet",
   },
   description: SITE_POSITIONING,
   keywords: [
     "math tutor",
     "math tutoring",
+    "Adam and Alan math tutor",
     "SAT math tutor",
     "AP pre-calculus tutor",
     "AP calculus tutor",
@@ -38,7 +40,7 @@ export const metadata: Metadata = {
     "Atlanta math tutor",
   ],
   openGraph: {
-    title: "Adam's Alphabet - Math Tutor (K-6 through College)",
+    title: `Adam's Alphabet - Math Tutors · ${TUTOR_NAMES_SHORT}`,
     description: SITE_POSITIONING,
     type: "website",
     siteName: "Adam's Alphabet",

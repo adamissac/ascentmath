@@ -6,6 +6,7 @@ import Reveal from "./Reveal";
 import { BOOK_SESSION_HREF, CREDENTIALS_HREF } from "../lib/site-paths";
 import {
   CREDENTIALS,
+  FIRST_SESSION_FREE,
   PRICING_DISCUSSION_NOTE,
   TIER_PRICING_EXPLAINER,
   TUTORING_TIERS,
@@ -21,24 +22,34 @@ export function SubjectLevelCards({ variant = "brand" }: { variant?: Variant }) 
   const isBrand = variant === "brand";
 
   return (
-    <Reveal stagger variant="pop" className="grid gap-6 lg:grid-cols-3 lg:items-stretch">
-      {TUTORING_TIERS.map((tier) => (
-        <SubjectLevelCard key={tier.id} tier={tier} isBrand={isBrand} />
-      ))}
+    <Reveal variant="rise">
+      <div
+        className={[
+          "flex gap-5 overflow-x-auto pb-2 snap-x snap-mandatory",
+          "lg:grid lg:grid-cols-4 lg:items-stretch lg:gap-6 lg:overflow-visible lg:pb-0 lg:snap-none",
+        ].join(" ")}
+      >
+        {TUTORING_TIERS.map((tier) => (
+          <SubjectLevelCard key={tier.id} tier={tier} isBrand={isBrand} />
+        ))}
+      </div>
     </Reveal>
   );
 }
 
 function SubjectLevelCard({ tier, isBrand }: { tier: TutoringTier; isBrand: boolean }) {
+  const cardClass = isBrand
+    ? [
+        "relative flex h-full min-w-[21rem] shrink-0 snap-start flex-col overflow-hidden rounded-lg border border-white/18",
+        "bg-white/[0.14] p-6 transition-colors duration-300",
+        "hover:border-white/30 hover:bg-white/[0.18]",
+        "lg:min-w-0",
+      ].join(" ")
+    : "card group flex h-full min-w-[21rem] shrink-0 snap-start flex-col p-6 transition-shadow duration-300 hover:shadow-[var(--shadow-card-hover)] lg:min-w-0";
+
   if (isBrand) {
     return (
-      <article
-        className={[
-          "relative flex h-full flex-col overflow-hidden rounded-lg border border-white/18",
-          "bg-white/[0.14] p-6 transition-colors duration-300",
-          "hover:border-white/30 hover:bg-white/[0.18]",
-        ].join(" ")}
-      >
+      <article className={cardClass}>
         <span aria-hidden className={`absolute left-0 top-0 h-full w-1 ${TIER_STRIPE}`} />
 
         <div className="relative flex items-start justify-between gap-3">
@@ -62,7 +73,7 @@ function SubjectLevelCard({ tier, isBrand }: { tier: TutoringTier; isBrand: bool
   }
 
   return (
-    <article className="card group flex h-full flex-col p-6 transition-shadow duration-300 hover:shadow-[var(--shadow-card-hover)]">
+    <article className={cardClass}>
       <div className="flex items-center justify-between gap-3">
         <h3 className="font-display font-bold text-lg text-[var(--color-ink)]">{tier.tierLabel}</h3>
         <span className="pill pill-brand text-[0.6875rem]">{tier.range}</span>
@@ -114,7 +125,15 @@ export function PricingTierExplainer({ variant = "brand" }: { variant?: Variant 
     >
       <p
         className={[
-          "text-sm leading-relaxed",
+          "text-sm font-semibold leading-relaxed",
+          isBrand ? "text-[var(--color-accent-300)]" : "text-[var(--color-brand-700)]",
+        ].join(" ")}
+      >
+        {FIRST_SESSION_FREE}
+      </p>
+      <p
+        className={[
+          "mt-3 text-sm leading-relaxed",
           isBrand ? "text-white/70" : "text-[var(--color-ink-muted)]",
         ].join(" ")}
       >
@@ -184,7 +203,13 @@ function SubjectTopicList({
             <p
               className={[
                 "mb-2 text-[0.6875rem] font-semibold uppercase tracking-wider",
-                isBrand ? "text-[var(--color-brand-300)]" : "text-[var(--color-brand-600)]",
+                group.highlightLabel
+                  ? isBrand
+                    ? "text-[var(--color-accent-300)]"
+                    : "text-[var(--color-accent-700)]"
+                  : isBrand
+                    ? "text-[var(--color-brand-300)]"
+                    : "text-[var(--color-brand-600)]",
               ].join(" ")}
             >
               {group.label}

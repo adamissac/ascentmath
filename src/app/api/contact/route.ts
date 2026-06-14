@@ -5,6 +5,7 @@ import {
   bookingSetupHint,
   getBookingFromEmail,
   getBookingRecipient,
+  getBookingRecipients,
   isResendConfigured,
 } from "../../../lib/booking-config";
 import { renderContactEmail } from "../../../lib/contactEmail";
@@ -135,9 +136,10 @@ export async function POST(req: Request) {
   // Send
   const resend = new Resend(apiKey);
   try {
+    const recipients = getBookingRecipients();
     const { data, error } = await resend.emails.send({
       from: getBookingFromEmail(),
-      to: [getBookingRecipient()],
+      to: recipients,
       replyTo: payload.email,
       subject,
       html,
@@ -152,7 +154,7 @@ export async function POST(req: Request) {
       console.error("[/api/contact] Resend error:", error);
       const message =
         error.name === "validation_error"
-          ? "Email could not be sent. Make sure the recipient address is verified in Resend (Settings → Verified Emails)."
+          ? "Email could not be sent. Make sure both tutor inboxes are verified in Resend (Settings → Verified Emails)."
           : "Email service rejected the message. Please try again shortly.";
       return NextResponse.json({ ok: false, error: message, code: "resend_error" }, { status: 502 });
     }
@@ -172,9 +174,11 @@ export async function POST(req: Request) {
    can show it as copyable text (it's already public in the footer). */
 export async function GET() {
   const configured = isResendConfigured();
+  const recipients = getBookingRecipients();
   return NextResponse.json({
     ok: true,
     configured,
+    recipients,
     recipient: getBookingRecipient(),
     hint: configured ? undefined : bookingSetupHint(),
   });
