@@ -5,9 +5,7 @@ import HashLink from "./HashLink";
 import Reveal from "./Reveal";
 import { BOOK_SESSION_HREF, CREDENTIALS_HREF } from "../lib/site-paths";
 import {
-  CREDENTIALS,
   FIRST_SESSION_FREE,
-  PRICING_DISCUSSION_NOTE,
   TIER_PRICING_EXPLAINER,
   TUTORING_TIERS,
   type TutoringTier,
@@ -85,35 +83,6 @@ function SubjectLevelCard({ tier, isBrand }: { tier: TutoringTier; isBrand: bool
   );
 }
 
-export function PricingCredentials({ variant = "brand" }: { variant?: Variant }) {
-  const isBrand = variant === "brand";
-  return (
-    <div className="flex flex-wrap justify-center gap-2.5">
-      {CREDENTIALS.map(({ label, value }) => (
-        <span
-          key={label}
-          className={[
-            "inline-flex items-center gap-2 rounded-full border px-3.5 py-1.5 text-sm",
-            isBrand
-              ? "border-white/20 bg-white/10 text-white/90"
-              : "border-[var(--color-border)] bg-[var(--color-surface)] text-[var(--color-ink-muted)]",
-          ].join(" ")}
-        >
-          <span
-            className={[
-              "font-display font-bold",
-              isBrand ? "text-[var(--color-accent-300)]" : "text-[var(--color-brand-700)]",
-            ].join(" ")}
-          >
-            {value}
-          </span>
-          <span className={isBrand ? "text-white/75" : ""}>{label}</span>
-        </span>
-      ))}
-    </div>
-  );
-}
-
 export function PricingTierExplainer({ variant = "brand" }: { variant?: Variant }) {
   const isBrand = variant === "brand";
   return (
@@ -140,20 +109,6 @@ export function PricingTierExplainer({ variant = "brand" }: { variant?: Variant 
         {TIER_PRICING_EXPLAINER}
       </p>
     </div>
-  );
-}
-
-export function PricingDiscussionNote({ variant = "light" }: { variant?: Variant }) {
-  const isBrand = variant === "brand";
-  return (
-    <p
-      className={[
-        "text-sm leading-relaxed max-w-2xl mx-auto text-center",
-        isBrand ? "text-white/75" : "text-[var(--color-ink-muted)]",
-      ].join(" ")}
-    >
-      {PRICING_DISCUSSION_NOTE}
-    </p>
   );
 }
 

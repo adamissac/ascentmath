@@ -6,9 +6,6 @@
 
 export type TutoringTierId = "tier1" | "tier2" | "tier3" | "tier4";
 
-/** @deprecated Use TutoringTierId, kept for gradual migration in types only */
-export type SubjectLevelId = TutoringTierId;
-
 export type SubjectTopicGroup = {
   label: string;
   items: readonly string[];
@@ -29,30 +26,10 @@ export type TutoringTier = {
 
 export const FIRST_SESSION_FREE = "Your first session is always free for new clients.";
 
-export const SELF_STUDY_FREE_NOTE =
-  "Grades 6-8 self-paced study paths on this site are free, no account required.";
-
 /** Shown under the tier cards (homepage and anywhere tiers are listed). */
 export const TIER_PRICING_EXPLAINER =
   "Book a session on this site. We'll reach out by call or email to confirm times and your tier — prices aren't listed here.";
 
-/** One-line version for hero footers, nav-adjacent UI, etc. */
-export const TIER_PRICING_SHORT =
-  "Book here; we'll confirm pricing on a call or email.";
-
-/** Booking form, follow-up emails, and short footnotes. */
-export const PRICING_DISCUSSION_NOTE =
-  "After you book, we'll contact you by call or email with times and your tier's rate.";
-
-export const PRICING_FAQ_HOW_MUCH = `${FIRST_SESSION_FREE} ${TIER_PRICING_EXPLAINER} ${SELF_STUDY_FREE_NOTE}`;
-
-/** Short phrase for tier lists in prose (booking copy, FAQs, etc.). */
-export const TIER3_PHRASE = "high school, AP, SAT/ACT, and college";
-
-export const PRICING_FAQ_TIERS =
-  "Tier 1 is K-5 elementary math, Tier 2 is middle school, Tier 3 is high school & SAT/ACT, and Tier 4 is college / dual enrollment. Pick the tier that fits your class.";
-
-/** e.g. homepage tier explainer lines */
 export const TUTORING_TIERS_SUMMARY = "K-5, middle school, high school & SAT/ACT, and college";
 
 export const TUTORING_TIERS: readonly TutoringTier[] = [
@@ -177,19 +154,3 @@ export const TUTORING_TIERS: readonly TutoringTier[] = [
     ],
   },
 ] as const;
-
-/** Same data as tiers, used by “What I teach” cards */
-export const SUBJECT_LEVELS = TUTORING_TIERS;
-
-export const CREDENTIALS = [
-  { label: "SAT Math", value: "800" },
-  { label: "AP Pre-Calculus", value: "5" },
-  { label: "AP Calc AB & BC", value: "5" },
-  { label: "Algebra EOC", value: "100%" },
-] as const;
-
-export function getTutoringTier(id: TutoringTierId) {
-  const tier = TUTORING_TIERS.find((t) => t.id === id);
-  if (!tier) throw new Error(`Unknown tutoring tier: ${id}`);
-  return tier;
-}

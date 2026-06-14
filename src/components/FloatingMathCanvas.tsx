@@ -2,13 +2,7 @@
 
 import { useEffect, useRef } from "react";
 
-export type FloatingMathVariant =
-  | "home"
-  | "library"
-  | "session"
-  | "compass"
-  | "grade"
-  | "about";
+export type FloatingMathVariant = "home" | "compass" | "grade";
 
 type Motion = "rise" | "fall" | "drift" | "diagonal";
 
@@ -48,38 +42,6 @@ const VARIANTS: Record<FloatingMathVariant, VariantConfig> = {
     placement: "full",
     vignette: "hero-canvas-vignette--warm",
   },
-  library: {
-    symbols: ["π", "√", "Σ", "θ", "÷", "×", "±", "≤", "≥", "∫", "∑", "∞", "λ", "Δ", "α", "β", "φ", "≈", "x²", "³"],
-    ink: "#182573",
-    accent: "#2A4BCB",
-    accentRate: 0.14,
-    counts: [18, 28, 34],
-    opacity: [0.07, 0.14, 0.22],
-    speed: [0.22, 0.48],
-    size: [13, 40],
-    wobble: [0.25, 0.9],
-    driftX: [-0.22, -0.08],
-    rotSpeed: [-0.002, 0.002],
-    motion: "diagonal",
-    placement: "margins",
-    vignette: "hero-canvas-vignette--paper",
-  },
-  session: {
-    symbols: ["+", "−", "×", "÷", "=", "≠", "≤", "≥", "%", "½", "°", "π", "√", "Σ", "θ", "x²", "∞"],
-    ink: "#1a1a2e",
-    accent: "#E07A2F",
-    accentRate: 0.12,
-    counts: [20, 30, 36],
-    opacity: [0.06, 0.12, 0.2],
-    speed: [0.12, 0.28],
-    size: [12, 34],
-    wobble: [0.6, 2],
-    driftX: [-0.18, 0.18],
-    rotSpeed: [0, 0],
-    motion: "drift",
-    placement: "margins",
-    vignette: "hero-canvas-vignette--session",
-  },
   compass: {
     symbols: ["→", "←", "△", "▽", "?", "%", "+", "−", "≈", "·", "○", "□", "½", "°"],
     ink: "#1a1a2e",
@@ -109,22 +71,6 @@ const VARIANTS: Record<FloatingMathVariant, VariantConfig> = {
     driftX: [-0.06, 0.06],
     rotSpeed: [-0.002, 0.002],
     motion: "rise",
-    placement: "margins",
-    vignette: "hero-canvas-vignette--paper",
-  },
-  about: {
-    symbols: ["π", "+", "∞", "θ", "α", "β", "λ", "≈", "°", "½", "Σ", "φ"],
-    ink: "#1a1a2e",
-    accent: "#2A4BCB",
-    accentRate: 0.08,
-    counts: [14, 20, 26],
-    opacity: [0.05, 0.09, 0.14],
-    speed: [0.08, 0.18],
-    size: [11, 30],
-    wobble: [0.8, 2.2],
-    driftX: [-0.14, 0.14],
-    rotSpeed: [0, 0],
-    motion: "drift",
     placement: "margins",
     vignette: "hero-canvas-vignette--paper",
   },

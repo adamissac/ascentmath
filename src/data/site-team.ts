@@ -14,8 +14,6 @@ export const TUTOR_EMAILS = [ADAM_EMAIL, ALAN_EMAIL] as const;
 
 export const TUTOR_EMAILS_DISPLAY = TUTOR_EMAILS.join(" · ");
 
-export const BUSINESS_BYLINE = `${TUTOR_NAMES_SHORT} · Math tutors · Atlanta area & online`;
-
 export const REPLY_TIME_LINE = "We reply within 1–2 days.";
 
 /** Business phone — shown in footer and credentials; used in JSON-LD. */
