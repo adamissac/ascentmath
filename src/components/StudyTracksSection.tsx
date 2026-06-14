@@ -73,7 +73,6 @@ export default function StudyTracksSection({
         density="light"
         contentSafe
         clipart={false}
-        watermark={false}
         fadeEdges
       />
 

@@ -46,9 +46,9 @@ export default function VisualPanel({
     >
       <MathBackdrop
         variant={isBrand ? "brand" : "paper"}
-        density="medium"
+        density="light"
         fadeEdges
-        watermark={!isCompact}
+        contentSafe
         className="absolute inset-0"
       />
 

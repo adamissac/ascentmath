@@ -13,19 +13,10 @@ export type BackdropGlyph = {
   tint?: "blue" | "orange" | "gray";
 };
 
-type Watermark = {
-  char: string;
-  style: "center" | "corner-alpha" | "corner-a";
-  opacity: number;
-  color: string;
-  fontSize: string;
-};
-
 type Props = {
   glyphs: BackdropGlyph[];
   glyphColor: string;
   defaultOpacity: number;
-  watermarks?: Watermark[];
 };
 
 const TINT: Record<NonNullable<BackdropGlyph["tint"]>, { color: string; opacity: number }> = {
@@ -42,7 +33,6 @@ export default function BackdropGlyphLayer({
   glyphs,
   glyphColor,
   defaultOpacity,
-  watermarks = [],
 }: Props) {
   const wrapRef = useRef<HTMLDivElement>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -88,26 +78,6 @@ export default function BackdropGlyphLayer({
         ctx.restore();
       }
 
-      for (const wm of watermarks) {
-        ctx.save();
-        ctx.globalAlpha = wm.opacity;
-        ctx.fillStyle = wm.color;
-        ctx.font = `700 ${wm.fontSize} Georgia, serif`;
-        ctx.textAlign = "center";
-        ctx.textBaseline = "middle";
-
-        if (wm.style === "center") {
-          ctx.fillText(wm.char, w / 2, h / 2);
-        } else if (wm.style === "corner-alpha") {
-          ctx.textAlign = "right";
-          ctx.fillText(wm.char, w + w * 0.08, h * 0.02);
-        } else {
-          ctx.textAlign = "left";
-          ctx.fillText(wm.char, -w * 0.04, h * 0.92);
-        }
-        ctx.restore();
-      }
-
       ctx.globalAlpha = 1;
     };
 
@@ -115,7 +85,7 @@ export default function BackdropGlyphLayer({
     const ro = new ResizeObserver(draw);
     ro.observe(wrap);
     return () => ro.disconnect();
-  }, [glyphs, glyphColor, defaultOpacity, watermarks]);
+  }, [glyphs, glyphColor, defaultOpacity]);
 
   return (
     <div ref={wrapRef} className="absolute inset-0" aria-hidden>

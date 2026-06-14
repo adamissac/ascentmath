@@ -82,7 +82,6 @@ export default function ColorBand({
         <MathBackdrop
           variant={v.backdrop}
           density={faintSymbols ? "light" : v.density}
-          watermark={false}
           contentSafe={faintSymbols}
           clipart={!faintSymbols}
           fadeEdges={faintSymbols}

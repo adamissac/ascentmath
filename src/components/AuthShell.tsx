@@ -30,7 +30,7 @@ export default function AuthShell({
     <div className="min-h-[calc(100dvh-4.25rem-3px)] grid lg:grid-cols-2">
       {/* Mobile - compact blue band so small screens aren't all plain white */}
       <div className="lg:hidden relative overflow-hidden bg-[var(--color-brand-700)] text-white px-5 py-8">
-        <MathBackdrop variant="brand" density="light" contentSafe watermark={false} />
+        <MathBackdrop variant="brand" density="light" contentSafe />
         <div className="relative z-[1] max-w-lg mx-auto text-center">
           <p className="caption font-semibold tracking-[0.14em] uppercase text-[var(--color-accent-300)]">
             Adam&apos;s Alphabet

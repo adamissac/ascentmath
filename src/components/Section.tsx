@@ -74,7 +74,6 @@ export default function Section({
           density={decoratedMinimal ? "light" : tone === "dark" ? "medium" : decoratedDensity}
           contentSafe={decoratedContentSafe || decoratedMinimal || tone === "dark"}
           clipart={!decoratedMinimal}
-          watermark={!decoratedMinimal && tone !== "dark"}
         />
       )}
       <Container size={containerSize} className={showOverlay ? "relative z-[1]" : undefined}>

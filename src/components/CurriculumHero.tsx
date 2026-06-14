@@ -52,7 +52,7 @@ export default function CurriculumHero(props: Props) {
       {isGrade ? (
         <FloatingMathCanvas variant="grade" />
       ) : (
-        <MathBackdrop variant="paper" density="dense" fadeEdges />
+        <MathBackdrop variant="paper" density="light" fadeEdges contentSafe />
       )}
 
       <Container size="xl" className="relative z-[1] pt-8 pb-14 sm:pt-10 sm:pb-16 lg:pb-20">

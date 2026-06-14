@@ -230,7 +230,6 @@ export default function MathBackdrop({
   variant = "paper",
   density = "dense",
   clipart = true,
-  watermark = true,
   fadeEdges = false,
   /** Push symbols to the outer edges so center text stays readable. */
   contentSafe = false,
@@ -239,7 +238,6 @@ export default function MathBackdrop({
   variant?: BackdropVariant;
   density?: BackdropDensity;
   clipart?: boolean;
-  watermark?: boolean;
   /** Soft fade at top/bottom so symbols don't hard-cut section edges. */
   fadeEdges?: boolean;
   contentSafe?: boolean;
@@ -268,47 +266,6 @@ export default function MathBackdrop({
       : "rgba(42, 75, 203, 0.22)";
   const clipAccent = "var(--color-accent-500)";
 
-  const watermarkLayers: {
-    char: string;
-    style: "center" | "corner-alpha" | "corner-a";
-    opacity: number;
-    color: string;
-    fontSize: string;
-  }[] = [];
-
-  if (watermark && contentSafe) {
-    watermarkLayers.push({
-      char: "α",
-      style: "center",
-      opacity: 0.22,
-      color: palette.watermark,
-      fontSize: "min(12rem, 16vw)",
-    });
-  } else if (watermark && !contentSafe) {
-    watermarkLayers.push({
-      char: "α",
-      style: "corner-alpha",
-      opacity: variant === "brand" ? 0.55 : 0.45,
-      color: palette.watermark,
-      fontSize: "min(22rem, 28vw)",
-    });
-  }
-
-  if (
-    watermark &&
-    (variant === "paper" || variant === "muted" || variant === "tracks") &&
-    density !== "light" &&
-    !contentSafe
-  ) {
-    watermarkLayers.push({
-      char: "A",
-      style: "corner-a",
-      opacity: 0.35,
-      color: "var(--color-accent-100)",
-      fontSize: "min(14rem, 18vw)",
-    });
-  }
-
   return (
     <div
       aria-hidden
@@ -329,7 +286,6 @@ export default function MathBackdrop({
         glyphs={glyphs}
         glyphColor={palette.glyph}
         defaultOpacity={palette.glyphOpacity}
-        watermarks={watermarkLayers}
       />
 
       {/* SVG clipart */}

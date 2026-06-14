@@ -64,7 +64,7 @@ export default async function TopicPage({ params }: { params: Promise<Params> })
     <>
       {/* HERO */}
       <section className="hero-surface relative overflow-hidden">
-        <MathBackdrop variant="paper" density="dense" fadeEdges />
+        <MathBackdrop variant="paper" density="light" fadeEdges contentSafe />
         <Container size="lg" className="relative pt-10 pb-12 sm:pb-14">
           <Breadcrumbs
             items={[

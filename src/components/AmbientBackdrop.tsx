@@ -35,15 +35,6 @@ export default function AmbientBackdrop({ tone = "cream" }: { tone?: Tone }) {
       <div
         className={`ambient-blob ambient-blob--c absolute bottom-[5%] left-[30%] h-[32%] w-[40%] rounded-full blur-3xl ${colors.c}`}
       />
-      <span className="ambient-glyph absolute left-[8%] top-[18%] font-display text-5xl font-bold text-[#2A4BCB]/[0.06] sm:text-6xl">
-        α
-      </span>
-      <span className="ambient-glyph ambient-glyph--delay absolute right-[12%] top-[55%] font-display text-4xl font-bold text-[#F47B16]/[0.07] sm:text-5xl">
-        π
-      </span>
-      <span className="ambient-glyph ambient-glyph--delay-2 absolute right-[28%] top-[12%] font-sans text-3xl font-bold text-[#2A4BCB]/[0.05]">
-        ∫
-      </span>
     </div>
   );
 }
