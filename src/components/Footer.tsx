@@ -131,7 +131,7 @@ export default function Footer() {
         </div>
 
         {/* Bottom bar */}
-        <div className="mt-12 rounded-2xl border border-[var(--color-border)] bg-white/70 px-5 py-4 shadow-[var(--shadow-card)] backdrop-blur-sm sm:flex sm:items-center sm:justify-between sm:gap-4 sm:px-6">
+        <div className="mt-12 border-t border-[var(--color-border)] pt-6 sm:flex sm:items-center sm:justify-between sm:gap-4">
           <p className="text-[0.8125rem] text-[var(--color-ink-soft)]">
             © {YEAR} Adam&apos;s Alphabet · {TUTOR_NAMES_SHORT}
           </p>
