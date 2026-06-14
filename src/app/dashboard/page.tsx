@@ -1,6 +1,5 @@
 "use client";
 
-import Link from "next/link";
 import BookSessionLink from "../../components/BookSessionLink";
 import StudyPathsLink from "../../components/StudyPathsLink";
 import { useRouter } from "next/navigation";

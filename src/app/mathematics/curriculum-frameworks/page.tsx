@@ -7,12 +7,14 @@ import ResourceLinkCard from "../../../components/ResourceLinkCard";
 import { DocSymbol } from "../../../components/UnitSymbol";
 import { GRADES } from "../../../data/units";
 import { STUDY_PATHS_HREF } from "../../../lib/site-paths";
+import { buildPageMetadata } from "../../../lib/metadata";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = buildPageMetadata({
   title: "GADOE Curriculum Frameworks",
   description:
     "Official Georgia Department of Education curriculum frameworks for Grade 6, 7, and 8 Mathematics units.",
-};
+  path: "/mathematics/curriculum-frameworks",
+});
 
 export default function FrameworksPage() {
   const gradesWithFrameworks = GRADES.map((g) => ({

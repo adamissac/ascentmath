@@ -18,6 +18,10 @@ export const BUSINESS_BYLINE = `${TUTOR_NAMES_SHORT} · Math tutors · Atlanta a
 
 export const REPLY_TIME_LINE = "We reply within 1–2 days.";
 
+/** Business phone — shown in footer and credentials; used in JSON-LD. */
+export const SITE_PHONE_DISPLAY = "404-901-4619";
+export const SITE_PHONE_TEL = "+14049014619";
+
 export const BOOKING_MAILTO_GREETING = "Hi Adam and Alan,";
 
 export function buildBookingMailtoLink(body: string): string {

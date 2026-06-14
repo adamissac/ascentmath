@@ -11,6 +11,7 @@ import VisualPanel from "../../../components/VisualPanel";
 import { DocSymbol, UnitSymbol } from "../../../components/UnitSymbol";
 import { GRADES, getGrade, countUnitVideos, countUnitWorksheets, type Unit } from "../../../data/units";
 import { STUDY_PATHS_HREF } from "../../../lib/site-paths";
+import { buildPageMetadata } from "../../../lib/metadata";
 import StudyPathsLink from "../../../components/StudyPathsLink";
 
 type Params = { grade: string };
@@ -27,7 +28,13 @@ export async function generateMetadata({
   const { grade } = await params;
   const g = getGrade(grade);
   if (!g) return { title: "Grade not found" };
-  return { title: `${g.title} Mathematics`, description: g.description };
+  const unitCount = g.units.length;
+  const topicCount = g.units.reduce((n, u) => n + u.topics.length, 0);
+  return buildPageMetadata({
+    title: `${g.title} Mathematics`,
+    description: `Free ${g.title} self-paced math study path — ${unitCount} units, ${topicCount} topics with walkthroughs, videos, practice, and quizzes.`,
+    path: `/mathematics/${grade}`,
+  });
 }
 
 export default async function GradeLibrary({ params }: { params: Promise<Params> }) {

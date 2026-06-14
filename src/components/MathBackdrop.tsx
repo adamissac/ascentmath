@@ -1,6 +1,7 @@
 "use client";
 
 import type { CSSProperties, ReactNode } from "react";
+import BackdropGlyphLayer from "./BackdropGlyphLayer";
 
 /**
  * Decorative math-symbol + clipart wash for hero sections and empty space.
@@ -21,12 +22,6 @@ type Glyph = {
   o?: number;
   font?: "display" | "sans";
   tint?: GlyphTint;
-};
-
-const GLYPH_TINT: Record<GlyphTint, { color: string; opacity: number }> = {
-  blue: { color: "rgba(42, 75, 203, 0.7)", opacity: 0.12 },
-  orange: { color: "rgba(244, 123, 22, 0.75)", opacity: 0.11 },
-  gray: { color: "rgba(90, 95, 104, 0.65)", opacity: 0.1 },
 };
 
 type Clip = {
@@ -273,6 +268,47 @@ export default function MathBackdrop({
       : "rgba(42, 75, 203, 0.22)";
   const clipAccent = "var(--color-accent-500)";
 
+  const watermarkLayers: {
+    char: string;
+    style: "center" | "corner-alpha" | "corner-a";
+    opacity: number;
+    color: string;
+    fontSize: string;
+  }[] = [];
+
+  if (watermark && contentSafe) {
+    watermarkLayers.push({
+      char: "α",
+      style: "center",
+      opacity: 0.22,
+      color: palette.watermark,
+      fontSize: "min(12rem, 16vw)",
+    });
+  } else if (watermark && !contentSafe) {
+    watermarkLayers.push({
+      char: "α",
+      style: "corner-alpha",
+      opacity: variant === "brand" ? 0.55 : 0.45,
+      color: palette.watermark,
+      fontSize: "min(22rem, 28vw)",
+    });
+  }
+
+  if (
+    watermark &&
+    (variant === "paper" || variant === "muted" || variant === "tracks") &&
+    density !== "light" &&
+    !contentSafe
+  ) {
+    watermarkLayers.push({
+      char: "A",
+      style: "corner-a",
+      opacity: 0.35,
+      color: "var(--color-accent-100)",
+      fontSize: "min(14rem, 18vw)",
+    });
+  }
+
   return (
     <div
       aria-hidden
@@ -289,61 +325,12 @@ export default function MathBackdrop({
         }}
       />
 
-      {/* Soft center watermark when contentSafe keeps edges only for heavy glyphs */}
-      {watermark && contentSafe && (
-        <span
-          className="absolute font-display font-bold leading-none pointer-events-none left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2"
-          style={{
-            fontSize: "clamp(6rem, 16vw, 12rem)",
-            color: palette.watermark,
-            opacity: 0.22,
-            letterSpacing: "-0.05em",
-          }}
-        >
-          α
-        </span>
-      )}
-
-      {/* Large watermark α */}
-      {watermark && !contentSafe && (
-        <span
-          className="absolute font-display font-bold leading-none pointer-events-none"
-          style={{
-            fontSize: "clamp(12rem, 28vw, 22rem)",
-            right: variant === "brand" ? "-4rem" : "-2rem",
-            top: variant === "brand" ? "-3rem" : "-1rem",
-            color: palette.watermark,
-            opacity: variant === "brand" ? 0.55 : 0.45,
-            letterSpacing: "-0.05em",
-          }}
-        >
-          α
-        </span>
-      )}
-
-      {/* Secondary watermark - book-ish curve on left for paper/muted */}
-      {(variant === "paper" || variant === "muted" || variant === "tracks") &&
-        density !== "light" &&
-        !contentSafe && (
-        <span
-          className="absolute font-display font-bold leading-none"
-          style={{
-            fontSize: "clamp(8rem, 18vw, 14rem)",
-            left: "-3rem",
-            bottom: "-2rem",
-            color: "var(--color-accent-100)",
-            opacity: 0.35,
-            letterSpacing: "-0.04em",
-          }}
-        >
-          A
-        </span>
-      )}
-
-      {/* Math glyphs */}
-      {glyphs.map((g, i) => (
-        <Glyph key={`g-${i}`} item={g} color={palette.glyph} defaultOpacity={palette.glyphOpacity} />
-      ))}
+      <BackdropGlyphLayer
+        glyphs={glyphs}
+        glyphColor={palette.glyph}
+        defaultOpacity={palette.glyphOpacity}
+        watermarks={watermarkLayers}
+      />
 
       {/* SVG clipart */}
       {clipart &&
@@ -356,35 +343,6 @@ export default function MathBackdrop({
           />
         ))}
     </div>
-  );
-}
-
-function Glyph({
-  item,
-  color,
-  defaultOpacity,
-}: {
-  item: Glyph;
-  color: string;
-  defaultOpacity: number;
-}) {
-  const tint = item.tint ? GLYPH_TINT[item.tint] : null;
-  const style: CSSProperties = {
-    top: `${item.top}%`,
-    left: `${item.left}%`,
-    fontSize: `${item.size}rem`,
-    transform: `translate(-50%, -50%) rotate(${item.rot ?? 0}deg)`,
-    color: tint?.color ?? color,
-    opacity: item.o ?? tint?.opacity ?? defaultOpacity,
-    lineHeight: 1,
-    fontFamily: item.font === "sans" ? "var(--font-sans)" : "var(--font-display)",
-    fontWeight: 700,
-    letterSpacing: "-0.02em",
-  };
-  return (
-    <span className="absolute" style={style}>
-      {item.ch}
-    </span>
   );
 }
 

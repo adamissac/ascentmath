@@ -23,6 +23,7 @@ import {
   type Topic,
 } from "../../../../data/units";
 import { STUDY_PATHS_HREF } from "../../../../lib/site-paths";
+import { buildPageMetadata } from "../../../../lib/metadata";
 
 type Params = { grade: string; unit: string };
 
@@ -39,10 +40,11 @@ export async function generateMetadata({
   const g = getGrade(grade);
   const u = getUnit(grade, unit);
   if (!g || !u) return { title: "Unit not found" };
-  return {
+  return buildPageMetadata({
     title: `${g.title} · Unit ${u.number}: ${u.title}`,
     description: u.description,
-  };
+    path: `/mathematics/${grade}/${unit}`,
+  });
 }
 
 export default async function UnitPage({ params }: { params: Promise<Params> }) {

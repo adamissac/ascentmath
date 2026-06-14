@@ -14,7 +14,7 @@ import {
   type MathCredential,
   type TutorIntro,
 } from "../data/credentials";
-import { TUTOR_EMAILS_DISPLAY } from "../data/site-team";
+import { TUTOR_EMAILS_DISPLAY, SITE_PHONE_DISPLAY, SITE_PHONE_TEL } from "../data/site-team";
 
 const BLUE = "var(--color-brand-500)";
 const INK = "var(--color-ink-cool)";
@@ -59,6 +59,12 @@ export default function CredentialsSection() {
           <span className="select-all font-semibold" style={{ color: BLUE }}>
             {TUTOR_EMAILS_DISPLAY}
           </span>
+          <span className="hidden sm:inline text-[var(--color-ink-soft)]" aria-hidden>
+            ·
+          </span>
+          <a href={`tel:${SITE_PHONE_TEL}`} className="font-semibold no-underline hover:underline" style={{ color: BLUE }}>
+            {SITE_PHONE_DISPLAY}
+          </a>
           <span className="hidden sm:inline text-[var(--color-ink-soft)]" aria-hidden>
             ·
           </span>

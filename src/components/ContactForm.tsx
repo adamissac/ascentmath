@@ -46,6 +46,7 @@ const GRADE_OPTIONS = [
   { value: "7th grade", label: "7th grade" },
   { value: "8th grade", label: "8th grade" },
   { value: "High school (9-12)", label: "High school (9-12)" },
+  { value: "College / Dual enrollment", label: "College / Dual enrollment" },
   { value: "Multiple grades", label: "Multiple grades" },
   { value: "Other", label: "Other / not in school" },
 ] as const;
@@ -55,7 +56,7 @@ type FieldKey = "name" | "email" | "message";
 function validateField(key: FieldKey, form: FormState): string {
   switch (key) {
     case "name":
-      if (!form.name.trim()) return "Please tell me your name.";
+      if (!form.name.trim()) return "Please tell us your name.";
       if (form.name.trim().length < 2) return "Name looks too short.";
       return "";
     case "email":
@@ -66,7 +67,7 @@ function validateField(key: FieldKey, form: FormState): string {
     case "message":
       if (!form.message.trim()) return "Please include a message.";
       if (form.message.trim().length < 10)
-        return "Please tell me a bit more (at least 10 characters).";
+        return "Please tell us a bit more (at least 10 characters).";
       return "";
   }
 }

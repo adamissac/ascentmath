@@ -21,6 +21,7 @@ import Container from "../../../../../components/Container";
 
 import { GRADES, getTopic } from "../../../../../data/units";
 import { STUDY_PATHS_HREF } from "../../../../../lib/site-paths";
+import { buildPageMetadata } from "../../../../../lib/metadata";
 
 type Params = { grade: string; unit: string; topic: string };
 
@@ -38,10 +39,11 @@ export async function generateMetadata({
   const { grade, unit, topic } = await params;
   const found = getTopic(grade, unit, topic);
   if (!found) return { title: "Topic not found" };
-  return {
+  return buildPageMetadata({
     title: `${found.topic.title} · ${found.grade.title} Unit ${found.unit.number}`,
     description: found.topic.summary,
-  };
+    path: `/mathematics/${grade}/${unit}/${topic}`,
+  });
 }
 
 export default async function TopicPage({ params }: { params: Promise<Params> }) {

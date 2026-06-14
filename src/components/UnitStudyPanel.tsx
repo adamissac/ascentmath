@@ -131,6 +131,21 @@ export default function UnitStudyPanel({
 
   const desktopOpen = mounted && isDesktop && open;
 
+  const asideClass = [
+    isDesktop
+      ? "hidden lg:block sticky top-[4.25rem] z-20 self-start shrink-0 overflow-y-auto"
+      : "lg:hidden fixed top-[4.25rem] left-3 z-50 h-[calc(100dvh-4.25rem-0.75rem)] overflow-y-auto overscroll-contain transition-transform duration-300 ease-[cubic-bezier(0.22,0.9,0.3,1)] motion-reduce:transition-none",
+    "max-h-[calc(100dvh-4.25rem)] overscroll-contain",
+    "bg-[var(--color-surface)] rounded-r-xl border border-[var(--color-border)]",
+    isDesktop
+      ? "shadow-[var(--shadow-card)]"
+      : "shadow-[var(--shadow-popover)]",
+    isDesktop && !open ? "lg:hidden" : "",
+    !isDesktop && (open ? "translate-x-0" : "-translate-x-[calc(100%+0.75rem)] pointer-events-none"),
+  ]
+    .filter(Boolean)
+    .join(" ");
+
   return (
     <div className="unit-study-panel">
       {/* Mobile backdrop */}
@@ -155,29 +170,12 @@ export default function UnitStudyPanel({
           <aside
             aria-label={PANEL_LABEL}
             aria-hidden={!open}
-            className={[
-              "hidden lg:block sticky top-[4.25rem] z-20 self-start shrink-0",
-              "max-h-[calc(100dvh-4.25rem)] overflow-y-auto overscroll-contain",
-              "bg-[var(--color-surface)] rounded-r-xl",
-              "border border-[var(--color-border)] shadow-[var(--shadow-card)]",
-              desktopOpen ? "" : "lg:hidden",
-            ].join(" ")}
-            style={{ width: PANEL_WIDTH }}
-          >
-            {panelContent}
-          </aside>
-
-          {/* Mobile - fixed slide-over drawer */}
-          <aside
-            aria-label={PANEL_LABEL}
-            aria-hidden={!open}
-            className={[
-              "lg:hidden fixed top-[4.25rem] left-3 z-50 h-[calc(100dvh-4.25rem-0.75rem)] overflow-y-auto overscroll-contain",
-              "bg-[var(--color-surface)] rounded-r-xl border border-[var(--color-border)] shadow-[var(--shadow-popover)]",
-              "transition-transform duration-300 ease-[cubic-bezier(0.22,0.9,0.3,1)] motion-reduce:transition-none",
-              open ? "translate-x-0" : "-translate-x-[calc(100%+0.75rem)] pointer-events-none",
-            ].join(" ")}
-            style={{ width: PANEL_WIDTH, maxWidth: "min(280px, calc(100vw - 1.5rem))" }}
+            className={asideClass}
+            style={
+              isDesktop
+                ? { width: PANEL_WIDTH }
+                : { width: PANEL_WIDTH, maxWidth: "min(280px, calc(100vw - 1.5rem))" }
+            }
           >
             {panelContent}
           </aside>

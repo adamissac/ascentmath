@@ -4,8 +4,7 @@ import AuthProvider from "../components/AuthProvider";
 import HashScrollHandler from "../components/HashScrollHandler";
 import Navbar from "../components/Navbar";
 import ConditionalFooter from "../components/ConditionalFooter";
-import { SITE_POSITIONING } from "../data/site-copy";
-import { TUTOR_NAMES_SHORT } from "../data/site-team";
+import { ROOT_METADATA } from "../lib/metadata";
 import "./globals.css";
 
 const inter = Inter({
@@ -21,32 +20,7 @@ const lexend = Lexend({
   weight: ["500", "600", "700"],
 });
 
-export const metadata: Metadata = {
-  metadataBase: new URL("https://adamsalphabet.com"),
-  title: {
-    default: "Adam's Alphabet - Math Tutors (K-5 through College)",
-    template: "%s · Adam's Alphabet",
-  },
-  description: SITE_POSITIONING,
-  keywords: [
-    "math tutor",
-    "math tutoring",
-    "Adam and Alan math tutor",
-    "SAT math tutor",
-    "AP pre-calculus tutor",
-    "AP calculus tutor",
-    "linear algebra tutor",
-    "multivariable calculus tutor",
-    "Atlanta math tutor",
-  ],
-  openGraph: {
-    title: `Adam's Alphabet - Math Tutors · ${TUTOR_NAMES_SHORT}`,
-    description: SITE_POSITIONING,
-    type: "website",
-    siteName: "Adam's Alphabet",
-  },
-  twitter: { card: "summary_large_image" },
-};
+export const metadata: Metadata = ROOT_METADATA;
 
 export const viewport: Viewport = {
   themeColor: "#FBFAF7",

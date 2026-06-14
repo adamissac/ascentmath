@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import HashLink from "./HashLink";
 import HeroCanvas from "./HeroCanvas";
+import { HERO_STATS } from "../data/site-stats";
 import { FIRST_SESSION_FREE } from "../data/pricing";
 import { TUTOR_NAMES_SHORT } from "../data/site-team";
 import { BOOK_SESSION_HREF, STUDY_PATHS_HREF } from "../lib/site-paths";
@@ -83,18 +84,18 @@ export default function HeroSection({ totalUnits }: HeroSectionProps) {
               />
               <span className="relative">Book a tutoring session</span>
             </HashLink>
-            <div className="flex w-full items-center gap-0.5 sm:w-auto sm:gap-0">
+            <div className="flex w-full flex-col gap-2 sm:w-auto sm:flex-row sm:items-center sm:gap-2">
               <HashLink
                 href={STUDY_PATHS_HREF}
-                className="relative inline-flex min-h-[3rem] flex-1 items-center justify-center rounded-full border-2 border-[#1a1a2e]/25 bg-transparent px-5 py-3 text-center text-[0.9375rem] font-semibold text-[var(--color-ink-cool)] transition-[background-color,border-color,transform] duration-200 hover:-translate-y-0.5 hover:border-[#F47B16]/45 hover:bg-[var(--color-accent-50)] sm:flex-initial sm:px-7"
+                className="relative inline-flex min-h-[3rem] w-full items-center justify-center gap-2 rounded-full border-2 border-[#1a1a2e]/25 bg-transparent px-5 py-3 text-center text-[0.9375rem] font-semibold text-[var(--color-ink-cool)] transition-[background-color,border-color,transform] duration-200 hover:-translate-y-0.5 hover:border-[#F47B16]/45 hover:bg-[var(--color-accent-50)] sm:w-auto sm:px-7"
               >
                 Browse study paths
-                <span className="absolute -right-1 -top-2 rounded-full bg-[var(--color-accent-500)] px-2 py-0.5 text-[0.6875rem] font-bold leading-none text-white shadow-sm sm:hidden">
+                <span className="inline-flex rounded-full bg-[var(--color-accent-500)] px-2 py-0.5 text-[0.6875rem] font-bold leading-none text-white shadow-sm sm:hidden">
                   Free!
                 </span>
               </HashLink>
               <span
-                className="hidden shrink-0 items-center gap-0.5 text-[var(--color-accent-500)] sm:flex"
+                className="hidden shrink-0 items-center gap-1 text-[var(--color-accent-500)] sm:inline-flex"
                 aria-label="Free Grades 6-8 study paths"
               >
                 <svg width="36" height="20" viewBox="0 0 36 20" fill="none" aria-hidden className="-mr-0.5">
@@ -138,10 +139,10 @@ export default function HeroSection({ totalUnits }: HeroSectionProps) {
           <div
             className={`${rise} ${STAGGER[5]} mt-10 grid w-full min-w-0 max-w-3xl grid-cols-2 gap-4 sm:grid-cols-4 sm:gap-0`}
           >
-            <HeroStat value="30+" label="Students tutored" animate={ready} showDivider />
-            <HeroStat value="2+" label="Years tutoring" animate={ready} showDivider />
+            <HeroStat value={HERO_STATS.studentsTutored} label="Students tutored" animate={ready} showDivider />
+            <HeroStat value={HERO_STATS.yearsTutoring} label="Years tutoring" animate={ready} showDivider />
             <HeroStat value={String(totalUnits)} label="Study units" animate={ready} showDivider />
-            <HeroStat value="4" label="Tutoring tiers" animate={ready} />
+            <HeroStat value={HERO_STATS.tutoringTiers} label="Tutoring tiers" animate={ready} />
           </div>
         </div>
       </div>

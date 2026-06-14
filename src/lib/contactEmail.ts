@@ -40,7 +40,7 @@ export function renderContactEmail(p: ContactPayload) {
   const subject = `New ${typeLabel} inquiry — ${p.name}`;
 
   const text = [
-    "New booking request from adamsalphabet.com",
+    "New booking request from www.adamsalphabet.com",
     "",
     `Name:       ${p.name}`,
     `Email:      ${p.email}`,
@@ -53,7 +53,7 @@ export function renderContactEmail(p: ContactPayload) {
     p.message.trim(),
     "",
     "-",
-    "Adam's Alphabet · adamsalphabet.com",
+    "Adam's Alphabet · https://www.adamsalphabet.com/",
   ].join("\n");
 
   const html = `<!DOCTYPE html>
@@ -100,7 +100,7 @@ export function renderContactEmail(p: ContactPayload) {
                 Submitted ${new Date().toLocaleString("en-US", {
                   dateStyle: "medium",
                   timeStyle: "short",
-                })} via adamsalphabet.com
+                })} via www.adamsalphabet.com
               </p>
             </td>
           </tr>

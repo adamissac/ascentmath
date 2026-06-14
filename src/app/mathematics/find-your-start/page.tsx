@@ -6,13 +6,15 @@ import TopicStartFinder from "../../../components/TopicStartFinder";
 import Reveal from "../../../components/Reveal";
 import { GRADES } from "../../../data/units";
 import { STUDY_PATHS_HREF } from "../../../lib/site-paths";
+import { buildPageMetadata } from "../../../lib/metadata";
 import StudyPathsLink from "../../../components/StudyPathsLink";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = buildPageMetadata({
   title: "Find your start",
   description:
     "Answer three quick questions to find the right grade, unit, and topic in the free Grades 6-8 study paths.",
-};
+  path: "/mathematics/find-your-start",
+});
 
 export default function FindYourStartPage() {
   const totalUnits = GRADES.reduce((s, g) => s + g.units.length, 0);

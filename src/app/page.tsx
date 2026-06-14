@@ -1,6 +1,7 @@
 import ColorBand from "../components/ColorBand";
 import CredentialsSection from "../components/CredentialsSection";
 import HomeBookingSection from "../components/HomeBookingSection";
+import HomeJsonLd from "../components/HomeJsonLd";
 import HomeStudyPathsSection from "../components/HomeStudyPathsSection";
 import Reveal from "../components/Reveal";
 import HeroSection from "../components/HeroSection";
@@ -19,6 +20,7 @@ export default function Home() {
 
   return (
     <>
+      <HomeJsonLd />
       <HeroSection totalUnits={totalUnits} />
 
       <CredentialsSection />

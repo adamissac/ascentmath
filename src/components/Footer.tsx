@@ -6,6 +6,8 @@ import { SITE_POSITIONING } from "../data/site-copy";
 import {
   ADAM_EMAIL,
   ALAN_EMAIL,
+  SITE_PHONE_DISPLAY,
+  SITE_PHONE_TEL,
   TUTOR_NAMES_SHORT,
 } from "../data/site-team";
 import { BOOK_SESSION_HREF, STUDY_PATHS_HREF } from "../lib/site-paths";
@@ -56,6 +58,11 @@ export default function Footer() {
             <div>
               <h3 className="caption font-semibold text-[var(--color-ink)] uppercase tracking-wider">Connect</h3>
               <ul className="mt-3 space-y-2 small">
+                <li>
+                  <a href={`tel:${SITE_PHONE_TEL}`} className="link">
+                    {SITE_PHONE_DISPLAY}
+                  </a>
+                </li>
                 <li>
                   <HashLink href={BOOK_SESSION_HREF} className="link">Contact us</HashLink>
                 </li>
