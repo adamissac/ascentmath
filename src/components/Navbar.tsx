@@ -11,7 +11,6 @@ import { BOOK_SESSION_HREF, STUDY_PATHS_HREF } from "../lib/site-paths";
 const NAV_LINKS = [
   { href: "/#what-i-teach", label: "Tutoring", sectionId: "what-i-teach" },
   { href: STUDY_PATHS_HREF, label: "Study paths", sectionId: "study-paths" },
-  { href: "/about", label: "About", sectionId: null },
 ] as const;
 
 const HOME_NAV_SECTIONS = ["what-i-teach", "study-paths"] as const;
@@ -224,21 +223,13 @@ export default function Navbar() {
                 )}
               </div>
             ) : (
-              <>
-                <Link
-                  href="/login"
-                  className="text-sm font-semibold text-[var(--color-ink-muted)] hover:text-[var(--color-ink)] px-3 py-2 rounded-md hover:bg-[var(--color-surface-2)] transition-colors"
-                >
-                  Log in
-                </Link>
-                <HashLink
-                  href={BOOK_SESSION_HREF}
-                  className="btn btn-primary btn-sm shadow-[0_8px_20px_-8px_rgba(42,75,203,0.55)] hover:-translate-y-0.5 hover:shadow-[0_12px_24px_-10px_rgba(42,75,203,0.5)] transition-[transform,box-shadow]"
-                >
-                  Book a session
-                  <span aria-hidden>→</span>
-                </HashLink>
-              </>
+              <HashLink
+                href={BOOK_SESSION_HREF}
+                className="btn btn-primary btn-sm shadow-[0_8px_20px_-8px_rgba(42,75,203,0.55)] hover:-translate-y-0.5 hover:shadow-[0_12px_24px_-10px_rgba(42,75,203,0.5)] transition-[transform,box-shadow]"
+              >
+                Book a session
+                <span aria-hidden>→</span>
+              </HashLink>
             )}
           </div>
 
@@ -320,12 +311,6 @@ export default function Navbar() {
               </>
             ) : (
               <>
-                <Link
-                  href="/login"
-                  className="px-3 py-2 rounded-md text-base font-medium text-[var(--color-ink)] hover:bg-[var(--color-surface-2)]"
-                >
-                  Log in
-                </Link>
                 <HashLink href={BOOK_SESSION_HREF} className="btn btn-primary mt-2">
                   Book a session →
                 </HashLink>

@@ -37,7 +37,7 @@ export default function Footer() {
           <div className="hidden lg:block lg:col-span-1" />
 
           {/* Right: link columns */}
-          <div className="lg:col-span-6 grid grid-cols-2 sm:grid-cols-4 gap-8">
+          <div className="lg:col-span-6 grid grid-cols-2 sm:grid-cols-3 gap-8">
             <div>
               <h3 className="caption font-semibold text-[var(--color-ink)] uppercase tracking-wider">Tutoring</h3>
               <ul className="mt-3 space-y-2 small">
@@ -51,12 +51,6 @@ export default function Footer() {
                 <li><HashLink href={STUDY_PATHS_HREF} className="link">Grades 6-8 paths (free)</HashLink></li>
                 <li><Link href="/mathematics/find-your-start" className="link">Find your start</Link></li>
                 <li><Link href="/mathematics/curriculum-frameworks" className="link">GADOE frameworks</Link></li>
-              </ul>
-            </div>
-            <div>
-              <h3 className="caption font-semibold text-[var(--color-ink)] uppercase tracking-wider">Site</h3>
-              <ul className="mt-3 space-y-2 small">
-                <li><Link href="/about" className="link">About</Link></li>
               </ul>
             </div>
             <div>

@@ -146,9 +146,6 @@ function Dashboard() {
                 <StudyPathsLink className="btn btn-outline btn-sm justify-between">
                   Study paths <span aria-hidden>→</span>
                 </StudyPathsLink>
-                <Link href="/about" className="btn btn-ghost btn-sm justify-between">
-                  About us <span aria-hidden>→</span>
-                </Link>
               </div>
             </Card>
 

@@ -3,13 +3,11 @@ import { GRADES } from "../src/data/units.ts";
 const base = process.argv[2] ?? "http://localhost:3000";
 const paths = [
   "/",
-  "/about",
   "/book",
   "/tutoring",
   "/mathematics",
   "/mathematics/find-your-start",
   "/mathematics/curriculum-frameworks",
-  "/login",
   "/signup",
   "/forgot-password",
   "/dashboard",

@@ -3,7 +3,7 @@
 import { usePathname } from "next/navigation";
 import Footer from "./Footer";
 
-const AUTH_PATHS = new Set(["/login", "/signup", "/forgot-password"]);
+const AUTH_PATHS = new Set(["/signup", "/forgot-password"]);
 
 export default function ConditionalFooter() {
   const pathname = usePathname();

@@ -65,8 +65,8 @@ function ForgotPasswordForm() {
       footer={
         <p>
           Remembered it?{" "}
-          <Link href="/login" className="link font-semibold">
-            Back to log in
+          <Link href="/" className="link font-semibold">
+            Back to home
           </Link>
         </p>
       }

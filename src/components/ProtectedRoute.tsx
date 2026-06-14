@@ -8,7 +8,7 @@ import { useAuth } from "./AuthProvider";
  * Wrap any client page that requires an authenticated user. While auth
  * state resolves we render a calm loading placeholder; if the resolution
  * shows no user we redirect. A visitor who was never signed in is sent to
- * /login (preserving the original destination as `?next=`); a user who
+ * /signup (preserving the original destination as `?next=`); a user who
  * signed out or whose session ended while on the page is sent home - this
  * also keeps the sign-out redirect deterministic instead of racing the
  * page's own `router.replace("/")`.
@@ -32,7 +32,7 @@ export default function ProtectedRoute({ children }: { children: ReactNode }) {
         return;
       }
       const next = pathname ? `?next=${encodeURIComponent(pathname)}` : "";
-      router.replace(`/login${next}`);
+      router.replace(`/signup${next}`);
     }
   }, [configured, loading, user, router, pathname]);
 

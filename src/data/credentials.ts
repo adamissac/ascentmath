@@ -23,7 +23,6 @@ export const TUTOR_INTRO: TutorIntro = {
   meta: "Adam Issac · Denmark High · Class of 2026 · Taking new students",
   bio: "Senior at Denmark High. I co-founded Adam's Alphabet with Alan to tutor the high school AP and college math I earned top marks in, plus K-5 and middle school — and built free Grades 6-8 study paths on this site.",
   email: ADAM_EMAIL,
-  storyHref: "/about",
 };
 
 export const ALAN_INTRO: TutorIntro = {
@@ -33,7 +32,6 @@ export const ALAN_INTRO: TutorIntro = {
   meta: "Alan Mozhoor · Taking new students",
   bio: "Bio details coming soon. Alan co-founded Adam's Alphabet with Adam to offer clear, patient 1-on-1 math help from elementary through college.",
   email: ALAN_EMAIL,
-  storyHref: "/about",
 };
 
 export const MATH_CREDENTIALS: readonly MathCredential[] = [

@@ -1,6 +1,5 @@
 "use client";
 
-import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
 import { Suspense, useEffect, useMemo, useState } from "react";
 import AuthShell from "../../components/AuthShell";
@@ -114,17 +113,6 @@ function SignupForm() {
       subtitle="Accounts are free. Use them to track units, book paid sessions with Adam & Alan, and pick up across devices."
       panelTitle="Math tutoring with Adam & Alan."
       panelSubtitle="Create a free account to book tutoring and save progress on Grades 6-8 self-paced paths."
-      footer={
-        <p>
-          Already have one?{" "}
-          <Link
-            href={`/login${next ? `?next=${encodeURIComponent(next)}` : ""}`}
-            className="link font-semibold"
-          >
-            Log in instead
-          </Link>
-        </p>
-      }
     >
       <AuthComingSoonNotice
         dialogOpen={dialogOpen}
