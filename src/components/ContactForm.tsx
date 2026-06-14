@@ -237,8 +237,8 @@ export default function ContactForm() {
                     "cursor-pointer select-none rounded-[var(--radius-sm)] px-2 py-2.5 text-center text-[0.8125rem] font-medium leading-snug transition-colors duration-150",
                     "has-[:focus-visible]:[box-shadow:var(--shadow-focus)]",
                     active
-                      ? "bg-white text-[var(--color-ink)] shadow-[var(--shadow-card)]"
-                      : "text-[var(--color-ink-muted)] hover:text-[var(--color-ink)]",
+                      ? "bg-[var(--color-brand-600)] text-white"
+                      : "text-[var(--color-ink-muted)] hover:bg-white/60 hover:text-[var(--color-ink)]",
                   ].join(" ")}
                 >
                   <input
@@ -375,7 +375,9 @@ export default function ContactForm() {
           {status === "submitting" ? "Sending…" : "Send request"}
         </Button>
 
-        <p className="caption text-[var(--color-ink-soft)] leading-relaxed">
+        <p className="caption text-[var(--color-ink-muted)] leading-relaxed">
+          Sent to{" "}
+          <span className="font-medium text-[var(--color-ink)]">{recipientsDisplay}</span>.{" "}
           {REPLY_TIME_LINE}
         </p>
       </form>
