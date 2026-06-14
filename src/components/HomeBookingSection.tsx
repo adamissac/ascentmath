@@ -8,14 +8,17 @@ import { REPLY_TIME_LINE, TUTOR_NAMES_SHORT } from "../data/site-team";
 export default function HomeBookingSection() {
   return (
     <section
-      id="book-session"
-      className="hero-surface relative scroll-mt-[5.5rem] overflow-hidden border-t border-[var(--color-border)] bg-[var(--color-bg)]"
+      className="hero-surface relative overflow-hidden border-t border-[var(--color-border)] bg-[var(--color-bg)]"
+      aria-labelledby="book-session-heading"
     >
       <HeroCanvas />
 
       <Container size="md" className="relative z-[1] py-12 sm:py-16 lg:py-20">
         <Reveal variant="fade" className="mx-auto max-w-xl text-center">
-          <h2 className="font-display text-3xl font-bold tracking-[-0.02em] text-[var(--color-brand-700)] sm:text-4xl">
+          <h2
+            id="book-session-heading"
+            className="font-display text-3xl font-bold tracking-[-0.02em] text-[var(--color-brand-700)] sm:text-4xl"
+          >
             Book a session
           </h2>
           <p className="mt-3 text-[0.9375rem] leading-relaxed text-[var(--color-ink-muted)] sm:text-base">
@@ -23,9 +26,14 @@ export default function HomeBookingSection() {
           </p>
         </Reveal>
 
-        <Reveal variant="rise" delay={40} className="mx-auto mt-10 max-w-xl min-w-0">
-          <ContactForm />
-        </Reveal>
+        <div
+          id="book-session"
+          className="scroll-mt-[5.5rem] mx-auto mt-10 max-w-xl min-w-0"
+        >
+          <Reveal variant="rise" delay={40}>
+            <ContactForm />
+          </Reveal>
+        </div>
       </Container>
     </section>
   );
