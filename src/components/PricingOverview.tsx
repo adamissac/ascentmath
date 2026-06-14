@@ -38,41 +38,25 @@ export function SubjectLevelCards({ variant = "brand" }: { variant?: Variant }) 
 }
 
 function SubjectLevelCard({ tier, isBrand }: { tier: TutoringTier; isBrand: boolean }) {
-  const isPopular = tier.id === "tier3";
-
   const cardClass = isBrand
     ? [
-        "relative flex h-full min-w-[21rem] shrink-0 snap-start flex-col overflow-hidden rounded-lg border p-6 transition-colors duration-300",
+        "relative flex h-full min-w-[21rem] shrink-0 snap-start flex-col overflow-hidden rounded-lg border border-white/18",
+        "bg-white/[0.14] p-6 transition-colors duration-300",
+        "hover:border-white/30 hover:bg-white/[0.18]",
         "lg:min-w-0",
-        isPopular
-          ? "border-white/35 bg-white/[0.18] hover:border-white/45 hover:bg-white/[0.22]"
-          : "border-white/18 bg-white/[0.14] hover:border-white/30 hover:bg-white/[0.18]",
       ].join(" ")
-    : [
-        "card group relative flex h-full min-w-[21rem] shrink-0 snap-start flex-col p-6 transition-shadow duration-300 hover:shadow-[var(--shadow-card-hover)] lg:min-w-0",
-        isPopular ? "border-[var(--color-brand-300)]" : "",
-      ].join(" ");
+    : "card group flex h-full min-w-[21rem] shrink-0 snap-start flex-col p-6 transition-shadow duration-300 hover:shadow-[var(--shadow-card-hover)] lg:min-w-0";
 
   if (isBrand) {
     return (
       <article className={cardClass}>
-        <span
-          aria-hidden
-          className={`absolute left-0 top-0 h-full w-1 ${isPopular ? "bg-[var(--color-accent-500)]" : TIER_STRIPE}`}
-        />
+        <span aria-hidden className={`absolute left-0 top-0 h-full w-1 ${TIER_STRIPE}`} />
 
         <div className="relative flex items-start justify-between gap-3">
           <div>
-            <div className="flex flex-wrap items-center gap-2">
-              <p className="text-[0.6875rem] font-semibold uppercase tracking-[0.14em] text-white/50">
-                {tier.tierLabel}
-              </p>
-              {isPopular && (
-                <span className="rounded-full bg-[var(--color-accent-500)] px-2 py-0.5 text-[0.625rem] font-bold uppercase tracking-wider text-white">
-                  Popular
-                </span>
-              )}
-            </div>
+            <p className="text-[0.6875rem] font-semibold uppercase tracking-[0.14em] text-white/50">
+              {tier.tierLabel}
+            </p>
             <h3 className="font-display mt-1 text-lg font-bold text-white sm:text-xl">
               {tier.label}
             </h3>
@@ -91,14 +75,7 @@ function SubjectLevelCard({ tier, isBrand }: { tier: TutoringTier; isBrand: bool
   return (
     <article className={cardClass}>
       <div className="flex items-center justify-between gap-3">
-        <div className="flex flex-wrap items-center gap-2">
-          <h3 className="font-display font-bold text-lg text-[var(--color-ink)]">{tier.tierLabel}</h3>
-          {isPopular && (
-            <span className="pill pill-accent text-[0.625rem] font-bold uppercase tracking-wider">
-              Popular
-            </span>
-          )}
-        </div>
+        <h3 className="font-display font-bold text-lg text-[var(--color-ink)]">{tier.tierLabel}</h3>
         <span className="pill pill-brand text-[0.6875rem]">{tier.range}</span>
       </div>
       <p className="mt-1 text-sm font-semibold text-[var(--color-accent-700)]">{tier.label}</p>
