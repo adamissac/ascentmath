@@ -687,82 +687,6 @@ body {
 .ambient-glyph--delay { animation-delay: -4s; }
 .ambient-glyph--delay-2 { animation-delay: -9s; }
 
-/* Book-a-session backdrop — mesh, bands, and rings (no floating glyphs) */
-.booking-mesh {
-  background:
-    radial-gradient(ellipse 55% 45% at 18% 32%, rgba(42, 75, 203, 0.14), transparent 58%),
-    radial-gradient(ellipse 48% 40% at 82% 58%, rgba(244, 123, 22, 0.09), transparent 55%),
-    radial-gradient(ellipse 42% 38% at 52% 88%, rgba(126, 151, 240, 0.11), transparent 52%);
-  animation: booking-mesh-shift 24s ease-in-out infinite alternate;
-}
-@keyframes booking-mesh-shift {
-  0% { transform: translate(0, 0) scale(1); }
-  100% { transform: translate(2.5%, -2%) scale(1.04); }
-}
-.booking-flow-band {
-  position: absolute;
-  width: 130%;
-  left: -15%;
-  height: 38%;
-  background: linear-gradient(
-    102deg,
-    transparent 38%,
-    rgba(42, 75, 203, 0.045) 49%,
-    rgba(126, 151, 240, 0.035) 51%,
-    transparent 62%
-  );
-  opacity: 0.9;
-}
-.booking-flow-band--a {
-  top: 8%;
-  animation: booking-band-drift-a 32s ease-in-out infinite;
-}
-.booking-flow-band--b {
-  top: 48%;
-  animation: booking-band-drift-b 38s ease-in-out infinite;
-  animation-delay: -12s;
-  opacity: 0.65;
-  transform: scaleY(-1);
-}
-@keyframes booking-band-drift-a {
-  0%, 100% { transform: translateX(-4%) skewY(-2deg); }
-  50% { transform: translateX(5%) skewY(1deg); }
-}
-@keyframes booking-band-drift-b {
-  0%, 100% { transform: scaleY(-1) translateX(3%) skewY(1deg); }
-  50% { transform: scaleY(-1) translateX(-6%) skewY(-1deg); }
-}
-.booking-grid-breathe {
-  animation: booking-grid-breathe 18s ease-in-out infinite;
-}
-@keyframes booking-grid-breathe {
-  0%, 100% { opacity: 0.5; }
-  50% { opacity: 0.78; }
-}
-.booking-pulse-ring {
-  fill: none;
-  stroke: rgba(42, 75, 203, 0.16);
-  stroke-width: 1;
-  transform-box: fill-box;
-  transform-origin: center;
-  animation: booking-pulse-ring 14s ease-out infinite;
-}
-@keyframes booking-pulse-ring {
-  0% {
-    transform: scale(0.72);
-    opacity: 0.55;
-    stroke-width: 1.25;
-  }
-  70% {
-    opacity: 0.12;
-  }
-  100% {
-    transform: scale(1.18);
-    opacity: 0;
-    stroke-width: 0.5;
-  }
-}
-
 .reveal-animate-rise {
   animation: reveal-rise var(--reveal-duration) var(--ease-reveal) forwards;
 }
@@ -984,19 +908,6 @@ body {
   .ambient-blob,
   .ambient-glyph {
     animation: none !important;
-  }
-  .booking-mesh,
-  .booking-flow-band,
-  .booking-grid-breathe,
-  .booking-pulse-ring {
-    animation: none !important;
-  }
-  .booking-grid-breathe {
-    opacity: 0.6 !important;
-  }
-  .booking-pulse-ring {
-    opacity: 0.15 !important;
-    transform: none !important;
   }
   .hero-enter,
   .hero-enter.is-visible {
