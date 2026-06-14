@@ -155,32 +155,21 @@ export const TUTORING_TIERS: readonly TutoringTier[] = [
     range: "College",
     accent: "bg-[var(--color-accent-300)]",
     hourlyRate: "$50/hr",
-    blurb: "Linear algebra, multivariable calc, and intro CS math at the college level.",
-    rigorNote: "GT-level coursework and dual-enrollment classes we've taken ourselves.",
+    blurb: "Georgia Tech math and CS courses we've taken ourselves — plus dual enrollment.",
+    rigorNote: "College-level problem sets, projects, and exam prep.",
     topicGroups: [
       {
-        label: "Calculus",
+        label: "Math",
         items: [
-          "Single & multivariable calculus",
-          "MATH 2551 · vector calc",
-          "Series & applications",
+          "MATH 1554 — Linear Algebra",
+          "MATH 2551 — Multivariable Calculus",
         ],
       },
       {
-        label: "Linear algebra",
-        highlightLabel: true,
+        label: "Computer science",
         items: [
-          "MATH 1554 · matrices & systems",
-          "Eigenvalues & vector spaces",
-          "Proof-style problem sets",
-        ],
-      },
-      {
-        label: "Dual enrollment & CS",
-        items: [
-          "College math while in high school",
-          "CS 1301 & CS 1331",
-          "Exam and homework prep",
+          "CS 1301 — Introduction to Computing and Programming",
+          "CS 1331 — Introduction to Object-Oriented Programming",
         ],
       },
     ],
