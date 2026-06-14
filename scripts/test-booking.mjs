@@ -13,7 +13,7 @@ const payload = {
   website: "",
 };
 
-const base = process.env.BOOK_TEST_URL || "http://localhost:3000";
+const base = process.env.BOOK_TEST_URL || "http://127.0.0.1:3000";
 
 async function main() {
   console.log(`POST ${base}/api/contact …\n`);

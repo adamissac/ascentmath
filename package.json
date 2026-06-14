@@ -4,9 +4,9 @@
   "private": true,
   "scripts": {
     "clean": "node scripts/clean-next.mjs",
-    "dev": "node scripts/start-dev.mjs",
-    "dev:clean": "node scripts/kill-next.mjs && node scripts/clean-next.mjs && node scripts/start-dev.mjs",
-    "preview": "node scripts/kill-next.mjs && npm run build && next start --port 3000",
+    "dev": "node scripts/dev.mjs",
+    "dev:clean": "node scripts/dev.mjs --clean",
+    "preview": "node scripts/kill-next.mjs && npm run build && next start --port 3000 --hostname 127.0.0.1",
     "build": "node scripts/kill-next.mjs && node scripts/clean-next.mjs && next build",
     "start": "next start",
     "lint": "eslint",

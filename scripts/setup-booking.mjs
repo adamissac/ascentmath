@@ -71,7 +71,7 @@ async function main() {
 
   console.log("\nSaved to .env.local");
   console.log("Restart the dev server, then run: npm run book:test");
-  console.log("Or submit the form at http://localhost:3000/book\n");
+  console.log("Or submit the form at http://127.0.0.1:3000/#book-session\n");
 }
 
 main().catch((err) => {

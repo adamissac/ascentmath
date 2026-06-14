@@ -26,7 +26,6 @@ function getPidsOnPort(targetPort) {
     return pids;
   }
 
-  // netstat works in sandboxes where lsof often cannot see listeners
   try {
     const out = execSync("netstat -tlnp 2>/dev/null", { encoding: "utf8" });
     for (const line of out.split(/\r?\n/)) {

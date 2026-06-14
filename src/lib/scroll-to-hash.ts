@@ -23,6 +23,14 @@ export function shouldResetHomeOnReload(): boolean {
   return true;
 }
 
+/** Scroll to the top of the page (respects reduced motion). */
+export function scrollToPageTop() {
+  if (typeof window === "undefined") return;
+  const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  window.history.replaceState(null, "", window.location.pathname || "/");
+  window.scrollTo({ top: 0, behavior: reduced ? "auto" : "smooth" });
+}
+
 /** Scroll to an element id and sync the URL hash (used by HashLink + HashScrollHandler). */
 export function scrollToHashId(id: string, behavior: ScrollBehavior = "smooth") {
   const el = document.getElementById(id);

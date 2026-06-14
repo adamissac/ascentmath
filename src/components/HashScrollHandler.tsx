@@ -1,7 +1,7 @@
 "use client";
 
-import { Suspense, useEffect } from "react";
-import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import { Suspense, useEffect, useRef } from "react";
+import { usePathname, useSearchParams } from "next/navigation";
 import {
   shouldResetHomeOnReload,
   smoothScrollToHashWhenReady,
@@ -10,8 +10,8 @@ import {
 
 function HashScrollHandlerInner() {
   const pathname = usePathname();
-  const router = useRouter();
   const searchParams = useSearchParams();
+  const handledSectionRef = useRef<string | null>(null);
 
   useEffect(() => {
     if (typeof window !== "undefined" && "scrollRestoration" in history) {
@@ -20,24 +20,34 @@ function HashScrollHandlerInner() {
   }, []);
 
   useEffect(() => {
+    if (pathname !== "/") return;
+
     // Full refresh only (once) — open at the hero, not the last #section.
-    if (pathname === "/" && shouldResetHomeOnReload()) {
+    if (shouldResetHomeOnReload()) {
       takePendingHash();
       const hadDeepLink =
         window.location.hash.length > 1 || searchParams.has("section");
       if (hadDeepLink) {
-        router.replace("/", { scroll: false });
+        window.history.replaceState(null, "", "/");
       }
       window.scrollTo({ top: 0, behavior: "auto" });
       return;
     }
 
     const section = searchParams.get("section");
-    if (section && pathname === "/") {
-      const cleanup = smoothScrollToHashWhenReady(section);
-      router.replace(`/#${section}`, { scroll: false });
-      return cleanup;
+    if (section) {
+      if (handledSectionRef.current !== section) {
+        handledSectionRef.current = section;
+        const hash = `#${encodeURIComponent(section)}`;
+        if (window.location.hash !== hash || window.location.search.includes("section=")) {
+          // history.replaceState — router.replace with ?section= caused reload loops
+          window.history.replaceState(null, "", `/${hash}`);
+        }
+      }
+      return smoothScrollToHashWhenReady(section);
     }
+
+    handledSectionRef.current = null;
 
     const pending = takePendingHash();
     if (pending) {
@@ -49,7 +59,7 @@ function HashScrollHandlerInner() {
 
     const id = decodeURIComponent(hash.slice(1));
     return smoothScrollToHashWhenReady(id);
-  }, [pathname, searchParams, router]);
+  }, [pathname, searchParams]);
 
   return null;
 }

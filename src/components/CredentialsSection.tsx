@@ -3,6 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import Container from "./Container";
+import HeroCanvas from "./HeroCanvas";
 import Reveal from "./Reveal";
 import BookSessionLink from "./BookSessionLink";
 import {
@@ -30,14 +31,7 @@ export default function CredentialsSection() {
       className="hero-surface relative overflow-hidden border-b border-[var(--color-border)] bg-[var(--color-bg)]"
       aria-labelledby="credentials"
     >
-      <div
-        aria-hidden
-        className="pointer-events-none absolute inset-0 dot-grid-soft opacity-50"
-      />
-      <div
-        aria-hidden
-        className="pointer-events-none absolute inset-0 bg-gradient-to-b from-[var(--color-brand-50)]/30 via-transparent to-transparent"
-      />
+      <HeroCanvas />
 
       <Container size="lg" className="relative z-[1] py-10 sm:py-12 lg:py-14">
         <div className="grid gap-12 lg:gap-14">

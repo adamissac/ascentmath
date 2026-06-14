@@ -1,6 +1,6 @@
 import { GRADES } from "../src/data/units.ts";
 
-const base = process.argv[2] ?? "http://localhost:3000";
+const base = process.argv[2] ?? "http://127.0.0.1:3000";
 const paths = [
   "/",
   "/book",
