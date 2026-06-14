@@ -151,16 +151,50 @@ export const TUTORING_TIERS: readonly TutoringTier[] = [
   {
     id: "tier4",
     tierLabel: "Tier 4",
-    label: "College / Dual Enrollment",
-    range: "College",
+    label: "College & dual enrollment",
+    range: "College · DE",
     accent: "bg-[var(--color-accent-300)]",
     hourlyRate: "$50/hr",
-    blurb: "Georgia Tech-level coursework and dual-enrollment math we've taken ourselves.",
-    rigorNote: "Linear algebra, multivariable calc, and intro CS math.",
+    blurb:
+      "University math and dual-enrollment courses — linear algebra, multivariable calc, and the GT-level classes we've taken ourselves.",
+    rigorNote:
+      "Proof-heavy problem sets, exam prep, and concepts that stack across semesters.",
     topicGroups: [
       {
-        label: "Courses",
-        items: ["MATH 1554", "MATH 2551", "CS 1301", "CS 1331"],
+        label: "Calculus & analysis",
+        items: [
+          "Single-variable calculus (Calc I–II)",
+          "Multivariable calculus (MATH 2551)",
+          "Vector calculus & partial derivatives",
+          "Series, sequences, and Taylor expansions",
+        ],
+      },
+      {
+        label: "Linear algebra",
+        highlightLabel: true,
+        items: [
+          "MATH 1554 · matrices & linear systems",
+          "Eigenvalues, eigenvectors, diagonalization",
+          "Vector spaces & linear transformations",
+          "Applications in engineering & CS",
+        ],
+      },
+      {
+        label: "CS & applied math",
+        items: [
+          "CS 1301 · intro programming & logic",
+          "CS 1331 · OOP & data structures",
+          "Discrete math & proof writing",
+          "College probability & statistics",
+        ],
+      },
+      {
+        label: "Dual enrollment support",
+        items: [
+          "High schoolers taking college math on campus or online",
+          "Keeping up with university syllabi & pacing",
+          "Homework, quizzes, and midterm / final prep",
+        ],
       },
     ],
   },
