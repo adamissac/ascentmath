@@ -1,14 +1,8 @@
-﻿import MathBackdrop from "./MathBackdrop";
+﻿﻿"use client";
 
-/** Static math-symbol wash for hero sections (no canvas animation). */
+import FloatingMathCanvas from "./FloatingMathCanvas";
+
+/** Home landing hero. upward drift, dense symbols. */
 export default function HeroCanvas() {
-  return (
-    <MathBackdrop
-      variant="paper"
-      density="medium"
-      contentSafe
-      fadeEdges
-      clipart={false}
-    />
-  );
+  return <FloatingMathCanvas variant="home" />;
 }

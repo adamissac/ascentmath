@@ -39,7 +39,7 @@ export default function ColorBand({
   variant = "dark",
   size = "md",
   containerSize = "xl",
-  reveal = false,
+  reveal = true,
   /** Dot grid only: skips symbols and clipart (smoother scroll). */
   minimalBackdrop = false,
   /** Faint edge symbols only (brand/dark bands). */

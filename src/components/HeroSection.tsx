@@ -76,14 +76,18 @@ export default function HeroSection({ totalUnits }: HeroSectionProps) {
           >
             <HashLink
               href={BOOK_SESSION_HREF}
-              className="inline-flex min-h-[3rem] w-full items-center justify-center rounded-full bg-[var(--color-ink-cool)] px-5 py-3 text-center text-[0.9375rem] font-semibold text-white shadow-[0_10px_28px_-12px_rgba(26,26,46,0.55)] transition-[background-color,box-shadow] duration-200 hover:shadow-[0_14px_32px_-12px_rgba(26,26,46,0.5)] sm:w-auto sm:px-7"
+              className="group relative inline-flex min-h-[3rem] w-full items-center justify-center overflow-hidden rounded-full bg-[var(--color-ink-cool)] px-5 py-3 text-center text-[0.9375rem] font-semibold text-white shadow-[0_10px_28px_-12px_rgba(26,26,46,0.55)] transition-[transform,box-shadow] duration-200 hover:-translate-y-0.5 hover:shadow-[0_16px_36px_-14px_rgba(26,26,46,0.5)] sm:w-auto sm:px-7"
             >
-              Book a tutoring session
+              <span
+                aria-hidden
+                className="pointer-events-none absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/25 to-transparent transition-transform duration-700 group-hover:translate-x-full"
+              />
+              <span className="relative">Book a tutoring session</span>
             </HashLink>
             <div className="flex w-full flex-col gap-2 sm:w-auto sm:flex-row sm:items-center sm:gap-2">
               <HashLink
                 href={STUDY_PATHS_HREF}
-                className="relative inline-flex min-h-[3rem] w-full items-center justify-center gap-2 rounded-full border-2 border-[#1a1a2e]/25 bg-transparent px-5 py-3 text-center text-[0.9375rem] font-semibold text-[var(--color-ink-cool)] transition-[background-color,border-color] duration-200 hover:border-[#F47B16]/45 hover:bg-[var(--color-accent-50)] sm:w-auto sm:px-7"
+                className="relative inline-flex min-h-[3rem] w-full items-center justify-center gap-2 rounded-full border-2 border-[#1a1a2e]/25 bg-transparent px-5 py-3 text-center text-[0.9375rem] font-semibold text-[var(--color-ink-cool)] transition-[background-color,border-color,transform] duration-200 hover:-translate-y-0.5 hover:border-[#F47B16]/45 hover:bg-[var(--color-accent-50)] sm:w-auto sm:px-7"
               >
                 Browse study paths
                 <span className="inline-flex rounded-full bg-[var(--color-accent-500)] px-2 py-0.5 text-[0.6875rem] font-bold leading-none text-white shadow-sm sm:hidden">

@@ -3,6 +3,7 @@ import CredentialsSection from "../components/CredentialsSection";
 import HomeBookingSection from "../components/HomeBookingSection";
 import HomeJsonLd from "../components/HomeJsonLd";
 import HomeStudyPathsSection from "../components/HomeStudyPathsSection";
+import Reveal from "../components/Reveal";
 import HeroSection from "../components/HeroSection";
 import {
   PricingCtaRow,
@@ -33,7 +34,7 @@ export default function Home() {
         reveal={false}
         faintSymbols
       >
-        <div className="mx-auto max-w-3xl text-center">
+        <Reveal variant="fade" className="mx-auto max-w-3xl text-center">
           <p className="caption font-semibold tracking-[0.16em] uppercase text-[var(--color-accent-300)]">
             What we teach
           </p>
@@ -47,19 +48,19 @@ export default function Home() {
           <p className="mt-4 inline-flex rounded-full border border-white/25 bg-white/10 px-4 py-1.5 text-sm font-semibold text-[var(--color-accent-300)]">
             {FIRST_SESSION_FREE}
           </p>
-        </div>
+        </Reveal>
 
         <div className="mt-10 lg:mt-12">
           <SubjectLevelCards variant="brand" />
         </div>
 
-        <div className="mt-10 lg:mt-12">
+        <Reveal variant="fade" delay={40} className="mt-10 lg:mt-12">
           <PricingTierExplainer variant="brand" />
-        </div>
+        </Reveal>
 
-        <div className="mt-8">
+        <Reveal variant="rise" delay={70} className="mt-8">
           <PricingCtaRow variant="brand" />
-        </div>
+        </Reveal>
       </ColorBand>
 
       <HomeStudyPathsSection />

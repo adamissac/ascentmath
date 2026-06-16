@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
 import Container from "../../../components/Container";
 import Breadcrumbs from "../../../components/Breadcrumbs";
-import MathBackdrop from "../../../components/MathBackdrop";
+import FloatingMathCanvas from "../../../components/FloatingMathCanvas";
 import TopicStartFinder from "../../../components/TopicStartFinder";
+import Reveal from "../../../components/Reveal";
 import { GRADES } from "../../../data/units";
 import { STUDY_PATHS_HREF } from "../../../lib/site-paths";
 import { buildPageMetadata } from "../../../lib/metadata";
@@ -21,7 +22,7 @@ export default function FindYourStartPage() {
   return (
     <>
       <section className="hero-surface relative overflow-hidden">
-        <MathBackdrop variant="paper" density="light" contentSafe fadeEdges clipart={false} />
+        <FloatingMathCanvas variant="compass" />
         <Container size="lg" className="relative pt-10 pb-12 sm:pb-14">
           <Breadcrumbs
             items={[
@@ -30,13 +31,13 @@ export default function FindYourStartPage() {
               { label: "Find your start" },
             ]}
           />
-          <div className="mt-6 w-full min-w-0 max-w-2xl">
+          <Reveal className="mt-6 w-full min-w-0 max-w-2xl" variant="up">
             <h1 className="h-display min-w-0 break-words">Find the right unit for you.</h1>
             <p className="lede mt-4 min-w-0">
               You don&apos;t have to browse all {totalUnits} units blind. Tell us your grade and what your
               class is covering - we&apos;ll drop you into a sensible starting point.
             </p>
-          </div>
+          </Reveal>
         </Container>
       </section>
 

@@ -9,7 +9,14 @@ import {
   type ReactNode,
 } from "react";
 
-type RevealVariant = "rise" | "up" | "up-lg" | "fade" | "left" | "right" | "scale" | "pop";
+type RevealVariant = "rise" | "up" | "up-lg" | "fade" | "left" | "right" | "scale" | "blur" | "pop";
+
+function isInViewport(el: HTMLElement, marginRatio = 0.12) {
+  const rect = el.getBoundingClientRect();
+  const vh = window.innerHeight || document.documentElement.clientHeight;
+  const margin = vh * marginRatio;
+  return rect.top < vh - margin && rect.bottom > margin;
+}
 
 export default function Reveal({
   children,
@@ -18,8 +25,8 @@ export default function Reveal({
   delay = 0,
   variant = "rise",
   stagger = false,
-  threshold = 0.08,
-  rootMargin = "0px 0px -8% 0px",
+  threshold = 0.12,
+  rootMargin = "0px 0px -10% 0px",
   style,
 }: {
   children: ReactNode;
@@ -45,27 +52,42 @@ export default function Reveal({
       return;
     }
 
-    const play = () => setPlayed(true);
+    let done = false;
+    const play = () => {
+      if (done) return;
+      done = true;
+      setPlayed(true);
+    };
 
-    const rect = el.getBoundingClientRect();
-    const vh = window.innerHeight || document.documentElement.clientHeight;
-    if (rect.top < vh && rect.bottom > 0) {
-      play();
-      return;
-    }
+    const tryPlay = () => {
+      if (isInViewport(el)) play();
+    };
 
     const observer = new IntersectionObserver(
       ([entry]) => {
-        if (entry?.isIntersecting) {
-          play();
-          observer.disconnect();
-        }
+        if (entry.isIntersecting) play();
       },
       { threshold, rootMargin },
     );
 
     observer.observe(el);
-    return () => observer.disconnect();
+
+    const onScroll = () => tryPlay();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll, { passive: true });
+    window.addEventListener("hashchange", tryPlay);
+
+    const t1 = window.setTimeout(tryPlay, 80);
+    const t2 = window.setTimeout(tryPlay, 320);
+
+    return () => {
+      observer.disconnect();
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onScroll);
+      window.removeEventListener("hashchange", tryPlay);
+      window.clearTimeout(t1);
+      window.clearTimeout(t2);
+    };
   }, [played, threshold, rootMargin]);
 
   const awaitClass = `reveal-await-${variant}`;
