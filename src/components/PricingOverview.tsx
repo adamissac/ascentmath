@@ -2,7 +2,6 @@
 
 import Button from "./Button";
 import HashLink from "./HashLink";
-import Reveal from "./Reveal";
 import { BOOK_SESSION_HREF, CREDENTIALS_HREF } from "../lib/site-paths";
 import {
   FIRST_SESSION_FREE,
@@ -20,18 +19,16 @@ export function SubjectLevelCards({ variant = "brand" }: { variant?: Variant }) 
   const isBrand = variant === "brand";
 
   return (
-    <Reveal variant="rise">
-      <div
-        className={[
-          "flex gap-5 overflow-x-auto pb-2 snap-x snap-mandatory",
-          "lg:grid lg:grid-cols-4 lg:items-stretch lg:gap-6 lg:overflow-visible lg:pb-0 lg:snap-none",
-        ].join(" ")}
-      >
-        {TUTORING_TIERS.map((tier) => (
-          <SubjectLevelCard key={tier.id} tier={tier} isBrand={isBrand} />
-        ))}
-      </div>
-    </Reveal>
+    <div
+      className={[
+        "flex gap-5 overflow-x-auto pb-2 snap-x snap-mandatory",
+        "lg:grid lg:grid-cols-4 lg:items-stretch lg:gap-6 lg:overflow-visible lg:pb-0 lg:snap-none",
+      ].join(" ")}
+    >
+      {TUTORING_TIERS.map((tier) => (
+        <SubjectLevelCard key={tier.id} tier={tier} isBrand={isBrand} />
+      ))}
+    </div>
   );
 }
 

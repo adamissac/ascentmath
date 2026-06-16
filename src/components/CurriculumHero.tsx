@@ -4,10 +4,8 @@ import type { ReactNode } from "react";
 import Link from "next/link";
 import Breadcrumbs, { type Crumb } from "./Breadcrumbs";
 import Container from "./Container";
-import FloatingMathCanvas from "./FloatingMathCanvas";
 import HeroStatBadge from "./HeroStatBadge";
 import MathBackdrop from "./MathBackdrop";
-import Reveal from "./Reveal";
 import { UnitSymbol } from "./UnitSymbol";
 
 export type HeroStat = { value: string | number; label: string };
@@ -50,7 +48,7 @@ export default function CurriculumHero(props: Props) {
   return (
     <section className="hero-surface relative overflow-hidden bg-[var(--color-bg)]">
       {isGrade ? (
-        <FloatingMathCanvas variant="grade" />
+        <MathBackdrop variant="paper" density="light" contentSafe fadeEdges clipart={false} />
       ) : (
         <MathBackdrop variant="paper" density="light" fadeEdges contentSafe />
       )}
@@ -60,7 +58,7 @@ export default function CurriculumHero(props: Props) {
           <Breadcrumbs items={props.breadcrumbs} />
         </div>
 
-        <Reveal variant="up" className="mt-6 sm:mt-8">
+        <div className="mt-6 sm:mt-8">
           <div className={CARD}>
             {isGrade ? (
               <GradeHeroBody {...props} />
@@ -68,7 +66,7 @@ export default function CurriculumHero(props: Props) {
               <UnitHeroBody {...props} />
             )}
           </div>
-        </Reveal>
+        </div>
       </Container>
     </section>
   );

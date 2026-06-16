@@ -4,7 +4,6 @@ import Image from "next/image";
 import Link from "next/link";
 import Container from "./Container";
 import HeroCanvas from "./HeroCanvas";
-import Reveal from "./Reveal";
 import BookSessionLink from "./BookSessionLink";
 import {
   ALAN_CREDENTIALS,
@@ -52,7 +51,7 @@ export default function CredentialsSection() {
           />
         </div>
 
-        <Reveal variant="fade" delay={80} as="footer"
+        <footer
           className="mt-10 flex flex-col gap-1 border-t border-[rgba(26,26,46,0.1)] pt-6 text-center text-[0.8125rem] sm:flex-row sm:flex-wrap sm:items-center sm:justify-center sm:gap-x-3 lg:justify-start lg:text-left"
           style={{ color: MUTED }}
         >
@@ -69,7 +68,7 @@ export default function CredentialsSection() {
             ·
           </span>
           <span>Zoom or in-person in the Atlanta area</span>
-        </Reveal>
+        </footer>
       </Container>
     </section>
   );
@@ -91,8 +90,7 @@ function TutorProfileRow({
   initials?: string;
 }) {
   return (
-    <Reveal variant="rise">
-      <div className="grid items-start gap-8 sm:gap-10 lg:grid-cols-[auto_minmax(0,1fr)] lg:gap-x-12 xl:gap-x-14">
+    <div className="grid items-start gap-8 sm:gap-10 lg:grid-cols-[auto_minmax(0,1fr)] lg:gap-x-12 xl:gap-x-14">
         <div className="flex justify-center lg:justify-start">
           <TutorPhotoCircle
             photoSrc={photoSrc}
@@ -173,8 +171,7 @@ function TutorProfileRow({
             )}
           </div>
         </div>
-      </div>
-    </Reveal>
+    </div>
   );
 }
 

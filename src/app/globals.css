@@ -192,27 +192,27 @@ body {
 :root {
   --ease-smooth: cubic-bezier(0.16, 1, 0.3, 1);
   --ease-reveal: cubic-bezier(0.22, 1, 0.36, 1);
-  --reveal-duration: 0.55s;
-  --reveal-duration-fast: 0.45s;
+  --reveal-duration: 0.45s;
+  --reveal-duration-fast: 0.35s;
 }
 
 /* Hero copy. always readable; motion is transform-only */
 .hero-enter {
   opacity: 1;
-  transform: translate3d(0, 10px, 0);
+  transform: translate3d(0, 8px, 0);
   transition:
-    transform 0.75s var(--ease-smooth),
-    opacity 0.75s var(--ease-smooth);
+    transform 0.4s var(--ease-smooth),
+    opacity 0.4s var(--ease-smooth);
 }
 .hero-enter.is-visible {
   transform: translate3d(0, 0, 0);
 }
 .hero-enter--d0 { transition-delay: 0ms; }
-.hero-enter--d1 { transition-delay: 70ms; }
-.hero-enter--d2 { transition-delay: 140ms; }
-.hero-enter--d3 { transition-delay: 220ms; }
-.hero-enter--d4 { transition-delay: 320ms; }
-.hero-enter--d5 { transition-delay: 420ms; }
+.hero-enter--d1 { transition-delay: 40ms; }
+.hero-enter--d2 { transition-delay: 80ms; }
+.hero-enter--d3 { transition-delay: 120ms; }
+.hero-enter--d4 { transition-delay: 160ms; }
+.hero-enter--d5 { transition-delay: 200ms; }
 .body { font-size: 1rem; line-height: 1.65; }
 .small { font-size: 0.875rem; line-height: 1.55; }
 .caption { font-size: 0.75rem; line-height: 1.45; letter-spacing: 0.02em; }
@@ -294,7 +294,6 @@ body {
 }
 .card-interactive:hover {
   box-shadow: var(--shadow-card-hover);
-  transform: translateY(-2px);
   border-color: var(--color-border-strong);
 }
 .card-flat { box-shadow: none; }

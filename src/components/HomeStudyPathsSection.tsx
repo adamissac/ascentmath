@@ -1,6 +1,5 @@
 import Link from "next/link";
 import Container from "./Container";
-import Reveal from "./Reveal";
 import { GRADES, type Grade } from "../data/units";
 
 export default function HomeStudyPathsSection() {
@@ -25,7 +24,7 @@ export default function HomeStudyPathsSection() {
       />
 
       <Container size="lg" className="relative z-[1] py-12 sm:py-16 lg:py-20">
-        <Reveal variant="fade" className="mx-auto max-w-2xl text-center">
+        <div className="mx-auto max-w-2xl text-center">
           <p className="flex flex-wrap items-center justify-center gap-2">
             <span className="inline-flex rounded-full bg-[var(--color-accent-50)] px-2.5 py-0.5 font-display text-sm font-bold tracking-tight text-[var(--color-accent-700)]">
               Free
@@ -41,22 +40,20 @@ export default function HomeStudyPathsSection() {
             {GRADES.length} grades, {units} units, and {topics} topics for Grades 6-8 — read,
             watch, practice, and check your work on every topic, at your own pace.
           </p>
-        </Reveal>
+        </div>
 
-        <Reveal stagger variant="pop" className="mx-auto mt-10 grid max-w-4xl gap-5 sm:grid-cols-3">
+        <div className="mx-auto mt-10 grid max-w-4xl gap-5 sm:grid-cols-3">
           {GRADES.map((g) => (
             <HomeGradeCard key={g.slug} grade={g} />
           ))}
-        </Reveal>
+        </div>
 
-        <Reveal variant="fade" delay={80} className="mt-9 text-center">
-          <p className="small text-[var(--color-ink-muted)]">
-            Not sure where to begin?{" "}
-            <Link href="/mathematics/find-your-start" className="link">
-              Find your start →
-            </Link>
-          </p>
-        </Reveal>
+        <p className="mt-9 text-center small text-[var(--color-ink-muted)]">
+          Not sure where to begin?{" "}
+          <Link href="/mathematics/find-your-start" className="link">
+            Find your start →
+          </Link>
+        </p>
       </Container>
     </section>
   );
@@ -98,7 +95,6 @@ function HomeGradeCard({ grade: g }: { grade: Grade }) {
           strokeLinecap="round"
           strokeLinejoin="round"
           aria-hidden
-          className="transition-transform duration-200 group-hover:translate-x-1"
         >
           <line x1="5" y1="12" x2="19" y2="12" />
           <polyline points="13 6 19 12 13 18" />
