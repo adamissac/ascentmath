@@ -42,6 +42,11 @@
   --color-ink-muted: #5B6068;
   --color-ink-soft:  #8A8F98;
 
+  /* Cool ink — violet-tinted ramp for hero-style light surfaces */
+  --color-ink-cool:       #1A1A2E;
+  --color-ink-cool-muted: #4A4A6A;
+  --color-ink-cool-soft:  #6B6B80;
+
   /* Semantic */
   --color-info:    #2D5DAF;
   --color-success: #2D7D54;
