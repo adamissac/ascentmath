@@ -63,9 +63,9 @@ export default function Home() {
         </Reveal>
       </ColorBand>
 
-      <HomeStudyPathsSection />
-
       <HomeBookingSection />
+
+      <HomeStudyPathsSection />
     </>
   );
 }

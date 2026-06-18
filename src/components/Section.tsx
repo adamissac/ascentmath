@@ -10,7 +10,7 @@ type Tone = "default" | "muted" | "brand" | "hero" | "dark";
 
 const TONE: Record<Tone, string> = {
   default: "bg-[var(--color-bg)]",
-  muted: "bg-[var(--color-surface-2)]",
+  muted: "bg-[var(--color-bg)]",
   brand: "bg-[var(--color-brand-50)]",
   hero: "hero-surface",
   dark: "bg-[var(--color-ink)] text-white",

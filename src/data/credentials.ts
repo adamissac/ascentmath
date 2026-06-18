@@ -29,8 +29,8 @@ export const ALAN_INTRO: TutorIntro = {
   name: "Alan",
   title: "I'm Alan.",
   titleMuted: "Co-founder of Adam's Alphabet.",
-  meta: "Alan Mozhoor · Taking new students",
-  bio: "Bio details coming soon. Alan co-founded Adam's Alphabet with Adam to offer clear, patient 1-on-1 math help from elementary through college.",
+  meta: "Alan Mozhoor · Denmark High · Class of 2026 · Taking new students",
+  bio: "Senior at Denmark High. I co-founded Adam's Alphabet with Adam to tutor pre-algebra through AP Calculus, linear algebra, multivariable calculus, and test prep — with the same patient, step-by-step approach I use in my own classes.",
   email: ALAN_EMAIL,
 };
 
@@ -45,13 +45,26 @@ export const MATH_CREDENTIALS: readonly MathCredential[] = [
     value: "98%+",
     detail: "Georgia Tech courses",
   },
+  {
+    label: "GT CS 1331",
+    value: "95%+",
+    detail: "Intro to Object-Oriented Programming",
+  },
 ] as const;
 
 export const ALAN_CREDENTIALS: readonly MathCredential[] = [
-  { label: "Credential 1", value: "TBD", detail: "Coming soon" },
-  { label: "Credential 2", value: "TBD", detail: "Coming soon" },
-  { label: "Credential 3", value: "TBD", detail: "Coming soon" },
-  { label: "Credential 4", value: "TBD", detail: "Coming soon" },
-  { label: "Credential 5", value: "TBD", detail: "Coming soon" },
-  { label: "Credential 6", value: "TBD", detail: "Coming soon" },
+  { label: "ACT Math", value: "36", detail: "Perfect score" },
+  { label: "AP Calculus AB", value: "95% · 5", detail: "Class grade · AP exam" },
+  { label: "AP Calculus BC", value: "95% · 5", detail: "Class grade · AP exam" },
+  {
+    label: "GT Linear Algebra & Multivariable Calc",
+    value: "95%",
+    detail: "Georgia Tech dual enrollment",
+  },
+  { label: "GHP Math Major", value: "Selected", detail: "Governor's Honors Program" },
+  {
+    label: "MathWorks Math Modeling (M3)",
+    value: "Honorable Mention",
+    detail: "Top 30 of 770 nationally",
+  },
 ] as const;

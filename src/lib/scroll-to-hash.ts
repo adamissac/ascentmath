@@ -1,6 +1,10 @@
 /** Fixed site header height — keep in sync with Navbar (`h-[4.25rem]` + top border). */
 export const SCROLL_NAV_OFFSET_PX = 72;
 
+export const SCROLL_ANCHOR_CLASS = "scroll-mt-[5.5rem]";
+
+const FLASH_CLASS = "scroll-target-flash";
+
 /** Extra scroll past the anchor top — e.g. land on the form, not the section edge. */
 const HASH_SCROLL_EXTRA_PX: Record<string, number> = {
   "book-session": 40,
@@ -32,6 +36,14 @@ export function scrollToHashId(id: string, behavior: ScrollBehavior = "smooth") 
   window.history.replaceState(null, "", `${path}#${encodeURIComponent(id)}`);
   window.dispatchEvent(new Event("scroll"));
   window.dispatchEvent(new HashChangeEvent("hashchange"));
+
+  if (!reduced) {
+    el.classList.remove(FLASH_CLASS);
+    void el.offsetWidth;
+    el.classList.add(FLASH_CLASS);
+    window.setTimeout(() => el.classList.remove(FLASH_CLASS), 1200);
+  }
+
   return true;
 }
 

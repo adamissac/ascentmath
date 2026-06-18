@@ -15,7 +15,7 @@ export default function UnitProgressPanel({ unitId, unitTitle, items }: Props) {
 
   return (
     <div
-      className="card p-6"
+      className="rounded-2xl border border-[rgba(26,26,46,0.08)] bg-white/90 p-6 shadow-[0_2px_12px_rgba(26,26,46,0.04)]"
       aria-label={`Progress for ${unitTitle}`}
     >
       <div className="flex items-center justify-between gap-3">

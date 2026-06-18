@@ -52,6 +52,15 @@ export default function Quiz({ title = "Check yourself", questions, onComplete }
   const current = answers[q.id] ?? "";
   const isCorrect = normalize(current) === normalize(q.answer);
   const isLast = index === total - 1;
+  const isRevealed = !!revealed[q.id];
+  const correctAnswer = String(q.answer);
+
+  const optionResult = (value: string): "correct" | "wrong" | "neutral" | undefined => {
+    if (!isRevealed) return undefined;
+    if (normalize(value) === normalize(q.answer)) return "correct";
+    if (normalize(current) === normalize(value)) return "wrong";
+    return "neutral";
+  };
 
   const select = (value: string) => {
     if (revealed[q.id]) return;
@@ -85,13 +94,13 @@ export default function Quiz({ title = "Check yourself", questions, onComplete }
     const message =
       pct >= 80 ? "Strong work - you have this!" : pct >= 60 ? "Good progress - try the misses again." : "Practice the ideas in the videos and try again.";
     return (
-      <div className="card p-8 text-[var(--color-ink)]">
+      <div className="lesson-quiz lesson-quiz--done">
         <div className="flex flex-col items-center text-center">
           <span className={`pill pill-${tone}`}>{pct}% correct</span>
           <h3 className="h2 mt-4">You got {score} of {total}</h3>
           <p className="lede mt-2 max-w-md">{message}</p>
         </div>
-        <ul className="mt-8 grid gap-3" role="list">
+        <ul className="lesson-quiz__review" role="list">
           {questions.map((qq, i) => {
             const userAns = answers[qq.id] ?? "";
             const ok = normalize(userAns) === normalize(qq.answer);
@@ -99,10 +108,8 @@ export default function Quiz({ title = "Check yourself", questions, onComplete }
               <li
                 key={qq.id}
                 className={[
-                  "p-4 rounded-lg border",
-                  ok
-                    ? "border-[#C8E1D2] bg-[#F2F9F4]"
-                    : "border-[#F1C5C1] bg-[#FBF2F1]",
+                  "lesson-quiz__review-item",
+                  ok ? "lesson-quiz__review-item--ok" : "lesson-quiz__review-item--miss",
                 ].join(" ")}
               >
                 <div className="flex items-center justify-between gap-3">
@@ -131,7 +138,7 @@ export default function Quiz({ title = "Check yourself", questions, onComplete }
   }
 
   return (
-    <div className="card p-6 sm:p-8 text-[var(--color-ink)]">
+    <div className="lesson-quiz">
       <div className="flex items-center justify-between gap-3">
         <div>
           <p className="caption font-semibold tracking-wider uppercase text-[var(--color-brand-600)]">{title}</p>
@@ -155,39 +162,50 @@ export default function Quiz({ title = "Check yourself", questions, onComplete }
 
       <div className="mt-5 grid gap-2.5">
         {q.type === "multiple-choice" && q.options?.map((opt) => (
-          <Option key={opt} label={opt} selected={current === opt} disabled={!!revealed[q.id]} onClick={() => select(opt)} />
+          <Option
+            key={opt}
+            label={opt}
+            selected={current === opt}
+            disabled={isRevealed}
+            result={optionResult(opt)}
+            onClick={() => select(opt)}
+          />
         ))}
         {q.type === "true-false" && (
           <>
-            <Option label="True" selected={current === "true"} disabled={!!revealed[q.id]} onClick={() => select("true")} />
-            <Option label="False" selected={current === "false"} disabled={!!revealed[q.id]} onClick={() => select("false")} />
+            <Option label="True" selected={current === "true"} disabled={isRevealed} result={optionResult("true")} onClick={() => select("true")} />
+            <Option label="False" selected={current === "false"} disabled={isRevealed} result={optionResult("false")} onClick={() => select("false")} />
           </>
         )}
         {q.type === "short-answer" && (
           <input
             value={current}
             onChange={(e) => select(e.target.value)}
-            className="input"
+            className={[
+              "lesson-workbench__input",
+              isRevealed && isCorrect ? "lesson-workbench__input--ok" : "",
+              isRevealed && !isCorrect ? "lesson-workbench__input--miss" : "",
+            ]
+              .filter(Boolean)
+              .join(" ")}
             placeholder="Type your answer..."
-            disabled={!!revealed[q.id]}
+            disabled={isRevealed}
           />
         )}
       </div>
 
-      {revealed[q.id] && (
+      {isRevealed && (
         <div
           className={[
-            "mt-5 p-4 rounded-md border",
-            isCorrect
-              ? "border-[#C8E1D2] bg-[#F2F9F4] text-[var(--color-success)]"
-              : "border-[#F1C5C1] bg-[#FBF2F1] text-[var(--color-danger)]",
+            "lesson-quiz__feedback",
+            isCorrect ? "lesson-quiz__feedback--ok" : "lesson-quiz__feedback--miss",
           ].join(" ")}
         >
-          <p className="font-semibold small">{isCorrect ? "Correct!" : "Not quite."}</p>
-          <p className="small mt-1 text-[var(--color-ink)]">{q.explanation}</p>
+          <p className="lesson-quiz__feedback-title">{isCorrect ? "✓ Correct!" : "✗ Not quite."}</p>
+          <p className="lesson-quiz__feedback-text">{q.explanation}</p>
           {!isCorrect && (
-            <p className="small mt-1 text-[var(--color-ink-muted)]">
-              Answer: <span className="text-[var(--color-ink)] font-medium">{String(q.answer)}</span>
+            <p className="lesson-quiz__feedback-answer">
+              Answer: <strong>{correctAnswer}</strong>
             </p>
           )}
         </div>
@@ -227,11 +245,13 @@ function Option({
   label,
   selected,
   disabled,
+  result,
   onClick,
 }: {
   label: string;
   selected: boolean;
   disabled?: boolean;
+  result?: "correct" | "wrong" | "neutral";
   onClick: () => void;
 }) {
   return (
@@ -241,14 +261,19 @@ function Option({
       disabled={disabled}
       aria-pressed={selected}
       className={[
-        "w-full text-left p-4 rounded-md border-2 transition-colors min-h-[44px]",
-        selected
-          ? "border-[var(--color-brand-500)] bg-[var(--color-brand-50)] text-[var(--color-ink)]"
-          : "border-[var(--color-border)] bg-white text-[var(--color-ink)] hover:border-[var(--color-border-strong)] hover:bg-[var(--color-surface-2)]",
-        disabled ? "opacity-70 cursor-not-allowed" : "",
-      ].join(" ")}
+        "lesson-quiz__option",
+        selected && !result ? "lesson-quiz__option--selected" : "",
+        result === "correct" ? "lesson-quiz__option--correct" : "",
+        result === "wrong" ? "lesson-quiz__option--wrong" : "",
+        result === "neutral" && disabled ? "lesson-quiz__option--muted" : "",
+        disabled ? "lesson-quiz__option--locked" : "",
+      ]
+        .filter(Boolean)
+        .join(" ")}
     >
-      {label}
+      {result === "correct" && <span className="lesson-quiz__option-mark" aria-hidden>✓</span>}
+      {result === "wrong" && <span className="lesson-quiz__option-mark" aria-hidden>✗</span>}
+      <span>{label}</span>
     </button>
   );
 }

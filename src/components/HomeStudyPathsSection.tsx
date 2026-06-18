@@ -1,7 +1,8 @@
 import Link from "next/link";
-import Container from "./Container";
+import ColorBand from "./ColorBand";
 import Reveal from "./Reveal";
-import { GRADES, type Grade } from "../data/units";
+import StudyPathListCard from "./StudyPathListCard";
+import { GRADES } from "../data/units";
 
 export default function HomeStudyPathsSection() {
   let units = 0;
@@ -14,96 +15,69 @@ export default function HomeStudyPathsSection() {
   }
 
   return (
-    <section
+    <ColorBand
       id="study-paths"
-      className="relative scroll-mt-[5.5rem] overflow-hidden border-t border-[var(--color-border)] bg-[var(--color-bg)]"
-      style={{ contentVisibility: "auto", containIntrinsicSize: "auto 560px" }}
+      variant="brand"
+      size="md"
+      containerSize="lg"
+      reveal={false}
+      faintSymbols
+      className="scroll-mt-[5.5rem]"
     >
-      <div
-        aria-hidden
-        className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_70%_55%_at_50%_0%,rgba(42,75,203,0.06),transparent_55%),radial-gradient(ellipse_45%_40%_at_85%_100%,rgba(244,123,22,0.04),transparent_60%)]"
-      />
-
-      <Container size="lg" className="relative z-[1] py-12 sm:py-16 lg:py-20">
-        <Reveal variant="fade" className="mx-auto max-w-2xl text-center">
-          <p className="flex flex-wrap items-center justify-center gap-2">
-            <span className="inline-flex rounded-full bg-[var(--color-accent-50)] px-2.5 py-0.5 font-display text-sm font-bold tracking-tight text-[var(--color-accent-700)]">
-              Free
-            </span>
-            <span className="caption font-semibold uppercase tracking-[0.16em] text-[var(--color-ink-cool-soft)]">
-              Study paths · no account needed
-            </span>
+      <div className="grid items-start gap-10 lg:grid-cols-12 lg:gap-14">
+        <Reveal variant="fade" className="lg:col-span-4 lg:sticky lg:top-24">
+          <p className="caption font-semibold uppercase tracking-[0.16em] text-[var(--color-accent-300)]">
+            Study paths · free · no account
           </p>
-          <h2 className="font-display mt-4 text-3xl font-bold tracking-[-0.02em] text-[var(--color-brand-700)] sm:text-4xl">
-            Study paths on your own
+          <h2
+            id="study-paths-heading"
+            className="font-display mt-4 text-3xl font-bold tracking-[-0.02em] text-white sm:text-4xl"
+          >
+            Grades 6–8, self-paced
           </h2>
-          <p className="mt-4 text-[0.9375rem] leading-relaxed text-[var(--color-ink-muted)] sm:text-base">
-            {GRADES.length} grades, {units} units, and {topics} topics for Grades 6-8 — read,
-            watch, practice, and check your work on every topic, at your own pace.
+
+          <p className="mt-4 text-[0.9375rem] leading-relaxed text-white/75 sm:text-base">
+            Full grade paths with lessons, videos, practice, and quizzes on every topic. No account
+            needed — open a grade and jump to what your class is on.
           </p>
-        </Reveal>
 
-        <Reveal stagger variant="pop" className="mx-auto mt-10 grid max-w-4xl gap-5 sm:grid-cols-3">
-          {GRADES.map((g) => (
-            <HomeGradeCard key={g.slug} grade={g} />
-          ))}
-        </Reveal>
+          <p className="mt-5 inline-flex rounded-full border border-white/25 bg-white/10 px-4 py-1.5 text-sm font-semibold text-[var(--color-accent-300)]">
+            {GRADES.length} grades · {units} units · {topics} topics
+          </p>
 
-        <Reveal variant="fade" delay={80} className="mt-9 text-center">
-          <p className="small text-[var(--color-ink-muted)]">
+          <p className="small mt-6 text-white/70">
             Not sure where to begin?{" "}
-            <Link href="/mathematics/find-your-start" className="link">
+            <Link
+              href="/mathematics/find-your-start"
+              className="font-semibold text-[var(--color-accent-300)] transition-colors hover:text-white"
+            >
               Find your start →
             </Link>
           </p>
         </Reveal>
-      </Container>
-    </section>
-  );
-}
 
-function HomeGradeCard({ grade: g }: { grade: Grade }) {
-  const unitCount = g.units.length;
-  const topicCount = g.units.reduce((n, u) => n + u.topics.length, 0);
-
-  return (
-    <Link
-      href={`/mathematics/${g.slug}`}
-      className="card card-interactive group flex flex-col p-6 no-underline"
-      aria-label={`Open ${g.title} Mathematics`}
-    >
-      <span
-        aria-hidden
-        className="grid size-12 place-items-center rounded-[var(--radius-sm)] bg-[var(--color-brand-50)] font-display text-xl font-bold text-[var(--color-brand-600)] transition-colors duration-200 group-hover:bg-[var(--color-brand-600)] group-hover:text-white"
-      >
-        {g.icon}
-      </span>
-
-      <h3 className="font-display mt-4 text-lg font-bold leading-tight text-[var(--color-ink)] group-hover:text-[var(--color-brand-600)]">
-        {g.title} Mathematics
-      </h3>
-      <p className="caption mt-1 text-[var(--color-ink-soft)]">
-        {unitCount} units · {topicCount} topics
-      </p>
-
-      <span className="mt-5 inline-flex items-center gap-1.5 text-sm font-semibold text-[var(--color-brand-600)]">
-        Start path
-        <svg
-          width="14"
-          height="14"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          strokeWidth="2.5"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          aria-hidden
-          className="transition-transform duration-200 group-hover:translate-x-1"
-        >
-          <line x1="5" y1="12" x2="19" y2="12" />
-          <polyline points="13 6 19 12 13 18" />
-        </svg>
-      </span>
-    </Link>
+        <Reveal stagger className="grid gap-2 sm:gap-2.5 lg:col-span-8">
+          {GRADES.map((g) => {
+            const unitCount = g.units.length;
+            const topicCount = g.units.reduce((n, u) => n + u.topics.length, 0);
+            return (
+              <StudyPathListCard
+                key={g.slug}
+                variant="brand"
+                href={`/mathematics/${g.slug}`}
+                ariaLabel={`Open ${g.title} Mathematics`}
+                gradeGlyph={g.icon}
+                title={`${g.title} Mathematics`}
+                description={g.short}
+                pills={[
+                  `${unitCount} unit${unitCount === 1 ? "" : "s"}`,
+                  `${topicCount} topic${topicCount === 1 ? "" : "s"}`,
+                ]}
+              />
+            );
+          })}
+        </Reveal>
+      </div>
+    </ColorBand>
   );
 }

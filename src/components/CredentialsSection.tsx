@@ -14,7 +14,13 @@ import {
   type MathCredential,
   type TutorIntro,
 } from "../data/credentials";
-import { TUTOR_EMAILS_DISPLAY, SITE_PHONE_DISPLAY, SITE_PHONE_TEL } from "../data/site-team";
+import {
+  TUTOR_EMAILS_DISPLAY,
+  ADAM_PHONE_DISPLAY,
+  ADAM_PHONE_TEL,
+  ALAN_PHONE_DISPLAY,
+  ALAN_PHONE_TEL,
+} from "../data/site-team";
 
 const BLUE = "var(--color-brand-500)";
 const INK = "var(--color-ink-cool)";
@@ -48,7 +54,9 @@ export default function CredentialsSection() {
           <TutorProfileRow
             intro={ALAN_INTRO}
             credentials={ALAN_CREDENTIALS}
-            initials="AM"
+            photoSrc="/alanpic.jpg"
+            photoAlt="Alan Mozhoor, math tutor"
+            photoPosition="50% 20%"
           />
         </div>
 
@@ -62,8 +70,14 @@ export default function CredentialsSection() {
           <span className="hidden sm:inline text-[var(--color-ink-soft)]" aria-hidden>
             ·
           </span>
-          <a href={`tel:${SITE_PHONE_TEL}`} className="font-semibold no-underline hover:underline" style={{ color: BLUE }}>
-            {SITE_PHONE_DISPLAY}
+          <a href={`tel:${ADAM_PHONE_TEL}`} className="font-semibold no-underline hover:underline" style={{ color: BLUE }}>
+            Adam · {ADAM_PHONE_DISPLAY}
+          </a>
+          <span className="hidden sm:inline text-[var(--color-ink-soft)]" aria-hidden>
+            ·
+          </span>
+          <a href={`tel:${ALAN_PHONE_TEL}`} className="font-semibold no-underline hover:underline" style={{ color: BLUE }}>
+            Alan · {ALAN_PHONE_DISPLAY}
           </a>
           <span className="hidden sm:inline text-[var(--color-ink-soft)]" aria-hidden>
             ·

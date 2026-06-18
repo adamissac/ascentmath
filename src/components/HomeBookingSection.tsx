@@ -13,7 +13,7 @@ export default function HomeBookingSection() {
     >
       <HeroCanvas />
 
-      <Container size="md" className="relative z-[1] py-12 sm:py-16 lg:py-20">
+      <Container size="md" className="relative z-[1] py-12 sm:py-14 lg:py-16">
         <Reveal variant="fade" className="mx-auto max-w-xl text-center">
           <h2
             id="book-session-heading"
@@ -28,7 +28,7 @@ export default function HomeBookingSection() {
 
         <div
           id="book-session"
-          className="scroll-mt-[5.5rem] mx-auto mt-10 max-w-xl min-w-0"
+          className="scroll-mt-[5.5rem] mx-auto mt-8 max-w-xl min-w-0 sm:mt-10"
         >
           <Reveal variant="rise" delay={40}>
             <ContactForm />

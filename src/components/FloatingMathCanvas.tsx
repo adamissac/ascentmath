@@ -111,7 +111,7 @@ function fullPosition(width: number, height: number, motion: Motion, edge: "star
     if (motion === "fall") y = rand(-90, -pad);
     else if (motion === "drift") {
       y = rand(pad, height - pad);
-      x = Math.random() < 0.5 ? rand(-60, -8) : rand(width + 8, width + 60);
+      x = rand(-80, -8);
     } else y = height + rand(pad, 90);
   } else {
     y = rand(pad, height - pad);

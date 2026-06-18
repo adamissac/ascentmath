@@ -7,8 +7,11 @@ import { smoothScrollToHashWhenReady, stashPendingHash } from "../lib/scroll-to-
 
 type HashLinkProps = ComponentProps<typeof Link>;
 
-function parseHref(href: HashLinkProps["href"]) {
+function parseHref(href: HashLinkProps["href"], currentPathname = "/") {
   if (typeof href === "string") {
+    if (href.startsWith("#")) {
+      return { pathPart: currentPathname, hash: href.slice(1) };
+    }
     const hashIndex = href.indexOf("#");
     const pathPart = hashIndex >= 0 ? href.slice(0, hashIndex) || "/" : href;
     const hash = hashIndex >= 0 ? href.slice(hashIndex + 1) : "";
@@ -29,7 +32,7 @@ function parseHref(href: HashLinkProps["href"]) {
 export default function HashLink({ href, onClick, ...rest }: HashLinkProps) {
   const pathname = usePathname();
   const router = useRouter();
-  const { pathPart, hash } = parseHref(href);
+  const { pathPart, hash } = parseHref(href, pathname);
 
   const handleClick = (e: MouseEvent<HTMLAnchorElement>) => {
     onClick?.(e);

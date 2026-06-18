@@ -4,27 +4,19 @@ import type { ReactNode } from "react";
 import Link from "next/link";
 import Breadcrumbs, { type Crumb } from "./Breadcrumbs";
 import Container from "./Container";
-import FloatingMathCanvas from "./FloatingMathCanvas";
-import HeroStatBadge from "./HeroStatBadge";
-import MathBackdrop from "./MathBackdrop";
+import HashLink from "./HashLink";
 import Reveal from "./Reveal";
 import { UnitSymbol } from "./UnitSymbol";
 
 export type HeroStat = { value: string | number; label: string };
 
-const CARD =
-  "rounded-2xl border border-[rgba(26,26,46,0.08)] bg-white/80 p-5 shadow-[0_2px_12px_rgba(26,26,46,0.04)] sm:p-7 lg:p-8";
-
-const HEADLINE_ACCENT =
-  "text-[var(--color-brand-500)] underline decoration-[var(--color-accent-100)] decoration-[0.18em] underline-offset-[0.12em]";
-
 type GradeHeroProps = {
   variant: "grade";
   breadcrumbs: Crumb[];
   gradeTitle: string;
+  gradeIcon?: string;
   description: string;
   stats: HeroStat[];
-  unitIcons: string[];
   primaryCta?: { href: string; label: string };
   secondaryCta?: { href: string; label: string };
 };
@@ -42,32 +34,35 @@ type UnitHeroProps = {
   actions?: ReactNode;
 };
 
-type Props = GradeHeroProps | UnitHeroProps;
+type TopicHeroProps = {
+  variant: "topic";
+  breadcrumbs: Crumb[];
+  gradeTitle: string;
+  unitNumber: number;
+  topicIndex: number;
+  topicTotal: number;
+  topicTitle: string;
+  description: string;
+  estimatedMinutes: number;
+  actions?: ReactNode;
+};
+
+type Props = GradeHeroProps | UnitHeroProps | TopicHeroProps;
+
+function formatMeta(stats: HeroStat[]) {
+  return stats.map((s) => `${s.value} ${s.label}`).join(" · ");
+}
 
 export default function CurriculumHero(props: Props) {
-  const isGrade = props.variant === "grade";
-
   return (
-    <section className="hero-surface relative overflow-hidden bg-[var(--color-bg)]">
-      {isGrade ? (
-        <FloatingMathCanvas variant="grade" />
-      ) : (
-        <MathBackdrop variant="paper" density="light" fadeEdges contentSafe />
-      )}
+    <section className="border-b border-[var(--color-border)] bg-[var(--color-bg)]">
+      <Container size="lg" className="py-7 sm:py-9">
+        <Breadcrumbs items={props.breadcrumbs} />
 
-      <Container size="xl" className="relative z-[1] pt-8 pb-14 sm:pt-10 sm:pb-16 lg:pb-20">
-        <div className="flex justify-center sm:justify-start">
-          <Breadcrumbs items={props.breadcrumbs} />
-        </div>
-
-        <Reveal variant="up" className="mt-6 sm:mt-8">
-          <div className={CARD}>
-            {isGrade ? (
-              <GradeHeroBody {...props} />
-            ) : (
-              <UnitHeroBody {...props} />
-            )}
-          </div>
+        <Reveal variant="up" className="mt-5">
+          {props.variant === "grade" && <GradeHeroBody {...props} />}
+          {props.variant === "unit" && <UnitHeroBody {...props} />}
+          {props.variant === "topic" && <TopicHeroBody {...props} />}
         </Reveal>
       </Container>
     </section>
@@ -76,74 +71,55 @@ export default function CurriculumHero(props: Props) {
 
 function GradeHeroBody({
   gradeTitle,
+  gradeIcon,
   description,
   stats,
-  unitIcons,
   primaryCta,
   secondaryCta,
 }: GradeHeroProps) {
   return (
-    <div className="grid gap-8 lg:grid-cols-[minmax(0,1fr)_auto] lg:items-center lg:gap-10 xl:gap-14">
-      <div className="min-w-0">
+    <div className="flex flex-col gap-6 sm:flex-row sm:items-start sm:justify-between">
+      <div className="min-w-0 max-w-2xl">
         <div className="flex flex-wrap items-center gap-2">
-          <span className="inline-flex rounded-full bg-[var(--color-accent-50)] px-2.5 py-0.5 font-display text-sm font-bold tracking-tight text-[var(--color-accent-500)]">
+          <span className="caption rounded-full bg-[var(--color-accent-50)] px-2.5 py-0.5 font-semibold text-[var(--color-accent-700)]">
             Free
           </span>
-          <span className="inline-flex rounded-full border border-[#2A4BCB]/20 bg-[#F7F9FF] px-2.5 py-0.5 text-[0.6875rem] font-semibold uppercase tracking-[0.1em] text-[var(--color-brand-500)]">
-            {gradeTitle} · GADOE aligned
-          </span>
+          {stats.length > 0 && (
+            <span className="caption text-[var(--color-ink-muted)]">{formatMeta(stats)}</span>
+          )}
         </div>
 
-        <h1 className="h-display mt-5 min-w-0 break-words text-[var(--color-ink-cool)]">
-          Self-paced{" "}
-          <span className={HEADLINE_ACCENT}>{gradeTitle}</span> math paths.
+        <h1 className="font-display mt-3 text-3xl font-bold tracking-[-0.02em] text-[var(--color-ink-cool)] sm:text-4xl">
+          {gradeTitle} mathematics
         </h1>
 
-        <p className="mt-5 max-w-[52ch] text-[clamp(1rem,0.4vw+0.9rem,1.125rem)] leading-[1.7] text-[var(--color-ink-cool-muted)]">
+        <p className="mt-3 text-[0.9375rem] leading-relaxed text-[var(--color-ink-muted)] sm:text-base">
           {description}
         </p>
 
-        {stats.length > 0 && (
-          <ul
-            className="mt-6 grid grid-cols-2 gap-2 sm:grid-cols-3 lg:max-w-xl lg:grid-cols-5"
-            aria-label="Grade totals"
-          >
-            {stats.map((s) => (
-              <HeroStatBadge key={s.label} value={s.value} label={s.label} />
-            ))}
-          </ul>
-        )}
-
         {(primaryCta || secondaryCta) && (
-          <div className="mt-6 btn-stack-mobile sm:flex-row">
+          <div className="mt-5 flex flex-wrap gap-3">
             {primaryCta && (
               <Link href={primaryCta.href} className="btn btn-primary btn-sm">
                 {primaryCta.label}
               </Link>
             )}
             {secondaryCta && (
-              <a href={secondaryCta.href} className="btn btn-outline btn-sm">
+              <HashLink href={secondaryCta.href} className="btn btn-outline btn-sm">
                 {secondaryCta.label}
-              </a>
+              </HashLink>
             )}
           </div>
         )}
       </div>
 
-      {unitIcons.length > 0 && (
-        <div
-          className="flex flex-col items-center justify-center rounded-xl border border-[rgba(26,26,46,0.08)] bg-[#FBFAF7]/80 p-5 sm:p-6 lg:min-w-[12rem]"
+      {gradeIcon && (
+        <span
           aria-hidden
+          className="grid size-14 shrink-0 place-items-center rounded-xl bg-[var(--color-brand-50)] font-display text-2xl font-bold text-[var(--color-brand-600)]"
         >
-          <p className="mb-4 text-center text-[0.6875rem] font-semibold uppercase tracking-[0.14em] text-[var(--color-ink-cool-soft)]">
-            Units in this grade
-          </p>
-          <div className="grid grid-cols-3 gap-2.5 sm:gap-3">
-            {unitIcons.map((icon, i) => (
-              <UnitSymbol key={`${icon}-${i}`} symbol={icon} size="sm" />
-            ))}
-          </div>
-        </div>
+          {gradeIcon}
+        </span>
       )}
     </div>
   );
@@ -160,54 +136,70 @@ function UnitHeroBody({
   actions,
 }: UnitHeroProps) {
   return (
-    <div className="grid gap-8 lg:grid-cols-[minmax(0,1fr)_auto] lg:items-center lg:gap-10 xl:gap-14">
-      <div className="min-w-0">
-        <div className="flex flex-wrap items-center gap-2">
-          <span className="inline-flex rounded-full bg-[var(--color-accent-50)] px-2.5 py-0.5 font-display text-sm font-bold tracking-tight text-[var(--color-accent-500)]">
-            Free
-          </span>
-          <span className="inline-flex rounded-full border border-[#2A4BCB]/20 bg-[#F7F9FF] px-2.5 py-0.5 text-[0.6875rem] font-semibold uppercase tracking-[0.1em] text-[var(--color-brand-500)]">
-            {gradeTitle} · Unit {unitNumber}
-          </span>
+    <div className="flex flex-col gap-5 sm:flex-row sm:items-start sm:justify-between">
+      <div className="min-w-0 max-w-2xl">
+        <p className="caption font-semibold text-[var(--color-brand-600)]">
+          {gradeTitle} · Unit {unitNumber}
           {frameworkUrl && (
-            <a
-              href={frameworkUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-1 rounded-full border border-[rgba(26,26,46,0.12)] bg-[var(--color-bg)] px-2.5 py-0.5 text-[0.6875rem] font-semibold text-[var(--color-brand-500)] no-underline transition-[border-color,background-color] hover:border-[#2A4BCB]/30 hover:bg-white"
-            >
-              GADOE framework
-              <span aria-hidden>↗</span>
-            </a>
+            <>
+              {" · "}
+              <a
+                href={frameworkUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-[var(--color-brand-600)] hover:text-[var(--color-brand-700)]"
+              >
+                GADOE framework ↗
+              </a>
+            </>
           )}
-        </div>
+        </p>
 
-        <h1 className="h-display mt-5 min-w-0 break-words text-[var(--color-ink-cool)]">{unitTitle}</h1>
+        <h1 className="font-display mt-2 text-2xl font-bold tracking-[-0.02em] text-[var(--color-ink-cool)] sm:text-3xl">
+          {unitTitle}
+        </h1>
 
-        <p className="mt-5 max-w-[52ch] text-[clamp(1rem,0.4vw+0.9rem,1.125rem)] leading-[1.7] text-[var(--color-ink-cool-muted)]">
+        <p className="mt-3 text-[0.9375rem] leading-relaxed text-[var(--color-ink-muted)]">
           {description}
         </p>
 
         {stats.length > 0 && (
-          <ul
-            className="mt-6 grid grid-cols-2 gap-2 sm:grid-cols-4 sm:max-w-lg"
-            aria-label="Unit totals"
-          >
-            {stats.map((s) => (
-              <HeroStatBadge key={s.label} value={s.value} label={s.label} />
-            ))}
-          </ul>
+          <p className="caption mt-3 font-semibold text-[var(--color-ink-soft)]">{formatMeta(stats)}</p>
         )}
 
-        {actions && <div className="mt-6">{actions}</div>}
+        {actions && <div className="mt-5 flex flex-wrap gap-3">{actions}</div>}
       </div>
 
-      <div className="flex flex-col items-center justify-center rounded-xl border border-[rgba(26,26,46,0.08)] bg-[#FBFAF7]/80 px-6 py-8 sm:px-8">
-        <UnitSymbol symbol={unitIcon} size="lg" className="shadow-[0_4px_20px_rgba(42,75,203,0.12)]" />
-        <p className="mt-4 text-center font-display text-sm font-bold text-[var(--color-brand-500)]">
-          Unit {unitNumber}
-        </p>
-      </div>
+      <UnitSymbol symbol={unitIcon} size="md" />
+    </div>
+  );
+}
+
+function TopicHeroBody({
+  gradeTitle,
+  unitNumber,
+  topicIndex,
+  topicTotal,
+  topicTitle,
+  description,
+  estimatedMinutes,
+  actions,
+}: TopicHeroProps) {
+  return (
+    <div className="max-w-2xl">
+      <p className="caption font-semibold text-[var(--color-brand-600)]">
+        {gradeTitle} · Unit {unitNumber} · Topic {topicIndex + 1} of {topicTotal} · ~{estimatedMinutes} min
+      </p>
+
+      <h1 className="font-display mt-2 text-2xl font-bold tracking-[-0.02em] text-[var(--color-ink-cool)] sm:text-3xl">
+        {topicTitle}
+      </h1>
+
+      <p className="mt-3 text-[0.9375rem] leading-relaxed text-[var(--color-ink-muted)]">
+        {description}
+      </p>
+
+      {actions && <div className="mt-5 flex flex-wrap items-center gap-3">{actions}</div>}
     </div>
   );
 }

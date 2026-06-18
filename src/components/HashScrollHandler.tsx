@@ -20,34 +20,33 @@ function HashScrollHandlerInner() {
   }, []);
 
   useEffect(() => {
-    if (pathname !== "/") return;
-
-    // Full refresh only (once) — open at the hero, not the last #section.
-    if (shouldResetHomeOnReload()) {
-      takePendingHash();
-      const hadDeepLink =
-        window.location.hash.length > 1 || searchParams.has("section");
-      if (hadDeepLink) {
-        window.history.replaceState(null, "", "/");
-      }
-      window.scrollTo({ top: 0, behavior: "auto" });
-      return;
-    }
-
-    const section = searchParams.get("section");
-    if (section) {
-      if (handledSectionRef.current !== section) {
-        handledSectionRef.current = section;
-        const hash = `#${encodeURIComponent(section)}`;
-        if (window.location.hash !== hash || window.location.search.includes("section=")) {
-          // history.replaceState — router.replace with ?section= caused reload loops
-          window.history.replaceState(null, "", `/${hash}`);
+    if (pathname === "/") {
+      // Full refresh only (once) — open at the hero, not the last #section.
+      if (shouldResetHomeOnReload()) {
+        takePendingHash();
+        const hadDeepLink =
+          window.location.hash.length > 1 || searchParams.has("section");
+        if (hadDeepLink) {
+          window.history.replaceState(null, "", "/");
         }
+        window.scrollTo({ top: 0, behavior: "auto" });
+        return;
       }
-      return smoothScrollToHashWhenReady(section);
-    }
 
-    handledSectionRef.current = null;
+      const section = searchParams.get("section");
+      if (section) {
+        if (handledSectionRef.current !== section) {
+          handledSectionRef.current = section;
+          const hash = `#${encodeURIComponent(section)}`;
+          if (window.location.hash !== hash || window.location.search.includes("section=")) {
+            window.history.replaceState(null, "", `/${hash}`);
+          }
+        }
+        return smoothScrollToHashWhenReady(section);
+      }
+
+      handledSectionRef.current = null;
+    }
 
     const pending = takePendingHash();
     if (pending) {
