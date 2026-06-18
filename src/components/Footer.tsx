@@ -47,7 +47,8 @@ export default function Footer() {
         </div>
 
         <p className="mt-8 text-[0.8125rem] text-[var(--color-ink-soft)]">
-          © {YEAR} Adam&apos;s Alphabet · {TUTOR_NAMES_SHORT} · Made in Georgia
+          © {YEAR} Adam&apos;s Alphabet · {TUTOR_NAMES_SHORT} · Made in Georgia. Open to learners
+          everywhere.
         </p>
       </div>
     </footer>

@@ -56,7 +56,11 @@ function HashScrollHandlerInner() {
     const hash = window.location.hash;
     if (!hash || hash.length < 2) return;
 
-    const id = decodeURIComponent(hash.slice(1));
+    const rawId = decodeURIComponent(hash.slice(1));
+    const id = rawId === "what-i-teach" ? "what-we-teach" : rawId;
+    if (id !== rawId) {
+      window.history.replaceState(null, "", `/#${id}`);
+    }
     return smoothScrollToHashWhenReady(id);
   }, [pathname, searchParams]);
 

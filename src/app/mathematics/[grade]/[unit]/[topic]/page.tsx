@@ -5,10 +5,13 @@ import Link from "next/link";
 import LessonShell from "../../../../../components/LessonShell";
 import TopicLessonContent from "../../../../../components/TopicLessonContent";
 import TopicCompleteToggle from "../../../../../components/TopicCompleteToggle";
+import StudyPathCta from "../../../../../components/StudyPathCta";
+import JsonLdScript from "../../../../../components/JsonLdScript";
 
 import { GRADES, getTopic } from "../../../../../data/units";
 import { STUDY_PATHS_HREF } from "../../../../../lib/site-paths";
 import { buildPageMetadata } from "../../../../../lib/metadata";
+import { buildBreadcrumbJsonLd, buildCourseJsonLd } from "../../../../../lib/json-ld";
 
 type Params = { grade: string; unit: string; topic: string };
 
@@ -42,19 +45,32 @@ export default async function TopicPage({ params }: { params: Promise<Params> })
   const unitHref = `/mathematics/${g.slug}/${u.slug}`;
   const gradeHref = `/mathematics/${g.slug}`;
   const progressItems = u.topics.map((tp) => ({ id: tp.id, label: tp.title }));
+  const topicPath = `/mathematics/${g.slug}/${u.slug}/${t.slug}`;
+  const breadcrumbs = [
+    { label: "Home", href: "/" },
+    { label: "Mathematics", href: STUDY_PATHS_HREF },
+    { label: g.title, href: gradeHref },
+    { label: `Unit ${u.number}`, href: unitHref },
+    { label: t.title },
+  ];
 
   return (
-    <LessonShell
+    <>
+      <JsonLdScript
+        data={[
+          buildBreadcrumbJsonLd(breadcrumbs),
+          buildCourseJsonLd({
+            name: `${t.title} · ${g.title} Unit ${u.number}`,
+            description: t.summary,
+            path: topicPath,
+          }),
+        ]}
+      />
+      <LessonShell
       grade={g}
       unit={u}
       topic={t}
-      breadcrumbs={[
-        { label: "Home", href: "/" },
-        { label: "Mathematics", href: STUDY_PATHS_HREF },
-        { label: g.title, href: gradeHref },
-        { label: `Unit ${u.number}`, href: unitHref },
-        { label: t.title },
-      ]}
+      breadcrumbs={breadcrumbs}
       lessonMeta={`Unit ${u.number} · Topic ${index + 1}`}
       title={t.title}
       description={t.summary}
@@ -74,5 +90,7 @@ export default async function TopicPage({ params }: { params: Promise<Params> })
     >
       <TopicLessonContent topic={t} />
     </LessonShell>
+    <StudyPathCta />
+    </>
   );
 }

@@ -67,8 +67,8 @@ export default function HeroSection({ totalUnits }: HeroSectionProps) {
           >
             We&apos;re Adam and Alan. We tutor pre-algebra through AP Pre-Calc, AP Calc, SAT Math,
             linear algebra, and multivariable calc, plus K-5 and middle school basics. Book a paid
-            1-on-1 session — your first session is free — or use our free Grades 6-8 study paths on
-            your own.
+            1-on-1 session — {FIRST_SESSION_FREE} — or use our free Grades 6-8 study paths on your
+            own.
           </p>
 
           <div

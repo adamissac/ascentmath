@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import Container from "./Container";
@@ -47,6 +48,7 @@ export default function CredentialsSection() {
             photoSrc="/adampic.jpg"
             photoAlt="Adam Issac, math tutor"
             photoPosition="50% 22%"
+            initials="AI"
           />
 
           <div className="border-t border-[rgba(26,26,46,0.1)]" aria-hidden />
@@ -57,6 +59,7 @@ export default function CredentialsSection() {
             photoSrc="/alanpic.jpg"
             photoAlt="Alan Mozhoor, math tutor"
             photoPosition="50% 20%"
+            initials="AM"
           />
         </div>
 
@@ -203,6 +206,9 @@ function TutorPhotoCircle({
   photoPosition?: string;
   initials?: string;
 }) {
+  const [photoFailed, setPhotoFailed] = useState(false);
+  const showPhoto = photoSrc && !photoFailed;
+
   return (
     <div
       className="tutor-photo-frame relative shrink-0 overflow-hidden rounded-full"
@@ -210,7 +216,7 @@ function TutorPhotoCircle({
         boxShadow: "0 0 0 3px var(--color-brand-500), 0 6px 24px rgba(42, 75, 203, 0.2)",
       }}
     >
-      {photoSrc ? (
+      {showPhoto ? (
         <Image
           src={photoSrc}
           alt={photoAlt ?? "Tutor photo"}
@@ -219,13 +225,16 @@ function TutorPhotoCircle({
           className="object-cover"
           style={{ objectPosition: photoPosition ?? "50% 50%" }}
           priority={photoSrc === "/adampic.jpg"}
+          onError={() => setPhotoFailed(true)}
         />
       ) : (
         <div
           className="flex h-full w-full items-center justify-center bg-[var(--color-brand-50)] font-display text-2xl font-bold text-[var(--color-brand-600)]"
-          aria-hidden
+          aria-hidden={!!initials}
+          role={initials ? undefined : "img"}
+          aria-label={initials ? undefined : photoAlt}
         >
-          {initials}
+          {initials ?? "?"}
         </div>
       )}
     </div>

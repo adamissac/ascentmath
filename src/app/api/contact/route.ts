@@ -30,7 +30,7 @@ const schema = z.object({
   message: z
     .string()
     .trim()
-    .min(10, "Please tell me a bit more (at least 10 characters).")
+    .min(10, "Please tell us a bit more (at least 10 characters).")
     .max(2000),
   // Spam honeypot - any non-empty value triggers a fake success below.
   website: z.string().optional(),

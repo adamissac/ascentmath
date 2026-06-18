@@ -1,5 +1,11 @@
 import { SITE_POSITIONING } from "../data/site-copy";
-import { ADAM_EMAIL, ALAN_EMAIL, SITE_PHONE_TEL, TUTOR_NAMES } from "../data/site-team";
+import {
+  ADAM_EMAIL,
+  ALAN_EMAIL,
+  ADAM_PHONE_TEL,
+  ALAN_PHONE_TEL,
+  TUTOR_NAMES,
+} from "../data/site-team";
 import { absoluteUrl } from "../lib/site-url";
 
 export default function HomeJsonLd() {
@@ -9,8 +15,22 @@ export default function HomeJsonLd() {
     name: "Adam's Alphabet",
     url: absoluteUrl("/"),
     description: SITE_POSITIONING,
-    telephone: SITE_PHONE_TEL,
+    telephone: [ADAM_PHONE_TEL, ALAN_PHONE_TEL],
     email: [ADAM_EMAIL, ALAN_EMAIL],
+    contactPoint: [
+      {
+        "@type": "ContactPoint",
+        telephone: ADAM_PHONE_TEL,
+        contactType: "customer service",
+        email: ADAM_EMAIL,
+      },
+      {
+        "@type": "ContactPoint",
+        telephone: ALAN_PHONE_TEL,
+        contactType: "customer service",
+        email: ALAN_EMAIL,
+      },
+    ],
     areaServed: {
       "@type": "City",
       name: "Atlanta",
@@ -27,7 +47,7 @@ export default function HomeJsonLd() {
     "@type": "LocalBusiness",
     name: "Adam's Alphabet",
     url: absoluteUrl("/"),
-    telephone: SITE_PHONE_TEL,
+    telephone: [ADAM_PHONE_TEL, ALAN_PHONE_TEL],
     description: SITE_POSITIONING,
     areaServed: "Atlanta, GA and online",
     priceRange: "$$",
@@ -56,9 +76,9 @@ export default function HomeJsonLd() {
   const contact = {
     "@context": "https://schema.org",
     "@type": "ContactPoint",
-    telephone: SITE_PHONE_TEL,
+    telephone: [ADAM_PHONE_TEL, ALAN_PHONE_TEL],
     contactType: "customer service",
-    email: ADAM_EMAIL,
+    email: [ADAM_EMAIL, ALAN_EMAIL],
     areaServed: "US",
     availableLanguage: "English",
   };

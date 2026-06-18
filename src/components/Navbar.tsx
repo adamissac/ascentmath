@@ -10,11 +10,11 @@ import { BOOK_SESSION_HREF, STUDY_PATHS_HREF } from "../lib/site-paths";
 import { scrollToPageTop } from "../lib/scroll-to-hash";
 
 const NAV_LINKS = [
-  { href: "/#what-i-teach", label: "Tutoring", sectionId: "what-i-teach" },
+  { href: "/#what-we-teach", label: "Tutoring", sectionId: "what-we-teach" },
   { href: STUDY_PATHS_HREF, label: "Study paths", sectionId: "study-paths" },
 ] as const;
 
-const HOME_NAV_SECTIONS = ["what-i-teach", "study-paths"] as const;
+const HOME_NAV_SECTIONS = ["what-we-teach", "study-paths"] as const;
 type HomeNavSection = (typeof HOME_NAV_SECTIONS)[number];
 
 function hashToHomeSection(hash: string): HomeNavSection | null {
@@ -96,8 +96,8 @@ export default function Navbar() {
       if (pathname?.startsWith("/mathematics")) return true;
       return pathname === "/" && homeSection === "study-paths";
     }
-    if (sectionId === "what-i-teach") {
-      return pathname === "/" && homeSection === "what-i-teach";
+    if (sectionId === "what-we-teach") {
+      return pathname === "/" && homeSection === "what-we-teach";
     }
     if (href === "/") return pathname === "/";
     return pathname === href || (pathname?.startsWith(`${href}/`) ?? false);

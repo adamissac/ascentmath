@@ -368,9 +368,10 @@ export default function FloatingMathCanvas({
 
     const start = () => {
       if (running) return;
+      ensureLayout();
+      if (reduced) return;
       running = true;
       lastFrame = performance.now();
-      ensureLayout();
       frameId = requestAnimationFrame(tick);
     };
 

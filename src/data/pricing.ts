@@ -1,6 +1,5 @@
 /**
  * Tutoring tiers by grade band (no public dollar amounts on cards).
- * hourlyRate is stored for internal reference and follow-up emails only.
  * Self-paced study paths on /mathematics stay free.
  */
 
@@ -20,7 +19,6 @@ export type TutoringTier = {
   accent: string;
   blurb: string;
   rigorNote: string;
-  hourlyRate: string;
   topicGroups: readonly SubjectTopicGroup[];
 };
 
@@ -39,7 +37,6 @@ export const TUTORING_TIERS: readonly TutoringTier[] = [
     label: "Elementary math",
     range: "K-5",
     accent: "bg-[var(--color-brand-400)]",
-    hourlyRate: "$30/hr",
     blurb: "Arithmetic, fractions, early geometry, and everything before pre-algebra.",
     rigorNote: "Foundational skills and homework support for elementary learners.",
     topicGroups: [
@@ -65,7 +62,6 @@ export const TUTORING_TIERS: readonly TutoringTier[] = [
     label: "Middle school math",
     range: "Grades 6-8",
     accent: "bg-white/70",
-    hourlyRate: "$35/hr",
     blurb: "Pre-algebra through early algebra, ratios, and the geometry that shows up in middle school.",
     rigorNote: "Where most students first hit abstract math — steady 1-on-1 help on school pacing.",
     topicGroups: [
@@ -94,7 +90,6 @@ export const TUTORING_TIERS: readonly TutoringTier[] = [
     label: "High school courses",
     range: "Grades 9-12 · SAT/ACT",
     accent: "bg-[var(--color-brand-300)]",
-    hourlyRate: "$40/hr",
     blurb: "Algebra 1 through AP Calculus and AP CS, plus SAT & ACT Math prep.",
     rigorNote: "Higher rigor: AP courses and standardized test math.",
     topicGroups: [
@@ -133,7 +128,6 @@ export const TUTORING_TIERS: readonly TutoringTier[] = [
     label: "College / dual enrollment",
     range: "College",
     accent: "bg-[var(--color-accent-300)]",
-    hourlyRate: "$50/hr",
     blurb: "Georgia Tech math and CS courses we've taken ourselves — plus dual enrollment.",
     rigorNote: "College-level problem sets, projects, and exam prep.",
     topicGroups: [

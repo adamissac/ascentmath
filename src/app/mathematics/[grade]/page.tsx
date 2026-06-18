@@ -9,6 +9,8 @@ import { GRADES, getGrade } from "../../../data/units";
 import { STUDY_PATHS_HREF } from "../../../lib/site-paths";
 import { buildPageMetadata } from "../../../lib/metadata";
 import StudyPathsLink from "../../../components/StudyPathsLink";
+import JsonLdScript from "../../../components/JsonLdScript";
+import { buildBreadcrumbJsonLd, buildCourseJsonLd } from "../../../lib/json-ld";
 
 type Params = { grade: string };
 
@@ -49,6 +51,20 @@ export default async function GradeLibrary({ params }: { params: Promise<Params>
 
   return (
     <>
+      <JsonLdScript
+        data={[
+          buildBreadcrumbJsonLd([
+            { label: "Home", href: "/" },
+            { label: "Mathematics", href: STUDY_PATHS_HREF },
+            { label: g.title },
+          ]),
+          buildCourseJsonLd({
+            name: `${g.title} Mathematics Study Path`,
+            description: `Free ${g.title} self-paced math — ${units.length} units, ${totalTopics} topics.`,
+            path: `/mathematics/${g.slug}`,
+          }),
+        ]}
+      />
       <CurriculumHero
         variant="grade"
         breadcrumbs={[

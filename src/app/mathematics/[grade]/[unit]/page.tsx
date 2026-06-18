@@ -7,10 +7,12 @@ import UnitDetailsPanel from "../../../../components/UnitDetailsPanel";
 import UnitProgressPanel from "../../../../components/UnitProgressPanel";
 import Reveal from "../../../../components/Reveal";
 import StudyPathCta from "../../../../components/StudyPathCta";
+import JsonLdScript from "../../../../components/JsonLdScript";
 
 import { GRADES, getGrade, getUnit, getUnitIndex } from "../../../../data/units";
 import { STUDY_PATHS_HREF } from "../../../../lib/site-paths";
 import { buildPageMetadata } from "../../../../lib/metadata";
+import { buildBreadcrumbJsonLd, buildCourseJsonLd } from "../../../../lib/json-ld";
 
 type Params = { grade: string; unit: string };
 
@@ -46,18 +48,30 @@ export default async function UnitPage({ params }: { params: Promise<Params> }) 
   const firstTopic = u.topics[0];
   const gradeHref = `/mathematics/${g.slug}`;
   const progressItems = u.topics.map((t) => ({ id: t.id, label: t.title }));
+  const unitPath = `/mathematics/${g.slug}/${u.slug}`;
+  const breadcrumbs = [
+    { label: "Home", href: "/" },
+    { label: "Mathematics", href: STUDY_PATHS_HREF },
+    { label: g.title, href: gradeHref },
+    { label: `Unit ${u.number}` },
+  ];
 
   return (
     <>
+      <JsonLdScript
+        data={[
+          buildBreadcrumbJsonLd(breadcrumbs),
+          buildCourseJsonLd({
+            name: `${g.title} Unit ${u.number}: ${u.title}`,
+            description: u.description,
+            path: unitPath,
+          }),
+        ]}
+      />
       <LessonShell
         grade={g}
         unit={u}
-        breadcrumbs={[
-          { label: "Home", href: "/" },
-          { label: "Mathematics", href: STUDY_PATHS_HREF },
-          { label: g.title, href: gradeHref },
-          { label: `Unit ${u.number}` },
-        ]}
+        breadcrumbs={breadcrumbs}
         lessonMeta={`Unit ${u.number} · Overview`}
         title={u.title}
         description={u.description}

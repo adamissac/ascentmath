@@ -26,7 +26,7 @@ export default function Home() {
       <CredentialsSection />
 
       <ColorBand
-        id="what-i-teach"
+        id="what-we-teach"
         variant="brand"
         size="md"
         containerSize="2xl"

@@ -6,6 +6,7 @@ export const metadata: Metadata = buildPageMetadata({
   description:
     "Four tutoring tiers by grade band: K-5, middle school, high school & SAT/ACT, and college. First session free for new clients.",
   path: "/tutoring",
+  index: false,
 });
 
 export default function TutoringLayout({ children }: { children: React.ReactNode }) {
