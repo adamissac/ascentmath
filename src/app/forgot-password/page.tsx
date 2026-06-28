@@ -2,10 +2,16 @@
 
 import Link from "next/link";
 import { Suspense, useState } from "react";
+import { FirebaseError } from "firebase/app";
 import AuthShell from "../../components/AuthShell";
 import { useAuth } from "../../components/AuthProvider";
 import RedirectIfAuthed from "../../components/RedirectIfAuthed";
 import { Alert, AuthInput, SubmitButton } from "../../components/AuthFormParts";
+import {
+  AuthComingSoonNotice,
+  authFormComingSoonAttrs,
+  useAuthComingSoonGate,
+} from "../../components/AuthComingSoonGate";
 import { friendlyAuthError } from "../../lib/auth-errors";
 
 export default function ForgotPasswordPage() {
@@ -25,10 +31,11 @@ function ForgotPasswordForm() {
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [fieldError, setFieldError] = useState<string | undefined>();
+  const { comingSoon, dialogOpen, setDialogOpen, blockAction } = useAuthComingSoonGate();
 
   async function onSubmit(e: React.FormEvent) {
     e.preventDefault();
-    if (submitting) return;
+    if (submitting || blockAction()) return;
     setError(null);
     setFieldError(undefined);
 
@@ -47,6 +54,10 @@ function ForgotPasswordForm() {
       await sendPasswordReset(email.trim());
       setSent(true);
     } catch (err) {
+      if (err instanceof FirebaseError && err.code === "auth/user-not-found") {
+        setSent(true);
+        return;
+      }
       setError(friendlyAuthError(err));
     } finally {
       setSubmitting(false);
@@ -59,7 +70,7 @@ function ForgotPasswordForm() {
       title={sent ? "Check your inbox." : "Reset your password."}
       subtitle={
         sent
-          ? "If an account uses that email, we just sent a reset link. The email may take a minute to land - check your spam folder too."
+          ? "If an account uses that email, we just sent a reset link. The email may take a minute to land — check your spam folder too."
           : "Enter the email you used to sign up and we'll send a reset link."
       }
       footer={
@@ -71,14 +82,20 @@ function ForgotPasswordForm() {
         </p>
       }
     >
+      <AuthComingSoonNotice
+        dialogOpen={dialogOpen}
+        onOpenDialog={() => setDialogOpen(true)}
+        onCloseDialog={() => setDialogOpen(false)}
+      />
+
       {sent ? (
         <Alert tone="success" title="Reset link sent">
-          We sent a password-reset email to{" "}
-          <span className="font-medium text-[var(--color-ink)]">{email}</span>.
-          Follow the link in that message to set a new password.
+          If an account uses{" "}
+          <span className="font-medium text-[var(--color-ink)]">{email}</span>, we sent a
+          password-reset email. Follow the link in that message to set a new password.
         </Alert>
       ) : (
-        <form onSubmit={onSubmit} noValidate className="grid gap-5">
+        <form onSubmit={onSubmit} noValidate {...authFormComingSoonAttrs(comingSoon)}>
           <AuthInput
             id="email"
             label="Email"

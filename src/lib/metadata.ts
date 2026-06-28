@@ -1,9 +1,10 @@
 import type { Metadata } from "next";
 import { SITE_POSITIONING } from "../data/site-copy";
 import { TUTOR_NAMES_SHORT } from "../data/site-team";
+import { SITE_BRAND_NAME, SITE_BRAND_TAGLINE } from "./site-brand";
 import { absoluteUrl, SITE_URL } from "./site-url";
 
-const DEFAULT_OG_IMAGE = absoluteUrl("/newLogo.png");
+const DEFAULT_OG_IMAGE = absoluteUrl("/og-image.png");
 
 type PageMetadataInput = {
   title: string;
@@ -27,8 +28,8 @@ export function buildPageMetadata({
   const url = absoluteUrl(path);
   const ogTitle =
     path === "/"
-      ? `Adam's Alphabet - Math Tutors · ${TUTOR_NAMES_SHORT}`
-      : `${title} · Adam's Alphabet`;
+      ? `${SITE_BRAND_NAME} - ${SITE_BRAND_TAGLINE} · ${TUTOR_NAMES_SHORT}`
+      : `${title} · ${SITE_BRAND_NAME}`;
 
   return {
     title,
@@ -39,10 +40,10 @@ export function buildPageMetadata({
       title: ogTitle,
       description,
       url,
-      siteName: "Adam's Alphabet",
+      siteName: SITE_BRAND_NAME,
       type: "website",
       locale: "en_US",
-      images: [{ url: DEFAULT_OG_IMAGE, width: 256, height: 256, alt: "Adam's Alphabet logo" }],
+      images: [{ url: DEFAULT_OG_IMAGE, width: 1200, height: 630, alt: `${SITE_BRAND_NAME} logo` }],
     },
     twitter: {
       card: "summary_large_image",
@@ -53,17 +54,18 @@ export function buildPageMetadata({
   };
 }
 
-const HOME_TITLE = "Adam's Alphabet - Math Tutors (K-5 through College)";
+const HOME_TITLE = `${SITE_BRAND_NAME} - ${SITE_BRAND_TAGLINE}`;
 
 /** Root layout defaults — homepage positioning copy. */
 export const ROOT_METADATA: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
     default: HOME_TITLE,
-    template: "%s · Adam's Alphabet",
+    template: `%s · ${SITE_BRAND_NAME}`,
   },
   description: SITE_POSITIONING,
   keywords: [
+    "Ascent Math",
     "math tutor",
     "math tutoring",
     "Adam and Alan math tutor",
@@ -76,17 +78,17 @@ export const ROOT_METADATA: Metadata = {
   ],
   alternates: { canonical: absoluteUrl("/") },
   openGraph: {
-    title: `Adam's Alphabet - Math Tutors · ${TUTOR_NAMES_SHORT}`,
+    title: `${SITE_BRAND_NAME} - ${SITE_BRAND_TAGLINE} · ${TUTOR_NAMES_SHORT}`,
     description: SITE_POSITIONING,
     url: absoluteUrl("/"),
-    siteName: "Adam's Alphabet",
+    siteName: SITE_BRAND_NAME,
     type: "website",
     locale: "en_US",
-    images: [{ url: DEFAULT_OG_IMAGE, width: 256, height: 256, alt: "Adam's Alphabet logo" }],
+    images: [{ url: DEFAULT_OG_IMAGE, width: 1200, height: 630, alt: `${SITE_BRAND_NAME} logo` }],
   },
   twitter: {
     card: "summary_large_image",
-    title: `Adam's Alphabet - Math Tutors · ${TUTOR_NAMES_SHORT}`,
+    title: `${SITE_BRAND_NAME} - ${SITE_BRAND_TAGLINE} · ${TUTOR_NAMES_SHORT}`,
     description: SITE_POSITIONING,
     images: [DEFAULT_OG_IMAGE],
   },

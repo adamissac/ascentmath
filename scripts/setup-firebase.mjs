@@ -60,7 +60,7 @@ function tryFirebaseSdkConfig(projectId) {
 }
 
 async function main() {
-  console.log("\nAdam's Alphabet - Firebase auth setup\n");
+  console.log("\nAscent Math - Firebase auth setup\n");
 
   if (!existsSync(envLocal)) {
     copyFileSync(envExample, envLocal);

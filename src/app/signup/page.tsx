@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
 import { Suspense, useEffect, useMemo, useState } from "react";
 import AuthShell from "../../components/AuthShell";
@@ -178,8 +179,15 @@ function SignupForm() {
         <GoogleButton onClick={onGoogle} disabled={submitting} label="Sign up with Google" />
 
         <p className="caption text-[var(--color-ink-muted)] leading-relaxed">
-          By creating an account you agree to our friendly, non-existent terms.
-          We don&apos;t sell data and there are no ads.
+          By creating an account you agree to our{" "}
+          <Link href="/terms" className="link font-semibold">
+            Terms of Service
+          </Link>{" "}
+          and{" "}
+          <Link href="/privacy" className="link font-semibold">
+            Privacy Policy
+          </Link>
+          . We don&apos;t sell data and there are no ads.
         </p>
       </form>
     </AuthShell>

@@ -1,4 +1,4 @@
-# Adam's Alphabet
+# Ascent Math
 
 Free Grade 6 Mathematics resources - lessons, video walkthroughs, worksheets, and quizzes. Built with Next.js 15, React 19, and Tailwind CSS v4.
 
@@ -26,7 +26,7 @@ The booking form (homepage `#book-session`, also reachable via `/book`) sends re
    ```bash
    RESEND_API_KEY=re_your_real_key_here
    BOOKING_RECIPIENT_EMAIL=adamissac08@gmail.com
-   BOOKING_FROM_EMAIL="Adam's Alphabet <onboarding@resend.dev>"
+   BOOKING_FROM_EMAIL="Ascent Math <onboarding@resend.dev>"
    ```
 
 5. Restart the dev server. Bookings now flow to Adam's inbox.
@@ -37,7 +37,7 @@ Add the same three keys in **Project Settings → Environment Variables**. Redep
 
 ### Optional: send from your own domain
 
-Once `adamsalphabet.com` is verified in Resend (Settings → Domains), switch `BOOKING_FROM_EMAIL` to something like `"Adam's Alphabet <booking@adamsalphabet.com>"`. Replies will still route to whoever submitted the form, because the API sets `replyTo` to the visitor's address.
+Once `adamsalphabet.com` is verified in Resend (Settings → Domains), switch `BOOKING_FROM_EMAIL` to something like `"Ascent Math <booking@adamsalphabet.com>"`. Replies will still route to whoever submitted the form, because the API sets `replyTo` to the visitor's address.
 
 ### What the API does
 

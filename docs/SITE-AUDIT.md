@@ -1,4 +1,4 @@
-# Adam's Alphabet — Full Site Audit (June 2026)
+# Ascent Math — Full Site Audit (June 2026)
 
 ## Executive summary
 

@@ -9,6 +9,7 @@ import {
   ADAM_PHONE_TEL,
   ALAN_PHONE_DISPLAY,
   ALAN_PHONE_TEL,
+  SITE_BRAND_NAME,
   TUTOR_NAMES_SHORT,
 } from "../data/site-team";
 
@@ -20,9 +21,9 @@ export default function Footer() {
       <div className="mx-auto max-w-7xl page-x py-8 sm:py-9">
         <div className="flex flex-col gap-8 sm:flex-row sm:items-start sm:justify-between sm:gap-10">
           <div className="min-w-0 max-w-sm">
-            <Link href="/" className="group no-underline" aria-label="Adam's Alphabet - home">
+            <Link href="/" className="group no-underline" aria-label={`${SITE_BRAND_NAME} - home`}>
               <span className="block font-display text-lg font-bold tracking-tight text-[var(--color-ink-cool)] transition-colors group-hover:text-[var(--color-brand-600)]">
-                Adam&apos;s Alphabet
+                {SITE_BRAND_NAME}
               </span>
               <span className="mt-0.5 block text-sm font-semibold text-[var(--color-brand-600)]">
                 {TUTOR_NAMES_SHORT}
@@ -47,8 +48,15 @@ export default function Footer() {
         </div>
 
         <p className="mt-8 text-[0.8125rem] text-[var(--color-ink-soft)]">
-          © {YEAR} Adam&apos;s Alphabet · {TUTOR_NAMES_SHORT} · Made in Georgia. Open to learners
-          everywhere.
+          © {YEAR} {SITE_BRAND_NAME} · {TUTOR_NAMES_SHORT} · Made in Georgia. Open to learners
+          everywhere.{" "}
+          <Link href="/privacy" className="link">
+            Privacy
+          </Link>
+          {" · "}
+          <Link href="/terms" className="link">
+            Terms
+          </Link>
         </p>
       </div>
     </footer>

@@ -1,8 +1,10 @@
 /**
- * Shared business identity for Adam's Alphabet (Adam & Alan).
+ * Shared business identity for Ascent Math (Adam & Alan).
  */
 
-export const SITE_BRAND_NAME = "Adam's Alphabet";
+import { SITE_BRAND_NAME } from "../lib/site-brand";
+
+export { SITE_BRAND_NAME };
 
 export const TUTOR_NAMES = "Adam Issac & Alan Mozhoor";
 export const TUTOR_NAMES_SHORT = "Adam & Alan";
@@ -32,7 +34,7 @@ export const BOOKING_MAILTO_GREETING = "Hi Adam and Alan,";
 export function buildBookingMailtoLink(body: string): string {
   const params = new URLSearchParams({
     cc: ALAN_EMAIL,
-    subject: "Tutoring inquiry — Adam's Alphabet",
+    subject: `Tutoring inquiry — ${SITE_BRAND_NAME}`,
     body: `${BOOKING_MAILTO_GREETING}\n\n${body}`,
   });
   return `mailto:${ADAM_EMAIL}?${params.toString()}`;

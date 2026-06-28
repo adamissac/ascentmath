@@ -4,6 +4,7 @@ import type { ReactNode } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import MathBackdrop from "./MathBackdrop";
+import { SITE_BRAND_NAME } from "../data/site-team";
 
 /**
  * Shared chrome for /login, /signup, /forgot-password.
@@ -33,7 +34,7 @@ export default function AuthShell({
         <MathBackdrop variant="brand" density="light" contentSafe />
         <div className="relative z-[1] max-w-lg mx-auto text-center">
           <p className="caption font-semibold tracking-[0.14em] uppercase text-[var(--color-accent-300)]">
-            Adam&apos;s Alphabet
+            {SITE_BRAND_NAME}
           </p>
           <p className="font-display font-bold text-xl mt-2 leading-snug">{panelTitle}</p>
         </div>
@@ -47,7 +48,7 @@ export default function AuthShell({
           <Link
             href="/"
             className="inline-flex items-center gap-2.5 mb-8 group"
-            aria-label="Adam's Alphabet - home"
+            aria-label={`${SITE_BRAND_NAME} - home`}
           >
             <span className="nav-logo-wrap w-9 h-9">
               <Image
@@ -60,7 +61,7 @@ export default function AuthShell({
               />
             </span>
             <span className="font-display font-bold text-[1.05rem] text-[var(--color-ink)] group-hover:text-[var(--color-brand-600)] transition-colors">
-              Adam&apos;s Alphabet
+              {SITE_BRAND_NAME}
             </span>
           </Link>
 
@@ -106,7 +107,7 @@ export default function AuthShell({
 
         <div className="relative z-[2] max-w-md">
           <p className="caption font-semibold tracking-[0.14em] uppercase text-[var(--color-accent-300)]">
-            Adam&apos;s Alphabet
+            {SITE_BRAND_NAME}
           </p>
           <h2 className="font-display font-bold text-3xl sm:text-4xl mt-3 leading-[1.15] tracking-[-0.02em]">
             {panelTitle}

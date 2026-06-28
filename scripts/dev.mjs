@@ -111,7 +111,7 @@ for (const port of [3000, 3001, 3002]) {
 
 ensureDevCache();
 
-console.log("\n  Adam's Alphabet — dev server");
+console.log("\n  Ascent Math — dev server");
 console.log(`  → ${URL}`);
 console.log("  Keep this terminal open while you browse.\n");
 

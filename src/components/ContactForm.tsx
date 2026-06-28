@@ -1,8 +1,9 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import Button from "./Button";
 import StudyPathsLink from "./StudyPathsLink";
+import TurnstileWidget from "./TurnstileWidget";
 import {
   buildBookingMailtoLink,
   REPLY_TIME_LINE,
@@ -84,8 +85,25 @@ export default function ContactForm() {
   const [status, setStatus] = useState<Status>("idle");
   const [errorMsg, setErrorMsg] = useState<string | null>(null);
   const [configured, setConfigured] = useState<boolean | null>(null);
-  const [recipientsDisplay, setRecipientsDisplay] = useState(FALLBACK_RECIPIENTS);
+  const [recipientsDisplay] = useState(FALLBACK_RECIPIENTS);
+  const [turnstileToken, setTurnstileToken] = useState<string | null>(null);
+  const formLoadedAtRef = useRef(Date.now());
   const submittingRef = useRef(false);
+
+  const turnstileSiteKey = process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY?.trim() || "";
+  const turnstileRequired = turnstileSiteKey.length > 10;
+
+  const handleTurnstileVerify = useCallback((token: string) => {
+    setTurnstileToken(token);
+  }, []);
+
+  const handleTurnstileExpire = useCallback(() => {
+    setTurnstileToken(null);
+  }, []);
+
+  useEffect(() => {
+    formLoadedAtRef.current = Date.now();
+  }, []);
 
   useEffect(() => {
     let cancelled = false;
@@ -98,11 +116,6 @@ export default function ContactForm() {
       .then((data) => {
         if (cancelled) return;
         setConfigured(Boolean(data?.configured));
-        if (Array.isArray(data?.recipients) && data.recipients.length > 0) {
-          setRecipientsDisplay(data.recipients.join(" · "));
-        } else if (typeof data?.recipient === "string" && data.recipient) {
-          setRecipientsDisplay(data.recipient);
-        }
       })
       .catch(() => {
         if (!cancelled) setConfigured(false);
@@ -152,6 +165,12 @@ export default function ContactForm() {
       return;
     }
 
+    if (turnstileRequired && !turnstileToken) {
+      setErrorMsg("Please complete the security check below.");
+      setStatus("error");
+      return;
+    }
+
     submittingRef.current = true;
     setStatus("submitting");
 
@@ -159,7 +178,11 @@ export default function ContactForm() {
       const res = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(form),
+        body: JSON.stringify({
+          ...form,
+          formLoadedAt: formLoadedAtRef.current,
+          turnstileToken: turnstileToken ?? undefined,
+        }),
       });
       const data = await res.json().catch(() => null);
 
@@ -184,6 +207,8 @@ export default function ContactForm() {
     setFieldErrors({});
     setStatus("idle");
     setErrorMsg(null);
+    setTurnstileToken(null);
+    formLoadedAtRef.current = Date.now();
   }
 
   if (status === "success") {
@@ -346,6 +371,14 @@ export default function ContactForm() {
           />
         </div>
 
+        {turnstileRequired && (
+          <TurnstileWidget
+            siteKey={turnstileSiteKey}
+            onVerify={handleTurnstileVerify}
+            onExpire={handleTurnstileExpire}
+          />
+        )}
+
         {errorMsg && (
           <div
             role="alert"
@@ -364,7 +397,7 @@ export default function ContactForm() {
 
         <Button
           type="submit"
-          disabled={status === "submitting" || configured !== true}
+          disabled={status === "submitting" || configured !== true || (turnstileRequired && !turnstileToken)}
           size="lg"
           className="w-full"
           rightIcon={status === "submitting" ? <Spinner /> : <Arrow />}
