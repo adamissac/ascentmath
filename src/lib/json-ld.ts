@@ -1,3 +1,4 @@
+import { SITE_BRAND_NAME } from "./site-brand";
 import { absoluteUrl } from "./site-url";
 
 export type BreadcrumbItem = {
@@ -38,7 +39,7 @@ export function buildCourseJsonLd({
     url: absoluteUrl(path),
     provider: {
       "@type": "EducationalOrganization",
-      name: "Adam's Alphabet",
+      name: SITE_BRAND_NAME,
       url: absoluteUrl("/"),
     },
     isAccessibleForFree,

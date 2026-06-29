@@ -1,10 +1,12 @@
+import { SITE_BRAND_NAME } from "./site-team";
+
 export type AccordionItem = { q: string; a: string };
 
 export function unitAccordion(unitTitle: string, gradeTitle: string): AccordionItem[] {
   return [
     {
       q: `What is this unit about?`,
-      a: `${unitTitle} is part of ${gradeTitle} on Adam's Alphabet. Work through topics in order or jump to what your class is covering. Each topic has a lesson, video, practice, and quiz.`,
+      a: `${unitTitle} is part of ${gradeTitle} on ${SITE_BRAND_NAME}. Work through topics in order or jump to what your class is covering. Each topic has a lesson, video, practice, and quiz.`,
     },
     {
       q: "How should I use the study guide?",

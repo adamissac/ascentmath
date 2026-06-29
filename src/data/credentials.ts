@@ -1,4 +1,4 @@
-import { ADAM_EMAIL, ALAN_EMAIL } from "./site-team";
+import { ADAM_EMAIL, ALAN_EMAIL, SITE_BRAND_NAME } from "./site-team";
 
 export type MathCredential = {
   label: string;
@@ -19,18 +19,18 @@ export type TutorIntro = {
 export const TUTOR_INTRO: TutorIntro = {
   name: "Adam",
   title: "I'm Adam.",
-  titleMuted: "Co-founder of Adam's Alphabet.",
+  titleMuted: `Co-founder of ${SITE_BRAND_NAME}.`,
   meta: "Adam Issac · Denmark High · Class of 2026 · Taking new students",
-  bio: "Senior at Denmark High. I co-founded Adam's Alphabet with Alan to tutor the high school AP and college math I earned top marks in, plus K-5 and middle school — and built free Grades 6-8 study paths on this site.",
+  bio: `Senior at Denmark High. I co-founded ${SITE_BRAND_NAME} with Alan to tutor the high school AP and college math I earned top marks in, plus K-5 and middle school — and built free Grades 6-8 study paths on this site.`,
   email: ADAM_EMAIL,
 };
 
 export const ALAN_INTRO: TutorIntro = {
   name: "Alan",
   title: "I'm Alan.",
-  titleMuted: "Co-founder of Adam's Alphabet.",
+  titleMuted: `Co-founder of ${SITE_BRAND_NAME}.`,
   meta: "Alan Mozhoor · Denmark High · Class of 2026 · Taking new students",
-  bio: "Senior at Denmark High. I co-founded Adam's Alphabet with Adam to tutor pre-algebra through AP Calculus, linear algebra, multivariable calculus, and test prep — with the same patient, step-by-step approach I use in my own classes.",
+  bio: `Senior at Denmark High. I co-founded ${SITE_BRAND_NAME} with Adam to tutor pre-algebra through AP Calculus, linear algebra, multivariable calculus, and test prep — with the same patient, step-by-step approach I use in my own classes.`,
   email: ALAN_EMAIL,
 };
 

@@ -9,6 +9,9 @@
  * the edge runtime without pulling in React.
  */
 
+import { SITE_BRAND_NAME } from "./site-brand";
+import { absoluteUrl, siteHost } from "./site-url";
+
 export type SessionType = "tutoring" | "demo" | "partnership" | "general";
 
 export const SESSION_TYPE_LABELS: Record<SessionType, string> = {
@@ -27,7 +30,7 @@ export type ContactPayload = {
   message: string;
 };
 
-const escapeHtml = (raw: string) =>
+export const escapeHtml = (raw: string) =>
   raw
     .replace(/&/g, "&amp;")
     .replace(/</g, "&lt;")
@@ -38,9 +41,10 @@ const escapeHtml = (raw: string) =>
 export function renderContactEmail(p: ContactPayload) {
   const typeLabel = SESSION_TYPE_LABELS[p.sessionType];
   const subject = `New ${typeLabel} inquiry — ${p.name}`;
+  const siteLink = absoluteUrl("/");
 
   const text = [
-    "New booking request from www.adamsalphabet.com",
+    `New booking request from ${siteHost()}`,
     "",
     `Name:       ${p.name}`,
     `Email:      ${p.email}`,
@@ -53,7 +57,7 @@ export function renderContactEmail(p: ContactPayload) {
     p.message.trim(),
     "",
     "-",
-    "Adam's Alphabet · https://www.adamsalphabet.com/",
+    `${SITE_BRAND_NAME} · ${siteLink}`,
   ].join("\n");
 
   const html = `<!DOCTYPE html>
@@ -69,7 +73,7 @@ export function renderContactEmail(p: ContactPayload) {
         <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="560" style="max-width:560px;background:#FFFFFF;border:1px solid #E6E2DA;border-radius:16px;overflow:hidden;">
           <tr>
             <td style="padding:24px 28px;background:#1F3CB1;color:#FFFFFF;">
-              <p style="margin:0;font-size:12px;letter-spacing:0.14em;text-transform:uppercase;opacity:0.85;">Adam&apos;s Alphabet</p>
+              <p style="margin:0;font-size:12px;letter-spacing:0.14em;text-transform:uppercase;opacity:0.85;">${escapeHtml(SITE_BRAND_NAME)}</p>
               <h1 style="margin:6px 0 0;font-size:22px;line-height:1.25;font-weight:700;">New booking request</h1>
             </td>
           </tr>
@@ -100,7 +104,7 @@ export function renderContactEmail(p: ContactPayload) {
                 Submitted ${new Date().toLocaleString("en-US", {
                   dateStyle: "medium",
                   timeStyle: "short",
-                })} via www.adamsalphabet.com
+                })} via ${siteHost()}
               </p>
             </td>
           </tr>

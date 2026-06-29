@@ -4,6 +4,7 @@
  */
 
 import { ADAM_EMAIL, ALAN_EMAIL, TUTOR_EMAILS } from "../data/site-team";
+import { SITE_BRAND_NAME } from "./site-brand";
 
 const PLACEHOLDER_KEYS = new Set([
   "",
@@ -32,7 +33,7 @@ export function getBookingRecipient(): string {
 export function getBookingFromEmail(): string {
   return (
     process.env.BOOKING_FROM_EMAIL?.trim() ||
-    "Adam's Alphabet <onboarding@resend.dev>"
+    `${SITE_BRAND_NAME} <onboarding@resend.dev>`
   );
 }
 

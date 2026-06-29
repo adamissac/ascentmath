@@ -6,13 +6,14 @@ import {
   ALAN_PHONE_TEL,
   TUTOR_NAMES,
 } from "../data/site-team";
+import { SITE_BRAND_NAME } from "../lib/site-brand";
 import { absoluteUrl } from "../lib/site-url";
 
 export default function HomeJsonLd() {
   const organization = {
     "@context": "https://schema.org",
     "@type": "EducationalOrganization",
-    name: "Adam's Alphabet",
+    name: SITE_BRAND_NAME,
     url: absoluteUrl("/"),
     description: SITE_POSITIONING,
     telephone: [ADAM_PHONE_TEL, ALAN_PHONE_TEL],
@@ -45,7 +46,7 @@ export default function HomeJsonLd() {
   const localBusiness = {
     "@context": "https://schema.org",
     "@type": "LocalBusiness",
-    name: "Adam's Alphabet",
+    name: SITE_BRAND_NAME,
     url: absoluteUrl("/"),
     telephone: [ADAM_PHONE_TEL, ALAN_PHONE_TEL],
     description: SITE_POSITIONING,
