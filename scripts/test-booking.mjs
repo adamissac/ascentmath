@@ -39,7 +39,7 @@ async function main() {
   }
 
   console.log("Success - test contact email sent.");
-  console.log("Check adamissac08@gmail.com (and spam).\n");
+  console.log("Check adamissac08@gmail.com and alanmozhoor@gmail.com (and spam).\n");
 }
 
 main().catch((err) => {

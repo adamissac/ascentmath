@@ -44,10 +44,10 @@ async function main() {
     return;
   }
 
-  console.log("Resend sends booking requests to adamissac08@gmail.com.\n");
+  console.log("Resend sends booking requests to Adam and Alan (both tutor inboxes).\n");
   console.log("Before pasting your API key:");
   console.log("  1. Sign up at https://resend.com");
-  console.log("  2. Settings → Verified Emails → verify adamissac08@gmail.com");
+  console.log("  2. Settings → Verified Emails → verify adamissac08@gmail.com and alanmozhoor@gmail.com");
   console.log("  3. API Keys → Create API Key → copy the re_… value\n");
 
   const rl = readline.createInterface({ input, output });
@@ -60,11 +60,15 @@ async function main() {
   }
 
   envText = upsertEnvValue(envText, "RESEND_API_KEY", apiKey);
-  envText = upsertEnvValue(envText, "BOOKING_RECIPIENT_EMAIL", "adamissac08@gmail.com");
+  envText = upsertEnvValue(
+    envText,
+    "BOOKING_RECIPIENT_EMAIL",
+    "adamissac08@gmail.com,alanmozhoor@gmail.com"
+  );
   envText = upsertEnvValue(
     envText,
     "BOOKING_FROM_EMAIL",
-    '"Adam\'s Alphabet <onboarding@resend.dev>"'
+    '"Ascent Math <onboarding@resend.dev>"'
   );
 
   writeFileSync(envLocal, envText, "utf8");

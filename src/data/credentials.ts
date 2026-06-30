@@ -21,7 +21,7 @@ export const TUTOR_INTRO: TutorIntro = {
   title: "I'm Adam.",
   titleMuted: `Co-founder of ${SITE_BRAND_NAME}.`,
   meta: "Adam Issac · Math + CS @ Georgia Tech · Taking new students",
-  bio: `Math + CS @ Georgia Tech. I co-founded ${SITE_BRAND_NAME} with Alan to tutor the high school AP and college math I earned top marks in, plus K-5 and middle school — and built free Grades 6-8 study paths on this site.`,
+  bio: `Math + CS @ Georgia Tech. I co-founded ${SITE_BRAND_NAME} with Alan. Together we tutor the high school AP and college math we've earned top marks in, plus K-5 and middle school — and we built the free Grades 6-8 study paths on this site.`,
   email: ADAM_EMAIL,
 };
 
@@ -30,7 +30,7 @@ export const ALAN_INTRO: TutorIntro = {
   title: "I'm Alan.",
   titleMuted: `Co-founder of ${SITE_BRAND_NAME}.`,
   meta: "Alan Mozhoor · Math + CS @ Georgia Tech · Taking new students",
-  bio: `Math + CS @ Georgia Tech. I co-founded ${SITE_BRAND_NAME} with Adam to tutor pre-algebra through AP Calculus, linear algebra, multivariable calculus, and test prep — with the same patient, step-by-step approach I use in my own classes.`,
+  bio: `Math + CS @ Georgia Tech. I co-founded ${SITE_BRAND_NAME} with Adam. Together we tutor pre-algebra through AP Calculus, AP Statistics, linear algebra, multivariable calculus, and SAT/ACT prep — with the same patient, step-by-step approach we use in our own classes. We also built the free Grades 6-8 study paths on this site.`,
   email: ALAN_EMAIL,
 };
 
@@ -60,7 +60,7 @@ export const ALAN_CREDENTIALS: readonly MathCredential[] = [
   {
     label: "GT Linear Algebra & Multivariable Calc",
     value: "95%",
-    detail: "Georgia Tech dual enrollment",
+    detail: "Georgia Tech courses",
   },
   { label: "GHP Math Major", value: "Selected", detail: "Governor's Honors Program" },
   {

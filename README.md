@@ -14,22 +14,22 @@ Open <http://localhost:3000>.
 
 ## Booking system (Resend)
 
-The booking form (homepage `#book-session`, also reachable via `/book`) sends real emails to `adamissac08@gmail.com` via [Resend](https://resend.com). The form posts to the in-app API route `src/app/api/contact/route.ts` - no `mailto:` links anywhere, no third-party widgets.
+The booking form (homepage `#book-session`, also reachable via `/book`) sends real emails to Adam and Alan via [Resend](https://resend.com). By default both `adamissac08@gmail.com` and `alanmozhoor@gmail.com` receive submissions. The form posts to the in-app API route `src/app/api/contact/route.ts` - no `mailto:` links anywhere, no third-party widgets.
 
 ### One-time setup
 
 1. Create a free Resend account at <https://resend.com>.
-2. Verify the destination address (`adamissac08@gmail.com`) under **Settings → Verified Emails**. This lets you send to that inbox without owning a custom domain.
+2. Verify both destination addresses (`adamissac08@gmail.com` and `alanmozhoor@gmail.com`) under **Settings → Verified Emails**. This lets you send to those inboxes without owning a custom domain.
 3. Create an API key under **API Keys → Create API Key**. Copy the `re_…` string.
 4. Copy `.env.example` to `.env.local` and paste the key:
 
    ```bash
    RESEND_API_KEY=re_your_real_key_here
-   BOOKING_RECIPIENT_EMAIL=adamissac08@gmail.com
+   BOOKING_RECIPIENT_EMAIL=adamissac08@gmail.com,alanmozhoor@gmail.com
    BOOKING_FROM_EMAIL="Ascent Math <onboarding@resend.dev>"
    ```
 
-5. Restart the dev server. Bookings now flow to Adam's inbox.
+5. Restart the dev server. Bookings now flow to both tutors' inboxes.
 
 ### Production (Vercel)
 
