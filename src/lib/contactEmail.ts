@@ -40,7 +40,7 @@ export const escapeHtml = (raw: string) =>
 
 export function renderContactEmail(p: ContactPayload) {
   const typeLabel = SESSION_TYPE_LABELS[p.sessionType];
-  const subject = `New ${typeLabel} inquiry — ${p.name}`;
+  const subject = `New ${typeLabel} inquiry: ${p.name}`;
   const siteLink = absoluteUrl("/");
 
   const text = [

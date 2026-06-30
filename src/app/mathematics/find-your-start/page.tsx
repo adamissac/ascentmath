@@ -43,7 +43,7 @@ export default function FindYourStartPage() {
               </h1>
               <p className="mt-4 min-w-0 text-[clamp(1rem,0.4vw+0.9rem,1.125rem)] leading-[1.7] text-[var(--color-ink-cool-muted)]">
                 You don&apos;t have to browse all {totalUnits} units blind. Tell us your grade and
-                what your class is covering — we&apos;ll drop you into a sensible starting point.
+                what your class is covering. We&apos;ll drop you into a sensible starting point.
               </p>
             </div>
           </Reveal>

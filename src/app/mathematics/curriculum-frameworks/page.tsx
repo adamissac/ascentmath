@@ -94,7 +94,7 @@ export default function FrameworksPage() {
 
                 Official Georgia Department of Education unit frameworks. Use them to see what
 
-                teachers are aiming for in each unit — useful for planning, tutors, and students who
+                teachers are aiming for in each unit. Useful for planning, tutors, and students who
 
                 want the full picture.
 

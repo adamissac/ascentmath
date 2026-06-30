@@ -34,7 +34,7 @@ export const BOOKING_MAILTO_GREETING = "Hi Adam and Alan,";
 export function buildBookingMailtoLink(body: string): string {
   const params = new URLSearchParams({
     cc: ALAN_EMAIL,
-    subject: `Tutoring inquiry — ${SITE_BRAND_NAME}`,
+    subject: `Tutoring inquiry: ${SITE_BRAND_NAME}`,
     body: `${BOOKING_MAILTO_GREETING}\n\n${body}`,
   });
   return `mailto:${ADAM_EMAIL}?${params.toString()}`;

@@ -21,7 +21,7 @@ export const TUTOR_INTRO: TutorIntro = {
   title: "I'm Adam.",
   titleMuted: `Co-founder of ${SITE_BRAND_NAME}.`,
   meta: "Adam Issac · Math + CS @ Georgia Tech · Taking new students",
-  bio: `Math + CS @ Georgia Tech. I co-founded ${SITE_BRAND_NAME} with Alan. Together we tutor the high school AP and college math we've earned top marks in, plus K-5 and middle school — and we built the free Grades 6-8 study paths on this site.`,
+  bio: `Math + CS @ Georgia Tech. I co-founded ${SITE_BRAND_NAME} with Alan. Together we tutor the high school AP and college math we've earned top marks in, plus K-5 and middle school, and we built the free Grades 6-8 study paths on this site.`,
   email: ADAM_EMAIL,
 };
 
@@ -30,7 +30,7 @@ export const ALAN_INTRO: TutorIntro = {
   title: "I'm Alan.",
   titleMuted: `Co-founder of ${SITE_BRAND_NAME}.`,
   meta: "Alan Mozhoor · Math + CS @ Georgia Tech · Taking new students",
-  bio: `Math + CS @ Georgia Tech. I co-founded ${SITE_BRAND_NAME} with Adam. Together we tutor pre-algebra through AP Calculus, AP Statistics, linear algebra, multivariable calculus, and SAT/ACT prep — with the same patient, step-by-step approach we use in our own classes. We also built the free Grades 6-8 study paths on this site.`,
+  bio: `Math + CS @ Georgia Tech. I co-founded ${SITE_BRAND_NAME} with Adam. Together we tutor pre-algebra through AP Calculus, AP Statistics, linear algebra, multivariable calculus, and SAT/ACT prep, with the same patient, step-by-step approach we use in our own classes. We also built the free Grades 6-8 study paths on this site.`,
   email: ALAN_EMAIL,
 };
 

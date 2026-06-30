@@ -93,7 +93,7 @@ function ExerciseCard({
           .join(" ")}
       >
         <label className="lesson-workbench__field-label" htmlFor={`work-${exercise.id}`}>
-          Your work (optional — show steps, notes, or a sketch)
+          Your work (optional: show steps, notes, or a sketch)
         </label>
         <textarea
           id={`work-${exercise.id}`}
@@ -145,7 +145,7 @@ function ExerciseCard({
             role="status"
           >
             {correct
-              ? "✓ Correct — nice work. Compare your steps to the official solution below."
+              ? "✓ Correct. Nice work. Compare your steps to the official solution below."
               : "✗ Not quite yet. Use a hint or reveal the solution one step at a time."}
           </p>
         )}

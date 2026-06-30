@@ -343,7 +343,7 @@ export default function ContactForm() {
             value={form.message}
             onChange={(e) => set("message", e.target.value)}
             onBlur={() => handleBlur("message")}
-            placeholder="Tell us what you're looking for — grade level, subject, goals, or availability."
+            placeholder="Tell us what you're looking for: grade level, subject, goals, or availability."
             maxLength={2000}
             aria-invalid={!!fieldErrors.message}
             aria-describedby={fieldErrors.message ? "contact-message-error" : undefined}

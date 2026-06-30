@@ -19,6 +19,7 @@ export type TutoringTier = {
   accent: string;
   blurb: string;
   rigorNote: string;
+  badge?: string;
   topicGroups: readonly SubjectTopicGroup[];
 };
 
@@ -26,7 +27,7 @@ export const FIRST_SESSION_FREE = "Your first session is always free for new cli
 
 /** Shown under the tier cards (homepage and anywhere tiers are listed). */
 export const TIER_PRICING_EXPLAINER =
-  "Book a session on this site. We'll reach out by call or email to confirm times and your tier — prices aren't listed here.";
+  "Book a session on this site. We'll reach out by call or email to confirm times and your tier. Prices aren't listed here.";
 
 export const TUTORING_TIERS_SUMMARY = "K-5, middle school, high school & SAT/ACT, and college";
 
@@ -63,7 +64,7 @@ export const TUTORING_TIERS: readonly TutoringTier[] = [
     range: "Grades 6-8",
     accent: "bg-white/70",
     blurb: "Pre-algebra through early algebra, ratios, and the geometry that shows up in middle school.",
-    rigorNote: "Where most students first hit abstract math — steady 1-on-1 help on school pacing.",
+    rigorNote: "Where most students first hit abstract math. Steady 1-on-1 help on school pacing.",
     topicGroups: [
       {
         label: "Number & algebra",
@@ -90,6 +91,7 @@ export const TUTORING_TIERS: readonly TutoringTier[] = [
     label: "High school courses",
     range: "Grades 9-12 · SAT/ACT",
     accent: "bg-[var(--color-brand-300)]",
+    badge: "Popular",
     blurb: "Algebra 1 through AP Calculus and AP CS, plus SAT & ACT Math prep.",
     rigorNote: "Higher rigor: AP courses and standardized test math.",
     topicGroups: [
@@ -128,21 +130,21 @@ export const TUTORING_TIERS: readonly TutoringTier[] = [
     label: "College / dual enrollment",
     range: "College",
     accent: "bg-[var(--color-accent-300)]",
-    blurb: "Georgia Tech math and CS courses we've taken ourselves — plus dual enrollment.",
+    blurb: "Georgia Tech math and CS courses we've taken ourselves, plus dual enrollment.",
     rigorNote: "College-level problem sets, projects, and exam prep.",
     topicGroups: [
       {
         label: "Math",
         items: [
-          "MATH 1554 — Linear Algebra",
-          "MATH 2551 — Multivariable Calculus",
+          "MATH 1554: Linear Algebra",
+          "MATH 2551: Multivariable Calculus",
         ],
       },
       {
         label: "Computer science",
         items: [
-          "CS 1301 — Introduction to Computing and Programming",
-          "CS 1331 — Introduction to Object-Oriented Programming",
+          "CS 1301: Introduction to Computing and Programming",
+          "CS 1331: Introduction to Object-Oriented Programming",
         ],
       },
     ],
