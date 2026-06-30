@@ -121,7 +121,7 @@ export default function AuthShell({
           </ul>
 
           <p className="mt-12 caption text-white/55">
-            Built by student tutors in Atlanta, GA · Open to learners everywhere.
+            Co-founded by Adam &amp; Alan · Math + CS @ Georgia Tech · Atlanta area &amp; online.
           </p>
         </div>
       </aside>

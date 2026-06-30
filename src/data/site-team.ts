@@ -18,7 +18,7 @@ export const TUTOR_EMAILS_DISPLAY = TUTOR_EMAILS.join(" · ");
 
 export const REPLY_TIME_LINE = "We reply within 1–2 days.";
 
-/** Business phones — shown in footer and credentials; Adam's used in JSON-LD. */
+/** Business phones — shown in footer, credentials, and JSON-LD. */
 export const ADAM_PHONE_DISPLAY = "404-901-4619";
 export const ADAM_PHONE_TEL = "+14049014619";
 export const ALAN_PHONE_DISPLAY = "404-276-3184";

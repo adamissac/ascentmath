@@ -69,6 +69,7 @@ export const ROOT_METADATA: Metadata = {
     "math tutor",
     "math tutoring",
     "Adam and Alan math tutor",
+    "Georgia Tech math tutor",
     "SAT math tutor",
     "AP pre-calculus tutor",
     "AP calculus tutor",

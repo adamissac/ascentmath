@@ -9,6 +9,11 @@ import {
 import { SITE_BRAND_NAME } from "../lib/site-brand";
 import { absoluteUrl } from "../lib/site-url";
 
+const GEORGIA_TECH = {
+  "@type": "CollegeOrUniversity",
+  name: "Georgia Institute of Technology",
+} as const;
+
 export default function HomeJsonLd() {
   const organization = {
     "@context": "https://schema.org",
@@ -38,8 +43,20 @@ export default function HomeJsonLd() {
       containedInPlace: { "@type": "State", name: "Georgia" },
     },
     founder: [
-      { "@type": "Person", name: "Adam Issac", email: ADAM_EMAIL },
-      { "@type": "Person", name: "Alan Mozhoor", email: ALAN_EMAIL },
+      {
+        "@type": "Person",
+        name: "Adam Issac",
+        email: ADAM_EMAIL,
+        affiliation: GEORGIA_TECH,
+        jobTitle: "Math tutor & co-founder",
+      },
+      {
+        "@type": "Person",
+        name: "Alan Mozhoor",
+        email: ALAN_EMAIL,
+        affiliation: GEORGIA_TECH,
+        jobTitle: "Math tutor & co-founder",
+      },
     ],
   };
 
@@ -64,12 +81,14 @@ export default function HomeJsonLd() {
         name: "Adam Issac",
         jobTitle: "Math tutor & co-founder",
         email: ADAM_EMAIL,
+        affiliation: GEORGIA_TECH,
       },
       {
         "@type": "Person",
         name: "Alan Mozhoor",
         jobTitle: "Math tutor & co-founder",
         email: ALAN_EMAIL,
+        affiliation: GEORGIA_TECH,
       },
     ],
   };
