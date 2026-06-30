@@ -70,7 +70,7 @@ function ForgotPasswordForm() {
       title={sent ? "Check your inbox." : "Reset your password."}
       subtitle={
         sent
-          ? "If an account uses that email, we just sent a reset link. The email may take a minute to land — check your spam folder too."
+          ? "If an account uses that email, we just sent a reset link. The email may take a minute to land. Check your spam folder too."
           : "Enter the email you used to sign up and we'll send a reset link."
       }
       footer={

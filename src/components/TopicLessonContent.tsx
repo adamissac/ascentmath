@@ -66,7 +66,7 @@ export default function TopicLessonContent({ topic: t }: Props) {
       <BodySection title="Practice" id="practice">
         <p className="lesson-prose__p">
           For each problem: write your work in the box, type your answer, and check it. If you are
-          stuck, reveal the solution one step at a time — do not skip straight to the final answer.
+          stuck, reveal the solution one step at a time. Do not skip straight to the final answer.
         </p>
           <div className="lesson-practice-stack">
             {hasExercises && t.exercises && (

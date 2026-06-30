@@ -30,7 +30,7 @@ export async function generateMetadata({
   const topicCount = g.units.reduce((n, u) => n + u.topics.length, 0);
   return buildPageMetadata({
     title: `${g.title} Mathematics`,
-    description: `Free ${g.title} self-paced math study path — ${unitCount} units, ${topicCount} topics with walkthroughs, videos, practice, and quizzes.`,
+    description: `Free ${g.title} self-paced math study path: ${unitCount} units, ${topicCount} topics with walkthroughs, videos, practice, and quizzes.`,
     path: `/mathematics/${grade}`,
   });
 }
@@ -60,7 +60,7 @@ export default async function GradeLibrary({ params }: { params: Promise<Params>
           ]),
           buildCourseJsonLd({
             name: `${g.title} Mathematics Study Path`,
-            description: `Free ${g.title} self-paced math — ${units.length} units, ${totalTopics} topics.`,
+            description: `Free ${g.title} self-paced math: ${units.length} units, ${totalTopics} topics.`,
             path: `/mathematics/${g.slug}`,
           }),
         ]}
@@ -74,7 +74,7 @@ export default async function GradeLibrary({ params }: { params: Promise<Params>
         ]}
         gradeTitle={g.title}
         gradeIcon={g.icon}
-        description="Pick a unit and work through the topics — each one has a short lesson, video, practice, and quiz."
+        description="Pick a unit and work through the topics. Each one has a short lesson, video, practice, and quiz."
         stats={units.length > 0 ? heroStats : []}
         primaryCta={
           firstUnit

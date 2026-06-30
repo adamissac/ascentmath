@@ -38,7 +38,7 @@ export default function HomeStudyPathsSection() {
 
           <p className="mt-4 text-[0.9375rem] leading-relaxed text-white/75 sm:text-base">
             Full grade paths with lessons, videos, practice, and quizzes on every topic. No account
-            needed — open a grade and jump to what your class is on.
+            needed. Open a grade and jump to what your class is on.
           </p>
 
           <p className="mt-5 inline-flex rounded-full border border-white/25 bg-white/10 px-4 py-1.5 text-sm font-semibold text-[var(--color-accent-300)]">

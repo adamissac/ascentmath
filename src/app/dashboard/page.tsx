@@ -130,7 +130,7 @@ function Dashboard() {
 
             <p className="caption text-[var(--color-ink-muted)] leading-relaxed">
               Need to change your name, email, or password? Use the &ldquo;Forgot
-              password&rdquo; flow to reset, or contact Adam or Alan directly — full
+              password&rdquo; flow to reset, or contact Adam or Alan directly. Full
               account-management UI is on the roadmap.
             </p>
           </Card>

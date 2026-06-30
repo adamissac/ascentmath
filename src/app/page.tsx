@@ -42,7 +42,7 @@ export default function Home() {
             Four tiers by grade band.
           </h2>
           <p className="mt-4 text-base leading-relaxed text-white/75 sm:text-lg">
-            {TUTORING_TIERS_SUMMARY}. Pick the tier that matches your class — rates are confirmed when
+            {TUTORING_TIERS_SUMMARY}. Pick the tier that matches your class. Rates are confirmed when
             you book.
           </p>
           <p className="mt-4 inline-flex rounded-full border border-white/25 bg-white/10 px-4 py-1.5 text-sm font-semibold text-[var(--color-accent-300)]">

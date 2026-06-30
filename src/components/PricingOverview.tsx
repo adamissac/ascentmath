@@ -23,8 +23,8 @@ export function SubjectLevelCards({ variant = "brand" }: { variant?: Variant }) 
     <Reveal variant="rise">
       <div
         className={[
-          "flex gap-5 overflow-x-auto pb-2 snap-x snap-mandatory",
-          "lg:grid lg:grid-cols-4 lg:items-stretch lg:gap-6 lg:overflow-visible lg:pb-0 lg:snap-none",
+          "flex gap-5 overflow-x-auto pb-2 pt-4 snap-x snap-mandatory",
+          "lg:grid lg:grid-cols-4 lg:items-stretch lg:gap-6 lg:overflow-visible lg:pb-0 lg:snap-none lg:pt-4",
         ].join(" ")}
       >
         {TUTORING_TIERS.map((tier) => (
@@ -42,12 +42,23 @@ function SubjectLevelCard({ tier, isBrand }: { tier: TutoringTier; isBrand: bool
         "bg-white/[0.14] p-6 transition-colors duration-300",
         "hover:border-white/30 hover:bg-white/[0.18]",
         "lg:min-w-0",
+        tier.badge ? "ring-2 ring-[var(--color-accent-400)]/70" : "",
       ].join(" ")
-    : "card group flex h-full min-w-[21rem] shrink-0 snap-start flex-col p-6 transition-shadow duration-300 hover:shadow-[var(--shadow-card-hover)] lg:min-w-0";
+    : [
+        "card group relative flex h-full min-w-[21rem] shrink-0 snap-start flex-col p-6 transition-shadow duration-300 hover:shadow-[var(--shadow-card-hover)] lg:min-w-0",
+        tier.badge ? "ring-2 ring-[var(--color-accent-300)]" : "",
+      ].join(" ");
+
+  const badge = tier.badge ? (
+    <span className="absolute -top-3 left-1/2 z-10 -translate-x-1/2 rounded-full bg-[var(--color-accent-500)] px-3.5 py-1 text-[0.6875rem] font-bold uppercase tracking-[0.14em] text-white shadow-[0_6px_18px_rgba(244,123,22,0.45)]">
+      {tier.badge}
+    </span>
+  ) : null;
 
   if (isBrand) {
     return (
       <article className={cardClass}>
+        {badge}
         <span aria-hidden className={`absolute left-0 top-0 h-full w-1 ${TIER_STRIPE}`} />
 
         <div className="relative flex items-start justify-between gap-3">
@@ -72,6 +83,7 @@ function SubjectLevelCard({ tier, isBrand }: { tier: TutoringTier; isBrand: bool
 
   return (
     <article className={cardClass}>
+      {badge}
       <div className="flex items-center justify-between gap-3">
         <h3 className="font-display font-bold text-lg text-[var(--color-ink)]">{tier.tierLabel}</h3>
         <span className="pill pill-brand text-[0.6875rem]">{tier.range}</span>

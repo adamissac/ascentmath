@@ -3,14 +3,14 @@ import type { Topic, WalkthroughBlock } from "./units";
 const DEPTH_BY_KEYWORD: Record<string, string[]> = {
   factor: [
     "A quick way to test factors: divide the number by each candidate. If the quotient is a whole number with no remainder, you found a factor.",
-    "Every whole number has at least two factors: 1 and itself. Prime numbers have exactly those two — which is why primes are the building blocks for bigger numbers.",
+    "Every whole number has at least two factors: 1 and itself. Prime numbers have exactly those two, which is why primes are the building blocks for bigger numbers.",
   ],
   multiple: [
-    "Multiples never end — you can always keep skip-counting. The first multiple of any number (except 0) is the number itself.",
-    "When a word problem asks when two events happen together again, you are usually looking for a common multiple — often the least common multiple (LCM).",
+    "Multiples never end. You can always keep skip-counting. The first multiple of any number (except 0) is the number itself.",
+    "When a word problem asks when two events happen together again, you are usually looking for a common multiple, often the least common multiple (LCM).",
   ],
   gcf: [
-    "GCF is useful when you need the largest equal-sized groups you can make from two quantities. Example: 18 pencils and 24 erasers shared into identical kits with nothing left over — the kit size is the GCF.",
+    "GCF is useful when you need the largest equal-sized groups you can make from two quantities. Example: 18 pencils and 24 erasers shared into identical kits with nothing left over. The kit size is the GCF.",
     "Another use: simplifying fractions. The GCF of the numerator and denominator is the biggest number you can divide both by at once.",
   ],
   lcm: [
@@ -35,10 +35,10 @@ const DEPTH_BY_KEYWORD: Record<string, string[]> = {
   ],
   expression: [
     "An expression is a math phrase without an equals sign. It can be evaluated when you know the value of the variable.",
-    "Like terms have the same variable raised to the same power. You can only combine like terms — 3x and 5x combine, but 3x and 3y do not.",
+    "Like terms have the same variable raised to the same power. You can only combine like terms: 3x and 5x combine, but 3x and 3y do not.",
   ],
   area: [
-    "Area measures how much space a flat shape covers, in square units. Picture tiles on a floor — each tile is one square unit.",
+    "Area measures how much space a flat shape covers, in square units. Picture tiles on a floor. Each tile is one square unit.",
     "Break complicated shapes into rectangles or triangles you already know how to measure, then add the pieces together.",
   ],
   volume: [
@@ -87,13 +87,13 @@ function closingSections(topic: Topic): WalkthroughBlock[] {
       heading: "Why this matters",
       paragraphs: [
         `${topic.title} shows up constantly in ${topic.summary.charAt(0).toLowerCase()}${topic.summary.slice(1)} It also connects to what you will see on homework, quizzes, and the next unit in this grade.`,
-        "Teachers often move fast in class. This page is here so you can pause, re-read, and practice until the idea feels familiar — not just until you have memorized a rule for one day.",
+        "Teachers often move fast in class. This page is here so you can pause, re-read, and practice until the idea feels familiar, not just until you have memorized a rule for one day.",
       ],
     },
     {
       heading: "Common mistakes to avoid",
       paragraphs: [
-        "Rushing to the answer without writing steps. Middle-school math rewards clear work — and you catch errors earlier when steps are visible.",
+        "Rushing to the answer without writing steps. Middle-school math rewards clear work, and you catch errors earlier when steps are visible.",
         "Mixing up similar ideas from the same topic. If two terms feel alike, make a two-column note: what is the same, what is different, and one example of each.",
       ],
       callout: {
