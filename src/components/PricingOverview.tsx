@@ -1,5 +1,6 @@
 "use client";
 
+import type { ReactNode } from "react";
 import Button from "./Button";
 import HashLink from "./HashLink";
 import Reveal from "./Reveal";
@@ -39,7 +40,7 @@ export function SubjectLevelCards({ variant = "brand" }: { variant?: Variant }) 
 function PopularPill({ label, variant }: { label: string; variant: "brand" | "light" }) {
   if (variant === "brand") {
     return (
-      <span className="shrink-0 rounded-full border border-[var(--color-accent-300)]/35 bg-[var(--color-accent-500)]/15 px-2 py-0.5 text-[0.625rem] font-semibold uppercase tracking-wider text-[var(--color-accent-300)]">
+      <span className="shrink-0 rounded-full border border-[var(--color-accent-300)]/40 bg-[var(--color-accent-500)]/12 px-2 py-0.5 text-[0.625rem] font-semibold uppercase tracking-wider text-[var(--color-accent-300)]">
         {label}
       </span>
     );
@@ -48,47 +49,75 @@ function PopularPill({ label, variant }: { label: string; variant: "brand" | "li
   return <span className="pill pill-accent text-[0.6875rem]">{label}</span>;
 }
 
-function SubjectLevelCard({ tier, isBrand }: { tier: TutoringTier; isBrand: boolean }) {
-  const cardClass = isBrand
-    ? [
-        "relative flex h-full min-w-[21rem] shrink-0 snap-start flex-col overflow-hidden rounded-lg border border-white/18",
-        "bg-white/[0.14] p-6 transition-colors duration-300",
-        "hover:border-white/30 hover:bg-white/[0.18]",
-        "lg:min-w-0",
-      ].join(" ")
-    : "card group relative flex h-full min-w-[21rem] shrink-0 snap-start flex-col p-6 transition-shadow duration-300 hover:shadow-[var(--shadow-card-hover)] lg:min-w-0";
-
-  const stripeClass = tier.badge ? POPULAR_STRIPE : TIER_STRIPE;
+function PopularCardFrame({
+  children,
+  isBrand,
+}: {
+  children: ReactNode;
+  isBrand: boolean;
+}) {
+  const shellClass = [
+    "relative flex h-full min-w-[21rem] shrink-0 snap-start lg:min-w-0",
+    isBrand ? "" : "rounded-xl p-[2px] bg-gradient-to-br from-[var(--color-accent-100)] via-[var(--color-accent-300)]/70 to-[var(--color-brand-200)]",
+  ].join(" ");
 
   if (isBrand) {
     return (
-      <article className={cardClass}>
-        <span aria-hidden className={`absolute left-0 top-0 h-full w-1 ${stripeClass}`} />
-
-        <div className="flex items-start justify-between gap-3">
-          <div className="min-w-0">
-            <div className="flex flex-wrap items-center gap-2">
-              <p className="text-[0.6875rem] font-semibold uppercase tracking-[0.14em] text-white/50">
-                {tier.tierLabel}
-              </p>
-              {tier.badge ? <PopularPill label={tier.badge} variant="brand" /> : null}
-            </div>
-            <h3 className="font-display mt-1 text-lg font-bold text-white sm:text-xl">
-              {tier.label}
-            </h3>
-          </div>
-          <span className="shrink-0 rounded-full border border-white/25 bg-white/10 px-2 py-0.5 text-[0.625rem] font-semibold uppercase tracking-wider text-white/85">
-            {tier.range}
-          </span>
-        </div>
-
-        <p className="relative mt-3 text-sm leading-relaxed text-white/70">{tier.blurb}</p>
-        <SubjectTopicList groups={tier.topicGroups} variant="brand" />
-      </article>
+      <div
+        className={`${shellClass} rounded-lg p-[1.5px] bg-gradient-to-br from-[var(--color-accent-300)]/75 via-[var(--color-accent-500)]/45 to-[var(--color-brand-300)]/35`}
+      >
+        {children}
+      </div>
     );
   }
 
-  return (
+  return <div className={shellClass}>{children}</div>;
+}
+
+function SubjectLevelCard({ tier, isBrand }: { tier: TutoringTier; isBrand: boolean }) {
+  const isPopular = Boolean(tier.badge);
+
+  const cardClass = isBrand
+    ? [
+        "relative flex h-full w-full flex-col overflow-hidden rounded-[7px] p-6 transition-colors duration-300",
+        isPopular
+          ? "bg-white/[0.18] hover:bg-white/[0.22]"
+          : "rounded-lg border border-white/18 bg-white/[0.14] hover:border-white/30 hover:bg-white/[0.18]",
+        "min-w-[21rem] shrink-0 snap-start lg:min-w-0",
+      ].join(" ")
+    : [
+        "card group relative flex h-full w-full flex-col overflow-hidden rounded-[10px] p-6 transition-shadow duration-300 hover:shadow-[var(--shadow-card-hover)]",
+        isPopular ? "bg-[var(--color-surface)]" : "",
+        "min-w-[21rem] shrink-0 snap-start lg:min-w-0",
+      ].join(" ");
+
+  const stripeClass = isPopular ? POPULAR_STRIPE : TIER_STRIPE;
+
+  const card = isBrand ? (
+    <article className={cardClass}>
+      <span aria-hidden className={`absolute left-0 top-0 h-full w-1 ${stripeClass}`} />
+
+      <div className="flex items-start justify-between gap-3">
+        <div className="min-w-0">
+          <div className="flex flex-wrap items-center gap-2">
+            <p className="text-[0.6875rem] font-semibold uppercase tracking-[0.14em] text-white/50">
+              {tier.tierLabel}
+            </p>
+            {tier.badge ? <PopularPill label={tier.badge} variant="brand" /> : null}
+          </div>
+          <h3 className="font-display mt-1 text-lg font-bold text-white sm:text-xl">
+            {tier.label}
+          </h3>
+        </div>
+        <span className="shrink-0 rounded-full border border-white/25 bg-white/10 px-2 py-0.5 text-[0.625rem] font-semibold uppercase tracking-wider text-white/85">
+          {tier.range}
+        </span>
+      </div>
+
+      <p className="relative mt-3 text-sm leading-relaxed text-white/70">{tier.blurb}</p>
+      <SubjectTopicList groups={tier.topicGroups} variant="brand" />
+    </article>
+  ) : (
     <article className={cardClass}>
       <div className="flex items-center justify-between gap-3">
         <div className="flex min-w-0 flex-wrap items-center gap-2">
@@ -102,6 +131,12 @@ function SubjectLevelCard({ tier, isBrand }: { tier: TutoringTier; isBrand: bool
       <SubjectTopicList groups={tier.topicGroups} variant="light" />
     </article>
   );
+
+  if (isPopular) {
+    return <PopularCardFrame isBrand={isBrand}>{card}</PopularCardFrame>;
+  }
+
+  return card;
 }
 
 export function PricingTierExplainer({ variant = "brand" }: { variant?: Variant }) {
