@@ -20,8 +20,8 @@ export const TUTOR_INTRO: TutorIntro = {
   name: "Adam",
   title: "I'm Adam.",
   titleMuted: `Co-founder of ${SITE_BRAND_NAME}.`,
-  meta: "Adam Issac · Denmark High · Class of 2026 · Taking new students",
-  bio: `Senior at Denmark High. I co-founded ${SITE_BRAND_NAME} with Alan to tutor the high school AP and college math I earned top marks in, plus K-5 and middle school — and built free Grades 6-8 study paths on this site.`,
+  meta: "Adam Issac · Math + CS @ Georgia Tech · Taking new students",
+  bio: `Math + CS @ Georgia Tech. I co-founded ${SITE_BRAND_NAME} with Alan to tutor the high school AP and college math I earned top marks in, plus K-5 and middle school — and built free Grades 6-8 study paths on this site.`,
   email: ADAM_EMAIL,
 };
 
@@ -29,8 +29,8 @@ export const ALAN_INTRO: TutorIntro = {
   name: "Alan",
   title: "I'm Alan.",
   titleMuted: `Co-founder of ${SITE_BRAND_NAME}.`,
-  meta: "Alan Mozhoor · Denmark High · Class of 2026 · Taking new students",
-  bio: `Senior at Denmark High. I co-founded ${SITE_BRAND_NAME} with Adam to tutor pre-algebra through AP Calculus, linear algebra, multivariable calculus, and test prep — with the same patient, step-by-step approach I use in my own classes.`,
+  meta: "Alan Mozhoor · Math + CS @ Georgia Tech · Taking new students",
+  bio: `Math + CS @ Georgia Tech. I co-founded ${SITE_BRAND_NAME} with Adam to tutor pre-algebra through AP Calculus, linear algebra, multivariable calculus, and test prep — with the same patient, step-by-step approach I use in my own classes.`,
   email: ALAN_EMAIL,
 };
 
@@ -54,8 +54,9 @@ export const MATH_CREDENTIALS: readonly MathCredential[] = [
 
 export const ALAN_CREDENTIALS: readonly MathCredential[] = [
   { label: "ACT Math", value: "36", detail: "Perfect score" },
-  { label: "AP Calculus AB", value: "95% · 5", detail: "Class grade · AP exam" },
-  { label: "AP Calculus BC", value: "95% · 5", detail: "Class grade · AP exam" },
+  { label: "AP Calculus AB", value: "95%", detail: "Class grade · 5 on AP exam" },
+  { label: "AP Calculus BC", value: "95%", detail: "Class grade · 5 on AP exam" },
+  { label: "AP Statistics", value: "97%", detail: "Class grade" },
   {
     label: "GT Linear Algebra & Multivariable Calc",
     value: "95%",
