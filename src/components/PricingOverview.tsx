@@ -23,8 +23,8 @@ export function SubjectLevelCards({ variant = "brand" }: { variant?: Variant }) 
     <Reveal variant="rise">
       <div
         className={[
-          "flex gap-5 overflow-x-auto pb-2 pt-4 snap-x snap-mandatory",
-          "lg:grid lg:grid-cols-4 lg:items-stretch lg:gap-6 lg:overflow-visible lg:pb-0 lg:snap-none lg:pt-4",
+          "flex gap-5 overflow-x-auto pb-2 snap-x snap-mandatory",
+          "lg:grid lg:grid-cols-4 lg:items-stretch lg:gap-6 lg:overflow-visible lg:pb-0 lg:snap-none",
         ].join(" ")}
       >
         {TUTORING_TIERS.map((tier) => (
@@ -35,62 +35,87 @@ export function SubjectLevelCards({ variant = "brand" }: { variant?: Variant }) 
   );
 }
 
+function TierBadge({ label }: { label: string }) {
+  return (
+    <div className="border-b border-[var(--color-accent-600)]/35 bg-gradient-to-r from-[var(--color-accent-500)] to-[var(--color-accent-400)] px-4 py-2 text-center">
+      <span className="inline-flex items-center justify-center gap-1.5 text-[0.6875rem] font-bold uppercase tracking-[0.16em] text-white">
+        <svg
+          width="12"
+          height="12"
+          viewBox="0 0 24 24"
+          fill="currentColor"
+          aria-hidden
+          className="opacity-95"
+        >
+          <path d="M12 2l2.39 7.26H22l-6.19 4.5 2.36 7.24L12 16.77l-6.17 4.23 2.36-7.24L2 9.26h7.61L12 2z" />
+        </svg>
+        {label}
+      </span>
+    </div>
+  );
+}
+
 function SubjectLevelCard({ tier, isBrand }: { tier: TutoringTier; isBrand: boolean }) {
+  const isPopular = Boolean(tier.badge);
+
   const cardClass = isBrand
     ? [
-        "relative flex h-full min-w-[21rem] shrink-0 snap-start flex-col overflow-hidden rounded-lg border border-white/18",
-        "bg-white/[0.14] p-6 transition-colors duration-300",
-        "hover:border-white/30 hover:bg-white/[0.18]",
+        "relative flex h-full min-w-[21rem] shrink-0 snap-start flex-col overflow-hidden rounded-lg",
+        isPopular
+          ? "border border-[var(--color-accent-300)]/70 bg-white/[0.18] shadow-[0_14px_36px_-18px_rgba(244,123,22,0.65)]"
+          : "border border-white/18 bg-white/[0.14]",
+        "transition-colors duration-300",
+        isPopular ? "hover:border-[var(--color-accent-200)]/80 hover:bg-white/[0.22]" : "hover:border-white/30 hover:bg-white/[0.18]",
         "lg:min-w-0",
-        tier.badge ? "ring-2 ring-[var(--color-accent-400)]/70" : "",
       ].join(" ")
     : [
-        "card group relative flex h-full min-w-[21rem] shrink-0 snap-start flex-col p-6 transition-shadow duration-300 hover:shadow-[var(--shadow-card-hover)] lg:min-w-0",
-        tier.badge ? "ring-2 ring-[var(--color-accent-300)]" : "",
+        "card group relative flex h-full min-w-[21rem] shrink-0 snap-start flex-col overflow-hidden lg:min-w-0",
+        isPopular
+          ? "border border-[var(--color-accent-300)] shadow-[0_10px_28px_-16px_rgba(244,123,22,0.35)]"
+          : "",
+        "transition-shadow duration-300 hover:shadow-[var(--shadow-card-hover)]",
       ].join(" ");
-
-  const badge = tier.badge ? (
-    <span className="absolute -top-3 left-1/2 z-10 -translate-x-1/2 rounded-full bg-[var(--color-accent-500)] px-3.5 py-1 text-[0.6875rem] font-bold uppercase tracking-[0.14em] text-white shadow-[0_6px_18px_rgba(244,123,22,0.45)]">
-      {tier.badge}
-    </span>
-  ) : null;
 
   if (isBrand) {
     return (
       <article className={cardClass}>
-        {badge}
+        {tier.badge ? <TierBadge label={tier.badge} /> : null}
         <span aria-hidden className={`absolute left-0 top-0 h-full w-1 ${TIER_STRIPE}`} />
 
-        <div className="relative flex items-start justify-between gap-3">
-          <div>
-            <p className="text-[0.6875rem] font-semibold uppercase tracking-[0.14em] text-white/50">
-              {tier.tierLabel}
-            </p>
-            <h3 className="font-display mt-1 text-lg font-bold text-white sm:text-xl">
-              {tier.label}
-            </h3>
+        <div className="relative flex flex-1 flex-col p-6">
+          <div className="flex items-start justify-between gap-3">
+            <div>
+              <p className="text-[0.6875rem] font-semibold uppercase tracking-[0.14em] text-white/50">
+                {tier.tierLabel}
+              </p>
+              <h3 className="font-display mt-1 text-lg font-bold text-white sm:text-xl">
+                {tier.label}
+              </h3>
+            </div>
+            <span className="shrink-0 rounded-full border border-white/25 bg-white/10 px-2 py-0.5 text-[0.625rem] font-semibold uppercase tracking-wider text-white/85">
+              {tier.range}
+            </span>
           </div>
-          <span className="shrink-0 rounded-full border border-white/25 bg-white/10 px-2 py-0.5 text-[0.625rem] font-semibold uppercase tracking-wider text-white/85">
-            {tier.range}
-          </span>
-        </div>
 
-        <p className="relative mt-3 text-sm leading-relaxed text-white/70">{tier.blurb}</p>
-        <SubjectTopicList groups={tier.topicGroups} variant="brand" />
+          <p className="relative mt-3 text-sm leading-relaxed text-white/70">{tier.blurb}</p>
+          <SubjectTopicList groups={tier.topicGroups} variant="brand" />
+        </div>
       </article>
     );
   }
 
   return (
     <article className={cardClass}>
-      {badge}
-      <div className="flex items-center justify-between gap-3">
-        <h3 className="font-display font-bold text-lg text-[var(--color-ink)]">{tier.tierLabel}</h3>
-        <span className="pill pill-brand text-[0.6875rem]">{tier.range}</span>
+      {tier.badge ? <TierBadge label={tier.badge} /> : null}
+      <div className="flex flex-1 flex-col p-6">
+        <div className="flex items-center justify-between gap-3">
+          <h3 className="font-display font-bold text-lg text-[var(--color-ink)]">{tier.tierLabel}</h3>
+          <span className="pill pill-brand text-[0.6875rem]">{tier.range}</span>
+        </div>
+        <p className="mt-1 text-sm font-semibold text-[var(--color-accent-700)]">{tier.label}</p>
+        <p className="mt-3 small text-[var(--color-ink-muted)] leading-relaxed">{tier.blurb}</p>
+        <SubjectTopicList groups={tier.topicGroups} variant="light" />
       </div>
-      <p className="mt-1 text-sm font-semibold text-[var(--color-accent-700)]">{tier.label}</p>
-      <p className="mt-3 small text-[var(--color-ink-muted)] leading-relaxed">{tier.blurb}</p>
-      <SubjectTopicList groups={tier.topicGroups} variant="light" />
     </article>
   );
 }
