@@ -1442,6 +1442,22 @@ body {
   }
 }
 
+/* Booking form card - distinct top accent so it reads as a designed
+   surface, not a bare bordered box. */
+.booking-form-card {
+  border: 2px solid var(--color-border);
+  border-top: 4px solid var(--color-brand-500);
+  border-radius: var(--radius-lg);
+  background: var(--color-surface);
+  box-shadow: var(--shadow-card);
+  padding: 1.5rem;
+}
+@media (min-width: 640px) {
+  .booking-form-card {
+    padding: 2rem;
+  }
+}
+
 /* Radio cards */
 .radio-card {
   display: flex;

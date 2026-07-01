@@ -246,7 +246,7 @@ export default function ContactForm() {
         </div>
       )}
 
-      <form onSubmit={onSubmit} noValidate className="grid gap-5 rounded-lg border border-[var(--color-border)] bg-white p-6 sm:p-8">
+      <form onSubmit={onSubmit} noValidate className="booking-form-card grid gap-5">
         <fieldset className="m-0 border-0 p-0">
           <legend className="label">What can {TUTOR_NAMES_SHORT} help with?</legend>
           <div className="flex flex-wrap gap-2" role="radiogroup" aria-label="Session type">
@@ -402,7 +402,7 @@ export default function ContactForm() {
           className="w-full"
           rightIcon={status === "submitting" ? <Spinner /> : <Arrow />}
         >
-          {status === "submitting" ? "Sending…" : "Send request"}
+          {status === "submitting" ? "Sending your request…" : "Send my request"}
         </Button>
 
         <p className="caption text-[var(--color-ink-muted)] leading-relaxed">
