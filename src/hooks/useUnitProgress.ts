@@ -1,6 +1,6 @@
 ﻿"use client";
 
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 
 export type ProgressItem = { id: string; label: string };
 
@@ -59,6 +59,8 @@ function write(state: UnitProgressState) {
  */
 export function useUnitProgress(unitId: string, items: ProgressItem[]) {
   const [state, setState] = useState<UnitProgressState>({ unitId, completed: {} });
+  const stateRef = useRef(state);
+  stateRef.current = state;
   const [hydrated, setHydrated] = useState(false);
 
   useEffect(() => {
@@ -82,15 +84,20 @@ export function useUnitProgress(unitId: string, items: ProgressItem[]) {
 
   const toggle = useCallback(
     (id: string) => {
-      setState((s) => {
-        const next = {
-          unitId,
-          completed: { ...s.completed, [id]: !s.completed[id] },
-        };
-        if (!next.completed[id]) delete next.completed[id];
-        write(next);
-        return next;
-      });
+      // Compute the next state from a ref (not the setState updater) and
+      // persist/broadcast it *before* calling setState. write() dispatches
+      // a synchronous window event that other useUnitProgress instances
+      // listen to and respond to with their own setState call - doing that
+      // from inside a setState updater would update a different component
+      // while React is still processing this one's update.
+      const s = stateRef.current;
+      const next: UnitProgressState = {
+        unitId,
+        completed: { ...s.completed, [id]: !s.completed[id] },
+      };
+      if (!next.completed[id]) delete next.completed[id];
+      write(next);
+      setState(next);
     },
     [unitId]
   );
