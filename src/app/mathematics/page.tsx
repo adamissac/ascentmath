@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import Container from "../../components/Container";
 import Breadcrumbs from "../../components/Breadcrumbs";
-import SectionHeader from "../../components/SectionHeader";
 import StudyPathListCard from "../../components/StudyPathListCard";
 import StudyPathsLink from "../../components/StudyPathsLink";
 import StudyPathCta from "../../components/StudyPathCta";
@@ -41,11 +40,14 @@ export default function MathematicsIndexPage() {
         <Container size="lg" className="pt-8 pb-10 sm:pt-10 sm:pb-12">
           <Breadcrumbs items={[{ label: "Home", href: "/" }, { label: "Mathematics" }]} />
           <Reveal className="mt-6 sm:mt-8" variant="up">
-            <SectionHeader
-              eyebrow="Free study paths"
-              title="Grades 6-8 mathematics"
-              description={`Pick a grade below to see its units and topics. ${totalUnits} units, ${totalTopics} topics total - every lesson, video, and quiz is free, with no account required.`}
-            />
+            <p className="eyebrow">Free study paths</p>
+            <h1 className="h-display mt-2 min-w-0 break-words text-[var(--color-ink-cool)]">
+              Grades 6-8 mathematics
+            </h1>
+            <p className="lede mt-3">
+              Pick a grade below to see its units and topics. {totalUnits} units, {totalTopics}{" "}
+              topics total - every lesson, video, and quiz is free, with no account required.
+            </p>
           </Reveal>
         </Container>
       </section>
