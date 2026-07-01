@@ -18,7 +18,7 @@ import { DocSymbol } from "../../../components/UnitSymbol";
 
 import { GRADES } from "../../../data/units";
 
-import { STUDY_PATHS_HREF } from "../../../lib/site-paths";
+import { MATHEMATICS_HREF } from "../../../lib/site-paths";
 
 import { buildPageMetadata } from "../../../lib/metadata";
 
@@ -70,7 +70,7 @@ export default function FrameworksPage() {
 
               { label: "Home", href: "/" },
 
-              { label: "Mathematics", href: STUDY_PATHS_HREF },
+              { label: "Mathematics", href: MATHEMATICS_HREF },
 
               { label: "Curriculum frameworks" },
 

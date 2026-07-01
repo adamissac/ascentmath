@@ -10,7 +10,7 @@ import StudyPathCta from "../../../../components/StudyPathCta";
 import JsonLdScript from "../../../../components/JsonLdScript";
 
 import { GRADES, getGrade, getUnit, getUnitIndex } from "../../../../data/units";
-import { STUDY_PATHS_HREF } from "../../../../lib/site-paths";
+import { MATHEMATICS_HREF } from "../../../../lib/site-paths";
 import { buildPageMetadata } from "../../../../lib/metadata";
 import { buildBreadcrumbJsonLd, buildCourseJsonLd } from "../../../../lib/json-ld";
 
@@ -51,7 +51,7 @@ export default async function UnitPage({ params }: { params: Promise<Params> }) 
   const unitPath = `/mathematics/${g.slug}/${u.slug}`;
   const breadcrumbs = [
     { label: "Home", href: "/" },
-    { label: "Mathematics", href: STUDY_PATHS_HREF },
+    { label: "Mathematics", href: MATHEMATICS_HREF },
     { label: g.title, href: gradeHref },
     { label: `Unit ${u.number}` },
   ];

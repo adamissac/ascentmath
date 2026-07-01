@@ -5,7 +5,7 @@ import Reveal from "../../../components/Reveal";
 import StudyPathCta from "../../../components/StudyPathCta";
 import Breadcrumbs from "../../../components/Breadcrumbs";
 import { GRADES } from "../../../data/units";
-import { STUDY_PATHS_HREF } from "../../../lib/site-paths";
+import { MATHEMATICS_HREF } from "../../../lib/site-paths";
 import { buildPageMetadata } from "../../../lib/metadata";
 import StudyPathsLink from "../../../components/StudyPathsLink";
 
@@ -29,7 +29,7 @@ export default function FindYourStartPage() {
           <Breadcrumbs
             items={[
               { label: "Home", href: "/" },
-              { label: "Mathematics", href: STUDY_PATHS_HREF },
+              { label: "Mathematics", href: MATHEMATICS_HREF },
               { label: "Find your start" },
             ]}
           />
