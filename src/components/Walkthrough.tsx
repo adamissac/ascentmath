@@ -82,16 +82,18 @@ function WorkedExample({
 }) {
   return (
     <figure className="lesson-example">
-      <figcaption className="lesson-example__label">Worked example</figcaption>
-      <p className="lesson-example__problem">{example.problem}</p>
-      <ol className="lesson-example__steps">
-        {example.solution.map((line, m) => (
-          <li key={m}>
-            <span className="lesson-example__step-num">{m + 1}</span>
-            <span>{line}</span>
-          </li>
-        ))}
-      </ol>
+      <figcaption className="lesson-example__header">Worked example</figcaption>
+      <div className="lesson-example__body">
+        <p className="lesson-example__problem">{example.problem}</p>
+        <ol className="lesson-example__steps">
+          {example.solution.map((line, m) => (
+            <li key={m}>
+              <span className="lesson-example__step-num">{m + 1}</span>
+              <span>{line}</span>
+            </li>
+          ))}
+        </ol>
+      </div>
     </figure>
   );
 }

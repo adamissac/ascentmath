@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useEffect, useState, type ReactNode } from "react";
 import Breadcrumbs, { type Crumb } from "./Breadcrumbs";
+import LessonReadingProgress from "./LessonReadingProgress";
 import { useUnitProgress, type ProgressItem } from "../hooks/useUnitProgress";
 import type { Grade, Unit, Topic } from "../data/units";
 
@@ -56,6 +57,7 @@ export default function LessonShell({
 
   return (
     <div className="lesson-page">
+      <LessonReadingProgress />
       <div
         className={[
           "lesson-layout",
@@ -83,7 +85,20 @@ export default function LessonShell({
               aria-expanded={sidebarOpen}
               aria-label={sidebarOpen ? "Hide lesson menu" : "Show lesson menu"}
             >
-              {sidebarOpen ? "‹" : "›"}
+              <svg
+                width="15"
+                height="15"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                aria-hidden
+                style={{ transform: sidebarOpen ? undefined : "rotate(180deg)" }}
+              >
+                <path d="M15 18 9 12l6-6" />
+              </svg>
             </button>
           </div>
 
@@ -130,6 +145,22 @@ export default function LessonShell({
 
         <main className="lesson-main">
           <div className="lesson-main__inner">
+            <div className="lesson-sidebar-toggle">
+              <button
+                type="button"
+                className="lesson-sidebar-toggle__btn"
+                onClick={() => setSidebarOpen((v) => !v)}
+                aria-expanded={sidebarOpen}
+              >
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
+                  <line x1="4" y1="7" x2="20" y2="7" />
+                  <line x1="4" y1="12" x2="20" y2="12" />
+                  <line x1="4" y1="17" x2="20" y2="17" />
+                </svg>
+                {sidebarOpen ? "Hide lesson menu" : "Show lesson menu"}
+              </button>
+            </div>
+
             <Breadcrumbs items={breadcrumbs} />
 
             <header className="lesson-header">
@@ -137,11 +168,24 @@ export default function LessonShell({
               <h1 className="lesson-header__title">{title}</h1>
 
               <div className="lesson-overview-card">
-                <h2 className="lesson-overview-card__heading">Overview</h2>
+                <div className="lesson-overview-card__head">
+                  <span className="lesson-overview-card__icon" aria-hidden>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                      <path d="m16 18 6-6-6-6" />
+                      <path d="m8 6-6 6 6 6" />
+                    </svg>
+                  </span>
+                  <h2 className="lesson-overview-card__heading">Overview</h2>
+                </div>
                 <p className="lesson-overview-card__text">{description}</p>
-                {estimatedMinutes != null && (
-                  <p className="lesson-overview-card__badge">~{estimatedMinutes} min</p>
-                )}
+                <div className="lesson-overview-card__meta">
+                  <span className="lesson-overview-card__badge">
+                    Topic {(unit.topics.findIndex((t) => t.id === topic?.id) ?? -1) + 1 || 1} of {unit.topics.length}
+                  </span>
+                  {estimatedMinutes != null && (
+                    <span className="lesson-overview-card__badge">~{estimatedMinutes} min</span>
+                  )}
+                </div>
               </div>
 
               <div className="lesson-header__actions">

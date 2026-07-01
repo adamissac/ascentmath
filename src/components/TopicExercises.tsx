@@ -80,6 +80,7 @@ function ExerciseCard({
     <article className="lesson-workbench">
       <header className="lesson-workbench__head">
         <p className="lesson-workbench__label">Exercise {index + 1}</p>
+        <span className="lesson-workbench__badge">Try it yourself</span>
         <p className="lesson-workbench__prompt">{exercise.problem}</p>
       </header>
 
