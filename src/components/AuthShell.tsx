@@ -57,7 +57,7 @@ export default function AuthShell({
                 width={36}
                 height={36}
                 sizes="36px"
-                className="h-full w-full object-cover"
+                className="h-full w-full object-contain"
               />
             </span>
             <span className="font-display font-bold text-[1.05rem] text-[var(--color-ink)] group-hover:text-[var(--color-brand-600)] transition-colors">

@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Regenerate favicon assets from public/newLogo.png."""
+"""Regenerate logo, og-image, and favicon assets from public/newLogo.png."""
 
 from __future__ import annotations
 
@@ -9,7 +9,29 @@ from PIL import Image
 
 ROOT = Path(__file__).resolve().parents[1]
 SRC = ROOT / "public" / "newLogo.png"
+OG_IMAGE = ROOT / "public" / "og-image.png"
+SITE_BG = (251, 250, 247, 255)  # --color-bg #FBFAF7
 TRANSPARENT = (0, 0, 0, 0)
+
+
+def is_background(r: int, g: int, b: int, a: int) -> bool:
+    if a < 128:
+        return True
+    if is_fringe(r, g, b, a):
+        return True
+    if r > 200 and g > 200 and b > 200:
+        return True
+    return r < 45 and g < 45 and b < 55
+
+
+def strip_background(src: Image.Image) -> Image.Image:
+    img = src.convert("RGBA")
+    pixels = img.load()
+    for y in range(img.height):
+        for x in range(img.width):
+            if is_background(*pixels[x, y]):
+                pixels[x, y] = TRANSPARENT
+    return img
 
 
 def is_fringe(r: int, g: int, b: int, a: int) -> bool:
@@ -61,6 +83,15 @@ def compose(size: int, logo: Image.Image, padding: float = 0.06) -> Image.Image:
     return canvas
 
 
+def compose_on_bg(logo: Image.Image, size: int, padding: float = 0.12) -> Image.Image:
+    canvas = Image.new("RGBA", (size, size), SITE_BG)
+    inner = int(size * (1 - padding * 2))
+    scaled = logo.resize((inner, inner), Image.Resampling.LANCZOS)
+    offset = ((size - inner) // 2, (size - inner) // 2)
+    canvas.paste(scaled, offset, scaled)
+    return canvas
+
+
 def write_icons(logo: Image.Image) -> None:
     targets = {
         ROOT / "src" / "app" / "icon.png": 512,
@@ -84,9 +115,11 @@ def write_icons(logo: Image.Image) -> None:
 
 
 def main() -> None:
-    logo = clean_logo(Image.open(SRC).convert("RGBA"))
+    logo = clean_logo(strip_background(Image.open(SRC)))
+    logo.save(SRC, format="PNG", optimize=True)
+    compose_on_bg(logo, 256).save(OG_IMAGE, format="PNG", optimize=True)
     write_icons(logo)
-    print("Favicon assets regenerated.")
+    print("Logo, og-image, and favicon assets regenerated.")
 
 
 if __name__ == "__main__":

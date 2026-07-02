@@ -158,7 +158,7 @@ export default function Navbar() {
                 width={40}
                 height={40}
                 sizes="40px"
-                className="h-full w-full object-cover"
+                className="h-full w-full object-contain"
                 priority
               />
             </span>
