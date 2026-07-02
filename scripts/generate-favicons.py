@@ -73,7 +73,7 @@ def write_icons(logo: Image.Image) -> None:
     for path, size in targets.items():
         compose(size, logo).save(path, format="PNG", optimize=True)
 
-    ico_targets = [ROOT / "src" / "app" / "favicon.ico", ROOT / "public" / "favicon.ico"]
+    ico_targets = [ROOT / "src" / "app" / "favicon.ico"]
     icon_512 = compose(512, logo)
     for path in ico_targets:
         icon_512.save(

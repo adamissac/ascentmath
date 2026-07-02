@@ -1,5 +1,5 @@
 /**
- * Reliable local dev (default http://127.0.0.1:3000)
+ * Reliable local dev (default http://localhost:3000)
  *
  * Usage:
  *   node scripts/dev.mjs          — start (reuse .next if valid)
@@ -9,7 +9,7 @@ import { spawn, execSync } from "node:child_process";
 import fs from "node:fs";
 import http from "node:http";
 import path from "node:path";
-import { DEV_HOST, DEV_PORT, DEV_URL } from "./dev-port.mjs";
+import { DEV_BROWSER_URL, DEV_HOST, DEV_PORT, DEV_URL } from "./dev-port.mjs";
 
 const PORT = DEV_PORT;
 const HOST = DEV_HOST;
@@ -112,7 +112,7 @@ for (const port of [3000, 3001, 3002]) {
 ensureDevCache();
 
 console.log("\n  Ascent Math — dev server");
-console.log(`  → ${URL}`);
+console.log(`  → ${DEV_BROWSER_URL}`);
 console.log("  Keep this terminal open while you browse.\n");
 
 const child = spawn(
@@ -141,7 +141,7 @@ async function waitForReady() {
     if (await ping()) {
       if (!announced) {
         announced = true;
-        console.log(`\n  ✓ Site is up → ${URL}\n`);
+        console.log(`\n  ✓ Site is up → ${DEV_BROWSER_URL}\n`);
       }
       return;
     }
