@@ -39,7 +39,7 @@ export default function SiteAnnouncement() {
         <p className="site-announcement__text">
           <span>{SITE_ANNOUNCEMENT.message}</span>{" "}
           <HashLink href={BOOK_SESSION_HREF} className="site-announcement__link">
-            Book a session →
+            Book a session
           </HashLink>
         </p>
         <button
@@ -48,7 +48,7 @@ export default function SiteAnnouncement() {
           className="site-announcement__close"
           aria-label="Dismiss announcement"
         >
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden>
             <path
               d="M6 6L18 18M18 6L6 18"
               stroke="currentColor"
