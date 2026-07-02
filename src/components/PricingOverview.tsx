@@ -36,16 +36,21 @@ export function SubjectLevelCards({ variant = "brand" }: { variant?: Variant }) 
 function SubjectLevelCard({ tier, isBrand }: { tier: TutoringTier; isBrand: boolean }) {
   const cardClass = isBrand
     ? [
-        "relative flex h-full min-w-[21rem] shrink-0 snap-start flex-col overflow-hidden rounded-lg border border-white/18",
+        "relative flex h-full min-w-[21rem] shrink-0 snap-start flex-col rounded-lg border border-white/18",
+        tier.popular ? "overflow-visible" : "overflow-hidden",
         "bg-white/[0.14] p-6 transition-colors duration-300",
         "hover:border-white/30 hover:bg-white/[0.18]",
         "lg:min-w-0",
       ].join(" ")
-    : "card group relative flex h-full min-w-[21rem] shrink-0 snap-start flex-col p-6 transition-shadow duration-300 hover:shadow-[var(--shadow-card-hover)] lg:min-w-0";
+    : [
+        "card group relative flex h-full min-w-[21rem] shrink-0 snap-start flex-col p-6 transition-shadow duration-300 hover:shadow-[var(--shadow-card-hover)] lg:min-w-0",
+        tier.popular ? "overflow-visible" : "",
+      ].join(" ");
 
   if (isBrand) {
     return (
       <article className={cardClass}>
+        {tier.popular ? <TierPopularBadge variant="brand" /> : null}
         <div className="flex items-start justify-between gap-3">
           <div>
             <p className="text-[0.6875rem] font-semibold uppercase tracking-[0.14em] text-white/50">
@@ -68,6 +73,7 @@ function SubjectLevelCard({ tier, isBrand }: { tier: TutoringTier; isBrand: bool
 
   return (
     <article className={cardClass}>
+      {tier.popular ? <TierPopularBadge variant="light" /> : null}
       <div className="flex items-center justify-between gap-3">
         <h3 className="font-display font-bold text-lg text-[var(--color-ink)]">{tier.tierLabel}</h3>
         <span className="pill pill-brand text-[0.6875rem]">{tier.range}</span>
@@ -183,6 +189,46 @@ function SubjectTopicList({
         </div>
       ))}
     </div>
+  );
+}
+
+function TierPopularBadge({ variant }: { variant: "brand" | "light" }) {
+  const isBrand = variant === "brand";
+
+  return (
+    <div
+      className="pointer-events-none absolute -right-2 -top-2 z-20 rotate-[14deg]"
+      aria-label="Popular tier"
+      title="Popular"
+    >
+      <div
+        className={[
+          "flex items-center gap-1.5 rounded-full border px-2.5 py-1",
+          "shadow-[0_8px_18px_-8px_rgba(15,17,21,0.55)]",
+          isBrand
+            ? "border-white/40 bg-[var(--color-accent-500)] text-white"
+            : "border-[var(--color-accent-200)] bg-[var(--color-accent-500)] text-white",
+        ].join(" ")}
+      >
+        <PopularStar />
+        <span className="text-[0.625rem] font-bold uppercase tracking-[0.14em]">Popular</span>
+      </div>
+    </div>
+  );
+}
+
+function PopularStar() {
+  return (
+    <svg
+      width="12"
+      height="12"
+      viewBox="0 0 24 24"
+      fill="currentColor"
+      aria-hidden
+      className="shrink-0 drop-shadow-[0_1px_0_rgba(0,0,0,0.15)]"
+    >
+      <path d="M12 2.5l2.55 5.97 6.47.56-4.9 4.23 1.48 6.32L12 17.77l-5.6 2.81 1.48-6.32-4.9-4.23 6.47-.56L12 2.5z" />
+    </svg>
   );
 }
 

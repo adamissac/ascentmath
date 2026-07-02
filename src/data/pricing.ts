@@ -20,6 +20,8 @@ export type TutoringTier = {
   blurb: string;
   rigorNote: string;
   topicGroups: readonly SubjectTopicGroup[];
+  /** Show a corner star badge (e.g. high school tier). */
+  popular?: boolean;
 };
 
 export const FIRST_SESSION_FREE = "Your first session is free for new clients.";
@@ -90,6 +92,7 @@ export const TUTORING_TIERS: readonly TutoringTier[] = [
     label: "High school courses",
     range: "Grades 9-12 · SAT/ACT",
     accent: "bg-[var(--color-brand-300)]",
+    popular: true,
     blurb: "Algebra 1 through AP Calculus and AP CS, plus SAT & ACT Math prep.",
     rigorNote: "Higher rigor: AP courses and standardized test math.",
     topicGroups: [
