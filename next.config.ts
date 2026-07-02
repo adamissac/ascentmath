@@ -44,13 +44,20 @@ const nextConfig: NextConfig = {
     return [{ source: "/(.*)", headers: securityHeaders }];
   },
   async redirects() {
+    const legacyUnitRedirects = Array.from({ length: 7 }, (_, i) => ({
+      source: `/mathematics/unit-${i + 1}`,
+      destination: `/mathematics/grade-6/unit-${i + 1}`,
+      permanent: true,
+    }));
+
     return [
-      { source: "/book", destination: "/#book-session", permanent: false },
+      { source: "/book", destination: "/#book-session", permanent: true },
       { source: "/about", destination: "/", permanent: true },
       { source: "/login", destination: "/signup", permanent: false },
       { source: "/pricing", destination: "/#what-we-teach", permanent: true },
       { source: "/parents", destination: "/#study-paths", permanent: true },
-      { source: "/tutoring", destination: "/#what-we-teach", permanent: false },
+      { source: "/tutoring", destination: "/#what-we-teach", permanent: true },
+      ...legacyUnitRedirects,
     ];
   },
 };
