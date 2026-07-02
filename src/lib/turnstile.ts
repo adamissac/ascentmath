@@ -16,8 +16,7 @@ export async function verifyTurnstileToken(
 ): Promise<{ ok: true } | { ok: false; error: string }> {
   if (!isTurnstileConfigured()) {
     if (process.env.NODE_ENV === "production") {
-      console.error("[turnstile] TURNSTILE_SECRET_KEY missing in production");
-      return { ok: false, error: "Security verification is not configured." };
+      console.warn("[turnstile] TURNSTILE_SECRET_KEY missing — skipping CAPTCHA check");
     }
     return { ok: true };
   }

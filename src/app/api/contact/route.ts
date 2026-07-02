@@ -15,7 +15,7 @@ import {
   rateLimitTutoring,
 } from "../../../lib/rate-limit";
 import { logSecurityEvent } from "../../../lib/request-log";
-import { verifyTurnstileToken } from "../../../lib/turnstile";
+import { verifyTurnstileToken, isTurnstileConfigured } from "../../../lib/turnstile";
 import { Resend } from "resend";
 
 export const runtime = "nodejs";
@@ -176,6 +176,7 @@ export async function GET() {
   return NextResponse.json({
     ok: true,
     configured: isResendConfigured(),
+    turnstileConfigured: isTurnstileConfigured(),
   });
 }
 

@@ -85,13 +85,15 @@ export default function ContactForm() {
   const [status, setStatus] = useState<Status>("idle");
   const [errorMsg, setErrorMsg] = useState<string | null>(null);
   const [configured, setConfigured] = useState<boolean | null>(null);
+  const [turnstileConfigured, setTurnstileConfigured] = useState<boolean | null>(null);
   const [recipientsDisplay] = useState(FALLBACK_RECIPIENTS);
   const [turnstileToken, setTurnstileToken] = useState<string | null>(null);
   const formLoadedAtRef = useRef(Date.now());
   const submittingRef = useRef(false);
 
   const turnstileSiteKey = process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY?.trim() || "";
-  const turnstileRequired = turnstileSiteKey.length > 10;
+  const turnstileRequired =
+    turnstileSiteKey.length > 10 && turnstileConfigured === true;
 
   const handleTurnstileVerify = useCallback((token: string) => {
     setTurnstileToken(token);
@@ -116,9 +118,13 @@ export default function ContactForm() {
       .then((data) => {
         if (cancelled) return;
         setConfigured(Boolean(data?.configured));
+        setTurnstileConfigured(Boolean(data?.turnstileConfigured));
       })
       .catch(() => {
-        if (!cancelled) setConfigured(false);
+        if (!cancelled) {
+          setConfigured(false);
+          setTurnstileConfigured(false);
+        }
       });
 
     return () => {
