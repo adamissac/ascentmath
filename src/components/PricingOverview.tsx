@@ -197,7 +197,7 @@ function TierPopularBadge({ variant }: { variant: "brand" | "light" }) {
 
   return (
     <div
-      className="pointer-events-none absolute -right-2 -top-2 z-20 rotate-[14deg]"
+      className="pointer-events-none absolute -right-3.5 -top-2 z-20 rotate-[14deg]"
       aria-label="Popular tier"
       title="Popular"
     >
