@@ -29,8 +29,7 @@ export const metadata: Metadata = buildPageMetadata({
   title: "GADOE Curriculum Frameworks",
 
   description:
-
-    "Official Georgia Department of Education curriculum frameworks for Grade 6, 7, and 8 Mathematics units.",
+    "Official Georgia Department of Education curriculum frameworks for Grade 6 Mathematics units. Grade 7 and 8 frameworks coming soon.",
 
   path: "/mathematics/curriculum-frameworks",
 
@@ -99,6 +98,16 @@ export default function FrameworksPage() {
                 want the full picture.
 
               </p>
+
+              {gradesWithFrameworks.length === 1 && gradesWithFrameworks[0]?.grade.level === 6 && (
+
+                <p className="mt-3 text-sm text-[var(--color-ink-muted)]">
+
+                  Grade 7 and 8 frameworks will be added here when available.
+
+                </p>
+
+              )}
 
             </div>
 

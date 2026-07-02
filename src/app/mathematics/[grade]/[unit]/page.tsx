@@ -5,6 +5,7 @@ import Link from "next/link";
 import LessonShell from "../../../../components/LessonShell";
 import UnitDetailsPanel from "../../../../components/UnitDetailsPanel";
 import UnitProgressPanel from "../../../../components/UnitProgressPanel";
+import UnitWorksheetsSection from "../../../../components/UnitWorksheetsSection";
 import Reveal from "../../../../components/Reveal";
 import StudyPathCta from "../../../../components/StudyPathCta";
 import JsonLdScript from "../../../../components/JsonLdScript";
@@ -93,6 +94,10 @@ export default async function UnitPage({ params }: { params: Promise<Params> }) 
 
         <Reveal className="mt-6">
           <UnitDetailsPanel unit={u} />
+        </Reveal>
+
+        <Reveal className="mt-8">
+          <UnitWorksheetsSection unit={u} />
         </Reveal>
 
         <Reveal className="mt-8 grid gap-3 border-t border-[var(--color-border)] pt-8 sm:grid-cols-2">
