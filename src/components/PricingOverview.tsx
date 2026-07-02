@@ -48,7 +48,7 @@ function SubjectLevelCard({ tier, isBrand }: { tier: TutoringTier; isBrand: bool
       <article className={cardClass}>
         {tier.popular ? <TierPopularRibbon /> : null}
         <div className="flex items-start justify-between gap-3">
-          <div>
+          <div className={tier.popular ? "min-w-0 pr-2" : undefined}>
             <p className="text-[0.6875rem] font-semibold uppercase tracking-[0.14em] text-white/50">
               {tier.tierLabel}
             </p>
@@ -59,7 +59,7 @@ function SubjectLevelCard({ tier, isBrand }: { tier: TutoringTier; isBrand: bool
           <span
             className={[
               "shrink-0 rounded-full border border-white/25 bg-white/10 px-2 py-0.5 text-[0.625rem] font-semibold uppercase tracking-wider text-white/85",
-              tier.popular ? "mr-9 max-w-[9.5rem] text-right leading-snug sm:mr-10" : "",
+              tier.popular ? "tier-card__range--popular" : "",
             ].join(" ")}
           >
             {tier.range}
@@ -80,7 +80,7 @@ function SubjectLevelCard({ tier, isBrand }: { tier: TutoringTier; isBrand: bool
         <span
           className={[
             "pill pill-brand text-[0.6875rem]",
-            tier.popular ? "mr-9 max-w-[9.5rem] text-right leading-snug sm:mr-10" : "",
+            tier.popular ? "tier-card__range--popular" : "",
           ].join(" ")}
         >
           {tier.range}
