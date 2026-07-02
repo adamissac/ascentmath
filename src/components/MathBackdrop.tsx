@@ -186,6 +186,8 @@ export default function MathBackdrop({
   fadeEdges = false,
   /** Push symbols to the outer edges so center text stays readable. */
   contentSafe = false,
+  /** Extra-soft symbols for brand bands (edge only, lower opacity). */
+  faint = false,
   className = "",
 }: {
   variant?: BackdropVariant;
@@ -194,6 +196,7 @@ export default function MathBackdrop({
   /** Soft fade at top/bottom so symbols don't hard-cut section edges. */
   fadeEdges?: boolean;
   contentSafe?: boolean;
+  faint?: boolean;
   className?: string;
 }) {
   const palette = VARIANT_STYLE[variant];
@@ -202,12 +205,17 @@ export default function MathBackdrop({
       ? BRAND_GLYPHS[density]
       : PAPER_GLYPHS[density];
   const glyphs = contentSafe
-    ? [...edgeGlyphs(baseGlyphs), ...INTERIOR_GLYPHS]
+    ? faint
+      ? edgeGlyphs(baseGlyphs)
+      : [...edgeGlyphs(baseGlyphs), ...INTERIOR_GLYPHS]
     : baseGlyphs;
   const baseClips = CLIPART[density];
   const clips = contentSafe
-    ? [...edgeClips(baseClips), ...INTERIOR_CLIPS]
+    ? faint
+      ? edgeClips(baseClips)
+      : [...edgeClips(baseClips), ...INTERIOR_CLIPS]
     : baseClips;
+  const glyphOpacity = faint ? palette.glyphOpacity * 0.45 : palette.glyphOpacity;
   const clipStroke =
     variant === "brand" || variant === "dark"
       ? "rgba(255,255,255,0.22)"
@@ -233,7 +241,7 @@ export default function MathBackdrop({
       <BackdropGlyphLayer
         glyphs={glyphs}
         glyphColor={palette.glyph}
-        defaultOpacity={palette.glyphOpacity}
+        defaultOpacity={glyphOpacity}
       />
 
       {/* SVG clipart */}

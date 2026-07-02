@@ -85,6 +85,7 @@ export default function ColorBand({
           contentSafe={faintSymbols}
           clipart={!faintSymbols}
           fadeEdges={faintSymbols}
+          faint={faintSymbols}
         />
       )}
       <Container size={containerSize} className={`relative z-[1] ${PADDING[size]}`}>
