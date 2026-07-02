@@ -59,6 +59,16 @@ const HOME_TITLE = `${SITE_BRAND_NAME} - ${SITE_BRAND_TAGLINE}`;
 /** Root layout defaults — homepage positioning copy. */
 export const ROOT_METADATA: Metadata = {
   metadataBase: new URL(SITE_URL),
+  icons: {
+    icon: [
+      { url: "/favicon-32.png", type: "image/png", sizes: "32x32" },
+      { url: "/favicon.ico", sizes: "any" },
+      { url: "/icon.png", type: "image/png", sizes: "512x512" },
+    ],
+    apple: [{ url: "/apple-icon.png", sizes: "180x180", type: "image/png" }],
+    shortcut: "/favicon.ico",
+  },
+  manifest: "/site.webmanifest",
   title: {
     default: HOME_TITLE,
     template: `%s · ${SITE_BRAND_NAME}`,
