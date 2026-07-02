@@ -48,7 +48,7 @@ function SubjectLevelCard({ tier, isBrand }: { tier: TutoringTier; isBrand: bool
       <article className={cardClass}>
         {tier.popular ? <TierPopularRibbon /> : null}
         <div className="flex items-start justify-between gap-3">
-          <div className={tier.popular ? "min-w-0 pr-2" : undefined}>
+          <div className="min-w-0">
             <p className="text-[0.6875rem] font-semibold uppercase tracking-[0.14em] text-white/50">
               {tier.tierLabel}
             </p>
