@@ -26,7 +26,7 @@ const STEPS = [
 export default function BookingTrustPanel() {
   return (
     <div className="flex flex-col gap-8">
-      <Reveal variant="left">
+      <Reveal variant="fade">
         <div className="flex items-center gap-4">
           <div className="flex -space-x-3">
             <TutorAvatar src="/adampic.jpg" alt="Adam Issac" objectPosition="50% 22%" />
@@ -39,7 +39,7 @@ export default function BookingTrustPanel() {
         </div>
       </Reveal>
 
-      <Reveal variant="left" delay={40}>
+      <Reveal variant="fade" delay={40}>
         <p className="caption font-semibold uppercase tracking-[0.14em] text-[var(--color-brand-600)]">
           What happens after you submit
         </p>
@@ -60,14 +60,14 @@ export default function BookingTrustPanel() {
         </ol>
       </Reveal>
 
-      <Reveal variant="left" delay={70}>
+      <Reveal variant="fade" delay={70}>
         <div className="flex flex-wrap gap-2">
           <span className="pill pill-brand">First session free</span>
           <span className="pill">Reply within 1-2 days</span>
         </div>
       </Reveal>
 
-      <Reveal variant="left" delay={100}>
+      <Reveal variant="fade" delay={100}>
         <div className="border-t border-[var(--color-border)] pt-6">
           <p className="small font-semibold text-[var(--color-ink)]">Prefer to talk first?</p>
           <div className="mt-2.5 flex flex-col gap-1.5">

@@ -35,7 +35,7 @@ export default function HomeBookingSection() {
         <div className="mt-10 grid gap-10 lg:mt-14 lg:grid-cols-[minmax(0,0.85fr)_minmax(0,1fr)] lg:items-start lg:gap-16">
           <BookingTrustPanel />
 
-          <Reveal variant="rise" delay={40} className="min-w-0">
+          <Reveal variant="fade" delay={40} className="min-w-0">
             <ContactForm />
           </Reveal>
         </div>
