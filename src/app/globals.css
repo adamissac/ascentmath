@@ -2413,6 +2413,12 @@ body {
 .skip-link:focus { left: 1rem; }
 
 /* Sitewide announcement — single-line promo bar (Cardinal Edge–style thickness) */
+.site-announcement {
+  font-family: var(--font-sans);
+  font-feature-settings: "cv11", "ss01";
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
 .site-announcement__inner {
   position: relative;
   display: flex;
@@ -2426,6 +2432,7 @@ body {
 }
 .site-announcement__text {
   margin: 0;
+  font-family: inherit;
   font-size: 0.875rem;
   line-height: 1.35;
   font-weight: 500;
@@ -2436,6 +2443,7 @@ body {
   max-width: 100%;
 }
 .site-announcement__link {
+  font-family: inherit;
   font-weight: 600;
   color: #fff;
   text-decoration: underline;
