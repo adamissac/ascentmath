@@ -10,7 +10,7 @@ import {
   PricingTierExplainer,
   SubjectLevelCards,
 } from "../components/PricingOverview";
-import { FIRST_SESSION_FREE, TUTORING_TIERS_SUMMARY } from "../data/pricing";
+import { TUTORING_TIERS_SUMMARY } from "../data/pricing";
 import { GRADES } from "../data/units";
 
 const ALL_UNITS = GRADES.flatMap((g) => g.units);
@@ -44,9 +44,6 @@ export default function Home() {
           <p className="mt-4 text-base leading-relaxed text-white/75 sm:text-lg">
             {TUTORING_TIERS_SUMMARY}. Pick the tier that matches your class. Rates are confirmed when
             you book.
-          </p>
-          <p className="mt-4 inline-flex rounded-full border border-white/25 bg-white/10 px-4 py-1.5 text-sm font-semibold text-[var(--color-accent-300)]">
-            {FIRST_SESSION_FREE}
           </p>
         </Reveal>
 

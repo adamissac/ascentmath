@@ -22,7 +22,7 @@ export type TutoringTier = {
   topicGroups: readonly SubjectTopicGroup[];
 };
 
-export const FIRST_SESSION_FREE = "Your first session is always free for new clients.";
+export const FIRST_SESSION_FREE = "Your first session is free for new clients.";
 
 /** Shown under the tier cards (homepage and anywhere tiers are listed). */
 export const TIER_PRICING_EXPLAINER =
