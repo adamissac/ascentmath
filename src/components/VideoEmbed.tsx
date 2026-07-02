@@ -28,9 +28,14 @@ const SIZE = {
     playIcon: 18,
     body: "p-3.5 sm:p-4 gap-1.5",
     title: "text-base sm:text-[1.0625rem]",
-    thumbSizes: "(max-width: 768px) 100vw, 420px",
+    thumbSizes: "(max-width: 768px) 100vw, 280px",
   },
 } as const;
+
+function youtubeThumb(videoId: string, quality: "max" | "hq" = "max") {
+  const file = quality === "max" ? "maxresdefault.jpg" : "hqdefault.jpg";
+  return `https://i.ytimg.com/vi/${videoId}/${file}`;
+}
 
 export default function VideoEmbed({
   videoId,
@@ -41,7 +46,7 @@ export default function VideoEmbed({
   size = "default",
 }: Props) {
   const [active, setActive] = useState(false);
-  const thumb = `https://i.ytimg.com/vi/${videoId}/hqdefault.jpg`;
+  const [thumbSrc, setThumbSrc] = useState(() => youtubeThumb(videoId, "max"));
   const embed = `https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0`;
   const watchUrl = `https://youtu.be/${videoId}`;
   const s = SIZE[size];
@@ -75,12 +80,18 @@ export default function VideoEmbed({
             aria-label={`Play video: ${title}`}
           >
             <Image
-              src={thumb}
+              key={thumbSrc}
+              src={thumbSrc}
               alt=""
               fill
               sizes={s.thumbSizes}
+              quality={85}
               className="object-cover"
-              unoptimized
+              onError={() => {
+                setThumbSrc((current) =>
+                  current.includes("maxresdefault") ? youtubeThumb(videoId, "hq") : current,
+                );
+              }}
             />
             <span className="absolute inset-0 bg-black/25 transition-opacity group-hover:bg-black/35" />
             <span className="absolute inset-0 grid place-items-center">

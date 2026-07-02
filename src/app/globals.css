@@ -833,11 +833,12 @@ body {
 }
 
 .lesson-video-single {
-  max-width: 40rem;
+  max-width: 28rem;
 }
 .lesson-video-grid {
   display: grid;
   gap: 1rem;
+  max-width: 36rem;
 }
 @media (min-width: 768px) {
   .lesson-video-grid {
