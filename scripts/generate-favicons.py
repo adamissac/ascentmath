@@ -9,7 +9,7 @@ from PIL import Image
 
 ROOT = Path(__file__).resolve().parents[1]
 SRC = ROOT / "public" / "newLogo.png"
-BRAND_CREAM = (251, 250, 247, 255)
+TRANSPARENT = (0, 0, 0, 0)
 
 
 def is_fringe(r: int, g: int, b: int, a: int) -> bool:
@@ -52,8 +52,8 @@ def clean_logo(src: Image.Image) -> Image.Image:
     return square
 
 
-def compose(size: int, logo: Image.Image, padding: float = 0.08) -> Image.Image:
-    canvas = Image.new("RGBA", (size, size), BRAND_CREAM)
+def compose(size: int, logo: Image.Image, padding: float = 0.06) -> Image.Image:
+    canvas = Image.new("RGBA", (size, size), TRANSPARENT)
     inner = int(size * (1 - padding * 2))
     scaled = logo.resize((inner, inner), Image.Resampling.LANCZOS)
     offset = ((size - inner) // 2, (size - inner) // 2)
