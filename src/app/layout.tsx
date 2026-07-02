@@ -4,6 +4,7 @@ import { Inter, Lexend } from "next/font/google";
 import AuthProvider from "../components/AuthProvider";
 import HashScrollHandler from "../components/HashScrollHandler";
 import Navbar from "../components/Navbar";
+import SiteAnnouncement from "../components/SiteAnnouncement";
 import ConditionalFooter from "../components/ConditionalFooter";
 import { ROOT_METADATA } from "../lib/metadata";
 import "./globals.css";
@@ -40,7 +41,10 @@ export default function RootLayout({
         <AuthProvider>
           <HashScrollHandler />
           <Navbar />
-          <main id="main" className="flex-1 pt-[4.25rem]">{children}</main>
+          <div className="flex flex-1 flex-col pt-[4.25rem]">
+            <SiteAnnouncement />
+            <main id="main" className="flex-1">{children}</main>
+          </div>
           <ConditionalFooter />
           <Analytics />
         </AuthProvider>
