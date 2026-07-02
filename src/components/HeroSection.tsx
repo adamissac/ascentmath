@@ -44,7 +44,7 @@ export default function HeroSection({ totalUnits }: HeroSectionProps) {
       <div className="relative z-[1] flex min-h-[min(100dvh,920px)] items-center justify-center page-x py-12 sm:py-16">
         <div className="mx-auto flex w-full min-w-0 max-w-4xl flex-col items-center text-center">
           <h1
-            className={`${rise} ${STAGGER[0]} h-display mt-6 w-full min-w-0 max-w-3xl px-1 text-[var(--color-ink-cool)] [text-shadow:0_1px_32px_rgba(26,26,46,0.08)] sm:px-0`}
+            className={`${rise} ${STAGGER[0]} h-display w-full min-w-0 max-w-3xl px-1 text-[var(--color-ink-cool)] [text-shadow:0_1px_32px_rgba(26,26,46,0.08)] sm:px-0`}
           >
             A{" "}
             <span className="text-[var(--color-brand-500)] underline decoration-[var(--color-accent-100)] decoration-[0.18em] underline-offset-[0.12em]">
