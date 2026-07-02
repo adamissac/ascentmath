@@ -35,8 +35,8 @@ export default function SiteAnnouncement() {
       role="status"
       aria-live="polite"
     >
-      <div className="relative mx-auto flex w-full max-w-7xl items-center px-4 py-3 pr-11 sm:px-6 sm:py-3.5 lg:px-8 safe-x">
-        <p className="m-0 flex w-full min-w-0 flex-wrap items-center justify-start gap-x-2 gap-y-1 text-left text-[0.8125rem] font-medium leading-snug sm:text-sm">
+      <div className="relative mx-auto flex w-full max-w-7xl items-center justify-center px-4 py-4 sm:px-6 sm:py-[1.125rem] lg:px-8 safe-x">
+        <p className="m-0 flex max-w-4xl flex-wrap items-center justify-center gap-x-2.5 gap-y-1.5 text-center text-sm font-medium leading-snug sm:text-base">
           <span>{SITE_ANNOUNCEMENT.message}</span>
           <HashLink
             href={BOOK_SESSION_HREF}
