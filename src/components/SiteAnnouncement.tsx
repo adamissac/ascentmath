@@ -2,10 +2,11 @@
 
 import { useEffect, useState } from "react";
 import HashLink from "./HashLink";
+import { SITE_ANNOUNCEMENT } from "../data/site-announcement";
 import {
-  SITE_ANNOUNCEMENT,
-  SITE_ANNOUNCEMENT_STORAGE_KEY,
-} from "../data/site-announcement";
+  isAnnouncementDismissed,
+  saveAnnouncementDismissed,
+} from "../lib/site-announcement-dismiss";
 import { BOOK_SESSION_HREF } from "../lib/site-paths";
 
 export default function SiteAnnouncement() {
@@ -13,18 +14,13 @@ export default function SiteAnnouncement() {
 
   useEffect(() => {
     if (!SITE_ANNOUNCEMENT.enabled) return;
-    try {
-      const dismissed = localStorage.getItem(SITE_ANNOUNCEMENT_STORAGE_KEY);
-      if (dismissed === SITE_ANNOUNCEMENT.id) return;
-    } catch {
-      /* private browsing / blocked storage */
-    }
+    if (isAnnouncementDismissed()) return;
     setVisible(true);
   }, []);
 
   function dismiss() {
     try {
-      localStorage.setItem(SITE_ANNOUNCEMENT_STORAGE_KEY, SITE_ANNOUNCEMENT.id);
+      saveAnnouncementDismissed();
     } catch {
       /* still hide for this visit */
     }
@@ -37,7 +33,6 @@ export default function SiteAnnouncement() {
     <div className="site-announcement" role="status" aria-live="polite">
       <div className="site-announcement__inner">
         <p className="site-announcement__text">
-          <span className="site-announcement__label">Summer enrollment</span>
           <span>{SITE_ANNOUNCEMENT.message}</span>
           <HashLink href={BOOK_SESSION_HREF} className="site-announcement__link">
             Book a session →
