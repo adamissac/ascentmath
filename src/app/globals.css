@@ -2412,6 +2412,15 @@ body {
   object-fit: cover;
 }
 
+/* Navbar wordmark — one normal space between Ascent and Math */
+.nav-brand-name {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.3125em;
+  white-space: nowrap;
+  letter-spacing: -0.02em;
+}
+
 /* Horizontal gutters + notched-phone safe areas (max so inset never replaces gutter) */
 .page-x,
 .site-container {

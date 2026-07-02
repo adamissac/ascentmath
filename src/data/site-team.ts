@@ -2,9 +2,9 @@
  * Shared business identity for Ascent Math (Adam & Alan).
  */
 
-import { SITE_BRAND_NAME } from "../lib/site-brand";
+import { SITE_BRAND_NAME, SITE_BRAND_WORDS } from "../lib/site-brand";
 
-export { SITE_BRAND_NAME };
+export { SITE_BRAND_NAME, SITE_BRAND_WORDS };
 
 export const TUTOR_NAMES = "Adam Issac & Alan Mozhoor";
 export const TUTOR_NAMES_SHORT = "Adam & Alan";

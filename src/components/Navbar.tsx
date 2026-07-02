@@ -8,7 +8,7 @@ import { useAuth } from "./AuthProvider";
 import HashLink from "./HashLink";
 import { BOOK_SESSION_HREF, STUDY_PATHS_HREF } from "../lib/site-paths";
 import { scrollToPageTop } from "../lib/scroll-to-hash";
-import { SITE_BRAND_NAME } from "../data/site-team";
+import { SITE_BRAND_NAME, SITE_BRAND_WORDS } from "../data/site-team";
 
 const NAV_LINKS = [
   { href: "/#what-we-teach", label: "Tutoring", sectionId: "what-we-teach" },
@@ -162,7 +162,12 @@ export default function Navbar() {
                 priority
               />
             </span>
-            <span className="truncate hidden min-[400px]:inline">{SITE_BRAND_NAME}</span>
+            <span className="truncate hidden min-[400px]:inline">
+              <span className="nav-brand-name">
+                <span>{SITE_BRAND_WORDS[0]}</span>
+                <span>{SITE_BRAND_WORDS[1]}</span>
+              </span>
+            </span>
           </Link>
 
           <nav className="hidden md:flex items-center gap-1 rounded-full bg-[var(--color-brand-50)]/50 p-1 ring-1 ring-[var(--color-brand-100)]/60" aria-label="Primary">
