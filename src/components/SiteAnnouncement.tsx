@@ -31,27 +31,24 @@ export default function SiteAnnouncement() {
 
   return (
     <div
-      className="border-b border-[var(--color-brand-800)] bg-[var(--color-brand-700)] text-white"
+      className="site-announcement border-b border-[var(--color-brand-800)] bg-[var(--color-brand-700)] text-white"
       role="status"
       aria-live="polite"
     >
-      <div className="relative mx-auto flex w-full max-w-7xl items-center justify-center px-4 py-3.5 sm:px-6 sm:py-4 lg:px-8 safe-x">
-        <p className="m-0 flex max-w-4xl flex-wrap items-center justify-center gap-x-2.5 gap-y-1.5 text-center text-sm font-medium leading-snug sm:text-[0.9375rem]">
-          <span>{SITE_ANNOUNCEMENT.message}</span>
-          <HashLink
-            href={BOOK_SESSION_HREF}
-            className="site-announcement__link font-semibold text-white whitespace-nowrap"
-          >
+      <div className="site-announcement__inner">
+        <p className="site-announcement__text">
+          <span>{SITE_ANNOUNCEMENT.message}</span>{" "}
+          <HashLink href={BOOK_SESSION_HREF} className="site-announcement__link">
             Book a session →
           </HashLink>
         </p>
         <button
           type="button"
           onClick={dismiss}
-          className="absolute top-1/2 right-4 grid h-8 w-8 -translate-y-1/2 place-items-center rounded-full text-white/85 transition-colors hover:bg-white/10 hover:text-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--color-accent-300)] sm:right-6 lg:right-8"
+          className="site-announcement__close"
           aria-label="Dismiss announcement"
         >
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden>
             <path
               d="M6 6L18 18M18 6L6 18"
               stroke="currentColor"
