@@ -30,18 +30,25 @@ export default function SiteAnnouncement() {
   if (!SITE_ANNOUNCEMENT.enabled || !visible) return null;
 
   return (
-    <div className="site-announcement" role="status" aria-live="polite">
-      <div className="site-announcement__inner">
-        <p className="site-announcement__text">
+    <div
+      className="border-b border-[var(--color-brand-800)] bg-[var(--color-brand-700)] text-white"
+      role="status"
+      aria-live="polite"
+    >
+      <div className="relative mx-auto flex w-full max-w-7xl items-center px-4 py-3 pr-11 sm:px-6 sm:py-3.5 lg:px-8 safe-x">
+        <p className="m-0 flex w-full min-w-0 flex-wrap items-center justify-start gap-x-2 gap-y-1 text-left text-[0.8125rem] font-medium leading-snug sm:text-sm">
           <span>{SITE_ANNOUNCEMENT.message}</span>
-          <HashLink href={BOOK_SESSION_HREF} className="site-announcement__link">
+          <HashLink
+            href={BOOK_SESSION_HREF}
+            className="site-announcement__link font-semibold text-white whitespace-nowrap"
+          >
             Book a session →
           </HashLink>
         </p>
         <button
           type="button"
           onClick={dismiss}
-          className="site-announcement__close"
+          className="absolute top-1/2 right-4 grid h-9 w-9 -translate-y-1/2 place-items-center rounded-full text-white/85 transition-colors hover:bg-white/10 hover:text-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--color-accent-300)] sm:right-6 lg:right-8"
           aria-label="Dismiss announcement"
         >
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden>
