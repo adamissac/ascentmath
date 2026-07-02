@@ -1,7 +1,9 @@
 "use client";
 
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { SITE_POSITIONING } from "../data/site-copy";
+import { scrollToPageTop } from "../lib/scroll-to-hash";
 import {
   ADAM_EMAIL,
   ALAN_EMAIL,
@@ -16,12 +18,25 @@ import {
 const YEAR = new Date().getFullYear();
 
 export default function Footer() {
+  const pathname = usePathname();
+
+  function handleHomeClick(e: React.MouseEvent<HTMLAnchorElement>) {
+    if (pathname !== "/") return;
+    e.preventDefault();
+    scrollToPageTop();
+  }
+
   return (
     <footer className="mt-10 border-t border-[var(--color-border)] bg-[var(--color-bg)] safe-bottom">
       <div className="mx-auto max-w-7xl page-x py-8 sm:py-9">
         <div className="flex flex-col gap-8 sm:flex-row sm:items-start sm:justify-between sm:gap-10">
           <div className="min-w-0 max-w-sm">
-            <Link href="/" className="group no-underline" aria-label={`${SITE_BRAND_NAME} - home`}>
+            <Link
+              href="/"
+              onClick={handleHomeClick}
+              className="group no-underline"
+              aria-label={`${SITE_BRAND_NAME} - home`}
+            >
               <span className="block font-display text-lg font-bold tracking-tight text-[var(--color-ink-cool)] transition-colors group-hover:text-[var(--color-brand-600)]">
                 {SITE_BRAND_NAME}
               </span>
