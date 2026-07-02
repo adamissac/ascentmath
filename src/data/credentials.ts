@@ -36,7 +36,7 @@ export const ALAN_INTRO: TutorIntro = {
 
 export const MATH_CREDENTIALS: readonly MathCredential[] = [
   { label: "SAT Math", value: "800", detail: "Perfect score" },
-  { label: "Algebra EOC", value: "100%", detail: "EOC" },
+  { label: "Algebra EOC", value: "100%", detail: "End-of-Course exam" },
   { label: "AP Pre-Calculus", value: "5", detail: "AP exam" },
   { label: "AP Calculus AB", value: "97%", detail: "Class grade · 5 on AP exam" },
   { label: "AP Calculus BC", value: "97%", detail: "Class grade · 5 on AP exam" },
