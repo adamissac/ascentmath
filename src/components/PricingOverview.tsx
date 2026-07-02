@@ -56,7 +56,12 @@ function SubjectLevelCard({ tier, isBrand }: { tier: TutoringTier; isBrand: bool
               {tier.label}
             </h3>
           </div>
-          <span className="shrink-0 rounded-full border border-white/25 bg-white/10 px-2 py-0.5 text-[0.625rem] font-semibold uppercase tracking-wider text-white/85">
+          <span
+            className={[
+              "shrink-0 rounded-full border border-white/25 bg-white/10 px-2 py-0.5 text-[0.625rem] font-semibold uppercase tracking-wider text-white/85",
+              tier.popular ? "mr-9 max-w-[9.5rem] text-right leading-snug sm:mr-10" : "",
+            ].join(" ")}
+          >
             {tier.range}
           </span>
         </div>
@@ -72,7 +77,14 @@ function SubjectLevelCard({ tier, isBrand }: { tier: TutoringTier; isBrand: bool
       {tier.popular ? <TierPopularRibbon /> : null}
       <div className="flex items-center justify-between gap-3">
         <h3 className="font-display font-bold text-lg text-[var(--color-ink)]">{tier.tierLabel}</h3>
-        <span className="pill pill-brand text-[0.6875rem]">{tier.range}</span>
+        <span
+          className={[
+            "pill pill-brand text-[0.6875rem]",
+            tier.popular ? "mr-9 max-w-[9.5rem] text-right leading-snug sm:mr-10" : "",
+          ].join(" ")}
+        >
+          {tier.range}
+        </span>
       </div>
       <p className="mt-1 text-sm font-semibold text-[var(--color-accent-700)]">{tier.label}</p>
       <p className="mt-3 small text-[var(--color-ink-muted)] leading-relaxed">{tier.blurb}</p>
