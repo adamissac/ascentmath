@@ -1,7 +1,17 @@
-/** Fixed site header height — keep in sync with Navbar (`h-[4.25rem]` + top border). */
+/** Default fixed header height (navbar only) — updated live via --site-header-offset. */
 export const SCROLL_NAV_OFFSET_PX = 72;
 
-export const SCROLL_ANCHOR_CLASS = "scroll-mt-[5.5rem]";
+export const SCROLL_ANCHOR_CLASS = "scroll-mt-[var(--site-header-offset,5.5rem)]";
+
+function getSiteHeaderOffsetPx(): number {
+  if (typeof window === "undefined") return SCROLL_NAV_OFFSET_PX;
+  const raw = window
+    .getComputedStyle(document.documentElement)
+    .getPropertyValue("--site-header-offset")
+    .trim();
+  const n = parseFloat(raw);
+  return Number.isFinite(n) && n > 0 ? n : SCROLL_NAV_OFFSET_PX;
+}
 
 const FLASH_CLASS = "scroll-target-flash";
 
@@ -25,7 +35,7 @@ export function scrollToHashId(id: string, behavior: ScrollBehavior = "smooth") 
   const scrollBehavior: ScrollBehavior = reduced ? "auto" : behavior;
 
   const marginTop = getScrollMarginTop(el);
-  const headerOffset = Math.max(SCROLL_NAV_OFFSET_PX, marginTop);
+  const headerOffset = Math.max(getSiteHeaderOffsetPx(), marginTop);
   const extra = HASH_SCROLL_EXTRA_PX[id] ?? 0;
   const top =
     window.scrollY + el.getBoundingClientRect().top - headerOffset - extra;

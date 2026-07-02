@@ -142,7 +142,7 @@ export default function Navbar() {
   }
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 w-full border-b border-[var(--color-brand-100)] border-t-[3px] border-t-[var(--color-brand-600)] bg-white shadow-sm">
+    <header className="relative w-full border-b border-[var(--color-brand-100)] border-t-[3px] border-t-[var(--color-brand-600)] bg-white shadow-sm">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 safe-x">
         <div className="flex h-[4.25rem] items-center justify-between gap-2 sm:gap-6">
           <Link
@@ -277,7 +277,7 @@ export default function Navbar() {
       {open && (
         <div
           id="mobile-menu"
-          className="md:hidden border-t border-[var(--color-brand-100)] bg-white shadow-[0_16px_40px_-16px_rgba(26,26,46,0.15)] max-h-[calc(100dvh-4.25rem)] overflow-y-auto overscroll-contain animate-fade-up"
+          className="md:hidden border-t border-[var(--color-brand-100)] bg-white shadow-[0_16px_40px_-16px_rgba(26,26,46,0.15)] max-h-[calc(100dvh-var(--site-header-offset,4.25rem))] overflow-y-auto overscroll-contain animate-fade-up"
         >
           <nav className="page-x py-3 flex flex-col gap-1" aria-label="Mobile">
             {NAV_LINKS.map((l) => (

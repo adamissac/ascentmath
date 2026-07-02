@@ -2412,12 +2412,11 @@ body {
 }
 .skip-link:focus { left: 1rem; }
 
-/* Sitewide announcement — solid brand bar under the navbar */
+/* Sitewide announcement — solid brand bar above the navbar */
 .site-announcement {
   background: var(--color-brand-700);
   color: #fff;
   border-bottom: 1px solid var(--color-brand-800);
-  box-shadow: 0 10px 24px -18px rgba(11, 26, 87, 0.55);
 }
 .site-announcement__inner {
   position: relative;
