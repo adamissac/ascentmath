@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
-import { SITE_POSITIONING } from "../data/site-copy";
 import { TUTOR_NAMES_SHORT } from "../data/site-team";
 import { SITE_BRAND_NAME, SITE_BRAND_TAGLINE } from "./site-brand";
+import { SEO_HOME_DESCRIPTION, SEO_KEYWORDS } from "./seo";
 import { absoluteUrl, SITE_URL } from "./site-url";
 
 const DEFAULT_OG_IMAGE = absoluteUrl("/og-image.png");
@@ -73,24 +73,15 @@ export const ROOT_METADATA: Metadata = {
     default: HOME_TITLE,
     template: `%s · ${SITE_BRAND_NAME}`,
   },
-  description: SITE_POSITIONING,
-  keywords: [
-    "Ascent Math",
-    "math tutor",
-    "math tutoring",
-    "Adam and Alan math tutor",
-    "Georgia Tech math tutor",
-    "SAT math tutor",
-    "AP pre-calculus tutor",
-    "AP calculus tutor",
-    "linear algebra tutor",
-    "multivariable calculus tutor",
-    "Atlanta math tutor",
-  ],
+  description: SEO_HOME_DESCRIPTION,
+  authors: [{ name: "Adam Issac" }, { name: "Alan Mozhoor" }],
+  creator: SITE_BRAND_NAME,
+  publisher: SITE_BRAND_NAME,
+  keywords: [...SEO_KEYWORDS],
   alternates: { canonical: absoluteUrl("/") },
   openGraph: {
     title: `${SITE_BRAND_NAME} - ${SITE_BRAND_TAGLINE} · ${TUTOR_NAMES_SHORT}`,
-    description: SITE_POSITIONING,
+    description: SEO_HOME_DESCRIPTION,
     url: absoluteUrl("/"),
     siteName: SITE_BRAND_NAME,
     type: "website",
@@ -100,7 +91,7 @@ export const ROOT_METADATA: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: `${SITE_BRAND_NAME} - ${SITE_BRAND_TAGLINE} · ${TUTOR_NAMES_SHORT}`,
-    description: SITE_POSITIONING,
+    description: SEO_HOME_DESCRIPTION,
     images: [DEFAULT_OG_IMAGE],
   },
 };

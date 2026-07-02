@@ -57,7 +57,7 @@ export default function HeroSection({ totalUnits }: HeroSectionProps) {
           <p
             className={`${rise} ${STAGGER[1]} mt-6 w-full min-w-0 max-w-[32.5rem] text-[1.0625rem] leading-relaxed text-[var(--color-ink-cool-muted)] sm:text-lg`}
           >
-            We&apos;re Adam and Alan, Math + CS @ Georgia Tech. We tutor pre-algebra through AP
+            We&apos;re Adam Issac and Alan Mozhoor, Math + CS @ Georgia Tech. We tutor pre-algebra through AP
             Pre-Calc, AP Calc, AP Statistics, SAT &amp; ACT Math, linear algebra, and multivariable
             calc, plus K-5 and middle school basics. Book a paid 1-on-1 session. {FIRST_SESSION_FREE}{" "}
             Or use our free Grades 6-8 study paths on your own.
