@@ -211,6 +211,22 @@ body {
 .hero-enter--d3 { transition-delay: 220ms; }
 .hero-enter--d4 { transition-delay: 320ms; }
 .hero-enter--d5 { transition-delay: 420ms; }
+
+/* Hero "Free!" callout — gentle scale pulse */
+@keyframes hero-free-pulse {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+}
+.hero-free-pulse {
+  display: inline-flex;
+  transform-origin: center center;
+  animation: hero-free-pulse 1.75s ease-in-out infinite;
+}
 .body { font-size: 1rem; line-height: 1.65; }
 .small { font-size: 0.875rem; line-height: 1.55; }
 .caption { font-size: 0.75rem; line-height: 1.45; letter-spacing: 0.02em; }
@@ -2050,6 +2066,9 @@ body {
     opacity: 1 !important;
     transform: none !important;
     transition: none !important;
+  }
+  .hero-free-pulse {
+    animation: none !important;
   }
   .animate-\[slideInRight_0\.28s_cubic-bezier\(0\.22\,0\.9\,0\.3\,1\)_both\] {
     animation: none !important;
