@@ -5,7 +5,6 @@ import HashLink from "./HashLink";
 import HeroCanvas from "./HeroCanvas";
 import { HERO_STATS } from "../data/site-stats";
 import { FIRST_SESSION_FREE } from "../data/pricing";
-import { TUTOR_NAMES_SHORT } from "../data/site-team";
 import { BOOK_SESSION_HREF, STUDY_PATHS_HREF } from "../lib/site-paths";
 
 type HeroSectionProps = {
@@ -18,7 +17,6 @@ const STAGGER = [
   "hero-enter--d2",
   "hero-enter--d3",
   "hero-enter--d4",
-  "hero-enter--d5",
 ] as const;
 
 export default function HeroSection({ totalUnits }: HeroSectionProps) {
@@ -45,14 +43,8 @@ export default function HeroSection({ totalUnits }: HeroSectionProps) {
 
       <div className="relative z-[1] flex min-h-[min(100dvh,920px)] items-center justify-center page-x py-12 sm:py-16">
         <div className="mx-auto flex w-full min-w-0 max-w-4xl flex-col items-center text-center">
-          <span
-            className={`${rise} ${STAGGER[0]} inline-flex max-w-full items-center rounded-full border border-[#1a1a2e]/12 bg-[#1a1a2e]/[0.04] px-3.5 py-1.5 text-center text-[0.6875rem] font-semibold uppercase tracking-[0.14em] text-[var(--color-ink-cool-muted)]`}
-          >
-            Math tutors · {TUTOR_NAMES_SHORT} · K through college
-          </span>
-
           <h1
-            className={`${rise} ${STAGGER[1]} h-display mt-6 w-full min-w-0 max-w-3xl px-1 text-[var(--color-ink-cool)] [text-shadow:0_1px_32px_rgba(26,26,46,0.08)] sm:px-0`}
+            className={`${rise} ${STAGGER[0]} h-display mt-6 w-full min-w-0 max-w-3xl px-1 text-[var(--color-ink-cool)] [text-shadow:0_1px_32px_rgba(26,26,46,0.08)] sm:px-0`}
           >
             A{" "}
             <span className="text-[var(--color-brand-500)] underline decoration-[var(--color-accent-100)] decoration-[0.18em] underline-offset-[0.12em]">
@@ -63,7 +55,7 @@ export default function HeroSection({ totalUnits }: HeroSectionProps) {
           </h1>
 
           <p
-            className={`${rise} ${STAGGER[2]} mt-6 w-full min-w-0 max-w-[32.5rem] text-[1.0625rem] leading-relaxed text-[var(--color-ink-cool-muted)] sm:text-lg`}
+            className={`${rise} ${STAGGER[1]} mt-6 w-full min-w-0 max-w-[32.5rem] text-[1.0625rem] leading-relaxed text-[var(--color-ink-cool-muted)] sm:text-lg`}
           >
             We&apos;re Adam and Alan, Math + CS @ Georgia Tech. We tutor pre-algebra through AP
             Pre-Calc, AP Calc, AP Statistics, SAT &amp; ACT Math, linear algebra, and multivariable
@@ -72,7 +64,7 @@ export default function HeroSection({ totalUnits }: HeroSectionProps) {
           </p>
 
           <div
-            className={`${rise} ${STAGGER[3]} btn-stack-mobile mt-8 w-full max-w-md sm:max-w-none sm:justify-center`}
+            className={`${rise} ${STAGGER[2]} btn-stack-mobile mt-8 w-full max-w-md sm:max-w-none sm:justify-center`}
           >
             <HashLink
               href={BOOK_SESSION_HREF}
@@ -119,7 +111,7 @@ export default function HeroSection({ totalUnits }: HeroSectionProps) {
           </div>
 
           <p
-            className={`${rise} ${STAGGER[4]} mt-6 flex flex-wrap items-center justify-center gap-x-2 gap-y-1 text-[0.8125rem] text-[#4a4a6a]/90`}
+            className={`${rise} ${STAGGER[3]} mt-6 flex flex-wrap items-center justify-center gap-x-2 gap-y-1 text-[0.8125rem] text-[#4a4a6a]/90`}
           >
             <span>Zoom or in-person</span>
             <span className="text-[#1a1a2e]/25" aria-hidden>
@@ -137,7 +129,7 @@ export default function HeroSection({ totalUnits }: HeroSectionProps) {
           </p>
 
           <div
-            className={`${rise} ${STAGGER[5]} mt-10 grid w-full min-w-0 max-w-3xl grid-cols-2 gap-4 sm:grid-cols-4 sm:gap-0`}
+            className={`${rise} ${STAGGER[4]} mt-10 grid w-full min-w-0 max-w-3xl grid-cols-2 gap-4 sm:grid-cols-4 sm:gap-0`}
           >
             <HeroStat value={HERO_STATS.studentsTutored} label="Students tutored" animate={ready} showDivider />
             <HeroStat value={HERO_STATS.yearsTutoring} label="Years tutoring" animate={ready} showDivider />
@@ -175,7 +167,7 @@ function HeroStat({
     if (!animate || target === null) return;
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
 
-    const DELAY = 420; // matches the stat row's entrance stagger slot
+    const DELAY = 320; // matches the stat row's entrance stagger slot
     const DURATION = 700;
     let raf = 0;
     let start: number | null = null;
