@@ -110,7 +110,7 @@ export default function HeroSection({ totalUnits }: HeroSectionProps) {
           <p
             className={`${rise} ${STAGGER[3]} mt-6 flex flex-wrap items-center justify-center gap-x-2 gap-y-1 text-[0.8125rem] text-[#4a4a6a]/90`}
           >
-            <span>Zoom or in-person</span>
+            <span>Over Zoom</span>
             <span className="text-[#1a1a2e]/25" aria-hidden>
               ·
             </span>

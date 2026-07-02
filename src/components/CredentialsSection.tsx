@@ -85,7 +85,7 @@ export default function CredentialsSection() {
           <span className="hidden sm:inline text-[var(--color-ink-soft)]" aria-hidden>
             ·
           </span>
-          <span>Zoom or in-person in the Atlanta area</span>
+          <span>Over Zoom</span>
         </Reveal>
       </Container>
     </section>

@@ -18,7 +18,7 @@ const STEPS = [
   },
   {
     title: "You meet for a free first session",
-    text: "Over Zoom, or in person if you're in the Atlanta area. Nothing to pay up front.",
+    text: "Over Zoom. Nothing to pay up front.",
   },
 ] as const;
 

@@ -166,7 +166,7 @@ function Dashboard() {
         <div>
           <p className="caption font-semibold tracking-wider uppercase text-[var(--color-brand-300)]">Your sessions</p>
           <h2 className="font-display font-bold text-xl sm:text-2xl mt-1 text-white">Book a session with Adam & Alan</h2>
-          <p className="small text-[#C8C9CC] mt-2 max-w-lg">Bring a topic from any unit - Zoom or in-person in the Atlanta area.</p>
+          <p className="small text-[#C8C9CC] mt-2 max-w-lg">Bring a topic from any unit. Sessions are over Zoom.</p>
         </div>
         <BookSessionLink className="btn btn-lg bg-white text-[var(--color-brand-700)] hover:bg-white/90 shrink-0 w-full sm:w-auto">
           Book a session →
