@@ -1494,6 +1494,13 @@ body {
   z-index: 1;
 }
 
+/* Book a session: one unified fade on scroll — no slide/pop motion. */
+#book-session .booking-section-reveal.reveal-await-fade,
+#book-session .booking-section-reveal.reveal-animate-fade {
+  transform: none !important;
+  filter: none !important;
+}
+
 /* Subtle dot grid integrated into hero backgrounds; opacity tuned so it
    reads as paper texture, not noise. */
 .dot-grid {
@@ -1554,6 +1561,7 @@ body {
 .reveal-await-fade,
 .reveal-stagger.reveal-await-fade > * {
   opacity: 0;
+  transform: none;
 }
 .reveal-await-left,
 .reveal-stagger.reveal-await-left > * {
@@ -1615,9 +1623,11 @@ body {
 @keyframes reveal-fade {
   from {
     opacity: 0;
+    transform: none;
   }
   to {
     opacity: 1;
+    transform: none;
   }
 }
 @keyframes reveal-left {
@@ -1707,6 +1717,7 @@ body {
 }
 .reveal-animate-fade {
   animation: reveal-fade var(--reveal-duration-fast) var(--ease-reveal) forwards;
+  transform: none;
 }
 .reveal-animate-left {
   animation: reveal-left var(--reveal-duration) var(--ease-reveal) forwards;

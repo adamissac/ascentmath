@@ -1,5 +1,4 @@
 import Image from "next/image";
-import Reveal from "./Reveal";
 import {
   ADAM_PHONE_DISPLAY,
   ADAM_PHONE_TEL,
@@ -26,20 +25,18 @@ const STEPS = [
 export default function BookingTrustPanel() {
   return (
     <div className="flex flex-col gap-8">
-      <Reveal variant="fade">
-        <div className="flex items-center gap-4">
-          <div className="flex -space-x-3">
-            <TutorAvatar src="/adampic.jpg" alt="Adam Issac" objectPosition="50% 22%" />
-            <TutorAvatar src="/alanpic.jpg" alt="Alan Mozhoor" objectPosition="50% 20%" />
-          </div>
-          <div className="min-w-0">
-            <p className="font-display text-base font-bold text-[var(--color-ink-cool)]">Adam &amp; Alan</p>
-            <p className="small text-[var(--color-ink-muted)]">Georgia Tech-educated math tutors</p>
-          </div>
+      <div className="flex items-center gap-4">
+        <div className="flex -space-x-3">
+          <TutorAvatar src="/adampic.jpg" alt="Adam Issac" objectPosition="50% 22%" />
+          <TutorAvatar src="/alanpic.jpg" alt="Alan Mozhoor" objectPosition="50% 20%" />
         </div>
-      </Reveal>
+        <div className="min-w-0">
+          <p className="font-display text-base font-bold text-[var(--color-ink-cool)]">Adam &amp; Alan</p>
+          <p className="small text-[var(--color-ink-muted)]">Georgia Tech-educated math tutors</p>
+        </div>
+      </div>
 
-      <Reveal variant="fade" delay={40}>
+      <div>
         <p className="caption font-semibold uppercase tracking-[0.14em] text-[var(--color-brand-600)]">
           What happens after you submit
         </p>
@@ -58,35 +55,31 @@ export default function BookingTrustPanel() {
             </li>
           ))}
         </ol>
-      </Reveal>
+      </div>
 
-      <Reveal variant="fade" delay={70}>
-        <div className="flex flex-wrap gap-2">
-          <span className="pill pill-brand">First session free</span>
-          <span className="pill">Reply within 1-2 days</span>
-        </div>
-      </Reveal>
+      <div className="flex flex-wrap gap-2">
+        <span className="pill pill-brand">First session free</span>
+        <span className="pill">Reply within 1-2 days</span>
+      </div>
 
-      <Reveal variant="fade" delay={100}>
-        <div className="border-t border-[var(--color-border)] pt-6">
-          <p className="small font-semibold text-[var(--color-ink)]">Prefer to talk first?</p>
-          <div className="mt-2.5 flex flex-col gap-1.5">
-            <a
-              href={`tel:${ADAM_PHONE_TEL}`}
-              className="w-fit text-[0.9375rem] font-semibold text-[var(--color-brand-600)] no-underline hover:underline"
-            >
-              Adam &middot; {ADAM_PHONE_DISPLAY}
-            </a>
-            <a
-              href={`tel:${ALAN_PHONE_TEL}`}
-              className="w-fit text-[0.9375rem] font-semibold text-[var(--color-brand-600)] no-underline hover:underline"
-            >
-              Alan &middot; {ALAN_PHONE_DISPLAY}
-            </a>
-          </div>
-          <p className="caption mt-2.5 text-[var(--color-ink-soft)]">{TUTOR_EMAILS_DISPLAY}</p>
+      <div className="border-t border-[var(--color-border)] pt-6">
+        <p className="small font-semibold text-[var(--color-ink)]">Prefer to talk first?</p>
+        <div className="mt-2.5 flex flex-col gap-1.5">
+          <a
+            href={`tel:${ADAM_PHONE_TEL}`}
+            className="w-fit text-[0.9375rem] font-semibold text-[var(--color-brand-600)] no-underline hover:underline"
+          >
+            Adam &middot; {ADAM_PHONE_DISPLAY}
+          </a>
+          <a
+            href={`tel:${ALAN_PHONE_TEL}`}
+            className="w-fit text-[0.9375rem] font-semibold text-[var(--color-brand-600)] no-underline hover:underline"
+          >
+            Alan &middot; {ALAN_PHONE_DISPLAY}
+          </a>
         </div>
-      </Reveal>
+        <p className="caption mt-2.5 text-[var(--color-ink-soft)]">{TUTOR_EMAILS_DISPLAY}</p>
+      </div>
     </div>
   );
 }
