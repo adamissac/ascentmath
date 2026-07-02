@@ -14,8 +14,6 @@ import {
 
 type Variant = "brand" | "light";
 
-const TIER_STRIPE = "bg-[var(--color-brand-300)]";
-
 export function SubjectLevelCards({ variant = "brand" }: { variant?: Variant }) {
   const isBrand = variant === "brand";
 
@@ -48,8 +46,6 @@ function SubjectLevelCard({ tier, isBrand }: { tier: TutoringTier; isBrand: bool
   if (isBrand) {
     return (
       <article className={cardClass}>
-        <span aria-hidden className={`absolute left-0 top-0 h-full w-1 ${TIER_STRIPE}`} />
-
         <div className="flex items-start justify-between gap-3">
           <div>
             <p className="text-[0.6875rem] font-semibold uppercase tracking-[0.14em] text-white/50">
