@@ -2346,14 +2346,20 @@ body {
   border: 1px solid var(--color-border);
   border-radius: var(--radius-lg);
   transition:
-    border-color 0.4s var(--ease-smooth),
-    transform 0.4s var(--ease-smooth),
-    box-shadow 0.4s var(--ease-smooth);
+    border-color 0.35s var(--ease-smooth),
+    background-color 0.35s var(--ease-smooth),
+    box-shadow 0.35s var(--ease-smooth);
 }
 .step-card:hover {
-  border-color: var(--color-brand-200);
-  transform: translateY(-3px);
-  box-shadow: var(--shadow-card);
+  border-color: var(--color-brand-300);
+  background: var(--color-brand-50);
+  box-shadow:
+    0 0 0 1px color-mix(in srgb, var(--color-brand-200) 55%, transparent),
+    0 8px 24px color-mix(in srgb, var(--color-brand-300) 18%, transparent);
+}
+.step-card:hover .step-card__num {
+  background: var(--color-brand-100);
+  color: var(--color-brand-800);
 }
 .step-card__num {
   display: inline-flex;
@@ -2368,6 +2374,9 @@ body {
   font-weight: 700;
   font-size: 0.875rem;
   font-variant-numeric: tabular-nums;
+  transition:
+    background-color 0.35s var(--ease-smooth),
+    color 0.35s var(--ease-smooth);
 }
 
 /* Floating accent label used on the hero product preview */
