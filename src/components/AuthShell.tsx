@@ -5,6 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import MathBackdrop from "./MathBackdrop";
 import { SITE_BRAND_NAME } from "../data/site-team";
+import { SITE_LOGO_PATH } from "../lib/site-brand";
 
 /**
  * Shared chrome for /login, /signup, /forgot-password.
@@ -52,12 +53,13 @@ export default function AuthShell({
           >
             <span className="nav-logo-wrap w-9 h-9">
               <Image
-                src="/newLogo.png"
+                src={SITE_LOGO_PATH}
                 alt=""
                 width={36}
                 height={36}
                 sizes="36px"
                 className="h-full w-full object-contain"
+                unoptimized
               />
             </span>
             <span className="font-display font-bold text-[1.05rem] text-[var(--color-ink)] group-hover:text-[var(--color-brand-600)] transition-colors">

@@ -10,7 +10,7 @@ from PIL import Image
 
 ROOT = Path(__file__).resolve().parents[1]
 SRC = ROOT / "public" / "logo-source2.png"
-OUT_LOGO = ROOT / "public" / "newLogo.png"
+OUT_LOGO = ROOT / "public" / "ascent-logo.png"
 OG_IMAGE = ROOT / "public" / "og-image.png"
 SITE_BG = (251, 250, 247, 255)
 TRANSPARENT = (0, 0, 0, 0)
@@ -88,7 +88,7 @@ def clean_logo(src: Image.Image) -> Image.Image:
                 maxy = max(maxy, y)
 
     if maxx < minx or maxy < miny:
-        raise RuntimeError("Could not detect logo bounds in logo-source.png")
+        raise RuntimeError("Could not detect logo bounds in logo-source2.png")
 
     cropped = src.crop((minx, miny, maxx + 1, maxy + 1))
     cw, ch = cropped.size

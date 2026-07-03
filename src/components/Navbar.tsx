@@ -9,6 +9,7 @@ import HashLink from "./HashLink";
 import { BOOK_SESSION_HREF, STUDY_PATHS_HREF } from "../lib/site-paths";
 import { scrollToPageTop } from "../lib/scroll-to-hash";
 import { SITE_BRAND_NAME, SITE_BRAND_WORDS } from "../data/site-team";
+import { SITE_LOGO_PATH } from "../lib/site-brand";
 
 const NAV_LINKS = [
   { href: "/#what-we-teach", label: "Tutoring", sectionId: "what-we-teach" },
@@ -153,13 +154,14 @@ export default function Navbar() {
           >
             <span className="nav-logo-wrap">
               <Image
-                src="/newLogo.png"
+                src={SITE_LOGO_PATH}
                 alt=""
                 width={40}
                 height={40}
                 sizes="40px"
                 className="h-full w-full object-contain"
                 priority
+                unoptimized
               />
             </span>
             <span className="truncate hidden min-[400px]:inline">

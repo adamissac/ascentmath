@@ -51,6 +51,7 @@ const nextConfig: NextConfig = {
     }));
 
     return [
+      { source: "/newLogo.png", destination: "/ascent-logo.png", permanent: true },
       { source: "/book", destination: "/#book-session", permanent: true },
       { source: "/about", destination: "/", permanent: true },
       { source: "/login", destination: "/signup", permanent: false },
