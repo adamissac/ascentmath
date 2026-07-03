@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Regenerate logo, og-image, and favicon assets from scripts/assets/logo-source.png."""
+"""Regenerate logo, og-image, and favicon assets from public/logo-source.png."""
 
 from __future__ import annotations
 
@@ -9,7 +9,7 @@ from pathlib import Path
 from PIL import Image
 
 ROOT = Path(__file__).resolve().parents[1]
-SRC = ROOT / "scripts" / "assets" / "logo-source.png"
+SRC = ROOT / "public" / "logo-source.png"
 OUT_LOGO = ROOT / "public" / "newLogo.png"
 OG_IMAGE = ROOT / "public" / "og-image.png"
 SITE_BG = (251, 250, 247, 255)
