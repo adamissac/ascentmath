@@ -156,9 +156,9 @@ export default function Navbar() {
               <Image
                 src={SITE_LOGO_PATH}
                 alt=""
-                width={40}
-                height={40}
-                sizes="40px"
+                width={32}
+                height={32}
+                sizes="32px"
                 className="h-full w-full object-contain"
                 priority
                 unoptimized

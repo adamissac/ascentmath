@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { TUTOR_NAMES_SHORT } from "../data/site-team";
-import { SITE_BRAND_NAME, SITE_BRAND_TAGLINE } from "./site-brand";
+import { SITE_BRAND_NAME, SITE_BRAND_TAGLINE, SITE_ICON_VERSION } from "./site-brand";
 import { SEO_HOME_DESCRIPTION, SEO_KEYWORDS } from "./seo";
 import { absoluteUrl, SITE_URL } from "./site-url";
 
@@ -61,12 +61,12 @@ export const ROOT_METADATA: Metadata = {
   metadataBase: new URL(SITE_URL),
   icons: {
     icon: [
-      { url: "/favicon-32.png", type: "image/png", sizes: "32x32" },
-      { url: "/favicon.ico", sizes: "any" },
-      { url: "/icon.png", type: "image/png", sizes: "512x512" },
+      { url: `/favicon-32.png?v=${SITE_ICON_VERSION}`, type: "image/png", sizes: "32x32" },
+      { url: `/favicon.ico?v=${SITE_ICON_VERSION}`, sizes: "any" },
+      { url: `/icon.png?v=${SITE_ICON_VERSION}`, type: "image/png", sizes: "512x512" },
     ],
-    apple: [{ url: "/apple-icon.png", sizes: "180x180", type: "image/png" }],
-    shortcut: "/favicon.ico",
+    apple: [{ url: `/apple-icon.png?v=${SITE_ICON_VERSION}`, sizes: "180x180", type: "image/png" }],
+    shortcut: `/favicon.ico?v=${SITE_ICON_VERSION}`,
   },
   manifest: "/site.webmanifest",
   title: {

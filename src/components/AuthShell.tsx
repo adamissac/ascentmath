@@ -51,13 +51,13 @@ export default function AuthShell({
             className="inline-flex items-center gap-2.5 mb-8 group"
             aria-label={`${SITE_BRAND_NAME} - home`}
           >
-            <span className="nav-logo-wrap w-9 h-9">
+            <span className="nav-logo-wrap w-8 h-8">
               <Image
                 src={SITE_LOGO_PATH}
                 alt=""
-                width={36}
-                height={36}
-                sizes="36px"
+                width={32}
+                height={32}
+                sizes="32px"
                 className="h-full w-full object-contain"
                 unoptimized
               />
