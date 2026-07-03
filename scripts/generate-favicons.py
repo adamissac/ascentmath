@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Regenerate logo, og-image, and favicon assets from public/logo-source.png."""
+"""Regenerate logo, og-image, and favicon assets from public/logo-source2.png."""
 
 from __future__ import annotations
 
@@ -9,7 +9,7 @@ from pathlib import Path
 from PIL import Image
 
 ROOT = Path(__file__).resolve().parents[1]
-SRC = ROOT / "public" / "logo-source.png"
+SRC = ROOT / "public" / "logo-source2.png"
 OUT_LOGO = ROOT / "public" / "newLogo.png"
 OG_IMAGE = ROOT / "public" / "og-image.png"
 SITE_BG = (251, 250, 247, 255)
@@ -152,7 +152,7 @@ def main() -> None:
 
     compose_og_image(logo).save(OG_IMAGE, format="PNG", optimize=True)
     write_icons(logo)
-    print("Logo, og-image (1200x630), and favicon assets regenerated from logo-source.png.")
+    print("Logo, og-image (1200x630), and favicon assets regenerated from logo-source2.png.")
 
 
 if __name__ == "__main__":
