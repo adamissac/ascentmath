@@ -11,6 +11,7 @@
     "start": "next start",
     "lint": "eslint",
     "audit:validate": "npx tsx scripts/audit/validate-content.ts",
+    "logo:generate": "python3 scripts/generate-favicons.py",
     "auth:setup": "node scripts/setup-firebase.mjs",
     "auth:production": "node scripts/setup-auth-production.mjs",
     "book:setup": "node scripts/setup-booking.mjs",
