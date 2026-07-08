@@ -76,6 +76,27 @@ export default function HomeStudyPathsSection() {
               />
             );
           })}
+
+          <div
+            className="flex items-center gap-3.5 rounded-xl border border-dashed border-white/22 bg-white/[0.04] px-4 py-3.5 sm:gap-4 sm:px-5 sm:py-4"
+            role="status"
+            aria-label="More study paths coming soon"
+          >
+            <span
+              aria-hidden
+              className="grid size-10 shrink-0 place-items-center rounded-lg border border-dashed border-white/25 bg-white/5 font-display text-lg font-bold text-white/45 sm:size-11"
+            >
+              +
+            </span>
+            <div className="min-w-0 flex-1">
+              <p className="font-display text-base font-semibold text-white/85 sm:text-lg">
+                More study paths coming soon
+              </p>
+              <p className="mt-0.5 text-sm leading-snug text-white/55">
+                We&apos;re building more free paths. New grades and subjects on the way.
+              </p>
+            </div>
+          </div>
         </Reveal>
       </div>
     </ColorBand>
