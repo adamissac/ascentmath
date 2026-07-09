@@ -155,7 +155,7 @@ export default function Navbar() {
             <span className="nav-logo-wrap">
               <Image
                 src={SITE_LOGO_PATH}
-                alt=""
+                alt="Ascent Math"
                 width={32}
                 height={32}
                 sizes="32px"
