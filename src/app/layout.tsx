@@ -5,6 +5,7 @@ import AuthProvider from "../components/AuthProvider";
 import HashScrollHandler from "../components/HashScrollHandler";
 import SiteHeader from "../components/SiteHeader";
 import ConditionalFooter from "../components/ConditionalFooter";
+import SiteJsonLd from "../components/SiteJsonLd";
 import { ROOT_METADATA } from "../lib/metadata";
 import "./globals.css";
 
@@ -38,6 +39,7 @@ export default function RootLayout({
       <body className="min-h-screen flex flex-col antialiased" suppressHydrationWarning>
         <a href="#main" className="skip-link">Skip to main content</a>
         <AuthProvider>
+          <SiteJsonLd />
           <HashScrollHandler />
           <SiteHeader />
           <div className="flex flex-1 flex-col pt-[var(--site-header-offset,4.25rem)]">
