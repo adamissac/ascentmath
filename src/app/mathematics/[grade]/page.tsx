@@ -62,6 +62,11 @@ export default async function GradeLibrary({ params }: { params: Promise<Params>
             name: `${g.title} Mathematics Study Path`,
             description: `Free ${g.title} self-paced math: ${units.length} units, ${totalTopics} topics.`,
             path: `/mathematics/${g.slug}`,
+            educationalLevel: g.title,
+            hasPart: units.map((u) => ({
+              name: `Unit ${u.number}: ${u.title}`,
+              path: `/mathematics/${g.slug}/${u.slug}`,
+            })),
           }),
         ]}
       />

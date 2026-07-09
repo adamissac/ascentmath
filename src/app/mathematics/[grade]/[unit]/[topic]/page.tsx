@@ -11,7 +11,7 @@ import JsonLdScript from "../../../../../components/JsonLdScript";
 import { GRADES, getTopic } from "../../../../../data/units";
 import { MATHEMATICS_HREF } from "../../../../../lib/site-paths";
 import { buildPageMetadata } from "../../../../../lib/metadata";
-import { buildBreadcrumbJsonLd, buildCourseJsonLd } from "../../../../../lib/json-ld";
+import { buildBreadcrumbJsonLd, buildLearningResourceJsonLd } from "../../../../../lib/json-ld";
 
 type Params = { grade: string; unit: string; topic: string };
 
@@ -59,10 +59,13 @@ export default async function TopicPage({ params }: { params: Promise<Params> })
       <JsonLdScript
         data={[
           buildBreadcrumbJsonLd(breadcrumbs),
-          buildCourseJsonLd({
+          buildLearningResourceJsonLd({
             name: `${t.title} · ${g.title} Unit ${u.number}`,
             description: t.summary,
             path: topicPath,
+            educationalLevel: g.title,
+            timeRequiredMinutes: t.estimatedMinutes,
+            learningResourceType: ["lesson", "practice", "quiz"],
           }),
         ]}
       />

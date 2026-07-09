@@ -13,7 +13,7 @@ import JsonLdScript from "../../../../components/JsonLdScript";
 import { GRADES, getGrade, getUnit, getUnitIndex } from "../../../../data/units";
 import { MATHEMATICS_HREF } from "../../../../lib/site-paths";
 import { buildPageMetadata } from "../../../../lib/metadata";
-import { buildBreadcrumbJsonLd, buildCourseJsonLd } from "../../../../lib/json-ld";
+import { buildBreadcrumbJsonLd, buildLearningResourceJsonLd } from "../../../../lib/json-ld";
 
 type Params = { grade: string; unit: string };
 
@@ -62,10 +62,13 @@ export default async function UnitPage({ params }: { params: Promise<Params> }) 
       <JsonLdScript
         data={[
           buildBreadcrumbJsonLd(breadcrumbs),
-          buildCourseJsonLd({
+          buildLearningResourceJsonLd({
             name: `${g.title} Unit ${u.number}: ${u.title}`,
             description: u.description,
             path: unitPath,
+            educationalLevel: g.title,
+            timeRequiredMinutes: u.estimatedMinutes,
+            learningResourceType: ["lesson", "practice", "quiz"],
           }),
         ]}
       />
