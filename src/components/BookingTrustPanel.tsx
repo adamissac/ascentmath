@@ -32,7 +32,7 @@ export default function BookingTrustPanel() {
         </div>
         <div className="min-w-0">
           <p className="font-display text-base font-bold text-[var(--color-ink-cool)]">Adam &amp; Alan</p>
-          <p className="small text-[var(--color-ink-muted)]">Georgia Tech-educated math tutors</p>
+          <p className="small text-[var(--color-ink-muted)]">Math + CS students at Georgia Tech</p>
         </div>
       </div>
 

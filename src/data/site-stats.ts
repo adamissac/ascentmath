@@ -1,6 +1,6 @@
 /** Homepage hero stats — update counts here instead of JSX literals. */
 export const HERO_STATS = {
-  studentsTutored: "30+",
-  yearsTutoring: "2+",
+  studentsTutored: "Many",
+  yearsTutoring: "Multiple",
   tutoringTiers: "4",
 } as const;
