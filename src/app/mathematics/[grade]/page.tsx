@@ -29,8 +29,8 @@ export async function generateMetadata({
   const unitCount = g.units.length;
   const topicCount = g.units.reduce((n, u) => n + u.topics.length, 0);
   return buildPageMetadata({
-    title: `${g.title} Mathematics`,
-    description: `Free ${g.title} self-paced math study path: ${unitCount} units, ${topicCount} topics with walkthroughs, videos, practice, and quizzes.`,
+    title: `Free ${g.title} Math Lessons, Practice & Quizzes (${unitCount} Units)`,
+    description: `Free ${g.title} self-paced math: ${unitCount} units, ${topicCount} topics with lessons, videos, practice, and quizzes. No account needed.`,
     path: `/mathematics/${grade}`,
   });
 }
@@ -62,6 +62,7 @@ export default async function GradeLibrary({ params }: { params: Promise<Params>
             name: `${g.title} Mathematics Study Path`,
             description: `Free ${g.title} self-paced math: ${units.length} units, ${totalTopics} topics.`,
             path: `/mathematics/${g.slug}`,
+            educationalLevel: g.title,
           }),
         ]}
       />

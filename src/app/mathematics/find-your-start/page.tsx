@@ -9,9 +9,9 @@ import { buildPageMetadata } from "../../../lib/metadata";
 import StudyPathsLink from "../../../components/StudyPathsLink";
 
 export const metadata: Metadata = buildPageMetadata({
-  title: "Find your start",
+  title: "Find Your Starting Point — Free Middle School Math Placement",
   description:
-    "Answer three quick questions to find the right grade, unit, and topic in the free Grades 6-8 study paths.",
+    "Answer three quick questions to find the right grade, unit, and topic in the free Grades 6-8 study paths. No account needed.",
   path: "/mathematics/find-your-start",
 });
 

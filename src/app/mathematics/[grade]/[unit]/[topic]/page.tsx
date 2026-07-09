@@ -11,7 +11,7 @@ import JsonLdScript from "../../../../../components/JsonLdScript";
 import { GRADES, getTopic } from "../../../../../data/units";
 import { MATHEMATICS_HREF } from "../../../../../lib/site-paths";
 import { buildPageMetadata } from "../../../../../lib/metadata";
-import { buildBreadcrumbJsonLd, buildCourseJsonLd } from "../../../../../lib/json-ld";
+import { buildBreadcrumbJsonLd, buildLearningResourceJsonLd } from "../../../../../lib/json-ld";
 
 type Params = { grade: string; unit: string; topic: string };
 
@@ -29,9 +29,13 @@ export async function generateMetadata({
   const { grade, unit, topic } = await params;
   const found = getTopic(grade, unit, topic);
   if (!found) return { title: "Topic not found" };
+  const gradeNum = found.grade.title.replace(/^Grade\s+/i, "");
   return buildPageMetadata({
-    title: `${found.topic.title} · ${found.grade.title} Unit ${found.unit.number}`,
-    description: found.topic.summary,
+    title: `${found.topic.title} — Grade ${gradeNum} Math Lesson, Video & Practice`,
+    description:
+      found.topic.summary.length > 155
+        ? `${found.topic.summary.slice(0, 152).trim()}…`
+        : `${found.topic.summary} Free lesson, video, practice, and quiz — no account needed.`,
     path: `/mathematics/${grade}/${unit}/${topic}`,
   });
 }
@@ -59,10 +63,12 @@ export default async function TopicPage({ params }: { params: Promise<Params> })
       <JsonLdScript
         data={[
           buildBreadcrumbJsonLd(breadcrumbs),
-          buildCourseJsonLd({
-            name: `${t.title} · ${g.title} Unit ${u.number}`,
+          buildLearningResourceJsonLd({
+            name: t.title,
             description: t.summary,
             path: topicPath,
+            educationalLevel: g.title,
+            timeRequiredMinutes: t.estimatedMinutes,
           }),
         ]}
       />
