@@ -1,12 +1,10 @@
 /** Canonical production origin — always use www. */
 export const SITE_URL = "https://www.joinascentmath.com";
 
-/** Allowed origins for CORS (apex + www, plus legacy domain during transition). */
+/** Allowed origins for CORS (apex + www). */
 export const ALLOWED_ORIGINS = [
   SITE_URL,
   "https://joinascentmath.com",
-  "https://www.adamsalphabet.com",
-  "https://adamsalphabet.com",
 ] as const;
 
 export function absoluteUrl(path: string): string {
