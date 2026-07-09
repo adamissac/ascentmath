@@ -93,7 +93,14 @@ export default function TurnstileWidget({
     };
   }, [siteKey, onVerify, handleExpire]);
 
-  return <div ref={containerRef} className="min-h-[65px]" aria-label="Security verification" />;
+  return (
+    <div
+      ref={containerRef}
+      className="min-h-[65px]"
+      role="group"
+      aria-label="Security verification"
+    />
+  );
 }
 
 export function resetTurnstileWidget(widgetId: string | null) {

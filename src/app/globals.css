@@ -29,7 +29,8 @@
   --color-accent-100: #FFDEC0;
   --color-accent-300: #FFB670;
   --color-accent-500: #F47B16;
-  --color-accent-700: #C75E0A;
+  /* Darker to meet WCAG AA for small badges (e.g. "Free"). */
+  --color-accent-700: #9A3F00;
 
   /* Surfaces & ink */
   --color-bg:        #FBFAF7;
@@ -40,7 +41,8 @@
 
   --color-ink:       #1B1D21;
   --color-ink-muted: #5B6068;
-  --color-ink-soft:  #8A8F98;
+  /* Slightly darker to meet WCAG AA contrast on light backgrounds. */
+  --color-ink-soft:  #6B7078;
 
   /* Cool ink — violet-tinted ramp for hero-style light surfaces */
   --color-ink-cool:       #1A1A2E;

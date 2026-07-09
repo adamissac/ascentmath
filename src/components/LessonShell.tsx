@@ -143,7 +143,7 @@ export default function LessonShell({
           </div>
         </aside>
 
-        <main className="lesson-main">
+        <div className="lesson-main">
           <div className="lesson-main__inner">
             <div className="lesson-sidebar-toggle">
               <button
@@ -214,7 +214,7 @@ export default function LessonShell({
               </Link>
             </div>
           )}
-        </main>
+        </div>
       </div>
     </div>
   );
