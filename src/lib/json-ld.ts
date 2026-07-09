@@ -25,11 +25,13 @@ export function buildCourseJsonLd({
   description,
   path,
   isAccessibleForFree = true,
+  educationalLevel,
 }: {
   name: string;
   description: string;
   path: string;
   isAccessibleForFree?: boolean;
+  educationalLevel?: string;
 }) {
   return {
     "@context": "https://schema.org",
@@ -43,7 +45,46 @@ export function buildCourseJsonLd({
       url: absoluteUrl("/"),
     },
     isAccessibleForFree,
-    educationalLevel: name,
+    educationalLevel: educationalLevel ?? name,
     inLanguage: "en-US",
+    hasCourseInstance: {
+      "@type": "CourseInstance",
+      courseMode: "online",
+      courseWorkload: "PT1H",
+    },
+  };
+}
+
+export function buildLearningResourceJsonLd({
+  name,
+  description,
+  path,
+  educationalLevel,
+  timeRequiredMinutes,
+}: {
+  name: string;
+  description: string;
+  path: string;
+  educationalLevel: string;
+  timeRequiredMinutes?: number;
+}) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "LearningResource",
+    name,
+    description,
+    url: absoluteUrl(path),
+    isAccessibleForFree: true,
+    educationalLevel,
+    learningResourceType: ["lesson", "practice", "quiz"],
+    inLanguage: "en-US",
+    provider: {
+      "@type": "EducationalOrganization",
+      name: SITE_BRAND_NAME,
+      url: absoluteUrl("/"),
+    },
+    ...(timeRequiredMinutes
+      ? { timeRequired: `PT${Math.max(1, Math.round(timeRequiredMinutes))}M` }
+      : {}),
   };
 }

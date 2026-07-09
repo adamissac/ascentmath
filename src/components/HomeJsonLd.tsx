@@ -1,4 +1,3 @@
-import { SITE_POSITIONING } from "../data/site-copy";
 import {
   ADAM_EMAIL,
   ALAN_EMAIL,
@@ -6,17 +5,15 @@ import {
   ALAN_PHONE_TEL,
   TUTOR_NAMES,
 } from "../data/site-team";
-import { SITE_BRAND_NAME } from "../lib/site-brand";
 import { absoluteUrl } from "../lib/site-url";
-import { SEO_HOME_DESCRIPTION, tutorPhotoUrl } from "../lib/seo";
+import { tutorPhotoUrl } from "../lib/seo";
+
+const ORG_ID = `${absoluteUrl("/")}#organization`;
 
 const GEORGIA_TECH = {
   "@type": "CollegeOrUniversity",
   name: "Georgia Institute of Technology",
 } as const;
-
-const SITE_ID = `${absoluteUrl("/")}#website`;
-const ORG_ID = `${absoluteUrl("/")}#organization`;
 
 function tutorPerson({
   name,
@@ -52,77 +49,29 @@ function tutorPerson({
   };
 }
 
+/** Homepage-only structured data (site-wide Org/WebSite live in SiteJsonLd). */
 export default function HomeJsonLd() {
-  const organization = {
+  const tutoringService = {
     "@context": "https://schema.org",
-    "@type": "EducationalOrganization",
-    "@id": ORG_ID,
-    name: SITE_BRAND_NAME,
-    alternateName: ["Ascent Math tutoring", "joinascentmath.com"],
-    url: absoluteUrl("/"),
-    description: SEO_HOME_DESCRIPTION,
-    telephone: [ADAM_PHONE_TEL, ALAN_PHONE_TEL],
-    email: [ADAM_EMAIL, ALAN_EMAIL],
-    founder: [
-      tutorPerson({
-        name: "Adam Issac",
-        email: ADAM_EMAIL,
-        phone: ADAM_PHONE_TEL,
-        image: tutorPhotoUrl("adampic.jpg"),
-      }),
-      tutorPerson({
-        name: "Alan Mozhoor",
-        email: ALAN_EMAIL,
-        phone: ALAN_PHONE_TEL,
-        image: tutorPhotoUrl("alanpic.jpg"),
-      }),
+    "@type": "Service",
+    name: "Math tutoring",
+    serviceType: "Math tutoring",
+    provider: { "@id": ORG_ID },
+    description:
+      "Paid 1-on-1 online math tutoring over Zoom across four tiers: Elementary (K-5), Middle school (6-8), High school + SAT/ACT (9-12), and College / dual enrollment. First session free for new clients. Free Grades 6-8 study paths also available with no account.",
+    areaServed: [
+      { "@type": "State", name: "Georgia" },
+      { "@type": "Country", name: "United States" },
     ],
-    contactPoint: [
-      {
-        "@type": "ContactPoint",
-        telephone: ADAM_PHONE_TEL,
-        contactType: "customer service",
-        email: ADAM_EMAIL,
-      },
-      {
-        "@type": "ContactPoint",
-        telephone: ALAN_PHONE_TEL,
-        contactType: "customer service",
-        email: ALAN_EMAIL,
-      },
-    ],
-    areaServed: {
-      "@type": "City",
-      name: "Atlanta",
-      containedInPlace: { "@type": "State", name: "Georgia" },
+    audience: {
+      "@type": "EducationalAudience",
+      educationalRole: "student",
     },
-  };
-
-  const website = {
-    "@context": "https://schema.org",
-    "@type": "WebSite",
-    "@id": SITE_ID,
-    name: SITE_BRAND_NAME,
-    alternateName: ["joinascentmath.com"],
-    url: absoluteUrl("/"),
-    description: SITE_POSITIONING,
-    publisher: { "@id": ORG_ID },
-    inLanguage: "en-US",
-  };
-
-  const localBusiness = {
-    "@context": "https://schema.org",
-    "@type": "LocalBusiness",
-    name: SITE_BRAND_NAME,
-    url: absoluteUrl("/"),
-    telephone: [ADAM_PHONE_TEL, ALAN_PHONE_TEL],
-    description: SEO_HOME_DESCRIPTION,
-    areaServed: "Atlanta, GA and online",
-    priceRange: "$$",
-    founder: [
-      { "@type": "Person", name: "Adam Issac" },
-      { "@type": "Person", name: "Alan Mozhoor" },
-    ],
+    availableChannel: {
+      "@type": "ServiceChannel",
+      serviceUrl: absoluteUrl("/#book-session"),
+      serviceType: "online",
+    },
   };
 
   const tutors = {
@@ -157,15 +106,7 @@ export default function HomeJsonLd() {
     <>
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(website) }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(organization) }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusiness) }}
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(tutoringService) }}
       />
       <script
         type="application/ld+json"

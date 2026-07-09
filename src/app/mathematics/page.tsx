@@ -12,9 +12,9 @@ import { buildBreadcrumbJsonLd } from "../../lib/json-ld";
 import { buildPageMetadata } from "../../lib/metadata";
 
 export const metadata: Metadata = buildPageMetadata({
-  title: "Mathematics study paths",
+  title: "Free Grades 6-8 Math Study Paths — Lessons, Videos & Quizzes",
   description:
-    "Free, self-paced Grades 6-8 math study paths - pick a grade to see every unit, topic, video, and quiz.",
+    "Free self-paced Grades 6-8 math study paths with lessons, videos, practice, and quizzes. No account needed — open a grade and jump to what your class is on.",
   path: "/mathematics",
 });
 
