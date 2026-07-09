@@ -11,17 +11,12 @@ import {
   SubjectLevelCards,
 } from "../components/PricingOverview";
 import { TUTORING_TIERS_SUMMARY } from "../data/pricing";
-import { GRADES } from "../data/units";
-
-const ALL_UNITS = GRADES.flatMap((g) => g.units);
 
 export default function Home() {
-  const totalUnits = ALL_UNITS.length;
-
   return (
     <>
       <HomeJsonLd />
-      <HeroSection totalUnits={totalUnits} />
+      <HeroSection />
 
       <CredentialsSection />
 

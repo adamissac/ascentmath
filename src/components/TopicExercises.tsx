@@ -24,17 +24,19 @@ function answersMatch(student: string, expected: string) {
 }
 
 export default function TopicExercises({
-  title,
   exercises,
 }: {
-  title: string;
   exercises: PracticeExercise[];
 }) {
   return (
     <div className="lesson-exercise-list">
       {exercises.map((ex, index) => (
-        <ExerciseCard key={ex.id} exercise={ex} index={index} topicTitle={title} />
+        <ExerciseCard key={ex.id} exercise={ex} index={index} />
       ))}
+      <p className="lesson-exercise-list__footer">
+        Re-read the lesson section if you get stuck, then try again without peeking at the
+        solution.
+      </p>
     </div>
   );
 }
@@ -42,11 +44,9 @@ export default function TopicExercises({
 function ExerciseCard({
   exercise,
   index,
-  topicTitle,
 }: {
   exercise: PracticeExercise;
   index: number;
-  topicTitle: string;
 }) {
   const [work, setWork] = useState("");
   const [answer, setAnswer] = useState("");
@@ -192,11 +192,6 @@ function ExerciseCard({
           </p>
         )}
       </div>
-
-      <p className="lesson-workbench__footer">
-        Stuck on {topicTitle}? Re-read the lesson section above, then try this exercise again without
-        peeking.
-      </p>
     </article>
   );
 }

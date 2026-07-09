@@ -36,7 +36,7 @@ export default function TopicLessonContent({ topic: t }: Props) {
   return (
     <article className="lesson-body-card">
       <BodySection title="The lesson" id="learn">
-        <Walkthrough blocks={t.walkthrough} topicTitle={t.title} />
+        <Walkthrough blocks={t.walkthrough} />
       </BodySection>
 
       <BodySection title="Video walkthrough" id="watch">
@@ -70,7 +70,7 @@ export default function TopicLessonContent({ topic: t }: Props) {
         </p>
           <div className="lesson-practice-stack">
             {hasExercises && t.exercises && (
-              <TopicExercises title={t.title} exercises={t.exercises} />
+              <TopicExercises exercises={t.exercises} />
             )}
             {t.worksheet && <WorksheetCard {...t.worksheet} />}
             {t.practiceLinks && t.practiceLinks.length > 0 && (

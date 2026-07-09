@@ -43,13 +43,13 @@ export default function UnitDetailsPanel({ unit: u }: Props) {
         {hasObjectives && (
           <div>
             <h3 className="text-sm font-semibold text-[var(--color-ink)]">You should be able to</h3>
-            <ul className="mt-3 space-y-2">
+            <ul className="mt-3 list-none space-y-2">
               {(u.masteryOutcomes ?? u.objectives).map((o) => (
                 <li key={o} className="flex gap-2 text-sm leading-relaxed text-[var(--color-ink-muted)]">
-                  <span aria-hidden className="text-[var(--color-brand-500)]">
-                    ·
+                  <span aria-hidden className="shrink-0 text-[var(--color-brand-500)]">
+                    •
                   </span>
-                  {o}
+                  <span>{o}</span>
                 </li>
               ))}
             </ul>

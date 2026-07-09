@@ -16,11 +16,6 @@ function enrichTopic(topic: Topic): Topic {
     walkthrough,
     quiz: [...topic.quiz, ...extraQuiz],
     skillChecks: skillChecks.length ? skillChecks : undefined,
-    estimatedMinutes:
-      topic.estimatedMinutes +
-      Math.round(walkthrough.length * 1.5) +
-      Math.round((exercises?.length ?? 0) * 4) +
-      Math.round(extraQuiz.length * 1.5),
   };
 }
 

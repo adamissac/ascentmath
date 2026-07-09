@@ -14,21 +14,17 @@ function isCalloutOnlyBlock(block: WalkthroughBlock) {
 
 type Props = {
   blocks: WalkthroughBlock[];
-  topicTitle?: string;
 };
 
-export default function Walkthrough({ blocks, topicTitle }: Props) {
+export default function Walkthrough({ blocks }: Props) {
   const lessonBlocks = blocks.filter((b) => !isCalloutOnlyBlock(b));
 
   return (
     <div className="lesson-prose">
-      {topicTitle && (
-        <p className="lesson-prose__lede">
-          This lesson teaches <strong>{topicTitle}</strong>. Read each section in order, work
-          through every example on paper, then use the practice problems and quick check at the
-          bottom.
-        </p>
-      )}
+      <p className="lesson-prose__lede">
+        Read each section in order, work through every example on paper, then use the practice
+        problems and quick check at the bottom.
+      </p>
 
       {lessonBlocks.map((block, i) => (
         <LessonSection key={i} block={block} />

@@ -38,8 +38,8 @@ export const MATH_CREDENTIALS: readonly MathCredential[] = [
   { label: "SAT Math", value: "800", detail: "Perfect score" },
   { label: "Algebra EOC", value: "100%", detail: "End-of-Course exam" },
   { label: "AP Pre-Calculus", value: "5", detail: "AP exam" },
-  { label: "AP Calculus AB", value: "97%", detail: "Class grade · 5 on AP exam" },
-  { label: "AP Calculus BC", value: "97%", detail: "Class grade · 5 on AP exam" },
+  { label: "AP Calculus AB", value: "97%", detail: "Class grade, 5 on AP exam" },
+  { label: "AP Calculus BC", value: "97%", detail: "Class grade, 5 on AP exam" },
   {
     label: "GT Multivariable Calc & Linear Algebra",
     value: "98%+",
@@ -54,8 +54,8 @@ export const MATH_CREDENTIALS: readonly MathCredential[] = [
 
 export const ALAN_CREDENTIALS: readonly MathCredential[] = [
   { label: "ACT Math", value: "36", detail: "Perfect score" },
-  { label: "AP Calculus AB", value: "95%", detail: "Class grade · 5 on AP exam" },
-  { label: "AP Calculus BC", value: "95%", detail: "Class grade · 5 on AP exam" },
+  { label: "AP Calculus AB", value: "95%", detail: "Class grade, 5 on AP exam" },
+  { label: "AP Calculus BC", value: "95%", detail: "Class grade, 5 on AP exam" },
   { label: "AP Statistics", value: "97%", detail: "Class grade" },
   {
     label: "GT Linear Algebra & Multivariable Calc",

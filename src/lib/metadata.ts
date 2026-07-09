@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { TUTOR_NAMES_SHORT } from "../data/site-team";
 import { SITE_BRAND_NAME, SITE_BRAND_TAGLINE, SITE_ICON_VERSION } from "./site-brand";
-import { SEO_HOME_DESCRIPTION, SEO_KEYWORDS } from "./seo";
+import { SEO_HOME_DESCRIPTION } from "./seo";
 import { absoluteUrl, SITE_URL } from "./site-url";
 
 const DEFAULT_OG_IMAGE = absoluteUrl("/og-image.png");
@@ -77,7 +77,6 @@ export const ROOT_METADATA: Metadata = {
   authors: [{ name: "Adam Issac" }, { name: "Alan Mozhoor" }],
   creator: SITE_BRAND_NAME,
   publisher: SITE_BRAND_NAME,
-  keywords: [...SEO_KEYWORDS],
   alternates: { canonical: absoluteUrl("/") },
   openGraph: {
     title: `${SITE_BRAND_NAME} - ${SITE_BRAND_TAGLINE} · ${TUTOR_NAMES_SHORT}`,

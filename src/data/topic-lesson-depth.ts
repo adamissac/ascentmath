@@ -1,13 +1,9 @@
 import type { Topic, WalkthroughBlock } from "./units";
 
 const DEPTH_BY_KEYWORD: Record<string, string[]> = {
-  factor: [
+  "factors-and-multiples": [
     "A quick way to test factors: divide the number by each candidate. If the quotient is a whole number with no remainder, you found a factor.",
     "Every whole number has at least two factors: 1 and itself. Prime numbers have exactly those two, which is why primes are the building blocks for bigger numbers.",
-  ],
-  multiple: [
-    "Multiples never end. You can always keep skip-counting. The first multiple of any number (except 0) is the number itself.",
-    "When a word problem asks when two events happen together again, you are usually looking for a common multiple, often the least common multiple (LCM).",
   ],
   gcf: [
     "GCF is useful when you need the largest equal-sized groups you can make from two quantities. Example: 18 pencils and 24 erasers shared into identical kits with nothing left over. The kit size is the GCF.",
@@ -47,32 +43,89 @@ const DEPTH_BY_KEYWORD: Record<string, string[]> = {
   ],
 };
 
-function keywordExpansions(heading: string, body: string): string[] {
-  const text = `${heading} ${body}`.toLowerCase();
-  const out: string[] = [];
-  for (const [key, paras] of Object.entries(DEPTH_BY_KEYWORD)) {
-    if (text.includes(key)) out.push(...paras);
-  }
-  return [...new Set(out)].slice(0, 2);
+function headingKeyword(heading: string): string | null {
+  const h = heading.toLowerCase();
+  if (/factors?\s+and\s+multiples/.test(h)) return "factors-and-multiples";
+  if (/\bgcf\b|greatest common factor/.test(h)) return "gcf";
+  if (/\blcm\b|least common multiple/.test(h)) return "lcm";
+  if (/fraction/.test(h)) return "fraction";
+  if (/ratio/.test(h)) return "ratio";
+  if (/equation/.test(h)) return "equation";
+  if (/percent/.test(h)) return "percent";
+  if (/expression/.test(h)) return "expression";
+  if (/area/.test(h)) return "area";
+  if (/volume/.test(h)) return "volume";
+  return null;
 }
 
-function enrichBlock(block: WalkthroughBlock, topic: Topic): WalkthroughBlock {
+function keywordExpansions(heading: string, usedKeys: Set<string>, usedParagraphs: Set<string>): string[] {
+  const key = headingKeyword(heading);
+  if (!key || usedKeys.has(key)) return [];
+
+  const paras = DEPTH_BY_KEYWORD[key] ?? [];
+  const fresh = paras.filter((p) => !usedParagraphs.has(p));
+  if (fresh.length === 0) return [];
+
+  usedKeys.add(key);
+  for (const p of fresh) usedParagraphs.add(p);
+  return fresh;
+}
+
+function enrichBlock(
+  block: WalkthroughBlock,
+  usedKeys: Set<string>,
+  usedParagraphs: Set<string>,
+): WalkthroughBlock {
   const paragraphs = [...(block.paragraphs ?? [])];
-  const extra = keywordExpansions(block.heading ?? topic.title, paragraphs.join(" "));
+  if (!block.heading) return block;
 
+  const extra = keywordExpansions(block.heading, usedKeys, usedParagraphs);
   for (const p of extra) {
-    if (!paragraphs.some((existing) => existing.includes(p.slice(0, 40)))) {
-      paragraphs.push(p);
-    }
-  }
-
-  if (block.heading && paragraphs.length < 3) {
-    paragraphs.push(
-      `When you study ${block.heading.toLowerCase()}, slow down and write one example in your notebook without looking at the screen. That active step is what turns reading into learning.`,
-    );
+    paragraphs.push(p);
   }
 
   return { ...block, paragraphs: paragraphs.length ? paragraphs : block.paragraphs };
+}
+
+function commonMistakes(topic: Topic): string[] {
+  const text = `${topic.title} ${topic.summary}`.toLowerCase();
+
+  if (text.includes("gcf") || text.includes("lcm") || text.includes("factor")) {
+    return [
+      "Picking GCF when the problem asks for LCM, or the other way around. Check whether you need the biggest shared factor or the next time both counts line up.",
+      "Assuming the LCM is always the product of the two numbers. That only works when the numbers share no factors besides 1.",
+      "Skipping 1 when you list factors. Every whole number has 1 as a factor.",
+    ];
+  }
+  if (text.includes("fraction")) {
+    return [
+      "Adding numerators and denominators separately (2/3 + 1/4 is not 3/7). Match denominators first, or use a clear model.",
+      "Forgetting to simplify the final answer when a smaller equivalent fraction is possible.",
+    ];
+  }
+  if (text.includes("ratio") || text.includes("rate")) {
+    return [
+      "Reversing the order named in the problem. Write the ratio in the same order the words give you.",
+      "Treating a part-to-part ratio like a part-to-whole fraction without checking what the whole is.",
+    ];
+  }
+  if (text.includes("equation") || text.includes("expression")) {
+    return [
+      "Doing different operations to each side of an equation. Whatever you add, subtract, multiply, or divide on one side, do to the other.",
+      "Combining unlike terms (like 3x and 4) as if they were the same kind of term.",
+    ];
+  }
+  if (text.includes("percent")) {
+    return [
+      "Moving the decimal the wrong direction when converting between percents and decimals.",
+      "Treating a percent increase and a percent of a number as the same operation.",
+    ];
+  }
+
+  return [
+    "Rushing to the answer without writing steps. Clear work helps you catch mistakes and shows your reasoning.",
+    "Re-reading the question too quickly. Underline what you are solving for before you start calculating.",
+  ];
 }
 
 function closingSections(topic: Topic): WalkthroughBlock[] {
@@ -82,23 +135,22 @@ function closingSections(topic: Topic): WalkthroughBlock[] {
     block.steps?.forEach((s) => ideas.push(s));
   }
 
+  const summary = topic.summary.trim().endsWith(".") ? topic.summary.trim() : `${topic.summary.trim()}.`;
+
   return [
     {
       heading: "Why this matters",
       paragraphs: [
-        `${topic.title} shows up constantly in ${topic.summary.charAt(0).toLowerCase()}${topic.summary.slice(1)} It also connects to what you will see on homework, quizzes, and the next unit in this grade.`,
-        "Teachers often move fast in class. This page is here so you can pause, re-read, and practice until the idea feels familiar, not just until you have memorized a rule for one day.",
+        summary,
+        "These ideas show up on homework, quizzes, and the next unit in this grade. Getting comfortable here saves time later when the problems stack more steps together.",
       ],
     },
     {
       heading: "Common mistakes to avoid",
-      paragraphs: [
-        "Rushing to the answer without writing steps. Middle-school math rewards clear work, and you catch errors earlier when steps are visible.",
-        "Mixing up similar ideas from the same topic. If two terms feel alike, make a two-column note: what is the same, what is different, and one example of each.",
-      ],
+      paragraphs: commonMistakes(topic),
       callout: {
         label: "Before you continue",
-        text: `Can you explain ${topic.title} to someone else in two sentences without looking? If not, re-read the worked examples above once more.`,
+        text: "Can you walk through one example out loud without looking? If not, redo a worked example once more before you move on.",
       },
     },
     {
@@ -110,7 +162,10 @@ function closingSections(topic: Topic): WalkthroughBlock[] {
 
 /** Expands every topic walkthrough with extra teaching depth (PyPath-style). */
 export function expandWalkthrough(topic: Topic): WalkthroughBlock[] {
-  const core = topic.walkthrough.map((b) => enrichBlock(b, topic));
+  const usedKeys = new Set<string>();
+  const usedParagraphs = new Set<string>();
+
+  const core = topic.walkthrough.map((b) => enrichBlock(b, usedKeys, usedParagraphs));
   const withTryPrompts: WalkthroughBlock[] = [];
 
   for (const block of core) {
@@ -119,7 +174,7 @@ export function expandWalkthrough(topic: Topic): WalkthroughBlock[] {
       withTryPrompts.push({
         callout: {
           label: "Try it yourself",
-          text: `Close the solution and try this on paper: ${block.example.problem} When you finish, compare your steps to the worked example line by line.`,
+          text: "Pick a similar problem with different numbers and work it on paper. When you finish, compare your steps to the worked example line by line.",
         },
       });
     }

@@ -7,10 +7,6 @@ import { HERO_STATS } from "../data/site-stats";
 import { FIRST_SESSION_FREE } from "../data/pricing";
 import { BOOK_SESSION_HREF, STUDY_PATHS_HREF } from "../lib/site-paths";
 
-type HeroSectionProps = {
-  totalUnits: number;
-};
-
 const STAGGER = [
   "hero-enter--d0",
   "hero-enter--d1",
@@ -19,7 +15,7 @@ const STAGGER = [
   "hero-enter--d4",
 ] as const;
 
-export default function HeroSection({ totalUnits }: HeroSectionProps) {
+export default function HeroSection() {
   const [ready, setReady] = useState(false);
 
   useEffect(() => {
@@ -126,12 +122,10 @@ export default function HeroSection({ totalUnits }: HeroSectionProps) {
           </p>
 
           <div
-            className={`${rise} ${STAGGER[4]} mt-10 grid w-full min-w-0 max-w-3xl grid-cols-2 gap-4 sm:grid-cols-4 sm:gap-0`}
+            className={`${rise} ${STAGGER[4]} mt-10 grid w-full min-w-0 max-w-xl grid-cols-2 gap-4 sm:gap-8`}
           >
             <HeroStat value={HERO_STATS.studentsTutored} label="Students tutored" animate={ready} showDivider />
-            <HeroStat value={HERO_STATS.yearsTutoring} label="Years tutoring" animate={ready} showDivider />
-            <HeroStat value={String(totalUnits)} label="Study units" animate={ready} showDivider />
-            <HeroStat value={HERO_STATS.tutoringTiers} label="Tutoring tiers" animate={ready} />
+            <HeroStat value={HERO_STATS.yearsTutoring} label="Years tutoring" animate={ready} />
           </div>
         </div>
       </div>

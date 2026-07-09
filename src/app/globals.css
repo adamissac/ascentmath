@@ -881,6 +881,12 @@ body {
   display: grid;
   gap: 1.5rem;
 }
+.lesson-exercise-list__footer {
+  margin: 0;
+  font-size: 0.875rem;
+  line-height: 1.5;
+  color: var(--color-ink-muted);
+}
 
 /* Interactive practice workbench - lesson-format-kit "practice box" treatment:
    thick colored left border, big rounded corners, generous padding. */

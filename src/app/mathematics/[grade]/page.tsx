@@ -102,7 +102,6 @@ export default async function GradeLibrary({ params }: { params: Promise<Params>
                 description={u.short}
                 pills={[
                   `${u.topics.length} topic${u.topics.length === 1 ? "" : "s"}`,
-                  `~${u.estimatedMinutes} min`,
                 ]}
               />
             ))}

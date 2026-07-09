@@ -160,7 +160,9 @@ function TutorProfileRow({
                   {item.value}
                 </span>{" "}
                 <span className="font-medium">{item.label}</span>
-                <span style={{ color: MUTED }}> · {item.detail}</span>
+                {item.detail ? (
+                  <span style={{ color: MUTED }}> — {item.detail}</span>
+                ) : null}
               </li>
             ))}
           </ul>
