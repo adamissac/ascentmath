@@ -54,7 +54,7 @@ const nextConfig: NextConfig = {
       { source: "/newLogo.png", destination: "/ascent-logo.png", permanent: true },
       { source: "/book", destination: "/#book-session", permanent: true },
       { source: "/about", destination: "/", permanent: true },
-      { source: "/login", destination: "/signup", permanent: false },
+      { source: "/login", destination: "/#book-session", permanent: false },
       { source: "/pricing", destination: "/#what-we-teach", permanent: true },
       { source: "/parents", destination: "/#study-paths", permanent: true },
       { source: "/tutoring", destination: "/#what-we-teach", permanent: true },
