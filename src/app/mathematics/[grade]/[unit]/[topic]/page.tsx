@@ -30,8 +30,8 @@ export async function generateMetadata({
   const found = getTopic(grade, unit, topic);
   if (!found) return { title: "Topic not found" };
   return buildPageMetadata({
-    title: `${found.topic.title} · ${found.grade.title} Unit ${found.unit.number}`,
-    description: found.topic.summary,
+    title: `${found.topic.title} — ${found.grade.title} Math Lesson, Video & Practice`,
+    description: `${found.topic.summary} Free, self-paced practice and quiz included — no account required.`,
     path: `/mathematics/${grade}/${unit}/${topic}`,
   });
 }

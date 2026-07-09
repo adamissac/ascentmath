@@ -31,8 +31,8 @@ export async function generateMetadata({
   const u = getUnit(grade, unit);
   if (!g || !u) return { title: "Unit not found" };
   return buildPageMetadata({
-    title: `${g.title} · Unit ${u.number}: ${u.title}`,
-    description: u.description,
+    title: `${g.title} Unit ${u.number}: ${u.title} — Free Lessons`,
+    description: `${u.description} Free self-paced lessons, videos, practice, and quizzes — no account required.`,
     path: `/mathematics/${grade}/${unit}`,
   });
 }
