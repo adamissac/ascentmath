@@ -6,6 +6,9 @@ import { absoluteUrl, SITE_URL } from "./site-url";
 
 const DEFAULT_OG_IMAGE = absoluteUrl("/og-image.png");
 
+/** Shared homepage / social title — keep <title> and og:title identical. */
+export const HOME_DOCUMENT_TITLE = `${SITE_BRAND_NAME} - ${SITE_BRAND_TAGLINE} · ${TUTOR_NAMES_SHORT}`;
+
 type PageMetadataInput = {
   title: string;
   description: string;
@@ -26,10 +29,7 @@ export function buildPageMetadata({
   index = true,
 }: PageMetadataInput): Metadata {
   const url = absoluteUrl(path);
-  const ogTitle =
-    path === "/"
-      ? `${SITE_BRAND_NAME} - ${SITE_BRAND_TAGLINE} · ${TUTOR_NAMES_SHORT}`
-      : `${title} · ${SITE_BRAND_NAME}`;
+  const ogTitle = path === "/" ? HOME_DOCUMENT_TITLE : `${title} · ${SITE_BRAND_NAME}`;
 
   return {
     title,
@@ -54,11 +54,11 @@ export function buildPageMetadata({
   };
 }
 
-const HOME_TITLE = `${SITE_BRAND_NAME} - ${SITE_BRAND_TAGLINE}`;
-
 /** Root layout defaults — homepage positioning copy. */
 export const ROOT_METADATA: Metadata = {
   metadataBase: new URL(SITE_URL),
+  // Drop Google Search Console verification token here when Adam has it:
+  // verification: { google: "REPLACE_WITH_GSC_TOKEN" },
   icons: {
     icon: [
       { url: `/favicon-32.png?v=${SITE_ICON_VERSION}`, type: "image/png", sizes: "32x32" },
@@ -70,16 +70,17 @@ export const ROOT_METADATA: Metadata = {
   },
   manifest: "/site.webmanifest",
   title: {
-    default: HOME_TITLE,
+    default: HOME_DOCUMENT_TITLE,
     template: `%s · ${SITE_BRAND_NAME}`,
   },
   description: SEO_HOME_DESCRIPTION,
   authors: [{ name: "Adam Issac" }, { name: "Alan Mozhoor" }],
   creator: SITE_BRAND_NAME,
   publisher: SITE_BRAND_NAME,
+  robots: { index: true, follow: true },
   alternates: { canonical: absoluteUrl("/") },
   openGraph: {
-    title: `${SITE_BRAND_NAME} - ${SITE_BRAND_TAGLINE} · ${TUTOR_NAMES_SHORT}`,
+    title: HOME_DOCUMENT_TITLE,
     description: SEO_HOME_DESCRIPTION,
     url: absoluteUrl("/"),
     siteName: SITE_BRAND_NAME,
@@ -89,7 +90,7 @@ export const ROOT_METADATA: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: `${SITE_BRAND_NAME} - ${SITE_BRAND_TAGLINE} · ${TUTOR_NAMES_SHORT}`,
+    title: HOME_DOCUMENT_TITLE,
     description: SEO_HOME_DESCRIPTION,
     images: [DEFAULT_OG_IMAGE],
   },

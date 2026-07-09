@@ -18,8 +18,8 @@ function readEnv(key) {
 }
 
 const projectId = readEnv("NEXT_PUBLIC_FIREBASE_PROJECT_ID") || "adams-alphabet";
-const vercelHost = process.argv[2] || "v2adamsalphabet.vercel.app";
-const customDomain = process.argv[3] || "adamsalphabet.com";
+const vercelHost = process.argv[2] || "joinascentmath.vercel.app";
+const customDomain = process.argv[3] || "joinascentmath.com";
 
 console.log(`
 Ascent Math - Google sign-in on production
