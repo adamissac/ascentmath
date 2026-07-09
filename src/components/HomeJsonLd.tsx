@@ -60,6 +60,7 @@ export default function HomeJsonLd() {
     name: SITE_BRAND_NAME,
     alternateName: ["Ascent Math tutoring", "joinascentmath.com"],
     url: absoluteUrl("/"),
+    logo: absoluteUrl("/ascent-logo.png"),
     description: SEO_HOME_DESCRIPTION,
     telephone: [ADAM_PHONE_TEL, ALAN_PHONE_TEL],
     email: [ADAM_EMAIL, ALAN_EMAIL],
@@ -91,11 +92,10 @@ export default function HomeJsonLd() {
         email: ALAN_EMAIL,
       },
     ],
-    areaServed: {
-      "@type": "City",
-      name: "Atlanta",
-      containedInPlace: { "@type": "State", name: "Georgia" },
-    },
+    areaServed: [
+      { "@type": "State", name: "Georgia" },
+      { "@type": "Country", name: "United States" },
+    ],
   };
 
   const website = {
@@ -110,19 +110,27 @@ export default function HomeJsonLd() {
     inLanguage: "en-US",
   };
 
-  const localBusiness = {
+  const tutoringService = {
     "@context": "https://schema.org",
-    "@type": "LocalBusiness",
-    name: SITE_BRAND_NAME,
-    url: absoluteUrl("/"),
-    telephone: [ADAM_PHONE_TEL, ALAN_PHONE_TEL],
-    description: SEO_HOME_DESCRIPTION,
-    areaServed: "Atlanta, GA and online",
-    priceRange: "$$",
-    founder: [
-      { "@type": "Person", name: "Adam Issac" },
-      { "@type": "Person", name: "Alan Mozhoor" },
+    "@type": "Service",
+    name: "Math tutoring",
+    serviceType: "Math tutoring",
+    provider: { "@id": ORG_ID },
+    description:
+      "Paid 1-on-1 online math tutoring over Zoom across four tiers: Elementary (K-5), Middle school (6-8), High school + SAT/ACT (9-12), and College / dual enrollment. First session free for new clients. Free Grades 6-8 study paths also available with no account.",
+    areaServed: [
+      { "@type": "State", name: "Georgia" },
+      { "@type": "Country", name: "United States" },
     ],
+    audience: {
+      "@type": "EducationalAudience",
+      educationalRole: "student",
+    },
+    availableChannel: {
+      "@type": "ServiceChannel",
+      serviceUrl: absoluteUrl("/#book-session"),
+      serviceType: "online",
+    },
   };
 
   const tutors = {
@@ -165,7 +173,7 @@ export default function HomeJsonLd() {
       />
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusiness) }}
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(tutoringService) }}
       />
       <script
         type="application/ld+json"
