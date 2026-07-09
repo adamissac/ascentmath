@@ -2,11 +2,11 @@ import type { NextConfig } from "next";
 
 const csp = [
   "default-src 'self'",
-  "script-src 'self' 'unsafe-inline' https://challenges.cloudflare.com https://www.gstatic.com https://apis.google.com https://va.vercel-scripts.com https://www.googletagmanager.com",
-  "frame-src https://www.youtube.com https://challenges.cloudflare.com https://accounts.google.com https://*.firebaseapp.com",
+  "script-src 'self' 'unsafe-inline' https://challenges.cloudflare.com https://va.vercel-scripts.com",
+  "frame-src https://challenges.cloudflare.com",
   "img-src 'self' https: data: blob:",
   "style-src 'self' 'unsafe-inline'",
-  "connect-src 'self' https://*.googleapis.com https://*.firebaseio.com https://*.firebaseapp.com https://challenges.cloudflare.com https://vitals.vercel-insights.com",
+  "connect-src 'self' https://challenges.cloudflare.com https://vitals.vercel-insights.com",
   "font-src 'self' data:",
   "object-src 'none'",
   "base-uri 'self'",

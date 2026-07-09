@@ -1,7 +1,6 @@
 "use client";
 
 import Image from "next/image";
-import { useState } from "react";
 
 type Props = {
   videoId: string;
@@ -9,7 +8,7 @@ type Props = {
   description?: string;
   source?: string;
   className?: string;
-  /** Compact layout for topic pages (smaller player + tighter meta). */
+  /** Compact layout for topic pages (smaller card + tighter meta). */
   size?: "default" | "compact";
 };
 
@@ -45,9 +44,7 @@ export default function VideoEmbed({
   className = "",
   size = "default",
 }: Props) {
-  const [active, setActive] = useState(false);
-  const [thumbSrc, setThumbSrc] = useState(() => youtubeThumb(videoId, "max"));
-  const embed = `https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0`;
+  const thumbSrc = youtubeThumb(videoId, "max");
   const watchUrl = `https://youtu.be/${videoId}`;
   const s = SIZE[size];
   const isCompact = size === "compact";
@@ -62,52 +59,35 @@ export default function VideoEmbed({
       ].join(" ")}
     >
       <div className="relative aspect-video bg-[var(--color-surface-2)]">
-        {active ? (
-          <iframe
-            className="absolute inset-0 w-full h-full"
-            src={embed}
-            title={title}
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-            referrerPolicy="strict-origin-when-cross-origin"
-            allowFullScreen
-            loading="lazy"
+        <a
+          href={watchUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="group absolute inset-0 block focus:outline-none"
+          aria-label={`Watch on YouTube: ${title}`}
+        >
+          <Image
+            src={thumbSrc}
+            alt=""
+            fill
+            sizes={s.thumbSizes}
+            quality={85}
+            className="object-cover"
           />
-        ) : (
-          <button
-            type="button"
-            onClick={() => setActive(true)}
-            className="group absolute inset-0 w-full h-full focus:outline-none"
-            aria-label={`Play video: ${title}`}
-          >
-            <Image
-              key={thumbSrc}
-              src={thumbSrc}
-              alt=""
-              fill
-              sizes={s.thumbSizes}
-              quality={85}
-              className="object-cover"
-              onError={() => {
-                setThumbSrc((current) =>
-                  current.includes("maxresdefault") ? youtubeThumb(videoId, "hq") : current,
-                );
-              }}
-            />
-            <span className="absolute inset-0 bg-black/25 transition-opacity group-hover:bg-black/35" />
-            <span className="absolute inset-0 grid place-items-center">
-              <span
-                className={[
-                  "grid place-items-center rounded-full bg-white/95 text-[var(--color-brand-700)] shadow-lg ring-1 ring-black/5 transition-transform group-hover:scale-105",
-                  s.play,
-                ].join(" ")}
-              >
-                <svg width={s.playIcon} height={s.playIcon} viewBox="0 0 24 24" fill="currentColor" aria-hidden>
-                  <path d="M8 5v14l11-7z" />
-                </svg>
-              </span>
+          <span className="absolute inset-0 bg-black/25 transition-opacity group-hover:bg-black/35" />
+          <span className="absolute inset-0 grid place-items-center">
+            <span
+              className={[
+                "grid place-items-center rounded-full bg-white/95 text-[var(--color-brand-700)] shadow-lg ring-1 ring-black/5 transition-transform group-hover:scale-105",
+                s.play,
+              ].join(" ")}
+            >
+              <svg width={s.playIcon} height={s.playIcon} viewBox="0 0 24 24" fill="currentColor" aria-hidden>
+                <path d="M8 5v14l11-7z" />
+              </svg>
             </span>
-          </button>
-        )}
+          </span>
+        </a>
       </div>
       <div className={`flex flex-col flex-1 ${s.body}`}>
         {source && (
@@ -135,7 +115,17 @@ export default function VideoEmbed({
           className="link small mt-0.5 inline-flex items-center gap-1"
         >
           Watch on YouTube
-          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
+          <svg
+            width="13"
+            height="13"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            aria-hidden
+          >
             <path d="M7 17L17 7" />
             <path d="M7 7h10v10" />
           </svg>

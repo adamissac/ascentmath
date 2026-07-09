@@ -1,5 +1,7 @@
 "use client";
 
+import Image from "next/image";
+
 type Props = {
   driveFileId: string;
   title: string;
@@ -21,12 +23,13 @@ export default function WorksheetCard({ driveFileId, title, description }: Props
         className="group relative block h-44 bg-[var(--color-surface-2)] overflow-hidden"
         aria-label={`Preview ${title}`}
       >
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img
+        <Image
           src={thumb}
           alt=""
-          loading="lazy"
-          className="absolute inset-0 w-full h-full object-cover object-top transition-transform duration-300 group-hover:scale-[1.03]"
+          fill
+          sizes="(max-width: 768px) 100vw, 640px"
+          quality={80}
+          className="object-cover object-top transition-transform duration-300 group-hover:scale-[1.03]"
         />
         <span className="absolute inset-0 bg-gradient-to-t from-black/15 to-transparent" />
         <span className="absolute top-2.5 left-2.5 inline-flex items-center gap-1.5 px-2 py-1 rounded-md bg-white/95 text-[var(--color-brand-700)] caption font-semibold shadow-sm">
