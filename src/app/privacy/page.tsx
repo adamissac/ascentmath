@@ -31,10 +31,6 @@ export default function PrivacyPage() {
             email, school, grade, and message when you request tutoring or a demo.
           </li>
           <li>
-            <strong className="text-[var(--color-ink)]">Account data:</strong> if you create an
-            account, we store your email, display name, and progress preferences via Firebase.
-          </li>
-          <li>
             <strong className="text-[var(--color-ink)]">Usage data:</strong> anonymized analytics
             (page views, performance) via Vercel Analytics. We do not sell personal data.
           </li>
@@ -64,8 +60,8 @@ export default function PrivacyPage() {
           Third-party services
         </h2>
         <p>
-          We use Resend (email delivery), Firebase (authentication), Cloudflare Turnstile (spam
-          protection), and Vercel (hosting). Each provider processes data under their own privacy
+          We use Resend (email delivery), Cloudflare Turnstile (spam protection), and Vercel
+          (hosting and anonymized analytics). Each provider processes data under their own privacy
           policies and our instructions.
         </p>
 

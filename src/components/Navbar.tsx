@@ -2,9 +2,8 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { usePathname, useRouter } from "next/navigation";
-import { useEffect, useRef, useState, type ReactNode } from "react";
-import { useAuth } from "./AuthProvider";
+import { usePathname } from "next/navigation";
+import { useEffect, useState, type ReactNode } from "react";
 import HashLink from "./HashLink";
 import { BOOK_SESSION_HREF, STUDY_PATHS_HREF } from "../lib/site-paths";
 import { scrollToPageTop } from "../lib/scroll-to-hash";
@@ -26,34 +25,12 @@ function hashToHomeSection(hash: string): HomeNavSection | null {
 
 export default function Navbar() {
   const pathname = usePathname();
-  const router = useRouter();
   const [open, setOpen] = useState(false);
-  const [menuOpen, setMenuOpen] = useState(false);
   const [homeSection, setHomeSection] = useState<HomeNavSection | null>(null);
-  const menuRef = useRef<HTMLDivElement | null>(null);
-
-  const { user, profile, loading, signOut } = useAuth();
 
   useEffect(() => {
     setOpen(false);
-    setMenuOpen(false);
   }, [pathname]);
-
-  useEffect(() => {
-    if (!menuOpen) return;
-    const onDown = (e: MouseEvent) => {
-      if (menuRef.current && !menuRef.current.contains(e.target as Node)) setMenuOpen(false);
-    };
-    const onKey = (e: KeyboardEvent) => {
-      if (e.key === "Escape") setMenuOpen(false);
-    };
-    window.addEventListener("mousedown", onDown);
-    window.addEventListener("keydown", onKey);
-    return () => {
-      window.removeEventListener("mousedown", onDown);
-      window.removeEventListener("keydown", onKey);
-    };
-  }, [menuOpen]);
 
   useEffect(() => {
     if (pathname !== "/") {
@@ -119,22 +96,6 @@ export default function Navbar() {
     );
   };
 
-  async function handleSignOut() {
-    setMenuOpen(false);
-    try {
-      await signOut();
-      router.replace("/");
-    } catch {
-      /* swallow */
-    }
-  }
-
-  const displayName =
-    profile?.displayName?.trim() ||
-    user?.displayName?.trim() ||
-    (user?.email ? user.email.split("@")[0] : "");
-  const initial = (displayName[0] || user?.email?.[0] || "?").toUpperCase();
-
   function handleHomeClick(e: React.MouseEvent<HTMLAnchorElement>) {
     if (pathname !== "/") return;
     e.preventDefault();
@@ -192,62 +153,13 @@ export default function Navbar() {
 
           {/* Right-side CTAs depend on auth state */}
           <div className="hidden md:flex items-center gap-2">
-            {loading && user ? (
-              <span className="w-9 h-9 rounded-full bg-[var(--color-surface-2)] animate-pulse" />
-            ) : user ? (
-              <div className="relative" ref={menuRef}>
-                <button
-                  type="button"
-                  onClick={() => setMenuOpen((v) => !v)}
-                  aria-expanded={menuOpen}
-                  aria-haspopup="menu"
-                  className="flex items-center gap-2 pl-1 pr-3 py-1 rounded-full hover:bg-[var(--color-surface-2)] transition-colors"
-                >
-                  <span className="w-8 h-8 rounded-full bg-[var(--color-brand-500)] text-white grid place-items-center text-sm font-bold">
-                    {initial}
-                  </span>
-                  <span className="text-sm font-semibold text-[var(--color-ink)] max-w-[120px] truncate">
-                    {displayName}
-                  </span>
-                  <Caret />
-                </button>
-                {menuOpen && (
-                  <div
-                    role="menu"
-                    className="absolute right-0 top-full mt-2 min-w-[220px] bg-white border border-[var(--color-border)] rounded-lg shadow-[var(--shadow-popover)] py-1.5 animate-fade-up"
-                  >
-                    <div className="px-3 py-2 border-b border-[var(--color-border)] mb-1">
-                      <p className="caption text-[var(--color-ink-soft)] uppercase tracking-wider">
-                        Signed in as
-                      </p>
-                      <p className="text-sm font-semibold text-[var(--color-ink)] truncate">
-                        {user.email}
-                      </p>
-                    </div>
-                    <MenuLink href="/dashboard">My account</MenuLink>
-                    <MenuLink href={BOOK_SESSION_HREF}>Book a session</MenuLink>
-                    <MenuLink href={STUDY_PATHS_HREF}>Continue learning</MenuLink>
-                    <div className="my-1 h-px bg-[var(--color-border)]" />
-                    <button
-                      type="button"
-                      onClick={handleSignOut}
-                      role="menuitem"
-                      className="w-full text-left px-3 py-2 text-sm text-[var(--color-ink)] hover:bg-[var(--color-surface-2)] transition-colors"
-                    >
-                      Sign out
-                    </button>
-                  </div>
-                )}
-              </div>
-            ) : (
-              <HashLink
-                href={BOOK_SESSION_HREF}
-                className="btn btn-primary btn-sm shadow-[0_8px_20px_-8px_rgba(42,75,203,0.55)] hover:-translate-y-0.5 hover:shadow-[0_12px_24px_-10px_rgba(42,75,203,0.5)] transition-[transform,box-shadow]"
-              >
-                Book a session
-                <span aria-hidden>→</span>
-              </HashLink>
-            )}
+            <HashLink
+              href={BOOK_SESSION_HREF}
+              className="btn btn-primary btn-sm shadow-[0_8px_20px_-8px_rgba(42,75,203,0.55)] hover:-translate-y-0.5 hover:shadow-[0_12px_24px_-10px_rgba(42,75,203,0.5)] transition-[transform,box-shadow]"
+            >
+              Book a session
+              <span aria-hidden>→</span>
+            </HashLink>
           </div>
 
           <button
@@ -300,45 +212,9 @@ export default function Navbar() {
 
             <div className="my-2 h-px bg-[var(--color-border)]" />
 
-            {loading && user ? (
-              <span className="px-3 py-2 text-sm text-[var(--color-ink-muted)]">…</span>
-            ) : user ? (
-              <>
-                <div className="px-3 py-2">
-                  <p className="caption text-[var(--color-ink-soft)] uppercase tracking-wider">
-                    Signed in as
-                  </p>
-                  <p className="text-sm font-semibold text-[var(--color-ink)] truncate">
-                    {user.email}
-                  </p>
-                </div>
-                <Link
-                  href="/dashboard"
-                  className="px-3 py-2 rounded-md text-base font-medium text-[var(--color-ink)] hover:bg-[var(--color-surface-2)]"
-                >
-                  My account
-                </Link>
-                <button
-                  type="button"
-                  onClick={handleSignOut}
-                  className="text-left px-3 py-2 rounded-md text-base font-medium text-[var(--color-ink)] hover:bg-[var(--color-surface-2)]"
-                >
-                  Sign out
-                </button>
-              </>
-            ) : (
-              <>
-                <HashLink href={BOOK_SESSION_HREF} className="btn btn-primary mt-2">
-                  Book a session →
-                </HashLink>
-                <Link
-                  href="/signup"
-                  className="px-3 py-2 rounded-md text-base font-medium text-[var(--color-ink)] hover:bg-[var(--color-surface-2)]"
-                >
-                  Create account
-                </Link>
-              </>
-            )}
+            <HashLink href={BOOK_SESSION_HREF} className="btn btn-primary mt-2">
+              Book a session →
+            </HashLink>
           </nav>
         </div>
       )}
@@ -346,38 +222,4 @@ export default function Navbar() {
   );
 }
 
-function MenuLink({ href, children }: { href: string; children: React.ReactNode }) {
-  const className =
-    "block px-3 py-2 text-sm text-[var(--color-ink)] hover:bg-[var(--color-surface-2)] transition-colors";
-  if (href.includes("#")) {
-    return (
-      <HashLink href={href} role="menuitem" className={className}>
-        {children}
-      </HashLink>
-    );
-  }
-  return (
-    <Link href={href} role="menuitem" className={className}>
-      {children}
-    </Link>
-  );
-}
-
-function Caret() {
-  return (
-    <svg
-      width="12"
-      height="12"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2.5"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      aria-hidden
-      className="text-[var(--color-ink-soft)]"
-    >
-      <polyline points="6 9 12 15 18 9" />
-    </svg>
-  );
-}
+// (MenuLink removed — account menu no longer exists)

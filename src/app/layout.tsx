@@ -1,7 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { Analytics } from "@vercel/analytics/react";
 import { Inter, Lexend } from "next/font/google";
-import AuthProvider from "../components/AuthProvider";
 import HashScrollHandler from "../components/HashScrollHandler";
 import SiteHeader from "../components/SiteHeader";
 import ConditionalFooter from "../components/ConditionalFooter";
@@ -37,15 +36,13 @@ export default function RootLayout({
     <html lang="en" className={`${inter.variable} ${lexend.variable}`} suppressHydrationWarning>
       <body className="min-h-screen flex flex-col antialiased" suppressHydrationWarning>
         <a href="#main" className="skip-link">Skip to main content</a>
-        <AuthProvider>
-          <HashScrollHandler />
-          <SiteHeader />
-          <div className="flex flex-1 flex-col pt-[var(--site-header-offset,4.25rem)]">
-            <main id="main" className="flex-1">{children}</main>
-          </div>
-          <ConditionalFooter />
-          <Analytics />
-        </AuthProvider>
+        <HashScrollHandler />
+        <SiteHeader />
+        <div className="flex flex-1 flex-col pt-[var(--site-header-offset,4.25rem)]">
+          <main id="main" className="flex-1">{children}</main>
+        </div>
+        <ConditionalFooter />
+        <Analytics />
       </body>
     </html>
   );

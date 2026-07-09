@@ -30,12 +30,11 @@ export default function TermsPage() {
         </p>
 
         <h2 className="font-display text-xl font-bold text-[var(--color-ink)] mt-8">
-          Accounts and acceptable use
+          Acceptable use
         </h2>
         <p>
-          You are responsible for keeping your account credentials secure. Do not misuse the Site,
-          attempt to scrape or overload our systems, submit spam, or upload harmful content. We may
-          suspend access for abuse.
+          Do not misuse the Site, attempt to scrape or overload our systems, submit spam, or upload
+          harmful content. We may decline or suspend access for abuse.
         </p>
 
         <h2 className="font-display text-xl font-bold text-[var(--color-ink)] mt-8">
