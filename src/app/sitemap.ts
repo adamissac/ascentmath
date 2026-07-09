@@ -18,7 +18,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     {
       url: absoluteUrl("/mathematics/curriculum-frameworks"),
       changeFrequency: "monthly",
-      priority: 0.6,
+      priority: 0.4,
     },
     { url: absoluteUrl("/privacy"), changeFrequency: "yearly", priority: 0.2 },
     { url: absoluteUrl("/terms"), changeFrequency: "yearly", priority: 0.2 },
