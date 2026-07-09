@@ -51,6 +51,12 @@ const nextConfig: NextConfig = {
     }));
 
     return [
+      {
+        source: "/:path*",
+        has: [{ type: "host", value: "joinascentmath.com" }],
+        destination: "https://www.joinascentmath.com/:path*",
+        permanent: true,
+      },
       { source: "/newLogo.png", destination: "/ascent-logo.png", permanent: true },
       { source: "/book", destination: "/#book-session", permanent: true },
       { source: "/about", destination: "/", permanent: true },
