@@ -72,6 +72,10 @@ export default function Footer() {
           <Link href="/terms" className="link">
             Terms
           </Link>
+          {" · "}
+          <Link href="/accessibility" className="link">
+            Accessibility
+          </Link>
         </p>
       </div>
     </footer>
