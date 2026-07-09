@@ -13,7 +13,7 @@ export const SEO_KEYWORDS = [
 
 /** Homepage / default meta description — includes brand + tutor full names for search snippets. */
 export const SEO_HOME_DESCRIPTION =
-  "Ascent Math — paid 1-on-1 math tutoring with Adam Issac and Alan Mozhoor (Math + CS @ Georgia Tech). K-5 through college, SAT/ACT, and AP math. First session free for new clients. Free Grades 6-8 study paths on joinascentmath.com.";
+  "1-on-1 online math tutoring (K-5 through college) by two Georgia Tech Math+CS students. First session free for new clients. Plus free self-paced Grades 6–8 study paths — no account needed.";
 
 export const SEO_SITE_URL = SITE_URL;
 

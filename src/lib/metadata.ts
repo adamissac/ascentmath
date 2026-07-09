@@ -54,7 +54,7 @@ export function buildPageMetadata({
   };
 }
 
-const HOME_TITLE = `${SITE_BRAND_NAME} - ${SITE_BRAND_TAGLINE}`;
+const HOME_TITLE = `Math Tutoring (K-5 to College) + Free Grades 6-8 Lessons · ${SITE_BRAND_NAME}`;
 
 /** Root layout defaults — homepage positioning copy. */
 export const ROOT_METADATA: Metadata = {
