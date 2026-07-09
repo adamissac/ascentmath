@@ -29,8 +29,8 @@ export async function generateMetadata({
   const unitCount = g.units.length;
   const topicCount = g.units.reduce((n, u) => n + u.topics.length, 0);
   return buildPageMetadata({
-    title: `${g.title} Mathematics`,
-    description: `Free ${g.title} self-paced math study path: ${unitCount} units, ${topicCount} topics with walkthroughs, videos, practice, and quizzes.`,
+    title: `Free ${g.title} Math Lessons, Practice & Quizzes (${unitCount} Units)`,
+    description: `Free ${g.title} math study path with ${unitCount} units and ${topicCount} topics. Self-paced lessons, videos, practice, and quizzes — no account required.`,
     path: `/mathematics/${grade}`,
   });
 }
