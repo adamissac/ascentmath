@@ -35,7 +35,7 @@ export async function generateMetadata({
     description:
       found.topic.summary.length > 155
         ? `${found.topic.summary.slice(0, 152).trim()}…`
-        : `${found.topic.summary} Free lesson, video, practice, and quiz — no account needed.`,
+        : `${found.topic.summary} Free lesson, four videos, practice, and quiz — no account needed.`,
     path: `/mathematics/${grade}/${unit}/${topic}`,
   });
 }

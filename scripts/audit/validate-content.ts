@@ -6,6 +6,7 @@
  */
 import {
   GRADES,
+  VIDEOS_PER_TOPIC,
   countUnitVideos,
   countUnitWorksheets,
 } from "../../src/data/units";
@@ -68,6 +69,13 @@ for (const grade of GRADES) {
 
       if (!topic.video?.videoId) {
         fail(`${topic.id}: missing video`);
+      }
+      if ((topic.videos?.length ?? 0) !== VIDEOS_PER_TOPIC) {
+        fail(`${topic.id}: expected ${VIDEOS_PER_TOPIC} videos, got ${topic.videos?.length ?? 0}`);
+      }
+      const videoIds = topic.videos?.map((v) => v.videoId) ?? [];
+      if (new Set(videoIds).size !== videoIds.length) {
+        fail(`${topic.id}: duplicate video IDs in videos array`);
       }
       if ((topic.exercises?.length ?? 0) < 1) {
         fail(`${topic.id}: expected exercises`);

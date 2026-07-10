@@ -39,26 +39,19 @@ export default function TopicLessonContent({ topic: t }: Props) {
         <Walkthrough blocks={t.walkthrough} />
       </BodySection>
 
-      <BodySection title="Video walkthrough" id="watch">
-        <div className={t.extraVideo ? "lesson-video-grid" : "lesson-video-single"}>
-          <VideoEmbed
-            size="compact"
-            videoId={t.video.videoId}
-            title={t.video.title}
-            source={t.video.source}
-            description={t.video.description}
-            className="w-full"
-          />
-          {t.extraVideo && (
+      <BodySection title="Video walkthroughs" id="watch">
+        <div className="lesson-video-grid">
+          {(t.videos ?? [t.video, ...(t.extraVideo ? [t.extraVideo] : [])]).map((video) => (
             <VideoEmbed
+              key={video.videoId}
               size="compact"
-              videoId={t.extraVideo.videoId}
-              title={t.extraVideo.title}
-              source={t.extraVideo.source}
-              description={t.extraVideo.description}
+              videoId={video.videoId}
+              title={video.title}
+              source={video.source}
+              description={video.description}
               className="w-full"
             />
-          )}
+          ))}
         </div>
       </BodySection>
 

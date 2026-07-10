@@ -42,9 +42,12 @@ export type WalkthroughBlock = {
   callout?: { label: string; text: string };
 };
 
+/** Number of video walkthroughs shown on each topic lesson page. */
+export const VIDEOS_PER_TOPIC = 4;
+
 /**
  * A topic is a single focused page within a unit: a short walkthrough,
- * one (occasionally two) videos, practice, and a quick quiz.
+ * four videos, practice, and a quick quiz.
  */
 export type Topic = {
   id: string;
@@ -55,10 +58,12 @@ export type Topic = {
   summary: string;
   estimatedMinutes: number;
   walkthrough: WalkthroughBlock[];
-  /** The main video for this topic. */
+  /** The main video for this topic (source data; merged into `videos` at enrich time). */
   video: VideoResource;
-  /** Optional single "another take" video. */
+  /** Optional single "another take" video (source data; merged into `videos` at enrich time). */
   extraVideo?: VideoResource;
+  /** Four topic videos, set by enrichCurriculum from video + extraVideo + supplements. */
+  videos?: VideoResource[];
   /** Optional Adam worksheet attached to this topic. */
   worksheet?: WorksheetResource;
   /** Topic-relevant external practice links. */
@@ -1769,9 +1774,9 @@ export const getTopic = (gradeSlug: string, unitSlug: string, topicSlug: string)
   };
 };
 
-/** Total number of videos across a unit's topics (main + extra). */
+/** Total number of videos across a unit's topics. */
 export const countUnitVideos = (unit: Unit) =>
-  unit.topics.reduce((n, t) => n + 1 + (t.extraVideo ? 1 : 0), 0);
+  unit.topics.reduce((n, t) => n + (t.videos?.length ?? VIDEOS_PER_TOPIC), 0);
 
 /** Total number of Adam worksheets across a unit's topics. */
 export const countUnitWorksheets = (unit: Unit) =>

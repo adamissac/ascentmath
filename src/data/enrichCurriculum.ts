@@ -1,4 +1,5 @@
 import type { Grade, Topic, Unit } from "./units";
+import { buildTopicVideos } from "./build-topic-videos";
 import { TOPIC_EXERCISES } from "./exercises";
 import { TOPIC_QUIZ_EXTRA } from "./topic-quiz-extra";
 import { expandWalkthrough } from "./topic-lesson-depth";
@@ -12,6 +13,7 @@ function enrichTopic(topic: Topic): Topic {
 
   return {
     ...topic,
+    videos: buildTopicVideos(topic),
     exercises: exercises?.length ? exercises : topic.exercises,
     walkthrough,
     quiz: [...topic.quiz, ...extraQuiz],

@@ -850,15 +850,12 @@ body {
   color: var(--color-ink-muted);
 }
 
-.lesson-video-single {
-  max-width: 28rem;
-}
 .lesson-video-grid {
   display: grid;
   gap: 1rem;
-  max-width: 36rem;
+  max-width: 48rem;
 }
-@media (min-width: 768px) {
+@media (min-width: 640px) {
   .lesson-video-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
