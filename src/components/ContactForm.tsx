@@ -24,7 +24,6 @@ type FormState = {
   grade: string;
   sessionType: SessionType;
   message: string;
-  adultAttestation: boolean;
   website: string;
 };
 
@@ -35,7 +34,6 @@ const INITIAL: FormState = {
   grade: "",
   sessionType: "tutoring",
   message: "",
-  adultAttestation: false,
   website: "",
 };
 
@@ -166,10 +164,6 @@ export default function ContactForm() {
       const message = validateField(key, form);
       if (message) errors[key] = message;
     }
-    if (!form.adultAttestation) {
-      errors.adultAttestation =
-        "Please confirm you are 18+ and agree to the Terms and Privacy Policy.";
-    }
     if (Object.keys(errors).length > 0) {
       setFieldErrors(errors);
       const first = (["name", "email", "message"] as FieldKey[]).find((k) => errors[k]);
@@ -259,14 +253,6 @@ export default function ContactForm() {
       )}
 
       <form onSubmit={onSubmit} noValidate className="booking-form-card grid gap-5">
-        <div className="rounded-lg border border-[var(--color-brand-100)] bg-[var(--color-brand-50)] p-4">
-          <p className="small font-semibold text-[var(--color-ink)]">For parents, guardians, and educators</p>
-          <p className="caption text-[var(--color-ink-muted)] mt-1 leading-relaxed">
-            This form should be submitted by a parent/guardian, teacher, or school staff member. Students under 13
-            should not submit this form themselves — ask a parent or guardian to reach out for you.
-          </p>
-        </div>
-
         <fieldset className="m-0 border-0 p-0">
           <legend className="label">What can {TUTOR_NAMES_SHORT} help with?</legend>
           <div className="flex flex-wrap gap-2" role="radiogroup" aria-label="Session type">
@@ -301,7 +287,7 @@ export default function ContactForm() {
         <div className="grid gap-4 sm:grid-cols-2 sm:gap-x-5">
           <Field
             id={FIELD_IDS.name}
-            label="Your name (parent/guardian/educator)"
+            label="Your name"
             required
             value={form.name}
             onChange={(v) => set("name", v)}
@@ -312,7 +298,7 @@ export default function ContactForm() {
           />
           <Field
             id={FIELD_IDS.email}
-            label="Email (parent/guardian/educator)"
+            label="Email"
             type="email"
             required
             value={form.email}
@@ -398,36 +384,6 @@ export default function ContactForm() {
             onExpire={handleTurnstileExpire}
           />
         )}
-
-        <div className="rounded-lg border border-[var(--color-border)] bg-white p-4">
-          <label className="flex items-start gap-3">
-            <input
-              type="checkbox"
-              className="mt-1"
-              checked={form.adultAttestation}
-              onChange={(e) => set("adultAttestation", e.target.checked)}
-              aria-invalid={!!fieldErrors.adultAttestation}
-              aria-describedby={fieldErrors.adultAttestation ? "contact-attestation-error" : undefined}
-              required
-            />
-            <span className="caption text-[var(--color-ink-muted)] leading-relaxed">
-              By sending this request, you confirm you are 18 or older and agree to our{" "}
-              <a className="link font-semibold" href="/terms">
-                Terms of Service
-              </a>{" "}
-              and{" "}
-              <a className="link font-semibold" href="/privacy">
-                Privacy Policy
-              </a>
-              .
-            </span>
-          </label>
-          {fieldErrors.adultAttestation && (
-            <p id="contact-attestation-error" className="error-text mt-2">
-              {fieldErrors.adultAttestation}
-            </p>
-          )}
-        </div>
 
         {errorMsg && (
           <div

@@ -18,9 +18,6 @@ export const contactFormSchema = z.object({
     .trim()
     .min(10, "Please tell us a bit more (at least 10 characters).")
     .max(2000),
-  adultAttestation: z.literal(true, {
-    message: "Please confirm you are 18+ and agree to the Terms and Privacy Policy.",
-  }),
   website: z.string().optional(),
   formLoadedAt: z.number().int().positive().optional(),
   turnstileToken: z.string().optional(),
