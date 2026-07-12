@@ -155,7 +155,7 @@ export default function Navbar() {
           <div className="hidden md:flex items-center gap-2">
             <HashLink
               href={BOOK_SESSION_HREF}
-              className="btn btn-primary btn-sm shadow-[0_8px_20px_-8px_rgba(42,75,203,0.55)] hover:-translate-y-0.5 hover:shadow-[0_12px_24px_-10px_rgba(42,75,203,0.5)] transition-[transform,box-shadow]"
+              className="btn btn-primary btn-sm shadow-[0_8px_20px_-8px_rgba(11,32,70,0.55)] hover:-translate-y-0.5 hover:shadow-[0_12px_24px_-10px_rgba(11,32,70,0.5)] transition-[transform,box-shadow]"
             >
               Book a session
               <span aria-hidden>→</span>

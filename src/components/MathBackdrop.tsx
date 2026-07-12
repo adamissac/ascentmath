@@ -158,9 +158,9 @@ const VARIANT_STYLE: Record<
   { glyph: string; glyphOpacity: number; grid: string }
 > = {
   paper: {
-    glyph: "rgba(42, 75, 203, 0.55)",
+    glyph: "rgba(11, 32, 70, 0.55)",
     glyphOpacity: 0.14,
-    grid: "rgba(42, 75, 203, 0.06)",
+    grid: "rgba(11, 32, 70, 0.06)",
   },
   muted: {
     glyph: "rgba(90, 95, 104, 0.55)",
@@ -173,7 +173,7 @@ const VARIANT_STYLE: Record<
     grid: "rgba(255, 255, 255, 0.08)",
   },
   dark: {
-    glyph: "rgba(126, 151, 240, 0.9)",
+    glyph: "rgba(168, 184, 211, 0.9)",
     glyphOpacity: 0.14,
     grid: "rgba(255, 255, 255, 0.06)",
   },
@@ -219,7 +219,7 @@ export default function MathBackdrop({
   const clipStroke =
     variant === "brand" || variant === "dark"
       ? "rgba(255,255,255,0.22)"
-      : "rgba(42, 75, 203, 0.22)";
+      : "rgba(11, 32, 70, 0.22)";
   const clipAccent = "var(--color-accent-500)";
 
   return (

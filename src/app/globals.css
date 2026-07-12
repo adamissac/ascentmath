@@ -10,27 +10,27 @@
    ============================================================= */
 
 @theme {
-  /* Brand - royal blue, pulled from the A in the logo. Light end stays
+  /* Brand - navy blue from the logo background (#0B2046). Light end stays
      desaturated (so background washes don't look like Facebook); dark end
-     matches the deepest tone in the logo's gradient. */
-  --color-brand-50:  #EEF2FE;
-  --color-brand-100: #D6DFFC;
-  --color-brand-200: #B0C0F8;
-  --color-brand-300: #7E97F0;
-  --color-brand-400: #4F6DE2;
-  --color-brand-500: #2A4BCB;
-  --color-brand-600: #1F3CB1;
-  --color-brand-700: #182F8E;
-  --color-brand-800: #132573;
-  --color-brand-900: #0B1A57;
+     matches the deepest tone in the logo. */
+  --color-brand-50:  #EDF1F7;
+  --color-brand-100: #D4DCE9;
+  --color-brand-200: #A8B8D3;
+  --color-brand-300: #7389AF;
+  --color-brand-400: #3D5785;
+  --color-brand-500: #0B2046;
+  --color-brand-600: #091A38;
+  --color-brand-700: #07142C;
+  --color-brand-800: #050E20;
+  --color-brand-900: #030914;
 
-  /* Accent - vibrant orange, pulled from the swoosh and star in the logo. */
-  --color-accent-50:  #FFF3E8;
-  --color-accent-100: #FFDEC0;
-  --color-accent-300: #FFB670;
-  --color-accent-500: #F47B16;
+  /* Accent - golden arrow from the logo (#C58F28). */
+  --color-accent-50:  #FBF5E8;
+  --color-accent-100: #F4E4C4;
+  --color-accent-300: #DDB76A;
+  --color-accent-500: #C58F28;
   /* Darker to meet WCAG AA for small badges (e.g. "Free"). */
-  --color-accent-700: #9A3F00;
+  --color-accent-700: #7A5508;
 
   /* Surfaces & ink */
   --color-bg:        #FBFAF7;
@@ -50,7 +50,7 @@
   --color-ink-cool-soft:  #6B6B80;
 
   /* Semantic */
-  --color-info:    #2D5DAF;
+  --color-info:    #3D5785;
   --color-success: #2D7D54;
   --color-warning: #C58515;
   --color-danger:  #B8261C;
@@ -72,7 +72,7 @@
   --shadow-card:        0 1px 2px rgba(15, 17, 21, 0.04), 0 4px 12px rgba(15, 17, 21, 0.04);
   --shadow-card-hover:  0 4px 12px rgba(15, 17, 21, 0.06), 0 12px 28px rgba(15, 17, 21, 0.08);
   --shadow-popover:     0 12px 32px rgba(15, 17, 21, 0.14);
-  --shadow-focus:       0 0 0 4px rgba(42, 75, 203, 0.20);
+  --shadow-focus:       0 0 0 4px rgba(11, 32, 70, 0.20);
 
   /* Match Tailwind page-x (px-4 / sm:px-6 / lg:px-8) for .site-container & .page-x */
   --page-gutter-x: 1rem;
@@ -831,12 +831,12 @@ body {
   color: var(--color-accent-700);
 }
 .lesson-note--info {
-  border-color: color-mix(in srgb, #5b8fd4 35%, transparent);
-  border-left-color: #5b8fd4;
-  background: #e8eef8;
+  border-color: color-mix(in srgb, #3D5785 35%, transparent);
+  border-left-color: #3D5785;
+  background: #EDF1F7;
 }
 .lesson-note--info .lesson-note__title {
-  color: #284e94;
+  color: #0B2046;
 }
 .lesson-note__title {
   font-size: 0.875rem;
@@ -1342,7 +1342,7 @@ body {
 }
 .pill-brand   { background: var(--color-brand-50);   color: var(--color-brand-700);  border-color: var(--color-brand-100); }
 .pill-accent  { background: var(--color-accent-50);  color: var(--color-accent-700); border-color: var(--color-accent-100); }
-.pill-info    { background: #E8EEFA; color: #284E94; border-color: #D2DCF3; }
+.pill-info    { background: #EDF1F7; color: #0B2046; border-color: #D4DCE9; }
 .pill-success { background: #E5F2EB; color: #1F5E3F; border-color: #C8E1D2; }
 .pill-warning { background: #FBEDD3; color: #8A5A0E; border-color: #F3D7A1; }
 .pill-danger  { background: #FAE1DF; color: #8A1C13; border-color: #F1C5C1; }
@@ -1565,7 +1565,7 @@ body {
 .radio-card.is-active {
   border-color: var(--color-brand-500);
   background: var(--color-brand-50);
-  box-shadow: 0 0 0 3px rgba(42, 75, 203, 0.14);
+  box-shadow: 0 0 0 3px rgba(11, 32, 70, 0.14);
 }
 
 /* =============================================================
@@ -1933,7 +1933,7 @@ body {
 
 @keyframes scroll-target-flash {
   0%, 100% { box-shadow: inset 0 0 0 0 transparent; }
-  35% { box-shadow: inset 0 0 0 9999px rgba(42, 75, 203, 0.045); }
+  35% { box-shadow: inset 0 0 0 9999px rgba(11, 32, 70, 0.045); }
 }
 
 .scroll-target-flash {

@@ -75,7 +75,7 @@ export default function HeroSection() {
             <div className="flex w-full flex-col gap-2 sm:w-auto sm:flex-row sm:items-center sm:gap-2">
               <HashLink
                 href={STUDY_PATHS_HREF}
-                className="relative inline-flex min-h-[3rem] w-full items-center justify-center rounded-full border-2 border-[#1a1a2e]/25 bg-transparent px-5 py-3 text-center text-[0.9375rem] font-semibold text-[var(--color-ink-cool)] transition-[background-color,border-color,transform] duration-200 hover:-translate-y-0.5 hover:border-[#F47B16]/45 hover:bg-[var(--color-accent-50)] sm:w-auto sm:px-7"
+                className="relative inline-flex min-h-[3rem] w-full items-center justify-center rounded-full border-2 border-[#1a1a2e]/25 bg-transparent px-5 py-3 text-center text-[0.9375rem] font-semibold text-[var(--color-ink-cool)] transition-[background-color,border-color,transform] duration-200 hover:-translate-y-0.5 hover:border-[#C58F28]/45 hover:bg-[var(--color-accent-50)] sm:w-auto sm:px-7"
               >
                 Browse study paths
               </HashLink>

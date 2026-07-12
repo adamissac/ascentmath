@@ -72,7 +72,7 @@ export function renderContactEmail(p: ContactPayload) {
       <td align="center">
         <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="560" style="max-width:560px;background:#FFFFFF;border:1px solid #E6E2DA;border-radius:16px;overflow:hidden;">
           <tr>
-            <td style="padding:24px 28px;background:#1F3CB1;color:#FFFFFF;">
+            <td style="padding:24px 28px;background:#0B2046;color:#FFFFFF;">
               <p style="margin:0;font-size:12px;letter-spacing:0.14em;text-transform:uppercase;opacity:0.85;">${escapeHtml(SITE_BRAND_NAME)}</p>
               <h1 style="margin:6px 0 0;font-size:22px;line-height:1.25;font-weight:700;">New booking request</h1>
             </td>
@@ -95,7 +95,7 @@ export function renderContactEmail(p: ContactPayload) {
                 ${row("Type", escapeHtml(typeLabel))}
               </table>
 
-              <h2 style="margin:24px 0 8px;font-size:13px;letter-spacing:0.12em;text-transform:uppercase;color:#1F3CB1;font-weight:700;">Message</h2>
+              <h2 style="margin:24px 0 8px;font-size:13px;letter-spacing:0.12em;text-transform:uppercase;color:#0B2046;font-weight:700;">Message</h2>
               <div style="background:#F5F3EE;border:1px solid #E6E2DA;border-radius:10px;padding:14px 16px;font-size:14px;line-height:1.6;white-space:pre-wrap;color:#1B1D21;">${escapeHtml(
                 p.message
               )}</div>

@@ -20,8 +20,8 @@ type Props = {
 };
 
 const TINT: Record<NonNullable<BackdropGlyph["tint"]>, { color: string; opacity: number }> = {
-  blue: { color: "rgba(42, 75, 203, 0.7)", opacity: 0.12 },
-  orange: { color: "rgba(244, 123, 22, 0.75)", opacity: 0.11 },
+  blue: { color: "rgba(11, 32, 70, 0.7)", opacity: 0.12 },
+  orange: { color: "rgba(197, 143, 40, 0.75)", opacity: 0.11 },
   gray: { color: "rgba(90, 95, 104, 0.65)", opacity: 0.1 },
 };
 

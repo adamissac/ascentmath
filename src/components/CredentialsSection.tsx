@@ -215,7 +215,7 @@ function TutorPhotoCircle({
     <div
       className="tutor-photo-frame relative shrink-0 overflow-hidden rounded-full"
       style={{
-        boxShadow: "0 0 0 3px var(--color-brand-500), 0 6px 24px rgba(42, 75, 203, 0.2)",
+        boxShadow: "0 0 0 3px var(--color-brand-500), 0 6px 24px rgba(11, 32, 70, 0.2)",
       }}
     >
       {showPhoto ? (
