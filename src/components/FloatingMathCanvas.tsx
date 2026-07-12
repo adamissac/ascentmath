@@ -28,7 +28,7 @@ type VariantConfig = {
 const VARIANTS: Record<FloatingMathVariant, VariantConfig> = {
   home: {
     symbols: ["π", "√", "Σ", "θ", "x²", "≠", "∫", "÷", "≤", "%", "+", "−", "α", "β", "Δ", "λ", "φ", "≈", "∑", "°", "½", "∂", "∞"],
-    ink: "#1a1a2e",
+    ink: "#0B2046",
     accent: "#C58F28",
     accentRate: 0.18,
     counts: [32, 48, 58],
@@ -44,7 +44,7 @@ const VARIANTS: Record<FloatingMathVariant, VariantConfig> = {
   },
   compass: {
     symbols: ["→", "←", "△", "▽", "?", "%", "+", "−", "≈", "·", "○", "□", "½", "°"],
-    ink: "#1a1a2e",
+    ink: "#0B2046",
     accent: "#C58F28",
     accentRate: 0.1,
     counts: [16, 24, 30],
@@ -60,7 +60,7 @@ const VARIANTS: Record<FloatingMathVariant, VariantConfig> = {
   },
   grade: {
     symbols: ["π", "√", "Σ", "θ", "x²", "+", "−", "÷", "=", "∞", "λ", "φ", "°", "½"],
-    ink: "#1a1a2e",
+    ink: "#0B2046",
     accent: "#C58F28",
     accentRate: 0.1,
     counts: [16, 24, 30],

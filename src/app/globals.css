@@ -44,10 +44,10 @@
   /* Slightly darker to meet WCAG AA contrast on light backgrounds. */
   --color-ink-soft:  #6B7078;
 
-  /* Cool ink — violet-tinted ramp for hero-style light surfaces */
-  --color-ink-cool:       #1A1A2E;
-  --color-ink-cool-muted: #4A4A6A;
-  --color-ink-cool-soft:  #6B6B80;
+  /* Cool ink — navy-tinted ramp aligned with logo (#0B2046) */
+  --color-ink-cool:       #0B2046;
+  --color-ink-cool-muted: #3A4F6E;
+  --color-ink-cool-soft:  #6B7A94;
 
   /* Semantic */
   --color-info:    #3D5785;

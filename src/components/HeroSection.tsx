@@ -40,10 +40,10 @@ export default function HeroSection() {
       <div className="relative z-[1] flex min-h-[min(100dvh,920px)] items-center justify-center page-x py-12 sm:py-16">
         <div className="mx-auto flex w-full min-w-0 max-w-4xl flex-col items-center text-center">
           <h1
-            className={`${rise} ${STAGGER[0]} h-display w-full min-w-0 max-w-3xl px-1 text-[var(--color-ink-cool)] [text-shadow:0_1px_32px_rgba(26,26,46,0.08)] sm:px-0`}
+            className={`${rise} ${STAGGER[0]} h-display w-full min-w-0 max-w-3xl px-1 text-[var(--color-ink-cool)] [text-shadow:0_1px_32px_rgba(11,32,70,0.08)] sm:px-0`}
           >
             A{" "}
-            <span className="text-[var(--color-brand-500)] underline decoration-[var(--color-accent-100)] decoration-[0.18em] underline-offset-[0.12em]">
+            <span className="text-[var(--color-accent-500)] underline decoration-[var(--color-accent-300)] decoration-[0.18em] underline-offset-[0.12em]">
               friendlier
             </span>{" "}
             way to learn{" "}
@@ -64,7 +64,7 @@ export default function HeroSection() {
           >
             <HashLink
               href={BOOK_SESSION_HREF}
-              className="group relative inline-flex min-h-[3rem] w-full items-center justify-center overflow-hidden rounded-full bg-[var(--color-ink-cool)] px-5 py-3 text-center text-[0.9375rem] font-semibold text-white shadow-[0_10px_28px_-12px_rgba(26,26,46,0.55)] transition-[transform,box-shadow] duration-200 hover:-translate-y-0.5 hover:shadow-[0_16px_36px_-14px_rgba(26,26,46,0.5)] sm:w-auto sm:px-7"
+              className="group relative inline-flex min-h-[3rem] w-full items-center justify-center overflow-hidden rounded-full bg-[var(--color-brand-500)] px-5 py-3 text-center text-[0.9375rem] font-semibold text-white shadow-[0_10px_28px_-12px_rgba(11,32,70,0.55)] transition-[transform,box-shadow] duration-200 hover:-translate-y-0.5 hover:bg-[var(--color-brand-600)] hover:shadow-[0_16px_36px_-14px_rgba(11,32,70,0.5)] sm:w-auto sm:px-7"
             >
               <span
                 aria-hidden
@@ -75,7 +75,7 @@ export default function HeroSection() {
             <div className="flex w-full flex-col gap-2 sm:w-auto sm:flex-row sm:items-center sm:gap-2">
               <HashLink
                 href={STUDY_PATHS_HREF}
-                className="relative inline-flex min-h-[3rem] w-full items-center justify-center rounded-full border-2 border-[#1a1a2e]/25 bg-transparent px-5 py-3 text-center text-[0.9375rem] font-semibold text-[var(--color-ink-cool)] transition-[background-color,border-color,transform] duration-200 hover:-translate-y-0.5 hover:border-[#C58F28]/45 hover:bg-[var(--color-accent-50)] sm:w-auto sm:px-7"
+                className="relative inline-flex min-h-[3rem] w-full items-center justify-center rounded-full border-2 border-[var(--color-brand-500)]/25 bg-transparent px-5 py-3 text-center text-[0.9375rem] font-semibold text-[var(--color-ink-cool)] transition-[background-color,border-color,transform] duration-200 hover:-translate-y-0.5 hover:border-[#C58F28]/45 hover:bg-[var(--color-accent-50)] sm:w-auto sm:px-7"
               >
                 Browse study paths
               </HashLink>
@@ -104,18 +104,18 @@ export default function HeroSection() {
           </div>
 
           <p
-            className={`${rise} ${STAGGER[3]} mt-6 flex flex-wrap items-center justify-center gap-x-2 gap-y-1 text-[0.8125rem] text-[#4a4a6a]/90`}
+            className={`${rise} ${STAGGER[3]} mt-6 flex flex-wrap items-center justify-center gap-x-2 gap-y-1 text-[0.8125rem] text-[var(--color-ink-cool-muted)]/90`}
           >
             <span>Over Zoom</span>
-            <span className="text-[#1a1a2e]/25" aria-hidden>
+            <span className="text-[var(--color-ink-cool)]/25" aria-hidden>
               ·
             </span>
             <span>Four tutoring tiers</span>
-            <span className="text-[#1a1a2e]/25" aria-hidden>
+            <span className="text-[var(--color-ink-cool)]/25" aria-hidden>
               ·
             </span>
             <span>{FIRST_SESSION_FREE.split(".")[0]}</span>
-            <span className="text-[#1a1a2e]/25" aria-hidden>
+            <span className="text-[var(--color-ink-cool)]/25" aria-hidden>
               ·
             </span>
             <span>K-5 through multivariable calc</span>
@@ -185,7 +185,7 @@ function HeroStat({
     <div
       className={[
         "flex flex-col items-center px-2",
-        showDivider ? "sm:border-r sm:border-[#1a1a2e]/10" : "",
+        showDivider ? "sm:border-r sm:border-[var(--color-ink-cool)]/10" : "",
       ].join(" ")}
     >
       <span className="font-display text-xl font-bold tracking-tight tabular-nums text-[var(--color-ink-cool)] sm:text-[1.75rem]">
