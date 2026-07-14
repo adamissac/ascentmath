@@ -850,14 +850,24 @@ body {
   color: var(--color-ink-muted);
 }
 
+/* Full-width video row: fills the lesson column (including when the sidebar
+   is collapsed) instead of a left-aligned 48rem strip with empty space. */
 .lesson-video-grid {
   display: grid;
   gap: 1rem;
-  max-width: 48rem;
+  width: 100%;
+  grid-template-columns: minmax(0, 1fr);
 }
 @media (min-width: 640px) {
   .lesson-video-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1.25rem;
+  }
+}
+/* Sidebar collapsed + wide viewport: one row of four equal cards. */
+@media (min-width: 1280px) {
+  .lesson-layout--sidebar-collapsed .lesson-video-grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
   }
 }
 

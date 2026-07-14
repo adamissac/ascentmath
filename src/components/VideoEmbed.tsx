@@ -27,7 +27,7 @@ const SIZE = {
     playIcon: 18,
     body: "p-3.5 sm:p-4 gap-1.5",
     title: "text-base sm:text-[1.0625rem]",
-    thumbSizes: "(max-width: 768px) 100vw, 280px",
+    thumbSizes: "(max-width: 639px) 100vw, (max-width: 1279px) 50vw, 25vw",
   },
 } as const;
 
