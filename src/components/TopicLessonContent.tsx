@@ -6,6 +6,7 @@ import Quiz from "./Quiz";
 import TopicExercises from "./TopicExercises";
 import Walkthrough from "./Walkthrough";
 import type { Topic } from "../data/units";
+import { SCROLL_ANCHOR_CLASS } from "../lib/scroll-to-hash";
 
 type Props = {
   topic: Topic;
@@ -21,7 +22,7 @@ function BodySection({
   id?: string;
 }) {
   return (
-    <section id={id} className="lesson-body-section scroll-mt-24">
+    <section id={id} className={`lesson-body-section ${SCROLL_ANCHOR_CLASS}`}>
       <h2 className="lesson-body-section__title">{title}</h2>
       <div className="lesson-body-section__content">{children}</div>
     </section>

@@ -1,5 +1,6 @@
 import type { Unit } from "../data/units";
 import WorksheetCard from "./WorksheetCard";
+import { SCROLL_ANCHOR_CLASS } from "../lib/scroll-to-hash";
 
 type Props = {
   unit: Unit;
@@ -17,7 +18,7 @@ export default function UnitWorksheetsSection({ unit }: Props) {
   if (worksheets.length === 0) return null;
 
   return (
-    <section id="worksheets" className="scroll-mt-24" aria-labelledby="unit-worksheets-heading">
+    <section id="worksheets" className={SCROLL_ANCHOR_CLASS} aria-labelledby="unit-worksheets-heading">
       <h2 id="unit-worksheets-heading" className="h3">
         Worksheets
       </h2>

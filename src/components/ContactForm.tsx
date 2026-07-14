@@ -262,7 +262,7 @@ export default function ContactForm() {
                 <label
                   key={t}
                   className={[
-                    "cursor-pointer select-none rounded-full border px-3.5 py-2 text-[0.8125rem] font-medium transition-colors duration-150",
+                    "cursor-pointer select-none rounded-full border px-4 py-2.5 text-sm font-medium transition-colors duration-150 min-h-[44px] inline-flex items-center",
                     "has-[:focus-visible]:[box-shadow:var(--shadow-focus)]",
                     active
                       ? "border-[var(--color-brand-600)] bg-[var(--color-brand-600)] text-white"

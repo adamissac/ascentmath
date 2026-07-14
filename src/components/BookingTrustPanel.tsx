@@ -62,13 +62,13 @@ export default function BookingTrustPanel() {
         <div className="mt-2.5 flex flex-col gap-1.5">
           <a
             href={`tel:${ADAM_PHONE_TEL}`}
-            className="w-fit text-[0.9375rem] font-semibold text-[var(--color-brand-600)] no-underline hover:underline"
+            className="inline-flex min-h-[44px] w-fit items-center text-[0.9375rem] font-semibold text-[var(--color-brand-600)] no-underline hover:underline"
           >
             Adam &middot; {ADAM_PHONE_DISPLAY}
           </a>
           <a
             href={`tel:${ALAN_PHONE_TEL}`}
-            className="w-fit text-[0.9375rem] font-semibold text-[var(--color-brand-600)] no-underline hover:underline"
+            className="inline-flex min-h-[44px] w-fit items-center text-[0.9375rem] font-semibold text-[var(--color-brand-600)] no-underline hover:underline"
           >
             Alan &middot; {ALAN_PHONE_DISPLAY}
           </a>

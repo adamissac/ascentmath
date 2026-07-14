@@ -7,7 +7,7 @@ import { GRADES } from "../data/units";
 type Step = 1 | 2 | 3;
 
 const inputClass =
-  "w-full rounded-lg border border-[var(--color-border)] bg-[var(--color-surface)] px-3.5 py-2.5 text-[0.9375rem] text-[var(--color-ink)] shadow-sm focus:border-[var(--color-brand-400)] focus:outline-none focus:ring-2 focus:ring-[var(--color-brand-500)]/20";
+  "w-full rounded-lg border border-[var(--color-border)] bg-[var(--color-surface)] px-3.5 py-2.5 text-base text-[var(--color-ink)] shadow-sm focus:border-[var(--color-brand-400)] focus:outline-none focus:ring-2 focus:ring-[var(--color-brand-500)]/20";
 
 export default function TopicStartFinder() {
   const [step, setStep] = useState<Step>(1);
@@ -80,14 +80,14 @@ export default function TopicStartFinder() {
           <legend className="font-display text-lg font-bold text-[var(--color-ink-cool)]">
             What grade are you in?
           </legend>
-          <div className="mt-4 grid grid-cols-3 gap-2 sm:gap-3">
+          <div className="mt-4 grid grid-cols-1 gap-2 min-[380px]:grid-cols-3 sm:gap-3">
             {GRADES.map((g) => (
               <button
                 key={g.slug}
                 type="button"
                 onClick={() => pickGrade(g.slug)}
                 className={[
-                  "rounded-xl border px-3 py-3 text-center transition-colors duration-150",
+                  "min-h-[44px] rounded-xl border px-3 py-3 text-center transition-colors duration-150",
                   gradeSlug === g.slug
                     ? "border-[var(--color-brand-500)] bg-[var(--color-brand-50)] text-[var(--color-brand-700)]"
                     : "border-[var(--color-border)] bg-[var(--color-surface)] text-[var(--color-ink)] hover:border-[var(--color-brand-200)] hover:bg-[var(--color-brand-50)]",

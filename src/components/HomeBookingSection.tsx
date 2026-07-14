@@ -10,7 +10,7 @@ export default function HomeBookingSection() {
   return (
     <section
       id="book-session"
-      className="hero-surface relative scroll-mt-[5.5rem] overflow-hidden border-t border-[var(--color-border)] bg-[var(--color-bg)]"
+      className="hero-surface relative scroll-mt-[var(--site-header-offset,5.5rem)] overflow-hidden border-t border-[var(--color-border)] bg-[var(--color-bg)]"
       aria-labelledby="book-session-heading"
     >
       <HeroCanvas />
