@@ -105,7 +105,7 @@ export default function Navbar() {
 
   return (
     <header className="relative w-full border-b border-[var(--color-brand-100)] border-t-[3px] border-t-[var(--color-brand-600)] bg-white shadow-sm">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 safe-x">
+      <div className="mx-auto max-w-7xl page-x">
         <div className="flex h-[4.25rem] items-center justify-between gap-2 sm:gap-6">
           <Link
             href="/"

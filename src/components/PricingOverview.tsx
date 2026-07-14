@@ -19,10 +19,18 @@ export function SubjectLevelCards({ variant = "brand" }: { variant?: Variant }) 
 
   return (
     <Reveal variant="rise">
+      <p
+        className={[
+          "mb-3 text-center text-sm font-medium lg:hidden",
+          isBrand ? "text-white/65" : "text-[var(--color-ink-muted)]",
+        ].join(" ")}
+      >
+        Swipe for all four tiers →
+      </p>
       <div
         className={[
-          "flex gap-5 overflow-x-auto pb-2 snap-x snap-mandatory",
-          "lg:grid lg:grid-cols-4 lg:items-stretch lg:gap-6 lg:overflow-visible lg:pb-0 lg:snap-none",
+          "flex gap-5 overflow-x-auto pb-2 snap-x snap-mandatory scroll-px-4 [-webkit-overflow-scrolling:touch]",
+          "lg:grid lg:grid-cols-4 lg:items-stretch lg:gap-6 lg:overflow-visible lg:pb-0 lg:snap-none lg:scroll-px-0",
         ].join(" ")}
       >
         {TUTORING_TIERS.map((tier) => (
