@@ -17,7 +17,7 @@ const STEPS = [
     text: "Usually within 1-2 days, to confirm the subject, tier, and a time that fits your schedule.",
   },
   {
-    title: "You meet for a free first session",
+    title: "You meet for a free consultation call",
     text: "Over Zoom. Nothing to pay up front.",
   },
 ] as const;

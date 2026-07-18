@@ -4,7 +4,7 @@ import { buildPageMetadata } from "../../lib/metadata";
 export const metadata: Metadata = buildPageMetadata({
   title: "Book a session",
   description:
-    "Book a paid 1-on-1 math tutoring session with Adam & Alan. Choose from four tiers (K-5, middle school, high school & SAT/ACT, college). Your first session is free for new clients.",
+    "Book a paid 1-on-1 math tutoring session with Adam & Alan. Choose from four tiers (K-5, middle school, high school & SAT/ACT, college). Free consultation call for new clients.",
   path: "/book",
   index: false,
 });

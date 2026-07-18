@@ -58,7 +58,7 @@ export default function HomeJsonLd() {
     serviceType: "Math tutoring",
     provider: { "@id": ORG_ID },
     description:
-      "Paid 1-on-1 online math tutoring over Zoom across four tiers: Elementary (K-5), Middle school (6-8), High school + SAT/ACT (9-12), and College / dual enrollment. First session free for new clients. Free Grades 6-8 study paths also available with no account.",
+      "Paid 1-on-1 online math tutoring over Zoom across four tiers: Elementary (K-5), Middle school (6-8), High school + SAT/ACT (9-12), and College / dual enrollment. Free consultation call for new clients. Free Grades 6-8 study paths also available with no account.",
     areaServed: [
       { "@type": "State", name: "Georgia" },
       { "@type": "Country", name: "United States" },

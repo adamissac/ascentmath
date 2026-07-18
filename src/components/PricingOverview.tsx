@@ -5,7 +5,7 @@ import HashLink from "./HashLink";
 import Reveal from "./Reveal";
 import { BOOK_SESSION_HREF, CREDENTIALS_HREF } from "../lib/site-paths";
 import {
-  FIRST_SESSION_FREE,
+  FREE_CONSULTATION_CALL,
   TIER_PRICING_EXPLAINER,
   TUTORING_TIERS,
   type TutoringTier,
@@ -116,7 +116,7 @@ export function PricingTierExplainer({ variant = "brand" }: { variant?: Variant 
           isBrand ? "text-[var(--color-accent-300)]" : "text-[var(--color-brand-700)]",
         ].join(" ")}
       >
-        {FIRST_SESSION_FREE}
+        {FREE_CONSULTATION_CALL}
       </p>
       <p
         className={[

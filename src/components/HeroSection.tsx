@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import HashLink from "./HashLink";
 import HeroCanvas from "./HeroCanvas";
 import { HERO_STATS } from "../data/site-stats";
-import { FIRST_SESSION_FREE } from "../data/pricing";
+import { FREE_CONSULTATION_CALL } from "../data/pricing";
 import { BOOK_SESSION_HREF, STUDY_PATHS_HREF } from "../lib/site-paths";
 
 const STAGGER = [
@@ -55,12 +55,12 @@ export default function HeroSection() {
           >
             <span className="sm:hidden">
               We&apos;re Adam Issac and Alan Mozhoor, Math + CS @ Georgia Tech. Book a paid 1-on-1
-              session — {FIRST_SESSION_FREE} Or use our free Grades 6–8 study paths.
+              session — {FREE_CONSULTATION_CALL} Or use our free Grades 6–8 study paths.
             </span>
             <span className="hidden sm:inline">
               We&apos;re Adam Issac and Alan Mozhoor, Math + CS @ Georgia Tech. We tutor pre-algebra through AP
               Pre-Calc, AP Calc, AP Statistics, SAT &amp; ACT Math, linear algebra, and multivariable
-              calc, plus K-5 and middle school basics. Book a paid 1-on-1 session. {FIRST_SESSION_FREE}{" "}
+              calc, plus K-5 and middle school basics. Book a paid 1-on-1 session. {FREE_CONSULTATION_CALL}{" "}
               Or use our free Grades 6-8 study paths on your own.
             </span>
           </p>
@@ -120,7 +120,7 @@ export default function HeroSection() {
             <span className="text-[#1a1a2e]/25" aria-hidden>
               ·
             </span>
-            <span>{FIRST_SESSION_FREE.split(".")[0]}</span>
+            <span>{FREE_CONSULTATION_CALL.split(".")[0]}</span>
             <span className="text-[#1a1a2e]/25" aria-hidden>
               ·
             </span>

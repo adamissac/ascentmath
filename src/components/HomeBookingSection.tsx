@@ -3,7 +3,7 @@ import ContactForm from "./ContactForm";
 import HeroCanvas from "./HeroCanvas";
 import Reveal from "./Reveal";
 import BookingTrustPanel from "./BookingTrustPanel";
-import { FIRST_SESSION_FREE } from "../data/pricing";
+import { FREE_CONSULTATION_CALL } from "../data/pricing";
 import { TUTOR_NAMES_SHORT } from "../data/site-team";
 
 export default function HomeBookingSection() {
@@ -29,7 +29,7 @@ export default function HomeBookingSection() {
             </h2>
             <p className="mt-3 text-[0.9375rem] leading-relaxed text-[var(--color-ink-muted)] sm:text-base">
               Tell us about your student below and {TUTOR_NAMES_SHORT} will reach out to set up a time.{" "}
-              {FIRST_SESSION_FREE}
+              {FREE_CONSULTATION_CALL}
             </p>
           </div>
 
