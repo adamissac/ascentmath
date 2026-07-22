@@ -10,7 +10,7 @@ from __future__ import annotations
 from collections import deque
 from pathlib import Path
 
-from PIL import Image
+from PIL import Image, ImageDraw, ImageChops
 
 ROOT = Path(__file__).resolve().parents[1]
 SRC = ROOT / "public" / "logo-source2.png"
@@ -125,26 +125,52 @@ def compose_og_image(logo: Image.Image) -> Image.Image:
     return canvas
 
 
+def round_icon(logo: Image.Image, size: int, radius_ratio: float = 0.22) -> Image.Image:
+    """Resize and clip to a transparent rounded rectangle (squircle plate)."""
+    scaled = logo.resize((size, size), Image.Resampling.LANCZOS).convert("RGBA")
+    mask = Image.new("L", (size, size), 0)
+    draw = ImageDraw.Draw(mask)
+    radius = max(3, round(size * radius_ratio))
+    draw.rounded_rectangle([0, 0, size - 1, size - 1], radius=radius, fill=255)
+    r, g, b, a = scaled.split()
+    a = ImageChops.multiply(a, mask)
+    return Image.merge("RGBA", (r, g, b, a))
+
+
 def write_icons(logo: Image.Image) -> None:
     """Write site favicons from a square RGBA mark (no bg removal needed)."""
+    # Tiny sizes need a slightly stronger radius so rounding reads in browser tabs.
     targets = {
-        ROOT / "public" / "ascent-fav-32.png": 32,
-        ROOT / "public" / "favicon-32.png": 32,
-        ROOT / "public" / "ascent-apple-180.png": 180,
-        ROOT / "public" / "android-chrome-192.png": 192,
-        ROOT / "public" / "ascent-icon-512.png": 512,
-        ROOT / "public" / "android-chrome-512.png": 512,
+        ROOT / "public" / "app-icon-32.png": (32, 0.26),
+        ROOT / "public" / "ascent-fav-32.png": (32, 0.26),
+        ROOT / "public" / "favicon-32.png": (32, 0.26),
+        ROOT / "public" / "app-icon-180.png": (180, 0.22),
+        ROOT / "public" / "ascent-apple-180.png": (180, 0.22),
+        ROOT / "public" / "android-chrome-192.png": (192, 0.22),
+        ROOT / "public" / "app-icon-512.png": (512, 0.22),
+        ROOT / "public" / "ascent-icon-512.png": (512, 0.22),
+        ROOT / "public" / "android-chrome-512.png": (512, 0.22),
     }
 
-    for path, size in targets.items():
-        logo.resize((size, size), Image.Resampling.LANCZOS).save(path, format="PNG", optimize=True)
+    for path, (size, ratio) in targets.items():
+        round_icon(logo, size, ratio).save(path, format="PNG", optimize=True)
 
-    ico = logo.resize((64, 64), Image.Resampling.LANCZOS)
+    ico_frames = {
+        16: round_icon(logo, 16, 0.30),
+        32: round_icon(logo, 32, 0.26),
+        48: round_icon(logo, 48, 0.24),
+        64: round_icon(logo, 64, 0.23),
+    }
     for dest in (
         ROOT / "public" / "favicon.ico",
+        ROOT / "public" / "app-icon.ico",
         ROOT / "public" / "ascent-fav.ico",
     ):
-        ico.save(dest, format="ICO", sizes=[(16, 16), (32, 32), (48, 48), (64, 64)])
+        ico_frames[64].save(
+            dest,
+            format="ICO",
+            sizes=[(16, 16), (32, 32), (48, 48), (64, 64)],
+        )
 
 
 def main() -> None:
