@@ -46,7 +46,7 @@ const nextConfig: NextConfig = {
       // Favicons are sticky in browser caches; prefer revalidation over year-long immutable.
       {
         source:
-          "/:file(favicon.ico|favicon-32.png|ascent-fav.ico|ascent-fav-32.png|ascent-icon-512.png|ascent-apple-180.png|android-chrome-192.png|android-chrome-512.png|site.webmanifest)",
+          "/:file(favicon.ico|favicon-32.png|app-icon.ico|app-icon-32.png|app-icon-180.png|app-icon-512.png|ascent-fav.ico|ascent-fav-32.png|ascent-icon-512.png|ascent-apple-180.png|android-chrome-192.png|android-chrome-512.png|site.webmanifest)",
         headers: [{ key: "Cache-Control", value: "public, max-age=0, must-revalidate" }],
       },
     ];

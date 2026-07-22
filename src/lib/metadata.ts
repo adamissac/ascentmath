@@ -63,18 +63,18 @@ export const ROOT_METADATA: Metadata = {
     // Unique filenames + version query so browsers do not keep the old tab icon.
     // Avoid src/app/favicon.ico — Next injects an unversioned /favicon.ico link.
     icon: [
-      { url: `/ascent-fav-32.png?v=${SITE_ICON_VERSION}`, type: "image/png", sizes: "32x32" },
-      { url: `/ascent-fav.ico?v=${SITE_ICON_VERSION}`, sizes: "any" },
-      { url: `/ascent-icon-512.png?v=${SITE_ICON_VERSION}`, type: "image/png", sizes: "512x512" },
+      { url: `/app-icon-32.png?v=${SITE_ICON_VERSION}`, type: "image/png", sizes: "32x32" },
+      { url: `/app-icon.ico?v=${SITE_ICON_VERSION}`, sizes: "any" },
+      { url: `/app-icon-512.png?v=${SITE_ICON_VERSION}`, type: "image/png", sizes: "512x512" },
     ],
     apple: [
       {
-        url: `/ascent-apple-180.png?v=${SITE_ICON_VERSION}`,
+        url: `/app-icon-180.png?v=${SITE_ICON_VERSION}`,
         sizes: "180x180",
         type: "image/png",
       },
     ],
-    shortcut: `/ascent-fav.ico?v=${SITE_ICON_VERSION}`,
+    shortcut: `/app-icon.ico?v=${SITE_ICON_VERSION}`,
   },
   manifest: `/site.webmanifest?v=${SITE_ICON_VERSION}`,
   title: {
