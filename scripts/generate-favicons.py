@@ -122,23 +122,25 @@ def compose_og_image(logo: Image.Image) -> Image.Image:
 
 
 def write_icons(logo: Image.Image) -> None:
+    """Write site favicons from a square RGBA mark (no bg removal needed)."""
     targets = {
-        ROOT / "src" / "app" / "icon.png": 512,
-        ROOT / "src" / "app" / "apple-icon.png": 180,
+        ROOT / "public" / "ascent-fav-32.png": 32,
         ROOT / "public" / "favicon-32.png": 32,
+        ROOT / "public" / "ascent-apple-180.png": 180,
         ROOT / "public" / "android-chrome-192.png": 192,
+        ROOT / "public" / "ascent-icon-512.png": 512,
         ROOT / "public" / "android-chrome-512.png": 512,
     }
 
     for path, size in targets.items():
-        compose(size, logo).save(path, format="PNG", optimize=True)
+        logo.resize((size, size), Image.Resampling.LANCZOS).save(path, format="PNG", optimize=True)
 
-    icon_512 = compose(512, logo)
-    icon_512.save(
-        ROOT / "src" / "app" / "favicon.ico",
-        format="ICO",
-        sizes=[(16, 16), (32, 32), (48, 48), (64, 64)],
-    )
+    ico = logo.resize((64, 64), Image.Resampling.LANCZOS)
+    for dest in (
+        ROOT / "public" / "favicon.ico",
+        ROOT / "public" / "ascent-fav.ico",
+    ):
+        ico.save(dest, format="ICO", sizes=[(16, 16), (32, 32), (48, 48), (64, 64)])
 
 
 def main() -> None:
@@ -151,8 +153,15 @@ def main() -> None:
     master.save(OUT_LOGO, format="PNG", optimize=True)
 
     compose_og_image(logo).save(OG_IMAGE, format="PNG", optimize=True)
-    write_icons(logo)
-    print("Logo, og-image (1200x630), and favicon assets regenerated from logo-source2.png.")
+
+    # Tab / PWA icons use the dedicated app-icon upload (blue rounded A), not the
+    # transparent navbar mark — otherwise logo:generate would wipe the favicon.
+    favicon_src = ROOT / "public" / "favicon-source.png"
+    if favicon_src.exists():
+        write_icons(Image.open(favicon_src).convert("RGBA"))
+        print("Logo, og-image, and favicon assets regenerated (favicons from favicon-source.png).")
+    else:
+        print("Logo and og-image regenerated. Skipped favicons (missing public/favicon-source.png).")
 
 
 if __name__ == "__main__":

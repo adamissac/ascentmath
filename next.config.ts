@@ -41,7 +41,15 @@ const nextConfig: NextConfig = {
     ],
   },
   async headers() {
-    return [{ source: "/(.*)", headers: securityHeaders }];
+    return [
+      { source: "/(.*)", headers: securityHeaders },
+      // Favicons are sticky in browser caches; prefer revalidation over year-long immutable.
+      {
+        source:
+          "/:file(favicon.ico|favicon-32.png|ascent-fav.ico|ascent-fav-32.png|ascent-icon-512.png|ascent-apple-180.png|android-chrome-192.png|android-chrome-512.png|site.webmanifest)",
+        headers: [{ key: "Cache-Control", value: "public, max-age=0, must-revalidate" }],
+      },
+    ];
   },
   async redirects() {
     const legacyUnitRedirects = Array.from({ length: 7 }, (_, i) => ({
