@@ -1,5 +1,9 @@
 #!/usr/bin/env python3
-"""Regenerate logo, og-image, and favicon assets from public/logo-source2.png."""
+"""Regenerate logo, og-image, and favicon assets.
+
+- Navbar logo + og-image: public/logo-source2.png
+- Tab / PWA favicons: public/favicon-source.png (blue app icon)
+"""
 
 from __future__ import annotations
 
