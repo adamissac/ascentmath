@@ -60,15 +60,23 @@ export const ROOT_METADATA: Metadata = {
   // Drop Google Search Console verification token here when Adam has it:
   // verification: { google: "REPLACE_WITH_GSC_TOKEN" },
   icons: {
+    // Unique filenames + version query so browsers do not keep the old tab icon.
+    // Avoid src/app/favicon.ico — Next injects an unversioned /favicon.ico link.
     icon: [
-      { url: `/favicon-32.png?v=${SITE_ICON_VERSION}`, type: "image/png", sizes: "32x32" },
-      { url: `/favicon.ico?v=${SITE_ICON_VERSION}`, sizes: "any" },
-      { url: `/icon.png?v=${SITE_ICON_VERSION}`, type: "image/png", sizes: "512x512" },
+      { url: `/ascent-fav-32.png?v=${SITE_ICON_VERSION}`, type: "image/png", sizes: "32x32" },
+      { url: `/ascent-fav.ico?v=${SITE_ICON_VERSION}`, sizes: "any" },
+      { url: `/ascent-icon-512.png?v=${SITE_ICON_VERSION}`, type: "image/png", sizes: "512x512" },
     ],
-    apple: [{ url: `/apple-icon.png?v=${SITE_ICON_VERSION}`, sizes: "180x180", type: "image/png" }],
-    shortcut: `/favicon.ico?v=${SITE_ICON_VERSION}`,
+    apple: [
+      {
+        url: `/ascent-apple-180.png?v=${SITE_ICON_VERSION}`,
+        sizes: "180x180",
+        type: "image/png",
+      },
+    ],
+    shortcut: `/ascent-fav.ico?v=${SITE_ICON_VERSION}`,
   },
-  manifest: "/site.webmanifest",
+  manifest: `/site.webmanifest?v=${SITE_ICON_VERSION}`,
   title: {
     default: HOME_DOCUMENT_TITLE,
     template: `%s · ${SITE_BRAND_NAME}`,
