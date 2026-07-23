@@ -67,7 +67,13 @@ export const ROOT_METADATA: Metadata = {
       { url: `/app-icon.ico?v=${SITE_ICON_VERSION}`, sizes: "any" },
       { url: `/app-icon-512.png?v=${SITE_ICON_VERSION}`, type: "image/png", sizes: "512x512" },
     ],
+    // Opaque 180px plate — iOS applies its own rounded mask on home screen.
     apple: [
+      {
+        url: `/apple-touch-icon.png?v=${SITE_ICON_VERSION}`,
+        sizes: "180x180",
+        type: "image/png",
+      },
       {
         url: `/app-icon-180.png?v=${SITE_ICON_VERSION}`,
         sizes: "180x180",
@@ -77,6 +83,12 @@ export const ROOT_METADATA: Metadata = {
     shortcut: `/app-icon.ico?v=${SITE_ICON_VERSION}`,
   },
   manifest: `/site.webmanifest?v=${SITE_ICON_VERSION}`,
+  // Helps iOS Safari treat the site as an installable web app with our icon.
+  appleWebApp: {
+    capable: true,
+    title: SITE_BRAND_NAME,
+    statusBarStyle: "default",
+  },
   title: {
     default: HOME_DOCUMENT_TITLE,
     template: `%s · ${SITE_BRAND_NAME}`,
