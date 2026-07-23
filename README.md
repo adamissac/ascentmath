@@ -218,3 +218,7 @@ Tokens include:
 ## License
 
 Free educational use. Not affiliated with Khan Academy, GADOE, Georgia Tech, or any specific school district.
+
+## Security notes
+
+Never commit `.env.local`. Use `.env.example` as the template for Resend and related keys.
