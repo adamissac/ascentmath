@@ -126,7 +126,7 @@ def compose_og_image(logo: Image.Image) -> Image.Image:
 
 
 def round_icon(logo: Image.Image, size: int, radius_ratio: float = 0.22) -> Image.Image:
-    """Resize and clip to a transparent rounded rectangle (squircle plate)."""
+    """Resize and clip to a transparent rounded rectangle (browser tab favicon)."""
     scaled = logo.resize((size, size), Image.Resampling.LANCZOS).convert("RGBA")
     mask = Image.new("L", (size, size), 0)
     draw = ImageDraw.Draw(mask)
@@ -137,23 +137,63 @@ def round_icon(logo: Image.Image, size: int, radius_ratio: float = 0.22) -> Imag
     return Image.merge("RGBA", (r, g, b, a))
 
 
+def opaque_mobile_icon(logo: Image.Image, size: int, fill=(1, 53, 159, 255)) -> Image.Image:
+    """Full opaque square for iOS/Android home screens (OS applies its own mask)."""
+    scaled = logo.resize((size, size), Image.Resampling.LANCZOS).convert("RGBA")
+    base = Image.new("RGBA", (size, size), fill)
+    base.alpha_composite(scaled)
+    r, g, b, _ = base.split()
+    return Image.merge("RGBA", (r, g, b, Image.new("L", (size, size), 255)))
+
+
+def maskable_icon(
+    logo: Image.Image,
+    size: int,
+    fill=(1, 53, 159, 255),
+    safe_ratio: float = 0.8,
+) -> Image.Image:
+    """PWA maskable icon: opaque plate with logo inset in the safe zone."""
+    base = Image.new("RGBA", (size, size), fill)
+    inner = max(1, int(size * safe_ratio))
+    scaled = logo.resize((inner, inner), Image.Resampling.LANCZOS).convert("RGBA")
+    plate = Image.new("RGBA", (inner, inner), fill)
+    plate.alpha_composite(scaled)
+    offset = ((size - inner) // 2, (size - inner) // 2)
+    base.paste(plate, offset)
+    r, g, b, _ = base.split()
+    return Image.merge("RGBA", (r, g, b, Image.new("L", (size, size), 255)))
+
+
 def write_icons(logo: Image.Image) -> None:
-    """Write site favicons from a square RGBA mark (no bg removal needed)."""
-    # Tiny sizes need a slightly stronger radius so rounding reads in browser tabs.
-    targets = {
+    """Write browser-tab favicons + opaque mobile / PWA home-screen icons."""
+    # Browser tabs — transparent rounded corners
+    tab_targets = {
         ROOT / "public" / "app-icon-32.png": (32, 0.26),
         ROOT / "public" / "ascent-fav-32.png": (32, 0.26),
         ROOT / "public" / "favicon-32.png": (32, 0.26),
-        ROOT / "public" / "app-icon-180.png": (180, 0.22),
-        ROOT / "public" / "ascent-apple-180.png": (180, 0.22),
-        ROOT / "public" / "android-chrome-192.png": (192, 0.22),
         ROOT / "public" / "app-icon-512.png": (512, 0.22),
         ROOT / "public" / "ascent-icon-512.png": (512, 0.22),
-        ROOT / "public" / "android-chrome-512.png": (512, 0.22),
     }
-
-    for path, (size, ratio) in targets.items():
+    for path, (size, ratio) in tab_targets.items():
         round_icon(logo, size, ratio).save(path, format="PNG", optimize=True)
+
+    # iOS home screen / Safari — opaque (iOS rounds the mask itself)
+    for path in (
+        ROOT / "public" / "apple-touch-icon.png",
+        ROOT / "public" / "apple-touch-icon-180x180.png",
+        ROOT / "public" / "app-icon-180.png",
+        ROOT / "public" / "ascent-apple-180.png",
+    ):
+        opaque_mobile_icon(logo, 180).save(path, format="PNG", optimize=True)
+
+    # Android / PWA
+    for path, size in (
+        (ROOT / "public" / "android-chrome-192.png", 192),
+        (ROOT / "public" / "android-chrome-512.png", 512),
+        (ROOT / "public" / "android-chrome-maskable-192.png", 192),
+        (ROOT / "public" / "android-chrome-maskable-512.png", 512),
+    ):
+        maskable_icon(logo, size).save(path, format="PNG", optimize=True)
 
     ico_frames = {
         16: round_icon(logo, 16, 0.30),
