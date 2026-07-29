@@ -58,9 +58,9 @@ export default function TermsPage() {
           method and timing, if applicable, are confirmed when you book.
         </p>
         <p>
-          <strong className="text-[var(--color-ink)]">First session free (new clients):</strong> we
-          may offer one free initial tutoring session for new clients. Unless we state otherwise in
-          writing, this means one free first session per new student/household.
+          <strong className="text-[var(--color-ink)]">Free consultation call (new clients):</strong> we
+          may offer one free consultation call for new clients. Unless we state otherwise in
+          writing, this means one free consultation call per new student/household.
         </p>
         <p>
           <strong className="text-[var(--color-ink)]">Cancellations/rescheduling:</strong>{" "}

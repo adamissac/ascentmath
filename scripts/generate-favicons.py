@@ -1,12 +1,16 @@
 #!/usr/bin/env python3
-"""Regenerate logo, og-image, and favicon assets from public/logo-source2.png."""
+"""Regenerate logo, og-image, and favicon assets.
+
+- Navbar logo + og-image: public/logo-source2.png
+- Tab / PWA favicons: public/favicon-source.png (blue app icon)
+"""
 
 from __future__ import annotations
 
 from collections import deque
 from pathlib import Path
 
-from PIL import Image
+from PIL import Image, ImageDraw, ImageChops
 
 ROOT = Path(__file__).resolve().parents[1]
 SRC = ROOT / "public" / "logo-source2.png"
@@ -121,24 +125,92 @@ def compose_og_image(logo: Image.Image) -> Image.Image:
     return canvas
 
 
+def round_icon(logo: Image.Image, size: int, radius_ratio: float = 0.22) -> Image.Image:
+    """Resize and clip to a transparent rounded rectangle (browser tab favicon)."""
+    scaled = logo.resize((size, size), Image.Resampling.LANCZOS).convert("RGBA")
+    mask = Image.new("L", (size, size), 0)
+    draw = ImageDraw.Draw(mask)
+    radius = max(3, round(size * radius_ratio))
+    draw.rounded_rectangle([0, 0, size - 1, size - 1], radius=radius, fill=255)
+    r, g, b, a = scaled.split()
+    a = ImageChops.multiply(a, mask)
+    return Image.merge("RGBA", (r, g, b, a))
+
+
+def opaque_mobile_icon(logo: Image.Image, size: int, fill=(1, 53, 159, 255)) -> Image.Image:
+    """Full opaque square for iOS/Android home screens (OS applies its own mask)."""
+    scaled = logo.resize((size, size), Image.Resampling.LANCZOS).convert("RGBA")
+    base = Image.new("RGBA", (size, size), fill)
+    base.alpha_composite(scaled)
+    r, g, b, _ = base.split()
+    return Image.merge("RGBA", (r, g, b, Image.new("L", (size, size), 255)))
+
+
+def maskable_icon(
+    logo: Image.Image,
+    size: int,
+    fill=(1, 53, 159, 255),
+    safe_ratio: float = 0.8,
+) -> Image.Image:
+    """PWA maskable icon: opaque plate with logo inset in the safe zone."""
+    base = Image.new("RGBA", (size, size), fill)
+    inner = max(1, int(size * safe_ratio))
+    scaled = logo.resize((inner, inner), Image.Resampling.LANCZOS).convert("RGBA")
+    plate = Image.new("RGBA", (inner, inner), fill)
+    plate.alpha_composite(scaled)
+    offset = ((size - inner) // 2, (size - inner) // 2)
+    base.paste(plate, offset)
+    r, g, b, _ = base.split()
+    return Image.merge("RGBA", (r, g, b, Image.new("L", (size, size), 255)))
+
+
 def write_icons(logo: Image.Image) -> None:
-    targets = {
-        ROOT / "src" / "app" / "icon.png": 512,
-        ROOT / "src" / "app" / "apple-icon.png": 180,
-        ROOT / "public" / "favicon-32.png": 32,
-        ROOT / "public" / "android-chrome-192.png": 192,
-        ROOT / "public" / "android-chrome-512.png": 512,
+    """Write browser-tab favicons + opaque mobile / PWA home-screen icons."""
+    # Browser tabs — transparent rounded corners
+    tab_targets = {
+        ROOT / "public" / "app-icon-32.png": (32, 0.26),
+        ROOT / "public" / "ascent-fav-32.png": (32, 0.26),
+        ROOT / "public" / "favicon-32.png": (32, 0.26),
+        ROOT / "public" / "app-icon-512.png": (512, 0.22),
+        ROOT / "public" / "ascent-icon-512.png": (512, 0.22),
     }
+    for path, (size, ratio) in tab_targets.items():
+        round_icon(logo, size, ratio).save(path, format="PNG", optimize=True)
 
-    for path, size in targets.items():
-        compose(size, logo).save(path, format="PNG", optimize=True)
+    # iOS home screen / Safari — opaque (iOS rounds the mask itself)
+    for path in (
+        ROOT / "public" / "apple-touch-icon.png",
+        ROOT / "public" / "apple-touch-icon-180x180.png",
+        ROOT / "public" / "app-icon-180.png",
+        ROOT / "public" / "ascent-apple-180.png",
+    ):
+        opaque_mobile_icon(logo, 180).save(path, format="PNG", optimize=True)
 
-    icon_512 = compose(512, logo)
-    icon_512.save(
-        ROOT / "src" / "app" / "favicon.ico",
-        format="ICO",
-        sizes=[(16, 16), (32, 32), (48, 48), (64, 64)],
-    )
+    # Android / PWA
+    for path, size in (
+        (ROOT / "public" / "android-chrome-192.png", 192),
+        (ROOT / "public" / "android-chrome-512.png", 512),
+        (ROOT / "public" / "android-chrome-maskable-192.png", 192),
+        (ROOT / "public" / "android-chrome-maskable-512.png", 512),
+    ):
+        maskable_icon(logo, size).save(path, format="PNG", optimize=True)
+
+    ico_frames = {
+        16: round_icon(logo, 16, 0.30),
+        32: round_icon(logo, 32, 0.26),
+        48: round_icon(logo, 48, 0.24),
+        64: round_icon(logo, 64, 0.23),
+    }
+    for dest in (
+        ROOT / "public" / "favicon.ico",
+        ROOT / "public" / "app-icon.ico",
+        ROOT / "public" / "ascent-fav.ico",
+    ):
+        ico_frames[64].save(
+            dest,
+            format="ICO",
+            sizes=[(16, 16), (32, 32), (48, 48), (64, 64)],
+        )
 
 
 def main() -> None:
@@ -151,8 +223,15 @@ def main() -> None:
     master.save(OUT_LOGO, format="PNG", optimize=True)
 
     compose_og_image(logo).save(OG_IMAGE, format="PNG", optimize=True)
-    write_icons(logo)
-    print("Logo, og-image (1200x630), and favicon assets regenerated from logo-source2.png.")
+
+    # Tab / PWA icons use the dedicated app-icon upload (blue rounded A), not the
+    # transparent navbar mark — otherwise logo:generate would wipe the favicon.
+    favicon_src = ROOT / "public" / "favicon-source.png"
+    if favicon_src.exists():
+        write_icons(Image.open(favicon_src).convert("RGBA"))
+        print("Logo, og-image, and favicon assets regenerated (favicons from favicon-source.png).")
+    else:
+        print("Logo and og-image regenerated. Skipped favicons (missing public/favicon-source.png).")
 
 
 if __name__ == "__main__":

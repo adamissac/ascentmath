@@ -40,7 +40,7 @@ export default function LessonShell({
   backHref,
   backLabel,
 }: Props) {
-  const [sidebarOpen, setSidebarOpen] = useState(true);
+  const [sidebarOpen, setSidebarOpen] = useState(false);
   const progressItems: ProgressItem[] = unit.topics.map((t) => ({ id: t.id, label: t.title }));
   const { hydrated, isComplete, completedCount, total } = useUnitProgress(unit.id, progressItems);
 
@@ -190,7 +190,11 @@ export default function LessonShell({
 
               <div className="lesson-header__actions">
                 {nextHref && nextLabel && (
-                  <Link href={nextHref} className="btn btn-primary btn-sm lesson-header__next">
+                  <Link
+                    href={nextHref}
+                    className="btn btn-primary btn-sm lesson-header__next"
+                    title={nextLabel}
+                  >
                     {nextLabel}
                   </Link>
                 )}

@@ -13,7 +13,7 @@ export default function HomeStudyPathsSection() {
       containerSize="lg"
       reveal={false}
       faintSymbols
-      className="scroll-mt-[5.5rem]"
+      className="scroll-mt-[var(--site-header-offset,5.5rem)]"
     >
       <div className="grid items-start gap-10 lg:grid-cols-12 lg:gap-14">
         <Reveal variant="fade" className="lg:col-span-4 lg:sticky lg:top-24">

@@ -5,7 +5,7 @@ import HashLink from "./HashLink";
 import Reveal from "./Reveal";
 import { BOOK_SESSION_HREF, CREDENTIALS_HREF } from "../lib/site-paths";
 import {
-  FIRST_SESSION_FREE,
+  FREE_CONSULTATION_CALL,
   TIER_PRICING_EXPLAINER,
   TUTORING_TIERS,
   type TutoringTier,
@@ -19,10 +19,18 @@ export function SubjectLevelCards({ variant = "brand" }: { variant?: Variant }) 
 
   return (
     <Reveal variant="rise">
+      <p
+        className={[
+          "mb-3 text-center text-sm font-medium lg:hidden",
+          isBrand ? "text-white/65" : "text-[var(--color-ink-muted)]",
+        ].join(" ")}
+      >
+        Swipe for all four tiers →
+      </p>
       <div
         className={[
-          "flex gap-5 overflow-x-auto pb-2 snap-x snap-mandatory",
-          "lg:grid lg:grid-cols-4 lg:items-stretch lg:gap-6 lg:overflow-visible lg:pb-0 lg:snap-none",
+          "flex gap-5 overflow-x-auto pb-2 snap-x snap-mandatory scroll-px-4 [-webkit-overflow-scrolling:touch]",
+          "lg:grid lg:grid-cols-4 lg:items-stretch lg:gap-6 lg:overflow-visible lg:pb-0 lg:snap-none lg:scroll-px-0",
         ].join(" ")}
       >
         {TUTORING_TIERS.map((tier) => (
@@ -108,7 +116,7 @@ export function PricingTierExplainer({ variant = "brand" }: { variant?: Variant 
           isBrand ? "text-[var(--color-accent-300)]" : "text-[var(--color-brand-700)]",
         ].join(" ")}
       >
-        {FIRST_SESSION_FREE}
+        {FREE_CONSULTATION_CALL}
       </p>
       <p
         className={[

@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import HashLink from "./HashLink";
 import HeroCanvas from "./HeroCanvas";
 import { HERO_STATS } from "../data/site-stats";
-import { FIRST_SESSION_FREE } from "../data/pricing";
+import { FREE_CONSULTATION_CALL } from "../data/pricing";
 import { BOOK_SESSION_HREF, STUDY_PATHS_HREF } from "../lib/site-paths";
 
 const STAGGER = [
@@ -32,12 +32,12 @@ export default function HeroSection() {
 
   return (
     <section
-      className="hero-surface relative min-h-[min(100dvh,920px)] overflow-hidden bg-[var(--color-bg)]"
+      className="hero-surface relative min-h-[min(88dvh,920px)] overflow-hidden bg-[var(--color-bg)] sm:min-h-[min(100dvh,920px)]"
       style={{ contain: "layout paint" }}
     >
       <HeroCanvas />
 
-      <div className="relative z-[1] flex min-h-[min(100dvh,920px)] items-center justify-center page-x py-12 sm:py-16">
+      <div className="relative z-[1] flex min-h-[min(88dvh,920px)] items-center justify-center page-x py-12 sm:min-h-[min(100dvh,920px)] sm:py-16">
         <div className="mx-auto flex w-full min-w-0 max-w-4xl flex-col items-center text-center">
           <h1
             className={`${rise} ${STAGGER[0]} h-display w-full min-w-0 max-w-3xl px-1 text-[var(--color-ink-cool)] [text-shadow:0_1px_32px_rgba(11,32,70,0.08)] sm:px-0`}
@@ -53,10 +53,16 @@ export default function HeroSection() {
           <p
             className={`${rise} ${STAGGER[1]} mt-6 w-full min-w-0 max-w-[32.5rem] text-[1.0625rem] leading-relaxed text-[var(--color-ink-cool-muted)] sm:text-lg`}
           >
-            We&apos;re Adam Issac and Alan Mozhoor, Math + CS @ Georgia Tech. We tutor pre-algebra through AP
-            Pre-Calc, AP Calc, AP Statistics, SAT &amp; ACT Math, linear algebra, and multivariable
-            calc, plus K-5 and middle school basics. Book a paid 1-on-1 session. {FIRST_SESSION_FREE}{" "}
-            Or use our free Grades 6-8 study paths on your own.
+            <span className="sm:hidden">
+              We&apos;re Adam Issac and Alan Mozhoor, Math + CS @ Georgia Tech. Book a paid 1-on-1
+              session — {FREE_CONSULTATION_CALL} Or use our free Grades 6–8 study paths.
+            </span>
+            <span className="hidden sm:inline">
+              We&apos;re Adam Issac and Alan Mozhoor, Math + CS @ Georgia Tech. We tutor pre-algebra through AP
+              Pre-Calc, AP Calc, AP Statistics, SAT &amp; ACT Math, linear algebra, and multivariable
+              calc, plus K-5 and middle school basics. Book a paid 1-on-1 session. {FREE_CONSULTATION_CALL}{" "}
+              Or use our free Grades 6-8 study paths on your own.
+            </span>
           </p>
 
           <div
@@ -114,7 +120,7 @@ export default function HeroSection() {
             <span className="text-[var(--color-ink-cool)]/25" aria-hidden>
               ·
             </span>
-            <span>{FIRST_SESSION_FREE.split(".")[0]}</span>
+            <span>{FREE_CONSULTATION_CALL.split(".")[0]}</span>
             <span className="text-[var(--color-ink-cool)]/25" aria-hidden>
               ·
             </span>

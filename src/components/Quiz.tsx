@@ -150,7 +150,14 @@ export default function Quiz({ title = "Check yourself", questions, onComplete }
       </div>
 
       <div className="mt-4">
-        <div className="w-full h-1 rounded-full bg-[var(--color-surface-2)] overflow-hidden">
+        <div
+          className="w-full h-1 rounded-full bg-[var(--color-surface-2)] overflow-hidden"
+          role="progressbar"
+          aria-valuemin={0}
+          aria-valuemax={total}
+          aria-valuenow={index + 1}
+          aria-label="Quiz progress"
+        >
           <div
             className="h-1 bg-[var(--color-brand-500)] transition-[width] duration-300"
             style={{ width: `${((index + 1) / total) * 100}%` }}
@@ -160,7 +167,11 @@ export default function Quiz({ title = "Check yourself", questions, onComplete }
 
       <p className="mt-6 text-lg font-medium leading-relaxed text-[var(--color-ink)]">{q.prompt}</p>
 
-      <div className="mt-5 grid gap-2.5">
+      <div
+        className="mt-5 grid gap-2.5"
+        role={q.type === "short-answer" ? undefined : "radiogroup"}
+        aria-label={q.prompt}
+      >
         {q.type === "multiple-choice" && q.options?.map((opt) => (
           <Option
             key={opt}
@@ -179,6 +190,7 @@ export default function Quiz({ title = "Check yourself", questions, onComplete }
         )}
         {q.type === "short-answer" && (
           <input
+            id={`quiz-answer-${q.id}`}
             value={current}
             onChange={(e) => select(e.target.value)}
             className={[
@@ -190,6 +202,7 @@ export default function Quiz({ title = "Check yourself", questions, onComplete }
               .join(" ")}
             placeholder="Type your answer..."
             disabled={isRevealed}
+            aria-label={`Answer for question ${index + 1}`}
           />
         )}
       </div>
@@ -200,6 +213,7 @@ export default function Quiz({ title = "Check yourself", questions, onComplete }
             "lesson-quiz__feedback",
             isCorrect ? "lesson-quiz__feedback--ok" : "lesson-quiz__feedback--miss",
           ].join(" ")}
+          aria-live="polite"
         >
           <p className="lesson-quiz__feedback-title">{isCorrect ? "✓ Correct!" : "✗ Not quite."}</p>
           <p className="lesson-quiz__feedback-text">{q.explanation}</p>
@@ -260,6 +274,8 @@ function Option({
       onClick={onClick}
       disabled={disabled}
       aria-pressed={selected}
+      role="radio"
+      aria-checked={selected}
       className={[
         "lesson-quiz__option",
         selected && !result ? "lesson-quiz__option--selected" : "",

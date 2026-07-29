@@ -24,7 +24,7 @@ export type TutoringTier = {
   popular?: boolean;
 };
 
-export const FIRST_SESSION_FREE = "Your first session is free for new clients.";
+export const FREE_CONSULTATION_CALL = "Free consultation call for new clients.";
 
 /** Shown under the tier cards (homepage and anywhere tiers are listed). */
 export const TIER_PRICING_EXPLAINER =

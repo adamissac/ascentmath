@@ -87,7 +87,7 @@ function ContactItem({ href, label, sub }: { href: string; label: string; sub?: 
     <li>
       <a
         href={href}
-        className="block rounded-md no-underline transition-colors hover:text-[var(--color-brand-600)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--color-brand-500)]"
+        className="block min-h-[44px] rounded-md py-2 no-underline transition-colors hover:text-[var(--color-brand-600)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--color-brand-500)]"
       >
         <span className="block text-sm font-medium text-[var(--color-ink)]">{label}</span>
         {sub && (

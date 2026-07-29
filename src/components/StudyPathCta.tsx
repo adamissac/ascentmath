@@ -1,7 +1,7 @@
 import Container from "./Container";
 import Reveal from "./Reveal";
 import BookSessionLink from "./BookSessionLink";
-import { FIRST_SESSION_FREE } from "../data/pricing";
+import { FREE_CONSULTATION_CALL } from "../data/pricing";
 import { TUTOR_NAMES_SHORT } from "../data/site-team";
 
 const CARD =
@@ -20,7 +20,7 @@ export default function StudyPathCta() {
               Stuck on something specific?
             </h2>
             <p className="mt-3 text-[0.9375rem] leading-relaxed text-[var(--color-ink-muted)] sm:text-base">
-              {TUTOR_NAMES_SHORT} can walk through it live. {FIRST_SESSION_FREE}
+              {TUTOR_NAMES_SHORT} can walk through it live. {FREE_CONSULTATION_CALL}
             </p>
             <BookSessionLink className="btn btn-primary mt-6">Book a tutoring session</BookSessionLink>
           </div>
