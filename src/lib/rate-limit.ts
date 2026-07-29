@@ -63,17 +63,31 @@ async function checkUpstash(
 ): Promise<RateLimitResult> {
   if (!limiter) {
     if (process.env.NODE_ENV === "production") {
-      console.warn(`[rate-limit] Upstash not configured; using in-memory fallback for ${limiterName}`);
+      console.error(`[rate-limit] Upstash not configured — rejecting ${limiterName}`);
+      return {
+        ok: false,
+        retryAfter: 60,
+        limiter: limiterName,
+      };
     }
+    // Local/dev only: in-memory buckets are fine for a single process.
     return memoryRateLimit(key, fallbackMax, fallbackWindowMs, limiterName);
   }
 
-  const { success, remaining, reset } = await limiter.limit(key);
-  if (!success) {
-    const retryAfter = Math.max(1, Math.ceil((reset - Date.now()) / 1000));
-    return { ok: false, retryAfter, limiter: limiterName };
+  try {
+    const { success, remaining, reset } = await limiter.limit(key);
+    if (!success) {
+      const retryAfter = Math.max(1, Math.ceil((reset - Date.now()) / 1000));
+      return { ok: false, retryAfter, limiter: limiterName };
+    }
+    return { ok: true, remaining, limiter: limiterName };
+  } catch (err) {
+    console.error(`[rate-limit] Upstash error for ${limiterName}:`, err);
+    if (process.env.NODE_ENV === "production") {
+      return { ok: false, retryAfter: 30, limiter: limiterName };
+    }
+    return memoryRateLimit(key, fallbackMax, fallbackWindowMs, limiterName);
   }
-  return { ok: true, remaining, limiter: limiterName };
 }
 
 export async function rateLimitBurst(ip: string): Promise<RateLimitResult> {
