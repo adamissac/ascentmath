@@ -4,7 +4,7 @@ import { buildPageMetadata } from "../../lib/metadata";
 export const metadata: Metadata = buildPageMetadata({
   title: "Tutoring",
   description:
-    "Four tutoring tiers by grade band: K-5, middle school, high school & SAT/ACT, and college. First session free for new clients.",
+    "Four tutoring tiers by grade band: K-5, middle school, high school & SAT/ACT, and college. Free consultation call for new clients.",
   path: "/tutoring",
   index: false,
 });

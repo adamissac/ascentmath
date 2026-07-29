@@ -24,7 +24,7 @@ export default function UnitProgressPanel({ unitId, unitTitle, items }: Props) {
           <button
             type="button"
             onClick={reset}
-            className="caption text-[var(--color-ink-muted)] hover:text-[var(--color-danger)] underline-offset-2 hover:underline"
+            className="caption inline-flex min-h-[44px] items-center px-2 text-[var(--color-ink-muted)] hover:text-[var(--color-danger)] underline-offset-2 hover:underline"
           >
             Reset
           </button>
@@ -48,7 +48,7 @@ export default function UnitProgressPanel({ unitId, unitTitle, items }: Props) {
                 type="button"
                 onClick={() => toggle(item.id)}
                 className={[
-                  "w-full flex items-center gap-3 px-3 py-2 rounded-md text-left transition-colors",
+                  "w-full flex items-center gap-3 min-h-[44px] px-3 py-3 rounded-md text-left transition-colors",
                   done
                     ? "bg-[var(--color-brand-50)] text-[var(--color-brand-700)]"
                     : "hover:bg-[var(--color-surface-2)] text-[var(--color-ink)]",

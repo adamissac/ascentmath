@@ -25,7 +25,7 @@ export default function Home() {
         variant="brand"
         size="md"
         containerSize="2xl"
-        className="scroll-mt-[5.5rem]"
+        className="scroll-mt-[var(--site-header-offset,5.5rem)]"
         reveal={false}
         faintSymbols
       >

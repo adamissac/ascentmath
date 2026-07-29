@@ -16,8 +16,13 @@ export async function verifyTurnstileToken(
 ): Promise<{ ok: true } | { ok: false; error: string }> {
   if (!isTurnstileConfigured()) {
     if (process.env.NODE_ENV === "production") {
-      console.warn("[turnstile] TURNSTILE_SECRET_KEY missing — skipping CAPTCHA check");
+      console.error("[turnstile] TURNSTILE_SECRET_KEY missing — rejecting submission");
+      return {
+        ok: false,
+        error: "Security check is temporarily unavailable. Please try again later.",
+      };
     }
+    // Local/dev only: allow submissions without Turnstile configured.
     return { ok: true };
   }
 

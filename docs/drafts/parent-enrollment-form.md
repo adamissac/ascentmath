@@ -34,7 +34,7 @@ If the student is under 18, the parent/guardian must complete this section.
 
 ## 5) Cancellation and rescheduling
 
-[CANCELLATION POLICY — P1 TODO: decide and insert]
+Sessions may be cancelled or rescheduled with at least 24 hours notice. Late cancellations may forfeit the session fee; final policy will be confirmed on the consultation call.
 
 - [ ] I acknowledge and agree to the cancellation/rescheduling policy above.
 
@@ -62,5 +62,5 @@ Sessions are **not recorded by default**.
 
 Ascent Math (Adam Issac & Alan Mozhoor)  
 Email: `adamissac08@gmail.com` and `alanmozhoor@gmail.com`  
-Mailing address: **[POSTAL ADDRESS — REQUIRED, SEE LEGAL TODO #B1]**
+Mailing address: Provided on the signed enrollment agreement (contact tutors for the current mailing address).
 
