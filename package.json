@@ -10,7 +10,7 @@
     "build": "node scripts/kill-next.mjs && node scripts/clean-next.mjs && next build",
     "start": "next start",
     "lint": "eslint",
-    "typecheck": "tsc --noEmit",
+    "typecheck": "tsc --noEmit",`n    "test": "npm run lint && npm run typecheck",
     "audit:validate": "npx tsx scripts/audit/validate-content.ts",
     "logo:generate": "python3 scripts/generate-favicons.py",
     "auth:setup": "node scripts/setup-firebase.mjs",
