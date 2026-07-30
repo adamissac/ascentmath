@@ -10,27 +10,27 @@
    ============================================================= */
 
 @theme {
-  /* Brand - navy blue from the logo background (#0B2046). Light end stays
+  /* Brand - royal blue, pulled from the A in the logo. Light end stays
      desaturated (so background washes don't look like Facebook); dark end
-     matches the deepest tone in the logo. */
-  --color-brand-50:  #EDF1F7;
-  --color-brand-100: #D4DCE9;
-  --color-brand-200: #A8B8D3;
-  --color-brand-300: #7389AF;
-  --color-brand-400: #3D5785;
-  --color-brand-500: #0B2046;
-  --color-brand-600: #091A38;
-  --color-brand-700: #07142C;
-  --color-brand-800: #050E20;
-  --color-brand-900: #030914;
+     matches the deepest tone in the logo's gradient. */
+  --color-brand-50:  #EEF2FE;
+  --color-brand-100: #D6DFFC;
+  --color-brand-200: #B0C0F8;
+  --color-brand-300: #7E97F0;
+  --color-brand-400: #4F6DE2;
+  --color-brand-500: #2A4BCB;
+  --color-brand-600: #1F3CB1;
+  --color-brand-700: #182F8E;
+  --color-brand-800: #132573;
+  --color-brand-900: #0B1A57;
 
-  /* Accent - golden arrow from the logo (#C58F28). */
-  --color-accent-50:  #FBF5E8;
-  --color-accent-100: #F4E4C4;
-  --color-accent-300: #DDB76A;
-  --color-accent-500: #C58F28;
+  /* Accent - vibrant orange, pulled from the swoosh and star in the logo. */
+  --color-accent-50:  #FFF3E8;
+  --color-accent-100: #FFDEC0;
+  --color-accent-300: #FFB670;
+  --color-accent-500: #F47B16;
   /* Darker to meet WCAG AA for small badges (e.g. "Free"). */
-  --color-accent-700: #7A5508;
+  --color-accent-700: #9A3F00;
 
   /* Surfaces & ink */
   --color-bg:        #FBFAF7;
@@ -44,13 +44,13 @@
   /* Slightly darker to meet WCAG AA contrast on light backgrounds. */
   --color-ink-soft:  #6B7078;
 
-  /* Cool ink — navy-tinted ramp aligned with logo (#0B2046) */
-  --color-ink-cool:       #0B2046;
-  --color-ink-cool-muted: #3A4F6E;
-  --color-ink-cool-soft:  #6B7A94;
+  /* Cool ink — violet-tinted ramp for hero-style light surfaces */
+  --color-ink-cool:       #1A1A2E;
+  --color-ink-cool-muted: #4A4A6A;
+  --color-ink-cool-soft:  #6B6B80;
 
   /* Semantic */
-  --color-info:    #3D5785;
+  --color-info:    #2D5DAF;
   --color-success: #2D7D54;
   --color-warning: #C58515;
   --color-danger:  #B8261C;
@@ -72,7 +72,7 @@
   --shadow-card:        0 1px 2px rgba(15, 17, 21, 0.04), 0 4px 12px rgba(15, 17, 21, 0.04);
   --shadow-card-hover:  0 4px 12px rgba(15, 17, 21, 0.06), 0 12px 28px rgba(15, 17, 21, 0.08);
   --shadow-popover:     0 12px 32px rgba(15, 17, 21, 0.14);
-  --shadow-focus:       0 0 0 4px rgba(11, 32, 70, 0.20);
+  --shadow-focus:       0 0 0 4px rgba(42, 75, 203, 0.20);
 
   /* Match Tailwind page-x (px-4 / sm:px-6 / lg:px-8) for .site-container & .page-x */
   --page-gutter-x: 1rem;
@@ -100,8 +100,8 @@ html {
   -webkit-text-size-adjust: 100%;
   scroll-behavior: auto;
   overflow-x: hidden;
-  /* Fixed navbar + optional announcement — keep hash / in-page links clear */
-  scroll-padding-top: var(--site-header-offset, 5.5rem);
+  /* Fixed navbar — keep hash / in-page links from hiding section titles */
+  scroll-padding-top: 5.5rem;
 }
 
 body {
@@ -343,10 +343,7 @@ body {
   grid-template-columns: minmax(0, 1fr);
   align-items: start;
   gap: 0;
-  padding-top: 0.875rem;
-  padding-bottom: 1.25rem;
-  padding-left: max(var(--page-gutter-x), env(safe-area-inset-left, 0px));
-  padding-right: max(var(--page-gutter-x), env(safe-area-inset-right, 0px));
+  padding: 0.875rem var(--page-x, 1.25rem) 1.25rem;
 }
 @media (min-width: 1024px) {
   .lesson-layout {
@@ -371,8 +368,7 @@ body {
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-  min-height: 2.75rem;
-  min-width: 2.75rem;
+  min-height: 2.5rem;
   padding: 0 0.875rem;
   border: 2px solid var(--color-border);
   border-radius: var(--radius-sm);
@@ -405,29 +401,12 @@ body {
 .lesson-sidebar--collapsed .lesson-sidebar__foot {
   display: none;
 }
-/* Mobile: hide collapsed sidebar chrome (main toggle opens it); cap open height. */
-@media (max-width: 1023px) {
-  .lesson-sidebar--collapsed {
-    display: none;
-  }
-  .lesson-sidebar--open {
-    max-height: min(70dvh, 32rem);
-    overflow: hidden;
-    margin-bottom: 0.875rem;
-  }
-  .lesson-sidebar--open .lesson-sidebar__list {
-    -webkit-overflow-scrolling: touch;
-  }
-  .lesson-sidebar__toggle {
-    display: none;
-  }
-}
 @media (min-width: 1024px) {
   .lesson-sidebar {
     position: sticky;
-    top: var(--site-header-offset, 5.5rem);
-    height: calc(100dvh - var(--site-header-offset, 5.5rem));
-    max-height: calc(100dvh - var(--site-header-offset, 5.5rem));
+    top: 5.5rem;
+    height: calc(100dvh - 5.5rem);
+    max-height: calc(100dvh - 5.5rem);
   }
   .lesson-sidebar--collapsed {
     width: 2.75rem;
@@ -471,8 +450,8 @@ body {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 2.75rem;
-  height: 2.75rem;
+  width: 2rem;
+  height: 2rem;
   border: 1.5px solid var(--color-border);
   border-radius: var(--radius-sm);
   background: var(--color-surface-2);
@@ -503,8 +482,7 @@ body {
   display: flex;
   align-items: flex-start;
   gap: 0.625rem;
-  min-height: 2.75rem;
-  padding: 0.625rem 0.625rem 0.625rem 0.75rem;
+  padding: 0.5625rem 0.625rem 0.5625rem 0.75rem;
   border: 1.5px solid transparent;
   border-left: 3px solid transparent;
   border-radius: var(--radius-md);
@@ -687,21 +665,6 @@ body {
 }
 .lesson-header__next {
   flex: 1 1 auto;
-  min-width: 0;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-@media (max-width: 639px) {
-  .lesson-header__actions {
-    flex-direction: column;
-    align-items: stretch;
-  }
-  .lesson-header__next,
-  .lesson-header__actions .btn-outline {
-    width: 100%;
-    justify-content: center;
-  }
 }
 @media (min-width: 640px) {
   .lesson-header__actions {
@@ -868,12 +831,12 @@ body {
   color: var(--color-accent-700);
 }
 .lesson-note--info {
-  border-color: color-mix(in srgb, #3D5785 35%, transparent);
-  border-left-color: #3D5785;
-  background: #EDF1F7;
+  border-color: color-mix(in srgb, #5b8fd4 35%, transparent);
+  border-left-color: #5b8fd4;
+  background: #e8eef8;
 }
 .lesson-note--info .lesson-note__title {
-  color: #0B2046;
+  color: #284e94;
 }
 .lesson-note__title {
   font-size: 0.875rem;
@@ -887,24 +850,14 @@ body {
   color: var(--color-ink-muted);
 }
 
-/* Full-width video row: fills the lesson column (including when the sidebar
-   is collapsed) instead of a left-aligned 48rem strip with empty space. */
 .lesson-video-grid {
   display: grid;
   gap: 1rem;
-  width: 100%;
-  grid-template-columns: minmax(0, 1fr);
+  max-width: 48rem;
 }
 @media (min-width: 640px) {
   .lesson-video-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 1.25rem;
-  }
-}
-/* Sidebar collapsed + wide viewport: one row of four equal cards. */
-@media (min-width: 1280px) {
-  .lesson-layout--sidebar-collapsed .lesson-video-grid {
-    grid-template-columns: repeat(4, minmax(0, 1fr));
   }
 }
 
@@ -1201,7 +1154,6 @@ body {
   justify-content: flex-end;
   margin-top: 1rem;
   padding: 0.75rem 0;
-  padding-bottom: calc(0.75rem + env(safe-area-inset-bottom, 0px));
   border-top: 1px solid var(--color-border);
   background: color-mix(in srgb, var(--color-surface-2) 94%, transparent);
   backdrop-filter: blur(6px);
@@ -1209,7 +1161,7 @@ body {
 .lesson-bottom-nav__link {
   display: inline-flex;
   align-items: center;
-  min-height: 2.75rem;
+  min-height: 2.5rem;
   padding: 0 1.25rem;
   border-radius: 999px;
   background: var(--color-brand-500);
@@ -1351,7 +1303,7 @@ body {
    scrolls through a lesson page (lesson-format-kit pattern). */
 .lesson-reading-progress {
   position: fixed;
-  top: var(--site-header-offset, 4.5rem);
+  top: 4.5rem;
   left: 0;
   right: 0;
   height: 3px;
@@ -1390,7 +1342,7 @@ body {
 }
 .pill-brand   { background: var(--color-brand-50);   color: var(--color-brand-700);  border-color: var(--color-brand-100); }
 .pill-accent  { background: var(--color-accent-50);  color: var(--color-accent-700); border-color: var(--color-accent-100); }
-.pill-info    { background: #EDF1F7; color: #0B2046; border-color: #D4DCE9; }
+.pill-info    { background: #E8EEFA; color: #284E94; border-color: #D2DCF3; }
 .pill-success { background: #E5F2EB; color: #1F5E3F; border-color: #C8E1D2; }
 .pill-warning { background: #FBEDD3; color: #8A5A0E; border-color: #F3D7A1; }
 .pill-danger  { background: #FAE1DF; color: #8A1C13; border-color: #F1C5C1; }
@@ -1613,7 +1565,7 @@ body {
 .radio-card.is-active {
   border-color: var(--color-brand-500);
   background: var(--color-brand-50);
-  box-shadow: 0 0 0 3px rgba(11, 32, 70, 0.14);
+  box-shadow: 0 0 0 3px rgba(42, 75, 203, 0.14);
 }
 
 /* =============================================================
@@ -1981,7 +1933,7 @@ body {
 
 @keyframes scroll-target-flash {
   0%, 100% { box-shadow: inset 0 0 0 0 transparent; }
-  35% { box-shadow: inset 0 0 0 9999px rgba(11, 32, 70, 0.045); }
+  35% { box-shadow: inset 0 0 0 9999px rgba(42, 75, 203, 0.045); }
 }
 
 .scroll-target-flash {
@@ -2505,22 +2457,6 @@ body {
   text-overflow: ellipsis;
   max-width: 100%;
 }
-@media (max-width: 639px) {
-  .site-announcement__text {
-    white-space: normal;
-    overflow: visible;
-    text-overflow: unset;
-    line-height: 1.4;
-    padding-inline: 0.25rem;
-  }
-  .site-announcement__link {
-    white-space: normal;
-  }
-  .site-announcement__close {
-    width: 2.75rem;
-    height: 2.75rem;
-  }
-}
 .site-announcement__link {
   font-family: inherit;
   font-weight: 700;
@@ -2538,11 +2474,11 @@ body {
 .site-announcement__close {
   position: absolute;
   top: 50%;
-  right: max(0.5rem, env(safe-area-inset-right, 0px));
+  right: max(1rem, env(safe-area-inset-right, 0px));
   display: grid;
   place-items: center;
-  width: 2.5rem;
-  height: 2.5rem;
+  width: 2rem;
+  height: 2rem;
   margin: 0;
   padding: 0;
   border: 0;

@@ -105,7 +105,7 @@ export default function Navbar() {
 
   return (
     <header className="relative w-full border-b border-[var(--color-brand-100)] border-t-[3px] border-t-[var(--color-brand-600)] bg-white shadow-sm">
-      <div className="mx-auto max-w-7xl page-x">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 safe-x">
         <div className="flex h-[4.25rem] items-center justify-between gap-2 sm:gap-6">
           <Link
             href="/"
@@ -155,7 +155,7 @@ export default function Navbar() {
           <div className="hidden md:flex items-center gap-2">
             <HashLink
               href={BOOK_SESSION_HREF}
-              className="btn btn-primary btn-sm shadow-[0_8px_20px_-8px_rgba(11,32,70,0.55)] hover:-translate-y-0.5 hover:shadow-[0_12px_24px_-10px_rgba(11,32,70,0.5)] transition-[transform,box-shadow]"
+              className="btn btn-primary btn-sm shadow-[0_8px_20px_-8px_rgba(42,75,203,0.55)] hover:-translate-y-0.5 hover:shadow-[0_12px_24px_-10px_rgba(42,75,203,0.5)] transition-[transform,box-shadow]"
             >
               Book a session
               <span aria-hidden>→</span>
