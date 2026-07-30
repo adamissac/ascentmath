@@ -1,6 +1,6 @@
 # Ascent Math
 
-Free Grades 6-8 math resources â€” self-paced study paths, video walkthroughs, worksheets, and quizzes â€” layered under a paid 1-on-1 tutoring business. Built with Next.js 15, React 19, and Tailwind CSS v4.
+Free Grades 6-8 math resources Ã¢â‚¬â€ self-paced study paths, video walkthroughs, worksheets, and quizzes Ã¢â‚¬â€ layered under a paid 1-on-1 tutoring business. Built with Next.js 15, React 19, and Tailwind CSS v4.
 
 Live at **https://www.joinascentmath.com**
 
@@ -16,17 +16,17 @@ Open <http://localhost:3000>.
 
 ## Booking system (Resend)
 
-The booking form lives on the homepage (`#book-session`) and sends real emails to Adam and Alan via [Resend](https://resend.com). Both `adamissac08@gmail.com` and `alanmozhoor@gmail.com` receive submissions. The form posts to the in-app API route `src/app/api/contact/route.ts` â€” no `mailto:` links anywhere, no third-party widgets.
+The booking form lives on the homepage (`#book-session`) and sends real emails to Adam and Alan via [Resend](https://resend.com). Both `adamissac08@gmail.com` and `alanmozhoor@gmail.com` receive submissions. The form posts to the in-app API route `src/app/api/contact/route.ts` Ã¢â‚¬â€ no `mailto:` links anywhere, no third-party widgets.
 
 Fields collected: inquiry type (Student Tutoring / Class Demo / School Partnership / General), name, email, school or org (optional), grade level, and message.
 
-There's no instant booking or published pricing on the site. A submission goes to Adam and Alan, who personally review and reply within 1-2 days to set up a **free consultation call** over Zoom before any paid sessions begin. Tutoring itself is Zoom-only â€” no in-person option.
+There's no instant booking or published pricing on the site. A submission goes to Adam and Alan, who personally review and reply within 1-2 days to set up a **free consultation call** over Zoom before any paid sessions begin. Tutoring itself is Zoom-only Ã¢â‚¬â€ no in-person option.
 
 ### One-time setup
 
 1. Create a free Resend account at <https://resend.com>.
-2. Verify both destination addresses (`adamissac08@gmail.com` and `alanmozhoor@gmail.com`) under **Settings â†’ Verified Emails**. This lets you send to those inboxes without owning a custom domain.
-3. Create an API key under **API Keys â†’ Create API Key**. Copy the `re_â€¦` string.
+2. Verify both destination addresses (`adamissac08@gmail.com` and `alanmozhoor@gmail.com`) under **Settings Ã¢â€ â€™ Verified Emails**. This lets you send to those inboxes without owning a custom domain.
+3. Create an API key under **API Keys Ã¢â€ â€™ Create API Key**. Copy the `re_Ã¢â‚¬Â¦` string.
 4. Copy `.env.example` to `.env.local` and paste the key:
 
    ```bash
@@ -39,11 +39,11 @@ There's no instant booking or published pricing on the site. A submission goes t
 
 ### Production (Vercel)
 
-Add the same three keys in **Project Settings â†’ Environment Variables**. Redeploy.
+Add the same three keys in **Project Settings Ã¢â€ â€™ Environment Variables**. Redeploy.
 
 ### Optional: send from your own domain
 
-Once `joinascentmath.com` is verified in Resend (Settings â†’ Domains), switch `BOOKING_FROM_EMAIL` to something like `"Ascent Math <booking@joinascentmath.com>"`. Replies will still route to whoever submitted the form, because the API sets `replyTo` to the visitor's address.
+Once `joinascentmath.com` is verified in Resend (Settings Ã¢â€ â€™ Domains), switch `BOOKING_FROM_EMAIL` to something like `"Ascent Math <booking@joinascentmath.com>"`. Replies will still route to whoever submitted the form, because the API sets `replyTo` to the visitor's address.
 
 ### What the API does
 
@@ -51,43 +51,43 @@ Once `joinascentmath.com` is verified in Resend (Settings â†’ Domains), swi
 - **Rate-limits** to 5 submissions per minute per IP.
 - **Honeypot** field hidden in the form catches bots.
 - **Templates** the email (HTML + plain text) in `src/lib/contactEmail.ts`.
-- Returns structured JSON: `{ ok: true }` on success, or `{ ok: false, error, fieldErrors? }` on failure â€” the form surfaces these inline.
+- Returns structured JSON: `{ ok: true }` on success, or `{ ok: false, error, fieldErrors? }` on failure Ã¢â‚¬â€ the form surfaces these inline.
 
 ## Authentication
 
-Account sign-up / login is **not active** in the current app â€” study paths and booking work without an account. `/login` redirects to the booking section. Older Firebase env vars in docs were removed from `.env.example` to match production.
+Account sign-up / login is **not active** in the current app Ã¢â‚¬â€ study paths and booking work without an account. `/login` redirects to the booking section. Older Firebase env vars in docs were removed from `.env.example` to match production.
 
 ## Project structure
 
 ```
 src/
-â”œâ”€â”€ app/
-â”‚   â”œâ”€â”€ layout.tsx                  # Root layout (Nav + Footer + fonts)
-â”‚   â”œâ”€â”€ page.tsx                    # Landing page (credentials, booking form, study paths)
-â”‚   â”œâ”€â”€ globals.css                 # Design tokens + base styles
-â”‚   â”œâ”€â”€ loading.tsx, error.tsx, not-found.tsx
-â”‚   â”œâ”€â”€ about/page.tsx
-â”‚   â”œâ”€â”€ privacy/page.tsx
-â”‚   â”œâ”€â”€ terms/page.tsx
-â”‚   â”œâ”€â”€ accessibility/page.tsx
-â”‚   â””â”€â”€ mathematics/
-â”‚       â”œâ”€â”€ page.tsx                # Curriculum hub / "Find your start"
-â”‚       â”œâ”€â”€ curriculum-frameworks/page.tsx
-â”‚       â””â”€â”€ [grade]/[unit]/page.tsx # Dynamic unit page (Grades 6, 7, 8)
-â”œâ”€â”€ components/                     # Reusable UI primitives
-â”‚   â”œâ”€â”€ Navbar, Footer, Container, Section, SectionHeader
-â”‚   â”œâ”€â”€ Button, Card, Badge, Breadcrumbs, ProgressBar
-â”‚   â”œâ”€â”€ VideoEmbed, WorksheetCard, ResourceLinkCard
-â”‚   â”œâ”€â”€ Quiz, UnitProgressPanel
-â”œâ”€â”€ data/
-â”‚   â””â”€â”€ units.ts                    # Curriculum source of truth (Grades 6-8)
-â””â”€â”€ hooks/
-    â””â”€â”€ useUnitProgress.ts          # localStorage-backed progress
+Ã¢â€Å“Ã¢â€â‚¬Ã¢â€â‚¬ app/
+Ã¢â€â€š   Ã¢â€Å“Ã¢â€â‚¬Ã¢â€â‚¬ layout.tsx                  # Root layout (Nav + Footer + fonts)
+Ã¢â€â€š   Ã¢â€Å“Ã¢â€â‚¬Ã¢â€â‚¬ page.tsx                    # Landing page (credentials, booking form, study paths)
+Ã¢â€â€š   Ã¢â€Å“Ã¢â€â‚¬Ã¢â€â‚¬ globals.css                 # Design tokens + base styles
+Ã¢â€â€š   Ã¢â€Å“Ã¢â€â‚¬Ã¢â€â‚¬ loading.tsx, error.tsx, not-found.tsx
+Ã¢â€â€š   Ã¢â€Å“Ã¢â€â‚¬Ã¢â€â‚¬ about/page.tsx
+Ã¢â€â€š   Ã¢â€Å“Ã¢â€â‚¬Ã¢â€â‚¬ privacy/page.tsx
+Ã¢â€â€š   Ã¢â€Å“Ã¢â€â‚¬Ã¢â€â‚¬ terms/page.tsx
+Ã¢â€â€š   Ã¢â€Å“Ã¢â€â‚¬Ã¢â€â‚¬ accessibility/page.tsx
+Ã¢â€â€š   Ã¢â€â€Ã¢â€â‚¬Ã¢â€â‚¬ mathematics/
+Ã¢â€â€š       Ã¢â€Å“Ã¢â€â‚¬Ã¢â€â‚¬ page.tsx                # Curriculum hub / "Find your start"
+Ã¢â€â€š       Ã¢â€Å“Ã¢â€â‚¬Ã¢â€â‚¬ curriculum-frameworks/page.tsx
+Ã¢â€â€š       Ã¢â€â€Ã¢â€â‚¬Ã¢â€â‚¬ [grade]/[unit]/page.tsx # Dynamic unit page (Grades 6, 7, 8)
+Ã¢â€Å“Ã¢â€â‚¬Ã¢â€â‚¬ components/                     # Reusable UI primitives
+Ã¢â€â€š   Ã¢â€Å“Ã¢â€â‚¬Ã¢â€â‚¬ Navbar, Footer, Container, Section, SectionHeader
+Ã¢â€â€š   Ã¢â€Å“Ã¢â€â‚¬Ã¢â€â‚¬ Button, Card, Badge, Breadcrumbs, ProgressBar
+Ã¢â€â€š   Ã¢â€Å“Ã¢â€â‚¬Ã¢â€â‚¬ VideoEmbed, WorksheetCard, ResourceLinkCard
+Ã¢â€â€š   Ã¢â€Å“Ã¢â€â‚¬Ã¢â€â‚¬ Quiz, UnitProgressPanel
+Ã¢â€Å“Ã¢â€â‚¬Ã¢â€â‚¬ data/
+Ã¢â€â€š   Ã¢â€â€Ã¢â€â‚¬Ã¢â€â‚¬ units.ts                    # Curriculum source of truth (Grades 6-8)
+Ã¢â€â€Ã¢â€â‚¬Ã¢â€â‚¬ hooks/
+    Ã¢â€â€Ã¢â€â‚¬Ã¢â€â‚¬ useUnitProgress.ts          # localStorage-backed progress
 ```
 
 ## Adding or editing content
 
-All curriculum data â€” units, videos, worksheets, quiz questions â€” lives in `src/data/units.ts`, covering Grade 6 (7 units, 22 topics), Grade 7 (6 units, 17 topics), and Grade 8 (7 units, 16 topics). Edit that file and every page (home, math hub, unit pages, frameworks page) updates automatically.
+All curriculum data Ã¢â‚¬â€ units, videos, worksheets, quiz questions Ã¢â‚¬â€ lives in `src/data/units.ts`, covering Grade 6 (7 units, 22 topics), Grade 7 (6 units, 17 topics), and Grade 8 (7 units, 16 topics). Edit that file and every page (home, math hub, unit pages, frameworks page) updates automatically.
 
 ### Add a video to a unit
 
@@ -128,8 +128,8 @@ Design tokens are defined as CSS custom properties in `src/app/globals.css` unde
 
 Tokens include:
 
-- Brand palette (`--color-brand-50` â€¦ `--color-brand-900`) â€” teal-green
-- Accent palette (`--color-accent-*`) â€” warm amber
+- Brand palette (`--color-brand-50` Ã¢â‚¬Â¦ `--color-brand-900`) Ã¢â‚¬â€ teal-green
+- Accent palette (`--color-accent-*`) Ã¢â‚¬â€ warm amber
 - Surface, ink, border tokens (background `#FBFAF7`)
 - Semantic colors (info, success, warning, danger)
 - Radii, shadows, focus rings
@@ -152,3 +152,5 @@ Free educational use. Not affiliated with Khan Academy, GADOE, Georgia Tech, or 
 Never commit `.env.local`. Use `.env.example` as the template for Resend and related keys.
 
 See [CONTRIBUTING.md](CONTRIBUTING.md).
+
+Quick validation: `npm test` (lint + typecheck).
