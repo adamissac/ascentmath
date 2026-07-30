@@ -43,7 +43,7 @@
     "axe-core": "^4.12.1",
     "eslint": "^9",
     "eslint-config-next": "^15.5.18",
-    "playwright": "^1.61.1",
+    "playwright": "^1.62.0",
     "tailwindcss": "^4",
     "typescript": "^5"
   }
