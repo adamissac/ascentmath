@@ -62,15 +62,13 @@ async function checkUpstash(
   limiterName: string
 ): Promise<RateLimitResult> {
   if (!limiter) {
+    // Prefer Upstash in production for multi-instance enforcement, but never
+    // block legitimate bookings just because Redis env vars are missing.
     if (process.env.NODE_ENV === "production") {
-      console.error(`[rate-limit] Upstash not configured — rejecting ${limiterName}`);
-      return {
-        ok: false,
-        retryAfter: 60,
-        limiter: limiterName,
-      };
+      console.warn(
+        `[rate-limit] Upstash not configured — using in-memory fallback for ${limiterName}`
+      );
     }
-    // Local/dev only: in-memory buckets are fine for a single process.
     return memoryRateLimit(key, fallbackMax, fallbackWindowMs, limiterName);
   }
 
@@ -83,9 +81,7 @@ async function checkUpstash(
     return { ok: true, remaining, limiter: limiterName };
   } catch (err) {
     console.error(`[rate-limit] Upstash error for ${limiterName}:`, err);
-    if (process.env.NODE_ENV === "production") {
-      return { ok: false, retryAfter: 30, limiter: limiterName };
-    }
+    // Soft-fail: keep the form usable if Redis is down.
     return memoryRateLimit(key, fallbackMax, fallbackWindowMs, limiterName);
   }
 }
