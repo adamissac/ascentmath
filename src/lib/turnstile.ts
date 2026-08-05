@@ -15,14 +15,11 @@ export async function verifyTurnstileToken(
   remoteIp: string
 ): Promise<{ ok: true } | { ok: false; error: string }> {
   if (!isTurnstileConfigured()) {
+    // Turnstile is optional — the honeypot, min-fill-time, and rate limits
+    // still protect the form. Don't block real submissions over missing keys.
     if (process.env.NODE_ENV === "production") {
-      console.error("[turnstile] TURNSTILE_SECRET_KEY missing — rejecting submission");
-      return {
-        ok: false,
-        error: "Security check is temporarily unavailable. Please try again later.",
-      };
+      console.warn("[turnstile] TURNSTILE_SECRET_KEY missing — skipping verification");
     }
-    // Local/dev only: allow submissions without Turnstile configured.
     return { ok: true };
   }
 
