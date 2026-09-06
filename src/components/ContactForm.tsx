@@ -54,6 +54,21 @@ const GRADE_OPTIONS = [
 
 type FieldKey = "name" | "email" | "message";
 
+/**
+ * Domains that usually belong to a school-issued account. These accounts
+ * commonly reject or quarantine mail from outside senders, so a reply may
+ * never reach the student. This only drives a soft warning - plenty of
+ * legitimate personal addresses live on unusual domains, so submission is
+ * never blocked on it.
+ */
+const SCHOOL_EMAIL_PATTERN =
+  /(?:\.edu|\.edu\.[a-z]{2,}|\.ac\.[a-z]{2,}|\.k12\.[a-z]{2,}\.[a-z]{2,}|\.sch\.[a-z]{2,})$/i;
+
+function isSchoolEmail(email: string): boolean {
+  const domain = email.trim().toLowerCase().split("@")[1];
+  return !!domain && SCHOOL_EMAIL_PATTERN.test(domain);
+}
+
 function validateField(key: FieldKey, form: FormState): string {
   switch (key) {
     case "name":
@@ -88,8 +103,14 @@ export default function ContactForm() {
   const [turnstileConfigured, setTurnstileConfigured] = useState<boolean | null>(null);
   const [recipientsDisplay] = useState(FALLBACK_RECIPIENTS);
   const [turnstileToken, setTurnstileToken] = useState<string | null>(null);
-  const formLoadedAtRef = useRef(Date.now());
+  // Set on mount below; Date.now() during render is impure and breaks SSR determinism.
+  const formLoadedAtRef = useRef(0);
   const submittingRef = useRef(false);
+
+  const schoolEmailWarning =
+    !fieldErrors.email && isSchoolEmail(form.email)
+      ? "That looks like a school address. School inboxes often block outside senders, so please use a personal email if you can - otherwise our reply may never reach you."
+      : undefined;
 
   const turnstileSiteKey = process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY?.trim() || "";
   const turnstileRequired =
@@ -306,7 +327,12 @@ export default function ContactForm() {
             onBlur={() => handleBlur("email")}
             error={fieldErrors.email}
             placeholder="you@gmail.com"
-            hint="Please use a personal email — school accounts often block outside messages, so our reply may never reach you."
+            hint={
+              schoolEmailWarning
+                ? undefined
+                : "Please use a personal email — school accounts often block outside messages, so our reply may never reach you."
+            }
+            warning={schoolEmailWarning}
             autoComplete="email"
           />
           <Field
@@ -528,6 +554,7 @@ function Field({
   onBlur,
   placeholder,
   hint,
+  warning,
   error,
   autoComplete,
 }: {
@@ -541,6 +568,8 @@ function Field({
   onBlur?: () => void;
   placeholder?: string;
   hint?: string;
+  /** Advisory only - shown like an error but never blocks submission. */
+  warning?: string;
   error?: string;
   autoComplete?: string;
 }) {
@@ -564,7 +593,11 @@ function Field({
         placeholder={placeholder}
         aria-invalid={!!error}
         aria-describedby={
-          [hint ? `${id}-hint` : null, error ? `${id}-error` : null]
+          [
+            hint ? `${id}-hint` : null,
+            warning ? `${id}-warning` : null,
+            error ? `${id}-error` : null,
+          ]
             .filter(Boolean)
             .join(" ") || undefined
         }
@@ -573,6 +606,15 @@ function Field({
       {hint && (
         <p id={`${id}-hint`} className="caption mt-1.5 text-[var(--color-ink-soft)]">
           {hint}
+        </p>
+      )}
+      {warning && (
+        <p
+          id={`${id}-warning`}
+          className="caption mt-1.5 text-[var(--color-warning)]"
+          role="status"
+        >
+          {warning}
         </p>
       )}
       {error && (
