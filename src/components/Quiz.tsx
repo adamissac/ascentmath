@@ -273,7 +273,6 @@ function Option({
       type="button"
       onClick={onClick}
       disabled={disabled}
-      aria-pressed={selected}
       role="radio"
       aria-checked={selected}
       className={[
