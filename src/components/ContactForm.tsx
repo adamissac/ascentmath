@@ -298,14 +298,15 @@ export default function ContactForm() {
           />
           <Field
             id={FIELD_IDS.email}
-            label="Email"
+            label="Personal email"
             type="email"
             required
             value={form.email}
             onChange={(v) => set("email", v)}
             onBlur={() => handleBlur("email")}
             error={fieldErrors.email}
-            placeholder="you@school.edu"
+            placeholder="you@gmail.com"
+            hint="Please use a personal email — school accounts often block outside messages, so our reply may never reach you."
             autoComplete="email"
           />
           <Field
@@ -526,6 +527,7 @@ function Field({
   onChange,
   onBlur,
   placeholder,
+  hint,
   error,
   autoComplete,
 }: {
@@ -538,6 +540,7 @@ function Field({
   onChange: (v: string) => void;
   onBlur?: () => void;
   placeholder?: string;
+  hint?: string;
   error?: string;
   autoComplete?: string;
 }) {
@@ -560,9 +563,18 @@ function Field({
         onBlur={onBlur}
         placeholder={placeholder}
         aria-invalid={!!error}
-        aria-describedby={error ? `${id}-error` : undefined}
+        aria-describedby={
+          [hint ? `${id}-hint` : null, error ? `${id}-error` : null]
+            .filter(Boolean)
+            .join(" ") || undefined
+        }
         autoComplete={autoComplete}
       />
+      {hint && (
+        <p id={`${id}-hint`} className="caption mt-1.5 text-[var(--color-ink-soft)]">
+          {hint}
+        </p>
+      )}
       {error && (
         <p id={`${id}-error`} className="error-text mt-1.5">
           {error}
